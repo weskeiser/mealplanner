@@ -3,14 +3,17 @@
     "id": 1,
     "name": "Bremykt",
     "category": "Smør",
-    "calories": 742,
-    "salt": 1,
-    "macros": {
-      "fat": 82,
-      "protein": 0.5,
-      "carbs": {
-        "total": 0.5,
-        "sugars": 0.5
+    "properties": {
+      "brand": "Tine",
+      "calories": 742,
+      "salt": 1,
+      "macros": {
+        "fat": 82,
+        "protein": 0.5,
+        "carbs": {
+          "total": 0.5,
+          "sugars": 0.5
+        }
       }
     }
   },
@@ -18,14 +21,17 @@
     "id": 2,
     "name": "Bremykt",
     "category": "Smør",
-    "calories": 742,
-    "salt": 1,
-    "macros": {
-      "fat": 82,
-      "protein": 0.5,
-      "carbs": {
-        "total": 0.5,
-        "sugars": 0.5
+    "properties": {
+      "brand": "",
+      "calories": 742,
+      "salt": 1,
+      "macros": {
+        "fat": 82,
+        "protein": 0.5,
+        "carbs": {
+          "total": 0.5,
+          "sugars": 0.5
+        }
       }
     }
   }

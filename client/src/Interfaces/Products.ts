@@ -9,27 +9,20 @@ interface IMacros {
   carbs: ICarbs;
 }
 
-export interface IProducts {
-  id: number;
-  name: string;
-  category: string;
+interface IProperties {
+  brand: string;
   calories: number;
   salt?: number;
   macros: IMacros;
 }
 
-// export interface IProducts {
-//   id: number;
-//   name: string;
-//   category: string;
-//   calories: number;
-//   salt?: number;
-//   macros: {
-//     fat: number;
-//     protein: number;
-//     carbs: {
-//       total: number;
-//       sugars?: number;
-//     };
-//   };
-// }
+export interface IProducts {
+  id: number;
+  name: string;
+  category: string;
+  properties: IProperties;
+}
+
+export interface ProductsDisplayed extends IProducts {
+  productsDisplayed: IProducts;
+}

@@ -13,7 +13,7 @@ function App() {
     products[0]
   );
 
-  console.log(products[0]);
+  console.log(productsDisplayed.id);
 
   return (
     <>
