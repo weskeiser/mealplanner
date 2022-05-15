@@ -4,9 +4,5 @@ export interface IListItem {
 }
 
 export const ListItem = ({ className, children }: IListItem) => {
-  return (
-    <li className={className}>
-      <div>{children}</div>
-    </li>
-  );
+  return <li className={className}>{children}</li>;
 };

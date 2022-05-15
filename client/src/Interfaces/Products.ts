@@ -23,6 +23,6 @@ export interface IProducts {
   properties: IProperties;
 }
 
-export interface ProductsDisplayed extends IProducts {
+export interface IProductsDisplayed {
   productsDisplayed: IProducts;
 }

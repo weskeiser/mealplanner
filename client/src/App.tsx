@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -9,11 +9,8 @@ import { IProducts } from './Interfaces/Products';
 
 function App() {
   const [productsDisplayed, setProductsDisplayed] = useState<IProducts>(
-    // products[0]
     products[0]
   );
-
-  console.log(productsDisplayed.id);
 
   return (
     <>

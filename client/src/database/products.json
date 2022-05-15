@@ -18,11 +18,11 @@
     }
   },
   {
-    "id": 2,
-    "name": "Bremykt",
+    "id": 1,
+    "name": "Bremykt 2",
     "category": "Smør",
     "properties": {
-      "brand": "",
+      "brand": "Tine",
       "calories": 742,
       "salt": 1,
       "macros": {
