@@ -10,7 +10,7 @@ interface IMacros {
 }
 
 interface IProperties {
-  brand: string;
+  brand?: string;
   calories: number;
   salt?: number;
   macros: IMacros;

@@ -7,26 +7,13 @@ interface IListContent {
 }
 
 const ProductList = ({ className, productsDisplayed }: IListContent) => {
-  const { name, category, properties } = productsDisplayed;
-  const { brand, calories, salt, macros } = properties;
+  const { properties } = productsDisplayed;
+  const { calories, salt, macros } = properties;
   const { fat, protein, carbs } = macros;
   const { total, sugars } = carbs;
 
-  const listValues = [
-    name,
-    brand,
-    category,
-    calories,
-    fat,
-    protein,
-    total,
-    sugars,
-    salt,
-  ];
+  const listValues = [calories, fat, protein, total, sugars, salt];
   const listKeys = [
-    'Vare',
-    'Merke',
-    'Kategori',
     'Kalorier',
     'Fett',
     'Proteiner',

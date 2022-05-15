@@ -15,8 +15,13 @@ function App() {
   return (
     <>
       <h1>Hello World</h1>
-      <ProductDisplay productsDisplayed={productsDisplayed} />
+      <br />
+      <br />
       <SearchBar setProductsDisplayed={setProductsDisplayed} />
+      <br />
+      <br />
+      <br />
+      <ProductDisplay productsDisplayed={productsDisplayed} />
     </>
   );
 }
