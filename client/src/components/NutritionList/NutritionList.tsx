@@ -18,7 +18,7 @@ const ProductList = ({ className, productsDisplayed }: IListContent) => {
     'Fett',
     'Proteiner',
     'Karbohydrater',
-    'Hvorav sukkerarter',
+    '- Hvorav sukkerarter',
     'Salt',
   ];
 

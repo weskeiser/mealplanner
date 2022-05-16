@@ -5,9 +5,17 @@
 }
 
 .product {
-  &__nutrition__list {
+  margin-left: 2em;
+  border: 1px solid black;
+  width: 13em;
+
+  &__title {
     border: 1px solid black;
-    width: 20em;
+    display: flex;
+  }
+
+  &__nutrition__list {
+    // border: 1px solid black;
 
     &__list-item {
       border: 1px solid green;

@@ -5,9 +5,17 @@
           box-sizing: border-box;
 }
 
-.product__nutrition__list {
+.product {
+  margin-left: 2em;
   border: 1px solid black;
-  width: 20em;
+  width: 13em;
+}
+
+.product__title {
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .product__nutrition__list__list-item {
