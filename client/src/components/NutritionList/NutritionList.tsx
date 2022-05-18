@@ -6,7 +6,7 @@ interface IListContent {
   productsDisplayed: IProducts;
 }
 
-const ProductList = ({ className, productsDisplayed }: IListContent) => {
+const NutritionList = ({ className, productsDisplayed }: IListContent) => {
   const { properties } = productsDisplayed;
   const { calories, salt, macros } = properties;
   const { fat, protein, carbs } = macros;
@@ -28,10 +28,10 @@ const ProductList = ({ className, productsDisplayed }: IListContent) => {
         <ListItem
           children={
             <>
-              <p className={className + '__list-item__key'}>{key}</p>
-              <p className={className + '__list-item__value'}>
+              <div className={className + '__list-item__key'}>{key}</div>
+              <div className={className + '__list-item__value'}>
                 {listValues[index]}
-              </p>
+              </div>
             </>
           }
           className={className + '__list-item'}
@@ -42,4 +42,4 @@ const ProductList = ({ className, productsDisplayed }: IListContent) => {
   );
 };
 
-export default ProductList;
+export default NutritionList;

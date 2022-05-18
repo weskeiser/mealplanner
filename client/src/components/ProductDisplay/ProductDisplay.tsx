@@ -1,4 +1,4 @@
-import ProductList from '../NutritionList/NutritionList';
+import NutritionList from '../NutritionList/NutritionList';
 import { IProductsDisplayed } from '../../Interfaces/Products';
 
 const ProductDisplay = ({ productsDisplayed }: IProductsDisplayed) => {
@@ -12,7 +12,7 @@ const ProductDisplay = ({ productsDisplayed }: IProductsDisplayed) => {
         <h3>{category}</h3>
         <h3>{brand}</h3>
       </div>
-      <ProductList
+      <NutritionList
         className="product__nutrition__list"
         productsDisplayed={productsDisplayed}
       />

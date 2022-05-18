@@ -5,6 +5,7 @@
     "category": "Smør",
     "properties": {
       "brand": "Tine",
+      "logo": "https://www.tinehandel.no/media/catalog/product/cache/49e4ccfb624d2d635aa1c0a3913e8545/p/M/pMqpjkTaKNZONZa9uumECe4U0Esudrzk.webp",
       "calories": 742,
       "salt": 1,
       "macros": {
@@ -18,19 +19,39 @@
     }
   },
   {
-    "id": 1,
-    "name": "Bremykt 2",
-    "category": "Smør",
+    "id": 2,
+    "name": "Kjøttdeig 14%",
+    "category": "Kjøtt",
     "properties": {
-      "brand": "Tine",
-      "calories": 742,
-      "salt": 1,
+      "brand": "Gilde",
+      "logo": "https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357",
+      "calories": 194,
+      "salt": 1.1,
       "macros": {
-        "fat": 82,
-        "protein": 0.5,
+        "fat": 14,
+        "protein": 17,
         "carbs": {
-          "total": 0.5,
-          "sugars": 0.5
+          "total": 0,
+          "sugars": 0
+        }
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": "Kyllingkjøttdeig",
+    "category": "Kylling",
+    "properties": {
+      "brand": "Den Stolte Hane",
+      "logo": "https://cdn.scandistandard.com/app/uploads/sites/2/2020/02/24125809/7043180076529_A1N1_600px-341x260.jpg",
+      "calories": 154,
+      "salt": 0.2,
+      "macros": {
+        "fat": 9.5,
+        "protein": 17,
+        "carbs": {
+          "total": 0,
+          "sugars": 0
         }
       }
     }

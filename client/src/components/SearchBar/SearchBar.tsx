@@ -1,13 +1,15 @@
-import products from '../../database/products.json';
-
-import { IProducts } from '../../Interfaces/Products';
-
-interface IProps {
-  setProductsDisplayed: React.Dispatch<React.SetStateAction<IProducts>>;
+interface ISearchBarProps {
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar: React.FC<IProps> = ({ setProductsDisplayed }) => {
-  return <input type="text" />;
+const SearchBar: React.FC<ISearchBarProps> = ({ setSearchTerm }) => {
+  const handleInput = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  return (
+    <input className="search-bar" type="text" onInput={(e) => handleInput(e)} />
+  );
 };
 
 export default SearchBar;
