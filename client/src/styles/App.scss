@@ -13,9 +13,9 @@ html {
 }
 
 body {
-  // display: flex;
-  // justify-content: center;
   height: 100%;
+  // DOUBLE CHECK ON MOBILE:
+  touch-action: none;
 }
 
 .header {
@@ -123,5 +123,24 @@ body {
 }
 
 .add-by-grams {
-  width: 100%;
+  &__increment {
+    // border: 1px solid red;
+    height: 2em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    & > input {
+      width: 5em;
+    }
+  }
+}
+
+.added-products {
+  &__product {
+    display: flex;
+    list-style: none;
+    & > li {
+      margin-right: 1em;
+    }
+  }
 }

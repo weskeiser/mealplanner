@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import useFetchEffect from './hooks/useFetchEffect';
 import './styles/App.css';
 
@@ -8,8 +8,12 @@ import ProductDisplay from './components/ProductDisplay/ProductDisplay';
 import SearchDropdown from './components/SearchDropdown/SearchDropdown';
 import { IProducts } from './Interfaces/Products';
 import AddByGrams from './components/AddByGrams/AddByGrams';
+import AddedProducts from './components/AddedProducts/AddedProducts';
 
 function App() {
+  // Refs
+  const searchBarRef = useRef();
+
   // States
   const [chosenProduct, setChosenProduct] = useState<IProducts>({
     id: 0,
@@ -57,16 +61,23 @@ function App() {
       <div className="header"></div>
       <h1 className="page__title">Næringsinnholdkalkulator</h1>
       <div className="page">
-        <SearchBar setSearchTerm={setSearchTerm} />
+        <SearchBar setSearchTerm={setSearchTerm} ref={searchBarRef} />
         <SearchDropdown
           searchTerm={searchTerm}
           searchDropdownContents={searchDropdownContents}
           setChosenProduct={setChosenProduct}
+          setSearchTerm={setSearchTerm}
+          searchBarRef={searchBarRef}
         />
         <div className="add-by-grams__container">
-          <AddByGrams chosenProduct={chosenProduct} />
+          <AddByGrams
+            chosenProduct={chosenProduct}
+            allChosenProducts={allChosenProducts}
+            setAllChosenProducts={setAllChosenProducts}
+          />
           <ProductDisplay chosenProduct={chosenProduct} />
         </div>
+        <AddedProducts allChosenProducts={allChosenProducts} />
       </div>
     </>
   );

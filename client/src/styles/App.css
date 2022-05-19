@@ -15,6 +15,8 @@ html {
 
 body {
   height: 100%;
+  -ms-touch-action: none;
+      touch-action: none;
 }
 
 .header {
@@ -130,7 +132,26 @@ body {
   margin: 0 auto;
 }
 
-.add-by-grams {
-  width: 100%;
+.add-by-grams__increment {
+  height: 2em;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.add-by-grams__increment > input {
+  width: 5em;
+}
+
+.added-products__product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.added-products__product > li {
+  margin-right: 1em;
 }
 /*# sourceMappingURL=App.css.map */

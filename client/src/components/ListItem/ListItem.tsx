@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 
 export interface IListItem {
   children: any;
-  className: string;
+  className?: string;
   onClick?: MouseEventHandler<HTMLLIElement> | undefined;
 }
 

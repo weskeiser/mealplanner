@@ -12,10 +12,11 @@ const ProductDisplay = ({ chosenProduct }: IProductDisplay) => {
   return (
     <div className="product">
       <div className="product__heading">
-        <img src={logo} alt={brand} className="product__heading__logo" />
-        <h2 className="product__heading__name">{name}</h2>
+        <h2>Næringsinnhold</h2>
+        {/* <img src={logo} alt={brand} className="product__heading__logo" /> */}
+        {/* <h2 className="product__heading__name">{name}</h2> */}
         {/* <h3>{category}</h3> */}
-        <h3>{brand}</h3>
+        {/* <h3>{brand}</h3> */}
       </div>
       <NutritionList
         className="product__nutrition__list"

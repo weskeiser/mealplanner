@@ -1,15 +1,24 @@
+import { forwardRef } from 'react';
+
 interface ISearchBarProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar: React.FC<ISearchBarProps> = ({ setSearchTerm }) => {
-  const handleInput = (e) => {
-    setSearchTerm(e.target.value);
-  };
+const SearchBar = forwardRef(
+  ({ setSearchTerm }: ISearchBarProps, searchBarRef) => {
+    const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+      setSearchTerm(e.target.value);
+    };
 
-  return (
-    <input className="search-bar" type="text" onInput={(e) => handleInput(e)} />
-  );
-};
+    return (
+      <input
+        ref={searchBarRef}
+        className="search-bar"
+        type="text"
+        onInput={(e) => handleInput(e)}
+      />
+    );
+  }
+);
 
 export default SearchBar;
