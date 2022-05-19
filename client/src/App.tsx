@@ -7,10 +7,11 @@ import ProductDisplay from './components/ProductDisplay/ProductDisplay';
 
 import SearchDropdown from './components/SearchDropdown/SearchDropdown';
 import { IProducts } from './Interfaces/Products';
+import AddByGrams from './components/AddByGrams/AddByGrams';
 
 function App() {
   // States
-  const [productsDisplayed, setProductsDisplayed] = useState<IProducts>({
+  const [chosenProduct, setChosenProduct] = useState<IProducts>({
     id: 0,
     name: 'None',
     category: 'None',
@@ -33,7 +34,9 @@ function App() {
   const [searchDropdownContents, setSearchDropdownContents] = useState<
     IProducts[]
   >([]);
+  const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
 
+  // Custom hooks
   const showSearchDropdown = (returnedJSON: IProducts[]) => {
     setSearchDropdownContents([]);
     returnedJSON.forEach((product) => {
@@ -58,9 +61,12 @@ function App() {
         <SearchDropdown
           searchTerm={searchTerm}
           searchDropdownContents={searchDropdownContents}
-          setProductsDisplayed={setProductsDisplayed}
+          setChosenProduct={setChosenProduct}
         />
-        <ProductDisplay productsDisplayed={productsDisplayed} />
+        <div className="add-by-grams__container">
+          <AddByGrams chosenProduct={chosenProduct} />
+          <ProductDisplay chosenProduct={chosenProduct} />
+        </div>
       </div>
     </>
   );

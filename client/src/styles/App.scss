@@ -47,38 +47,38 @@ body {
   border: 1px solid grey;
   font-size: 1.2em;
   background-color: beige;
+  position: fixed;
+  width: 100%;
 
-  &__contents {
-    &__list-item {
-      cursor: pointer;
-      padding-bottom: 0.4em;
-      display: grid;
-      grid-template-columns: repeat(9, 1fr);
+  &__list-item {
+    cursor: pointer;
+    padding-bottom: 0.4em;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
 
-      &:hover {
-        background-color: rgba(245, 40, 145, 0.8);
+    &:hover {
+      background-color: rgba(245, 40, 145, 0.8);
+    }
+
+    & > * {
+      margin: auto 0;
+    }
+
+    &__logo {
+      width: 1.5em;
+      height: 1.5em;
+      grid-column: 1;
+      &::before {
+        display: none;
       }
+    }
 
-      & > * {
-        margin: auto 0;
-      }
+    &__name {
+      grid-column: 2/6;
+    }
 
-      &__logo {
-        width: 1.5em;
-        height: 1.5em;
-        grid-column: 1;
-        &::before {
-          display: none;
-        }
-      }
-
-      &__name {
-        grid-column: 2/6;
-      }
-
-      &__brand {
-        grid-column: 7 / 9;
-      }
+    &__brand {
+      grid-column: 7 / 9;
     }
   }
 }
@@ -88,9 +88,14 @@ body {
   width: 11em;
   // font-size: 0.9em;
 
-  &__title {
+  &__heading {
     border: 1px solid black;
     display: flex;
+
+    &__logo {
+      width: 1.5em;
+      height: 1.5em;
+    }
   }
 
   &__nutrition__list {
@@ -105,4 +110,18 @@ body {
       }
     }
   }
+}
+
+.add-by-grams__container {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  & > * {
+    margin: 0 auto;
+  }
+}
+
+.add-by-grams {
+  width: 100%;
 }

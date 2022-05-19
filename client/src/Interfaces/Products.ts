@@ -23,7 +23,3 @@ export interface IProducts {
   category: string;
   properties: IProperties;
 }
-
-export interface IProductsDisplayed {
-  productsDisplayed: IProducts;
-}

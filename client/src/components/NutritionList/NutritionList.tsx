@@ -3,11 +3,11 @@ import { IProducts } from '../../Interfaces/Products';
 
 interface IListContent {
   className: string;
-  productsDisplayed: IProducts;
+  chosenProduct: IProducts;
 }
 
-const NutritionList = ({ className, productsDisplayed }: IListContent) => {
-  const { properties } = productsDisplayed;
+const NutritionList = ({ className, chosenProduct }: IListContent) => {
+  const { properties } = chosenProduct;
   const { calories, salt, macros } = properties;
   const { fat, protein, carbs } = macros;
   const { total, sugars } = carbs;

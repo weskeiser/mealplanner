@@ -46,9 +46,11 @@ body {
   border: 1px solid grey;
   font-size: 1.2em;
   background-color: beige;
+  position: fixed;
+  width: 100%;
 }
 
-.dropdown__contents__list-item {
+.dropdown__list-item {
   cursor: pointer;
   padding-bottom: 0.4em;
   display: -ms-grid;
@@ -57,32 +59,32 @@ body {
       grid-template-columns: repeat(9, 1fr);
 }
 
-.dropdown__contents__list-item:hover {
+.dropdown__list-item:hover {
   background-color: rgba(245, 40, 145, 0.8);
 }
 
-.dropdown__contents__list-item > * {
+.dropdown__list-item > * {
   margin: auto 0;
 }
 
-.dropdown__contents__list-item__logo {
+.dropdown__list-item__logo {
   width: 1.5em;
   height: 1.5em;
   -ms-grid-column: 1;
   grid-column: 1;
 }
 
-.dropdown__contents__list-item__logo::before {
+.dropdown__list-item__logo::before {
   display: none;
 }
 
-.dropdown__contents__list-item__name {
+.dropdown__list-item__name {
   -ms-grid-column: 2;
   -ms-grid-column-span: 4;
   grid-column: 2/6;
 }
 
-.dropdown__contents__list-item__brand {
+.dropdown__list-item__brand {
   -ms-grid-column: 7;
   -ms-grid-column-span: 2;
   grid-column: 7 / 9;
@@ -93,11 +95,16 @@ body {
   width: 11em;
 }
 
-.product__title {
+.product__heading {
   border: 1px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.product__heading__logo {
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .product__nutrition__list__list-item {
@@ -109,5 +116,21 @@ body {
 
 .product__nutrition__list__list-item__value {
   margin-left: auto;
+}
+
+.add-by-grams__container {
+  margin-top: 1em;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.add-by-grams__container > * {
+  margin: 0 auto;
+}
+
+.add-by-grams {
+  width: 100%;
 }
 /*# sourceMappingURL=App.css.map */
