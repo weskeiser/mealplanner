@@ -1,6 +1,6 @@
 interface ICarbs {
   total: number;
-  sugars?: number;
+  sugars: number;
 }
 
 interface IMacros {
@@ -14,7 +14,7 @@ interface IProperties {
   logo?: string;
   serving: number;
   calories: number;
-  salt?: number;
+  salt: number;
   macros: IMacros;
 }
 
@@ -22,6 +22,5 @@ export interface IProducts {
   id: number;
   name: string;
   category: string;
-  grams?: number;
   properties: IProperties;
 }

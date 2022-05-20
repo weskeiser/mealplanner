@@ -36,12 +36,19 @@ $page-color-text: rgb(45, 97, 160);
   height: 100%;
 }
 
-.page-dividers {
+.dividers {
   border: none;
-  border-bottom: 2px solid $page-color;
+  border-bottom: 1px solid $page-color;
   width: 90%;
   margin: 0 auto;
-  margin-bottom: 0.6em;
+
+  &__search-bar {
+    margin-bottom: 0.6em;
+  }
+
+  &__products {
+    margin-top: 1.5em;
+  }
 }
 
 // Title
@@ -57,14 +64,30 @@ $page-color-text: rgb(45, 97, 160);
 // Search Bar
 .search-bar {
   display: flex;
+  flex-direction: column;
+
   & > input {
-    width: 80%;
+    width: 85%;
+    // margin: 1.6em auto;
+    margin: 1.6em 8%;
     height: 3em;
-    margin: 1.3em auto;
+    margin-bottom: 0;
     padding-left: 0.5em;
     padding-top: 0.3em;
     border: 1px solid $page-color;
     color: $page-color;
+  }
+}
+
+// Add Custom Product
+.custom-product {
+  margin: 0em 10%;
+  margin-bottom: 0.6em;
+  &__initializer {
+    font-size: 0.7em;
+    background-color: #fff;
+    border: none;
+    color: $page-color-text;
   }
 }
 
@@ -127,8 +150,9 @@ $page-color-text: rgb(45, 97, 160);
     }
 
     & > img {
-      width: 1em;
-      height: 1em;
+      width: 1.3em;
+      height: 1.3em;
+      // margin-top: auto;
     }
 
     & h2,
@@ -220,8 +244,16 @@ $page-color-text: rgb(45, 97, 160);
   &__product {
     display: flex;
     list-style: none;
+    color: $page-color-text;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+
     & > li {
       margin-right: 1em;
+    }
+
+    &__serving {
+      margin-left: auto;
     }
   }
 }

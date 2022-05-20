@@ -28,7 +28,6 @@ const NutritionList = ({ className, selectedProduct }: IListContent) => {
     '- Hvorav sukkerarter',
     'Salt',
   ];
-  console.log(typeof calories);
 
   return (
     <ul className={className}>

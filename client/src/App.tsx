@@ -12,6 +12,7 @@ import NutritionList from './components/NutritionList/NutritionList';
 
 import showSearchDropdown from './components/utils/showSearchDropdown';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
+import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 
 function App() {
   // Refs
@@ -60,7 +61,11 @@ function App() {
       <div className="header"></div>
       <h1 className="page-title">Næringsinnholdkalkulator</h1>
       <SearchBar setSearchTerm={setSearchTerm} ref={searchBarRef} />
-      <hr className="page-dividers" />
+      <AddCustomProduct
+        allChosenProducts={allChosenProducts}
+        setAllChosenProducts={setAllChosenProducts}
+      />
+      <hr className="dividers dividers__search-bar" />
       <SearchDropdown
         searchTerm={searchTerm}
         searchDropdownContents={searchDropdownContents}
@@ -71,7 +76,6 @@ function App() {
       <div className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionList
-          // className="selected-product__nutrition-list"
           className={selectedProductClass + '__nutrition-list'}
           selectedProduct={selectedProduct}
         />
@@ -83,6 +87,7 @@ function App() {
           className={selectedProductClass}
         />
       </div>
+      <hr className="dividers dividers__products" />
       <AddedProducts allChosenProducts={allChosenProducts} />
     </div>
   );

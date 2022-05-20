@@ -16,14 +16,7 @@ const AddByGrams = ({
   setAllChosenProducts,
   setSelectedProduct,
 }: IAddByGrams) => {
-  const [currentProduct, setCurrentProduct] = useState();
-  // let productDatabaseValue = useMemo(() => {
-  //   return currentProduct;
-  // }, [currentProduct]);
-
-  // useEffect(() => {
-
-  // }, [ currentProduct ])
+  const [currentProduct, setCurrentProduct] = useState<IProducts>();
 
   const incrementProduct = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -37,7 +30,7 @@ const AddByGrams = ({
   const { fat, protein, carbs } = macros;
   const { total, sugars } = carbs;
 
-  const updateNutritionList = (e) => {
+  const updateNutritionList = (e: React.FormEvent<HTMLInputElement>) => {
     const gramInput = parseFloat(e.target.value);
 
     if (!currentProduct) {
