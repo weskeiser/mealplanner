@@ -3,7 +3,6 @@ import useFetchEffect from './hooks/useFetchEffect';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
-import ProductDisplay from './components/ProductDisplay/ProductDisplay';
 
 import SearchDropdown from './components/SearchDropdown/SearchDropdown';
 import { IProducts } from './Interfaces/Products';
@@ -72,24 +71,26 @@ function App() {
         setSearchTerm={setSearchTerm}
         searchBarRef={searchBarRef}
       />
-      <div className="chosen-product__title">
-        <img src={chosenProduct.properties.logo} alt="" />
-        <h2>{chosenProduct.name},</h2>
-        <h3>{chosenProduct.properties.brand}</h3>
+      <div className="chosen-product">
+        <div className="chosen-product__title">
+          <img src={chosenProduct.properties.logo} alt="" />
+          <h2>{chosenProduct.name},</h2>
+          <h3>{chosenProduct.properties.brand}</h3>
+        </div>
+        <div className="chosen-product__nutrition-list__heading">
+          <h3>Næringsinnhold</h3>
+          <h3>Pr. 100g</h3>
+        </div>
+        <NutritionList
+          className="chosen-product__nutrition-list"
+          chosenProduct={chosenProduct}
+        />
+        <AddByGrams
+          chosenProduct={chosenProduct}
+          allChosenProducts={allChosenProducts}
+          setAllChosenProducts={setAllChosenProducts}
+        />
       </div>
-      <div className="chosen-product__nutrition-list__heading">
-        <h3>Næringsinnhold</h3>
-        <h3>Pr. 100g</h3>
-      </div>
-      <NutritionList
-        className="chosen-product__nutrition-list"
-        chosenProduct={chosenProduct}
-      />
-      <AddByGrams
-        chosenProduct={chosenProduct}
-        allChosenProducts={allChosenProducts}
-        setAllChosenProducts={setAllChosenProducts}
-      />
       <AddedProducts allChosenProducts={allChosenProducts} />
     </div>
   );
