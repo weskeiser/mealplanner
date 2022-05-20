@@ -10,20 +10,23 @@ import AddByGrams from './components/AddByGrams/AddByGrams';
 import AddedProducts from './components/AddedProducts/AddedProducts';
 import NutritionList from './components/NutritionList/NutritionList';
 
+import showSearchDropdown from './components/utils/showSearchDropdown';
+import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
+
 function App() {
   // Refs
   const searchBarRef = useRef();
 
   // States
-  const [chosenProduct, setChosenProduct] = useState<IProducts>({
+  const [selectedProduct, setSelectedProduct] = useState<IProducts>({
     id: 0,
     name: 'None',
     category: 'None',
     properties: {
       brand: 'None',
       logo: '',
+      serving: 100,
       calories: 0,
-      salt: 0,
       macros: {
         fat: 0,
         protein: 0,
@@ -32,6 +35,7 @@ function App() {
           sugars: 0,
         },
       },
+      salt: 0,
     },
   });
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,55 +44,43 @@ function App() {
   >([]);
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
 
-  // Custom hooks
-  const showSearchDropdown = (returnedJSON: IProducts[]) => {
-    setSearchDropdownContents([]);
-    returnedJSON.forEach((product) => {
-      if (
-        (product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchTerm.toLowerCase())) &&
-        searchTerm
-      ) {
-        setSearchDropdownContents((currentState) => [...currentState, product]);
-      }
-    });
-  };
+  // Custom Hooks
+  useFetchEffect(
+    'products.json',
+    showSearchDropdown(setSearchDropdownContents, searchTerm),
+    [searchTerm],
+    800
+  );
 
-  useFetchEffect('products.json', showSearchDropdown, [searchTerm], 800);
+  // Classnames
+  const selectedProductClass = 'selected-product';
 
   return (
     <div className="page">
       <div className="header"></div>
       <h1 className="page-title">Næringsinnholdkalkulator</h1>
-      <div className="search-bar__container">
-        <SearchBar setSearchTerm={setSearchTerm} ref={searchBarRef} />
-      </div>
+      <SearchBar setSearchTerm={setSearchTerm} ref={searchBarRef} />
       <hr className="page-dividers" />
       <SearchDropdown
         searchTerm={searchTerm}
         searchDropdownContents={searchDropdownContents}
-        setChosenProduct={setChosenProduct}
+        setSelectedProduct={setSelectedProduct}
         setSearchTerm={setSearchTerm}
         searchBarRef={searchBarRef}
       />
-      <div className="chosen-product">
-        <div className="chosen-product__title">
-          <img src={chosenProduct.properties.logo} alt="" />
-          <h2>{chosenProduct.name},</h2>
-          <h3>{chosenProduct.properties.brand}</h3>
-        </div>
-        <div className="chosen-product__nutrition-list__heading">
-          <h3>Næringsinnhold</h3>
-          <h3>Pr. 100g</h3>
-        </div>
+      <div className={selectedProductClass}>
+        <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionList
-          className="chosen-product__nutrition-list"
-          chosenProduct={chosenProduct}
+          // className="selected-product__nutrition-list"
+          className={selectedProductClass + '__nutrition-list'}
+          selectedProduct={selectedProduct}
         />
         <AddByGrams
-          chosenProduct={chosenProduct}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
           allChosenProducts={allChosenProducts}
           setAllChosenProducts={setAllChosenProducts}
+          className={selectedProductClass}
         />
       </div>
       <AddedProducts allChosenProducts={allChosenProducts} />

@@ -47,6 +47,12 @@ body {
 }
 
 .search-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.search-bar > input {
   width: 80%;
   height: 3em;
   margin: 1.3em auto;
@@ -54,12 +60,6 @@ body {
   padding-top: 0.3em;
   border: 1px solid #86b2e8;
   color: #86b2e8;
-}
-
-.search-bar__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .dropdown {
@@ -110,32 +110,32 @@ body {
   grid-column: 7 / 9;
 }
 
-.chosen-product {
+.selected-product {
   margin: 0 1em;
 }
 
-.chosen-product__title {
+.selected-product__title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.chosen-product__title > * {
+.selected-product__title > * {
   font-size: 1.2em;
   color: #2d61a0;
 }
 
-.chosen-product__title > img {
+.selected-product__title > img {
   width: 1em;
   height: 1em;
 }
 
-.chosen-product__title h2,
-.chosen-product__title h3 {
+.selected-product__title h2,
+.selected-product__title h3 {
   margin-left: 0.4em;
 }
 
-.chosen-product__nutrition-list__heading {
+.selected-product__nutrition-list__heading {
   color: #2d61a0;
   font-size: 0.7em;
   display: -webkit-box;
@@ -144,11 +144,11 @@ body {
   margin-top: 3em;
 }
 
-.chosen-product__nutrition-list__heading > :last-child {
+.selected-product__nutrition-list__heading > :last-child {
   margin-left: auto;
 }
 
-.chosen-product__nutrition-list__list-item {
+.selected-product__nutrition-list__list-item {
   color: #2d61a0;
   border-top: 1px solid #86b2e8;
   border-right: 1px solid #86b2e8;
@@ -159,23 +159,23 @@ body {
       grid-template-columns: 3fr 1fr;
 }
 
-.chosen-product__nutrition-list__list-item > * {
+.selected-product__nutrition-list__list-item > * {
   padding: 0 0.3em;
 }
 
-.chosen-product__nutrition-list__list-item:last-child {
+.selected-product__nutrition-list__list-item:last-child {
   border-bottom: 1px solid #86b2e8;
 }
 
-.chosen-product__nutrition-list__list-item__key {
+.selected-product__nutrition-list__list-item__key {
   border-right: 1px solid #86b2e8;
 }
 
-.chosen-product__nutrition-list__list-item__value {
+.selected-product__nutrition-list__list-item__value {
   margin-left: auto;
 }
 
-.chosen-product__add-by-grams {
+.selected-product__add-by-grams {
   height: 2em;
   display: -ms-grid;
   display: grid;
@@ -185,18 +185,18 @@ body {
   margin-top: 0.5em;
 }
 
-.chosen-product__add-by-grams > input {
+.selected-product__add-by-grams > input {
   border: 1px solid #86b2e8;
   width: 6em;
   margin-left: auto;
 }
 
-.chosen-product__add-by-grams > label {
+.selected-product__add-by-grams > label {
   margin-left: 0.2em;
   margin-top: auto;
 }
 
-.chosen-product__add-by-grams > button {
+.selected-product__add-by-grams > button {
   font-size: 0.8em;
   background-color: #fff;
   color: #2d61a0;

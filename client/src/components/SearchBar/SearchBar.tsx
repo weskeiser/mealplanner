@@ -11,13 +11,14 @@ const SearchBar = forwardRef(
     };
 
     return (
-      <input
-        ref={searchBarRef}
-        className="search-bar"
-        type="text"
-        onInput={(e) => handleInput(e)}
-        placeholder="Søk etter produkt.."
-      />
+      <div className="search-bar">
+        <input
+          ref={searchBarRef}
+          type="text"
+          onInput={(e) => handleInput(e)}
+          placeholder="Søk etter produkt.."
+        />
+      </div>
     );
   }
 );

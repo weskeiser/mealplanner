@@ -56,16 +56,15 @@ $page-color-text: rgb(45, 97, 160);
 
 // Search Bar
 .search-bar {
-  width: 80%;
-  height: 3em;
-  margin: 1.3em auto;
-  padding-left: 0.5em;
-  padding-top: 0.3em;
-  border: 1px solid $page-color;
-  color: $page-color;
-
-  &__container {
-    display: flex;
+  display: flex;
+  & > input {
+    width: 80%;
+    height: 3em;
+    margin: 1.3em auto;
+    padding-left: 0.5em;
+    padding-top: 0.3em;
+    border: 1px solid $page-color;
+    color: $page-color;
   }
 }
 
@@ -115,7 +114,7 @@ $page-color-text: rgb(45, 97, 160);
 }
 
 // Chosen Product
-.chosen-product {
+.selected-product {
   margin: 0 1em;
 
   &__title {

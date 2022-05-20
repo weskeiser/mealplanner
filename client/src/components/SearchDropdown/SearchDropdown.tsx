@@ -5,14 +5,14 @@ interface ISearchDropdownProps {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchDropdownContents: IProducts[];
-  setChosenProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
   searchBarRef: React.MutableRefObject<undefined>;
 }
 
 const SearchDropdown = ({
   searchTerm,
   searchDropdownContents,
-  setChosenProduct,
+  setSelectedProduct,
   setSearchTerm,
   searchBarRef,
 }: ISearchDropdownProps) =>
@@ -21,7 +21,7 @@ const SearchDropdown = ({
     const selectProduct = (key) => {
       searchDropdownContents.map((product) => {
         if (product.id === key) {
-          setChosenProduct(product);
+          setSelectedProduct(product);
         }
       });
       searchBarRef.current.value = '';

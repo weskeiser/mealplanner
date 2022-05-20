@@ -6,11 +6,14 @@ interface AddedProducts {
 }
 
 const AddedProducts = ({ allChosenProducts }: AddedProducts) => {
-  const child = ({ name, grams }: IProducts) => {
+  const child = ({ name, properties }: IProducts) => {
     return (
       <ol className="added-products__product">
         <ListItem children={name} key={name} />
-        <ListItem children={grams + ' gram'} key={grams} />
+        <ListItem
+          children={properties.serving + 'g'}
+          key={properties.serving}
+        />
       </ol>
     );
   };
@@ -18,7 +21,11 @@ const AddedProducts = ({ allChosenProducts }: AddedProducts) => {
   return (
     <ol className="added-products">
       {allChosenProducts.map((product) => (
-        <ListItem className="added-products__name" children={child(product)} />
+        <ListItem
+          className="added-products__name"
+          children={child(product)}
+          // key={product.name + product.grams}
+        />
       ))}
     </ol>
   );

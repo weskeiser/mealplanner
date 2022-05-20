@@ -3,16 +3,23 @@ import { IProducts } from '../../Interfaces/Products';
 
 interface IListContent {
   className: string;
-  chosenProduct: IProducts;
+  selectedProduct: IProducts;
 }
 
-const NutritionList = ({ className, chosenProduct }: IListContent) => {
-  const { properties } = chosenProduct;
+const NutritionList = ({ className, selectedProduct }: IListContent) => {
+  const { properties } = selectedProduct;
   const { calories, salt, macros } = properties;
   const { fat, protein, carbs } = macros;
   const { total, sugars } = carbs;
 
-  const listValues = [calories, fat, protein, total, sugars, salt];
+  const listValues = [
+    +calories.toFixed(),
+    +fat.toFixed(1),
+    +protein.toFixed(1),
+    +total.toFixed(1),
+    +sugars.toFixed(1),
+    +salt.toFixed(1),
+  ];
   const listKeys = [
     'Kalorier',
     'Fett',
@@ -21,6 +28,7 @@ const NutritionList = ({ className, chosenProduct }: IListContent) => {
     '- Hvorav sukkerarter',
     'Salt',
   ];
+  console.log(typeof calories);
 
   return (
     <ul className={className}>

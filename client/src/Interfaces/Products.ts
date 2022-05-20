@@ -12,6 +12,7 @@ interface IMacros {
 interface IProperties {
   brand?: string;
   logo?: string;
+  serving: number;
   calories: number;
   salt?: number;
   macros: IMacros;

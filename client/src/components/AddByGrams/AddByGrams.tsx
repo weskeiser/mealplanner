@@ -1,33 +1,85 @@
+import { useEffect, useMemo, useState } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
 interface IAddByGrams {
-  chosenProduct: IProducts;
+  className: string;
+  selectedProduct: IProducts;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
   allChosenProducts: IProducts[];
   setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
 }
 
 const AddByGrams = ({
-  chosenProduct,
+  className,
+  selectedProduct,
   allChosenProducts,
   setAllChosenProducts,
+  setSelectedProduct,
 }: IAddByGrams) => {
-  const incrementProduct = (e) => {
+  const [currentProduct, setCurrentProduct] = useState();
+  // let productDatabaseValue = useMemo(() => {
+  //   return currentProduct;
+  // }, [currentProduct]);
+
+  // useEffect(() => {
+
+  // }, [ currentProduct ])
+
+  const incrementProduct = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
+    setAllChosenProducts([...allChosenProducts, selectedProduct]);
+  };
 
-    const input = Array.from(e.target.form.children).filter(
-      (child) => child.name === 'amountInGrams'
-    )[0];
+  const { properties } = selectedProduct;
+  const { serving, calories, salt, macros } = properties;
+  const { fat, protein, carbs } = macros;
+  const { total, sugars } = carbs;
 
-    const chosenProductWithGrams = {
-      ...chosenProduct,
-      grams: input.value,
+  const updateNutritionList = (e) => {
+    const gramInput = parseFloat(e.target.value);
+
+    if (!currentProduct) {
+      setCurrentProduct(selectedProduct);
+    }
+
+    if (!gramInput) {
+      setSelectedProduct(currentProduct);
+      return;
+    }
+
+    const byGramInput = (value: number) => {
+      return (value / serving) * gramInput;
     };
-    setAllChosenProducts([...allChosenProducts, chosenProductWithGrams]);
+
+    setSelectedProduct({
+      ...selectedProduct,
+      properties: {
+        ...properties,
+        serving: gramInput,
+        calories: +byGramInput(calories).toFixed(3),
+        macros: {
+          fat: +byGramInput(fat).toFixed(3),
+          protein: +byGramInput(protein).toFixed(3),
+          carbs: {
+            total: +byGramInput(total).toFixed(3),
+            sugars: +byGramInput(sugars).toFixed(3),
+          },
+        },
+        salt: +byGramInput(salt).toFixed(3),
+      },
+    });
   };
 
   return (
-    <form className="chosen-product__add-by-grams">
-      <input type="text" name="amountInGrams" id="addProduct" />
+    <form className={className + '__add-by-grams'}>
+      <input
+        type="text"
+        name="amountInGrams"
+        id="addProduct"
+        onInput={(e) => updateNutritionList(e)}
+      />
       <label htmlFor="amountInGrams">gram</label>
       <button onClick={(e) => incrementProduct(e)}>Legg til</button>
     </form>
