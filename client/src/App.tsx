@@ -9,6 +9,7 @@ import SearchDropdown from './components/SearchDropdown/SearchDropdown';
 import { IProducts } from './Interfaces/Products';
 import AddByGrams from './components/AddByGrams/AddByGrams';
 import AddedProducts from './components/AddedProducts/AddedProducts';
+import NutritionList from './components/NutritionList/NutritionList';
 
 function App() {
   // Refs
@@ -57,29 +58,40 @@ function App() {
   useFetchEffect('products.json', showSearchDropdown, [searchTerm], 800);
 
   return (
-    <>
+    <div className="page">
       <div className="header"></div>
-      <h1 className="page__title">Næringsinnholdkalkulator</h1>
-      <div className="page">
+      <h1 className="page-title">Næringsinnholdkalkulator</h1>
+      <div className="search-bar__container">
         <SearchBar setSearchTerm={setSearchTerm} ref={searchBarRef} />
-        <SearchDropdown
-          searchTerm={searchTerm}
-          searchDropdownContents={searchDropdownContents}
-          setChosenProduct={setChosenProduct}
-          setSearchTerm={setSearchTerm}
-          searchBarRef={searchBarRef}
-        />
-        <div className="add-by-grams__container">
-          <AddByGrams
-            chosenProduct={chosenProduct}
-            allChosenProducts={allChosenProducts}
-            setAllChosenProducts={setAllChosenProducts}
-          />
-          <ProductDisplay chosenProduct={chosenProduct} />
-        </div>
-        <AddedProducts allChosenProducts={allChosenProducts} />
       </div>
-    </>
+      <hr className="page-dividers" />
+      <SearchDropdown
+        searchTerm={searchTerm}
+        searchDropdownContents={searchDropdownContents}
+        setChosenProduct={setChosenProduct}
+        setSearchTerm={setSearchTerm}
+        searchBarRef={searchBarRef}
+      />
+      <div className="chosen-product__title">
+        <img src={chosenProduct.properties.logo} alt="" />
+        <h2>{chosenProduct.name},</h2>
+        <h3>{chosenProduct.properties.brand}</h3>
+      </div>
+      <div className="chosen-product__nutrition-list__heading">
+        <h3>Næringsinnhold</h3>
+        <h3>Pr. 100g</h3>
+      </div>
+      <NutritionList
+        className="chosen-product__nutrition-list"
+        chosenProduct={chosenProduct}
+      />
+      <AddByGrams
+        chosenProduct={chosenProduct}
+        allChosenProducts={allChosenProducts}
+        setAllChosenProducts={setAllChosenProducts}
+      />
+      <AddedProducts allChosenProducts={allChosenProducts} />
+    </div>
   );
 }
 

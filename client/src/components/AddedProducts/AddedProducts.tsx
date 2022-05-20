@@ -1,7 +1,11 @@
 import { IProducts } from '../../Interfaces/Products';
 import ListItem from '../ListItem';
 
-const AddedProducts: React.FC<IProducts[]> = (allChosenProducts) => {
+interface AddedProducts {
+  allChosenProducts: IProducts[];
+}
+
+const AddedProducts = ({ allChosenProducts }: AddedProducts) => {
   const child = ({ name, grams }: IProducts) => {
     return (
       <ol className="added-products__product">
@@ -13,7 +17,7 @@ const AddedProducts: React.FC<IProducts[]> = (allChosenProducts) => {
 
   return (
     <ol className="added-products">
-      {allChosenProducts.allChosenProducts.map((product) => (
+      {allChosenProducts.map((product) => (
         <ListItem className="added-products__name" children={child(product)} />
       ))}
     </ol>

@@ -3,8 +3,10 @@ import { IProducts } from '../../Interfaces/Products';
 
 interface ISearchDropdownProps {
   searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchDropdownContents: IProducts[];
   setChosenProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  searchBarRef: React.MutableRefObject<undefined>;
 }
 
 const SearchDropdown = ({

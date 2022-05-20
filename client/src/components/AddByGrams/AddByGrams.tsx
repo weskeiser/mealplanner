@@ -26,14 +26,11 @@ const AddByGrams = ({
   };
 
   return (
-    <div>
-      <h2>{chosenProduct.name}</h2>
-      <form className="add-by-grams__increment">
-        <input type="text" name="amountInGrams" id="addProduct" />
-        <label htmlFor="amountInGrams">gram</label>
-        <button onClick={(e) => incrementProduct(e)}>Legg til</button>
-      </form>
-    </div>
+    <form className="chosen-product__add-by-grams">
+      <input type="text" name="amountInGrams" id="addProduct" />
+      <label htmlFor="amountInGrams">gram</label>
+      <button onClick={(e) => incrementProduct(e)}>Legg til</button>
+    </form>
   );
 };
 

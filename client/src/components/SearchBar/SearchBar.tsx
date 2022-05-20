@@ -16,6 +16,7 @@ const SearchBar = forwardRef(
         className="search-bar"
         type="text"
         onInput={(e) => handleInput(e)}
+        placeholder="Søk etter produkt.."
       />
     );
   }

@@ -10,6 +10,7 @@
 
 html {
   height: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -18,33 +19,58 @@ body {
   touch-action: none;
 }
 
+// $page-color: rgb(218, 165, 32);
+$page-color: rgb(134, 178, 232);
+$page-color-lighter: rgba($page-color, 0.2);
+$page-color-text: rgb(45, 97, 160);
+
+.page {
+}
+
 .header {
   height: 6em;
-  background-color: goldenrod;
-  margin-bottom: 0.5em;
+  background-color: $page-color-lighter;
 }
 
 #root {
   height: 100%;
 }
 
-.page {
-  border: 1px solid black;
-  height: 100%;
+.page-dividers {
+  border: none;
+  border-bottom: 1px solid $page-color;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 0.6em;
+}
 
-  &__title {
-    text-align: center;
-    font-size: 1.5em;
+// Title
+.page-title {
+  text-align: center;
+  font-size: 1.5em;
+  border: 1px solid $page-color;
+  padding: 0.4em 0;
+  padding-top: 0.5em;
+  color: $page-color-text;
+}
+
+// Search Bar
+.search-bar {
+  width: 80%;
+  height: 3em;
+  margin: 1.3em auto;
+  padding-left: 0.5em;
+  padding-top: 0.3em;
+  border: 1px solid $page-color;
+  color: $page-color;
+
+  &__container {
+    display: flex;
   }
 }
 
-.search-bar {
-  width: 100%;
-  height: 3em;
-}
-
+// Drop-down
 .dropdown {
-  border: 1px solid grey;
   font-size: 1.2em;
   background-color: beige;
   position: fixed;
@@ -52,16 +78,21 @@ body {
 
   &__list-item {
     cursor: pointer;
-    padding-bottom: 0.4em;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+    border-bottom: 1px solid grey;
+    padding: 0.3em 0;
 
     &:hover {
       background-color: rgba(245, 40, 145, 0.8);
     }
 
     & > * {
-      margin: auto 0;
+      // margin: auto 0;
+    }
+
+    &:nth-child(1) {
+      margin-top: 0.4em;
     }
 
     &__logo {
@@ -83,51 +114,78 @@ body {
   }
 }
 
-.product {
-  border: 1px solid black;
-  width: 11em;
-  // font-size: 0.9em;
-
-  &__heading {
-    border: 1px solid black;
+// Chosen Product
+.chosen-product {
+  &__title {
+    margin-left: 0.3em;
     display: flex;
 
-    &__logo {
-      width: 1.5em;
-      height: 1.5em;
+    & > * {
+      font-size: 1.2em;
+      color: $page-color-text;
+    }
+
+    & > img {
+      width: 1em;
+      height: 1em;
+    }
+
+    & h2,
+    h3 {
+      margin-left: 0.4em;
     }
   }
 
-  &__nutrition__list {
-    // border: 1px solid black;
+  // - Nutrition List
+  &__nutrition-list {
+    &__heading {
+      color: $page-color-text;
+      font-size: 0.7em;
+      // display: grid;
+      // grid-template-columns: 1fr 1fr;
+      display: flex;
+      margin-top: 3em;
+
+      & > :last-child {
+        margin-left: auto;
+      }
+    }
 
     &__list-item {
-      border: 1px solid green;
-      display: flex;
+      color: $page-color-text;
+      border-top: 1px solid $page-color;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+
+      & > * {
+        padding: 0.3em;
+      }
+
+      &:last-child {
+        border-bottom: 1px solid $page-color;
+      }
+
+      &:nth-child(odd) {
+        // background-color: $page-color-lighter;
+        // color: #fff;
+      }
+
+      &__key {
+        border-right: 1px solid $page-color;
+      }
 
       &__value {
         margin-left: auto;
       }
     }
   }
-}
 
-.add-by-grams__container {
-  margin-top: 1em;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  & > * {
-    margin: 0 auto;
-  }
-}
-
-.add-by-grams {
-  &__increment {
-    // border: 1px solid red;
+  // - Add By Grams
+  &__add-by-grams {
     height: 2em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    color: $page-color-text;
 
     & > input {
       width: 5em;

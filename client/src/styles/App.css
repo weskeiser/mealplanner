@@ -11,6 +11,7 @@
 
 html {
   height: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -21,31 +22,47 @@ body {
 
 .header {
   height: 6em;
-  background-color: goldenrod;
-  margin-bottom: 0.5em;
+  background-color: rgba(134, 178, 232, 0.2);
 }
 
 #root {
   height: 100%;
 }
 
-.page {
-  border: 1px solid black;
-  height: 100%;
+.page-dividers {
+  border: none;
+  border-bottom: 1px solid #86b2e8;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 0.6em;
 }
 
-.page__title {
+.page-title {
   text-align: center;
   font-size: 1.5em;
+  border: 1px solid #86b2e8;
+  padding: 0.4em 0;
+  padding-top: 0.5em;
+  color: #2d61a0;
 }
 
 .search-bar {
-  width: 100%;
+  width: 80%;
   height: 3em;
+  margin: 1.3em auto;
+  padding-left: 0.5em;
+  padding-top: 0.3em;
+  border: 1px solid #86b2e8;
+  color: #86b2e8;
+}
+
+.search-bar__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .dropdown {
-  border: 1px solid grey;
   font-size: 1.2em;
   background-color: beige;
   position: fixed;
@@ -54,19 +71,20 @@ body {
 
 .dropdown__list-item {
   cursor: pointer;
-  padding-bottom: 0.4em;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[9];
       grid-template-columns: repeat(9, 1fr);
+  border-bottom: 1px solid grey;
+  padding: 0.3em 0;
 }
 
 .dropdown__list-item:hover {
   background-color: rgba(245, 40, 145, 0.8);
 }
 
-.dropdown__list-item > * {
-  margin: auto 0;
+.dropdown__list-item:nth-child(1) {
+  margin-top: 0.4em;
 }
 
 .dropdown__list-item__logo {
@@ -92,55 +110,76 @@ body {
   grid-column: 7 / 9;
 }
 
-.product {
-  border: 1px solid black;
-  width: 11em;
-}
-
-.product__heading {
-  border: 1px solid black;
+.chosen-product__title {
+  margin-left: 0.3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.product__heading__logo {
-  width: 1.5em;
-  height: 1.5em;
+.chosen-product__title > * {
+  font-size: 1.2em;
+  color: #2d61a0;
 }
 
-.product__nutrition__list__list-item {
-  border: 1px solid green;
+.chosen-product__title > img {
+  width: 1em;
+  height: 1em;
+}
+
+.chosen-product__title h2,
+.chosen-product__title h3 {
+  margin-left: 0.4em;
+}
+
+.chosen-product__nutrition-list__heading {
+  color: #2d61a0;
+  font-size: 0.7em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 3em;
 }
 
-.product__nutrition__list__list-item__value {
+.chosen-product__nutrition-list__heading > :last-child {
   margin-left: auto;
 }
 
-.add-by-grams__container {
-  margin-top: 1em;
+.chosen-product__nutrition-list__list-item {
+  color: #2d61a0;
+  border-top: 1px solid #86b2e8;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
 }
 
-.add-by-grams__container > * {
-  margin: 0 auto;
+.chosen-product__nutrition-list__list-item > * {
+  padding: 0.3em;
 }
 
-.add-by-grams__increment {
+.chosen-product__nutrition-list__list-item:last-child {
+  border-bottom: 1px solid #86b2e8;
+}
+
+.chosen-product__nutrition-list__list-item__key {
+  border-right: 1px solid #86b2e8;
+}
+
+.chosen-product__nutrition-list__list-item__value {
+  margin-left: auto;
+}
+
+.chosen-product__add-by-grams {
   height: 2em;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
+  color: #2d61a0;
 }
 
-.add-by-grams__increment > input {
+.chosen-product__add-by-grams > input {
   width: 5em;
 }
 
