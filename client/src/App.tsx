@@ -6,13 +6,14 @@ import SearchBar from './components/SearchBar/SearchBar';
 
 import SearchDropdown from './components/SearchDropdown/SearchDropdown';
 import { IProducts } from './Interfaces/Products';
-import AddByGrams from './components/AddByGrams/AddByGrams';
+import AddToList from './components/AddToList/AddToList';
 import AddedProducts from './components/AddedProducts/AddedProducts';
 import NutritionList from './components/NutritionList/NutritionList';
 
 import showSearchDropdown from './components/utils/showSearchDropdown';
-import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
+import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
+import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
 
 function App() {
   // Refs
@@ -50,7 +51,7 @@ function App() {
     'products.json',
     showSearchDropdown(setSearchDropdownContents, searchTerm),
     [searchTerm],
-    600
+    300
   );
 
   // Classnames
@@ -79,11 +80,15 @@ function App() {
       <hr className="dividers__search-bar dividers" />
       <div className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
+        <NutritionTitleBar
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+        />
         <NutritionList
           className={selectedProductClass + '__nutrition-list'}
           selectedProduct={selectedProduct}
         />
-        <AddByGrams
+        <AddToList
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
           allChosenProducts={allChosenProducts}

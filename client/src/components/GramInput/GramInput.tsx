@@ -1,29 +1,18 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
-interface IAddByGrams {
-  className: string;
+interface IGramInput {
   selectedProduct: IProducts;
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
-  allChosenProducts: IProducts[];
-  setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  className: string;
 }
 
-const AddByGrams = ({
+const GramInput = ({
   className,
   selectedProduct,
-  allChosenProducts,
-  setAllChosenProducts,
   setSelectedProduct,
-}: IAddByGrams) => {
+}: IGramInput) => {
   const [currentProduct, setCurrentProduct] = useState<IProducts>({});
-
-  const incrementProduct = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    setAllChosenProducts([...allChosenProducts, selectedProduct]);
-  };
 
   const { properties } = selectedProduct;
   const { serving, calories, salt, macros } = properties;
@@ -67,17 +56,15 @@ const AddByGrams = ({
   };
 
   return (
-    <form className={className + '__add-by-grams'}>
-      <input
-        type="text"
-        name="amountInGrams"
-        id="addProduct"
-        onInput={(e) => updateNutritionList(e)}
-      />
-      <label htmlFor="amountInGrams">gram</label>
-      <button onClick={(e) => incrementProduct(e)}>Legg til</button>
-    </form>
+    <input
+      className={className}
+      type="text"
+      name="amountInGrams"
+      id="addProduct"
+      onInput={(e) => updateNutritionList(e)}
+      placeholder="100"
+    />
   );
 };
 
-export default AddByGrams;
+export default GramInput;

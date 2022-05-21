@@ -70,6 +70,7 @@ body {
   padding-top: 0.3em;
   border: 1px solid #86b2e8;
   color: #86b2e8;
+  outline: none;
 }
 
 .custom-product {
@@ -152,6 +153,7 @@ body {
 }
 
 .selected-product__title {
+  margin-left: 0.3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -179,6 +181,30 @@ body {
   display: -ms-flexbox;
   display: flex;
   margin-top: 3em;
+}
+
+.selected-product__nutrition-list__heading__gram-input {
+  width: 4em;
+  text-align: center;
+  border: 1px solid #86b2e8;
+  outline: none;
+  color: #2d61a0;
+}
+
+.selected-product__nutrition-list__heading__gram-input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.selected-product__nutrition-list__heading__gram-input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.selected-product__nutrition-list__heading__gram-input:focus::-ms-input-placeholder {
+  color: transparent;
+}
+
+.selected-product__nutrition-list__heading__gram-input:focus::placeholder {
+  color: transparent;
 }
 
 .selected-product__nutrition-list__heading > :last-child {
@@ -212,36 +238,29 @@ body {
   margin-left: auto;
 }
 
-.selected-product__add-by-grams {
+.selected-product__add-to-list {
   height: 2em;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 7fr 2fr 3fr;
-      grid-template-columns: 7fr 2fr 3fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   color: #2d61a0;
   margin-top: 0.5em;
 }
 
-.selected-product__add-by-grams > input {
+.selected-product__add-to-list__list-dropdown {
+  background-color: #fff;
   border: 1px solid #86b2e8;
-  width: 6em;
+  color: #2d61a0;
   margin-left: auto;
 }
 
-.selected-product__add-by-grams > label {
-  margin-left: 0.2em;
-  margin-top: auto;
-}
-
-.selected-product__add-by-grams > button {
-  font-size: 0.8em;
-  background-color: #fff;
-  color: #2d61a0;
-  border: 1px solid #86b2e8;
-  width: 90%;
-  height: 1.7em;
-  margin: 0 auto;
-  margin-top: auto;
+.selected-product__add-to-list__add {
+  color: #86b2e8;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  line-height: 1em;
+  font-size: 2em;
 }
 
 .added-products__product {
