@@ -65,15 +65,13 @@ function App() {
         setSearchDropdownContents={setSearchDropdownContents}
         ref={searchBarRef}
       />
-      <div className="test">
-        <SearchDropdown
-          searchTerm={searchTerm}
-          searchDropdownContents={searchDropdownContents}
-          setSelectedProduct={setSelectedProduct}
-          setSearchTerm={setSearchTerm}
-          searchBarRef={searchBarRef}
-        />
-      </div>
+      <SearchDropdown
+        searchTerm={searchTerm}
+        searchDropdownContents={searchDropdownContents}
+        setSelectedProduct={setSelectedProduct}
+        setSearchTerm={setSearchTerm}
+        searchBarRef={searchBarRef}
+      />
       <AddCustomProduct
         allChosenProducts={allChosenProducts}
         setAllChosenProducts={setAllChosenProducts}

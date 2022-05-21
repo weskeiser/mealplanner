@@ -24,6 +24,8 @@ $page-color: rgb(134, 178, 232);
 $page-color-lighter: rgba($page-color, 0.2);
 $page-color-text: rgb(45, 97, 160);
 
+$search-bar-width: 85%;
+
 .page {
 }
 
@@ -64,17 +66,13 @@ $page-color-text: rgb(45, 97, 160);
 // Search Bar
 .search-bar {
   display: grid;
-  grid-template-columns: repeat(13, 1fr);
-  // height: 2.8em;
+  grid-template-columns: 1fr $search-bar-width 1fr;
   margin-top: 1.6em;
 
   & > input {
     width: 100%;
-    // margin: 1.6em auto;
-    grid-column: 2/13;
-    // margin: 1.6em 0;
+    grid-column: 2;
     height: 3em;
-    // margin-bottom: 0;
     padding-left: 0.5em;
     padding-top: 0.3em;
     border: 1px solid $page-color;
@@ -106,21 +104,18 @@ $page-color-text: rgb(45, 97, 160);
   }
 }
 
-.test {
-  // border: 1px solid red;
-  position: fixed;
-  display: grid;
-  grid-template-columns: repeat(13, 1fr);
-}
-
 // Drop-down
 .dropdown {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr $search-bar-width 1fr;
   font-size: 1.2em;
-  background-color: $page-color;
   color: #fff;
-  grid-column: 2/13;
 
   &__list-item {
+    background-color: $page-color;
+    color: #fff;
+    grid-column: 2;
     cursor: pointer;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
@@ -140,6 +135,7 @@ $page-color-text: rgb(45, 97, 160);
       background-color: #fff;
       border: 1px solid $page-color;
       height: 100%;
+      // aspect-ratio: 1;
 
       width: 100%;
       grid-column: 1;
@@ -151,6 +147,7 @@ $page-color-text: rgb(45, 97, 160);
     &__name {
       grid-column: 2/6;
       padding: 0.28em 0;
+      margin-left: 0.3em;
     }
 
     &__brand {
