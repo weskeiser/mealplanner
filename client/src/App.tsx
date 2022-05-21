@@ -50,7 +50,7 @@ function App() {
     'products.json',
     showSearchDropdown(setSearchDropdownContents, searchTerm),
     [searchTerm],
-    800
+    600
   );
 
   // Classnames
@@ -60,19 +60,25 @@ function App() {
     <div className="page">
       <div className="header"></div>
       <h1 className="page-title">Næringsinnholdkalkulator</h1>
-      <SearchBar setSearchTerm={setSearchTerm} ref={searchBarRef} />
+      <SearchBar
+        setSearchTerm={setSearchTerm}
+        setSearchDropdownContents={setSearchDropdownContents}
+        ref={searchBarRef}
+      />
+      <div className="test">
+        <SearchDropdown
+          searchTerm={searchTerm}
+          searchDropdownContents={searchDropdownContents}
+          setSelectedProduct={setSelectedProduct}
+          setSearchTerm={setSearchTerm}
+          searchBarRef={searchBarRef}
+        />
+      </div>
       <AddCustomProduct
         allChosenProducts={allChosenProducts}
         setAllChosenProducts={setAllChosenProducts}
       />
-      <hr className="dividers dividers__search-bar" />
-      <SearchDropdown
-        searchTerm={searchTerm}
-        searchDropdownContents={searchDropdownContents}
-        setSelectedProduct={setSelectedProduct}
-        setSearchTerm={setSearchTerm}
-        searchBarRef={searchBarRef}
-      />
+      <hr className="dividers__search-bar dividers" />
       <div className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionList
@@ -87,7 +93,7 @@ function App() {
           className={selectedProductClass}
         />
       </div>
-      <hr className="dividers dividers__products" />
+      <hr className="dividers__products dividers" />
       <AddedProducts allChosenProducts={allChosenProducts} />
     </div>
   );

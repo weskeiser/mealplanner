@@ -16,7 +16,7 @@ const AddByGrams = ({
   setAllChosenProducts,
   setSelectedProduct,
 }: IAddByGrams) => {
-  const [currentProduct, setCurrentProduct] = useState<IProducts>();
+  const [currentProduct, setCurrentProduct] = useState<IProducts>({});
 
   const incrementProduct = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -31,9 +31,10 @@ const AddByGrams = ({
   const { total, sugars } = carbs;
 
   const updateNutritionList = (e: React.FormEvent<HTMLInputElement>) => {
-    const gramInput = parseFloat(e.target.value);
+    const input = e.target as HTMLInputElement;
+    const gramInput = parseFloat(input.value);
 
-    if (!currentProduct) {
+    if (Object.keys(currentProduct).length === 0) {
       setCurrentProduct(selectedProduct);
     }
 

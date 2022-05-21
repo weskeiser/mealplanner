@@ -63,15 +63,18 @@ $page-color-text: rgb(45, 97, 160);
 
 // Search Bar
 .search-bar {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  // height: 2.8em;
+  margin-top: 1.6em;
 
   & > input {
-    width: 85%;
+    width: 100%;
     // margin: 1.6em auto;
-    margin: 1.6em 8%;
+    grid-column: 2/13;
+    // margin: 1.6em 0;
     height: 3em;
-    margin-bottom: 0;
+    // margin-bottom: 0;
     padding-left: 0.5em;
     padding-top: 0.3em;
     border: 1px solid $page-color;
@@ -84,42 +87,61 @@ $page-color-text: rgb(45, 97, 160);
   margin: 0em 10%;
   margin-bottom: 0.6em;
   &__initializer {
+    cursor: pointer;
     font-size: 0.7em;
     background-color: #fff;
     border: none;
     color: $page-color-text;
   }
+
+  &__form {
+    & > * {
+      color: $page-color-text;
+    }
+
+    & > input {
+      padding-left: 0.4em;
+      font-size: 1em;
+    }
+  }
+}
+
+.test {
+  // border: 1px solid red;
+  position: fixed;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
 }
 
 // Drop-down
 .dropdown {
   font-size: 1.2em;
-  background-color: beige;
-  position: fixed;
-  width: 100%;
+  background-color: $page-color;
+  color: #fff;
+  grid-column: 2/13;
 
   &__list-item {
     cursor: pointer;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    border-bottom: 1px solid grey;
-    padding: 0.3em 0;
+    border-bottom: 1px solid #fff;
+    height: 1.9em;
 
     &:hover {
-      background-color: rgba(245, 40, 145, 0.8);
     }
 
     & > * {
-      // margin: auto 0;
     }
 
     &:nth-child(1) {
-      margin-top: 0.4em;
     }
 
     &__logo {
-      width: 1.5em;
-      height: 1.5em;
+      background-color: #fff;
+      border: 1px solid $page-color;
+      height: 100%;
+
+      width: 100%;
       grid-column: 1;
       &::before {
         display: none;
@@ -128,10 +150,13 @@ $page-color-text: rgb(45, 97, 160);
 
     &__name {
       grid-column: 2/6;
+      padding: 0.28em 0;
     }
 
     &__brand {
       grid-column: 7 / 9;
+      font-size: 0.6em;
+      padding: 0.28em 0;
     }
   }
 }

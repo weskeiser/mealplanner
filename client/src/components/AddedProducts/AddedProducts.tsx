@@ -6,7 +6,7 @@ interface IAddedProducts {
 }
 
 const AddedProducts = ({ allChosenProducts }: IAddedProducts) => {
-  const child = ({ name, properties }: IProducts) => {
+  const addedProduct = ({ name, properties }: IProducts) => {
     return (
       <ol className="added-products__product">
         <ListItem children={name} key={name} />
@@ -22,11 +22,11 @@ const AddedProducts = ({ allChosenProducts }: IAddedProducts) => {
 
   return (
     <ol className="added-products">
-      {allChosenProducts.map((product) => (
+      {allChosenProducts.map((product, index) => (
         <ListItem
           className="added-products__name"
-          children={child(product)}
-          // key={product.name + product.grams}
+          children={addedProduct(product)}
+          key={product.id + index}
         />
       ))}
     </ol>

@@ -2,12 +2,20 @@ import { forwardRef } from 'react';
 
 interface ISearchBarProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setSearchDropdownContents: React.Dispatch<React.SetStateAction<IProducts[]>>;
 }
 
 const SearchBar = forwardRef(
-  ({ setSearchTerm }: ISearchBarProps, searchBarRef) => {
+  (
+    { setSearchTerm, setSearchDropdownContents }: ISearchBarProps,
+    searchBarRef
+  ) => {
     const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
-      setSearchTerm(e.target.value);
+      const input = e.target as HTMLInputElement;
+      if (!input.value) {
+        setSearchDropdownContents([]);
+      }
+      setSearchTerm(input.value);
     };
 
     return (
