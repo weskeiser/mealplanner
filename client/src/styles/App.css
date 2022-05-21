@@ -188,7 +188,7 @@ body {
   text-align: center;
   border: 1px solid #86b2e8;
   outline: none;
-  color: #2d61a0;
+  color: rgba(45, 97, 160, 0.6);
 }
 
 .selected-product__nutrition-list__heading__gram-input:focus::-webkit-input-placeholder {
@@ -261,6 +261,7 @@ body {
   vertical-align: middle;
   line-height: 1em;
   font-size: 2em;
+  cursor: pointer;
 }
 
 .added-products__product {

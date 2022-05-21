@@ -7,6 +7,8 @@ interface ISearchDropdownProps {
   searchDropdownContents: IProducts[];
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
   searchBarRef: React.MutableRefObject<undefined>;
+  gramInputRef: React.MutableRefObject<undefined>;
+  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
 
 const SearchDropdown = ({
@@ -15,6 +17,8 @@ const SearchDropdown = ({
   setSelectedProduct,
   setSearchTerm,
   searchBarRef,
+  gramInputRef,
+  setCurrentProduct,
 }: ISearchDropdownProps) => {
   const selectProduct = (key) => {
     searchDropdownContents.map((product) => {
@@ -22,6 +26,8 @@ const SearchDropdown = ({
         setSelectedProduct(product);
       }
     });
+    gramInputRef.current.value = '';
+    setCurrentProduct({});
     searchBarRef.current.value = '';
     setSearchTerm('');
   };

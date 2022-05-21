@@ -4,11 +4,17 @@ import GramInput from '../GramInput/GramInput';
 interface INutritionTitleBar {
   selectedProduct: IProducts;
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  gramInputRef: React.MutableRefObject<undefined>;
+  currentProduct: IProducts | {};
+  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
 
 const NutritionTitleBar = ({
   selectedProduct,
   setSelectedProduct,
+  gramInputRef,
+  currentProduct,
+  setCurrentProduct,
 }: INutritionTitleBar) => {
   return (
     <>
@@ -17,9 +23,12 @@ const NutritionTitleBar = ({
         <div>
           Pr.{' '}
           <GramInput
+            ref={gramInputRef}
             className="selected-product__nutrition-list__heading__gram-input"
             selectedProduct={selectedProduct}
             setSelectedProduct={setSelectedProduct}
+            currentProduct={currentProduct}
+            setCurrentProduct={setCurrentProduct}
           />
           g
         </div>

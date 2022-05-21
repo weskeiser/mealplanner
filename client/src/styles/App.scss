@@ -198,7 +198,8 @@ $search-bar-width: 85%;
         border: 1px solid $page-color;
         outline: none;
         // border-bottom: none;
-        color: $page-color-text;
+        // color: $page-color-text;
+        color: rgba($page-color-text, 0.6);
 
         &:focus::placeholder {
           color: transparent;
@@ -241,11 +242,10 @@ $search-bar-width: 85%;
     }
   }
 
-  // - Add By Grams
+  // - Add To List
   &__add-to-list {
     height: 2em;
     display: flex;
-    // grid-template-columns: 3fr 1fr 4fr 1fr;
     color: $page-color-text;
     margin-top: 0.5em;
 
@@ -257,25 +257,14 @@ $search-bar-width: 85%;
     }
 
     &__add {
-      // border: 1px solid black;
       color: $page-color;
       width: 1em;
       height: 1em;
       vertical-align: middle;
       line-height: 1em;
       font-size: 2em;
+      cursor: pointer;
     }
-
-    // & > button {
-    //   font-size: 0.8em;
-    //   background-color: #fff;
-    //   color: $page-color-text;
-    //   border: 1px solid $page-color;
-    //   width: 90%;
-    //   height: 1.7em;
-    //   margin: 0 auto;
-    //   margin-top: auto;
-    // }
   }
 }
 

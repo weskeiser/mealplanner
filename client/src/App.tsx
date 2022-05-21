@@ -18,6 +18,7 @@ import SelectedProductTitle from './components/SelectedProductTitle/SelectedProd
 function App() {
   // Refs
   const searchBarRef = useRef();
+  const gramInputRef = useRef();
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
@@ -45,6 +46,8 @@ function App() {
     IProducts[]
   >([]);
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
+  // - Used for remembering selectedProduct when GramInput goes to 0.
+  const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
 
   // Custom Hooks
   useFetchEffect(
@@ -72,6 +75,8 @@ function App() {
         setSelectedProduct={setSelectedProduct}
         setSearchTerm={setSearchTerm}
         searchBarRef={searchBarRef}
+        gramInputRef={gramInputRef}
+        setCurrentProduct={setCurrentProduct}
       />
       <AddCustomProduct
         allChosenProducts={allChosenProducts}
@@ -81,8 +86,11 @@ function App() {
       <div className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionTitleBar
+          gramInputRef={gramInputRef}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
         />
         <NutritionList
           className={selectedProductClass + '__nutrition-list'}
