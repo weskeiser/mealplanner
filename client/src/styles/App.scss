@@ -27,6 +27,7 @@ $page-color-text: rgb(45, 97, 160);
 $search-bar-width: 85%;
 
 .page {
+  margin-bottom: 10em;
 }
 
 .header {
@@ -43,14 +44,6 @@ $search-bar-width: 85%;
   border-bottom: 1px solid $page-color;
   width: 90%;
   margin: 0 auto;
-
-  &__search-bar {
-    margin-bottom: 0.6em;
-  }
-
-  &__products {
-    margin-top: 1.5em;
-  }
 }
 
 // Title
@@ -160,27 +153,33 @@ $search-bar-width: 85%;
   }
 }
 
-// Chosen Product
 .selected-product {
-  margin: 0 1em;
+  margin: 0 1.6em;
+
+  &__divider--upper {
+    margin-bottom: 1.6em;
+  }
 
   &__title {
     margin-left: 0.3em;
     display: flex;
 
-    & > * {
-      font-size: 1.2em;
-      color: $page-color-text;
+    &__logo {
+      width: 3.5em;
+      height: 3em;
+      margin-right: 0.5em;
     }
 
-    & > img {
-      width: 1.3em;
-      height: 1.3em;
-    }
-
-    & h2,
-    h3 {
+    &__name {
       margin-left: 0.4em;
+      color: $page-color-text;
+      font-size: 1.2em;
+    }
+
+    &__brand {
+      color: rgba($page-color-text, 0.6);
+      margin-left: 1.1em;
+      font-size: 0.8em;
     }
   }
 
@@ -191,24 +190,43 @@ $search-bar-width: 85%;
       font-size: 0.7em;
       display: flex;
       margin-top: 3em;
+      margin-bottom: 0.3em;
 
       &__gram-input {
-        width: 4em;
-        text-align: center;
-        border: 1px solid $page-color;
-        outline: none;
-        // border-bottom: none;
-        // color: $page-color-text;
-        color: rgba($page-color-text, 0.6);
+        margin-left: auto;
+        margin-right: -0.9em;
+        display: flex;
+        &::before {
+          content: 'Pr.';
+          margin-top: auto;
+        }
 
-        &:focus::placeholder {
-          color: transparent;
+        &::after {
+          content: 'g';
+          margin-top: auto;
+        }
+
+        &__input {
+          margin: 0 0.1em 0 0.3em;
+          width: 3.5em;
+          height: 1.5em;
+          text-align: center;
+          border: 1px solid $page-color;
+          outline: none;
+          // border-bottom: none;
+          // color: $page-color-text;
+          color: rgba($page-color-text, 0.6);
+          font-size: 1.5em;
+
+          &:focus::placeholder {
+            color: transparent;
+          }
         }
       }
 
-      & > :last-child {
-        margin-left: auto;
-      }
+      // & > :last-child {
+      //   margin-left: auto;
+      // }
     }
 
     &__list-item {
@@ -260,11 +278,54 @@ $search-bar-width: 85%;
       color: $page-color;
       width: 1em;
       height: 1em;
-      vertical-align: middle;
       line-height: 1em;
       font-size: 2em;
       cursor: pointer;
     }
+  }
+}
+
+.added-products-list {
+  // border: 1px solid black;
+  display: flex;
+  margin-top: 1em;
+
+  &__divider--upper {
+    margin-top: 1.5em;
+  }
+
+  &__title {
+    color: $page-color-text;
+    font-size: 1.2em;
+    margin-left: 1.5em;
+  }
+
+  &__arrow {
+    &__outter {
+      // border: 1px solid black;
+      margin-left: auto;
+      margin-right: 1.5em;
+      margin-top: -0.7em;
+      width: 3em;
+      height: 3em;
+      padding-left: 0.95em;
+      padding-top: 0.7em;
+      cursor: pointer;
+    }
+
+    &__inner {
+      border: 0.2em solid black;
+      border-top: transparent;
+      border-left: transparent;
+      width: 1em;
+      height: 1em;
+      transform: rotate(45deg);
+      // border-radius: 0.1em;
+    }
+  }
+
+  &__divider--lower {
+    padding-top: 0.3em;
   }
 }
 

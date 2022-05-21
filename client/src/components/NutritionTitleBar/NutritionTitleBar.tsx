@@ -20,18 +20,14 @@ const NutritionTitleBar = ({
     <>
       <div className="selected-product__nutrition-list__heading">
         <h3>Næringsinnhold</h3>
-        <div>
-          Pr.{' '}
-          <GramInput
-            ref={gramInputRef}
-            className="selected-product__nutrition-list__heading__gram-input"
-            selectedProduct={selectedProduct}
-            setSelectedProduct={setSelectedProduct}
-            currentProduct={currentProduct}
-            setCurrentProduct={setCurrentProduct}
-          />
-          g
-        </div>
+        <GramInput
+          ref={gramInputRef}
+          className="selected-product__nutrition-list__heading__gram-input"
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
+        />
       </div>
     </>
   );

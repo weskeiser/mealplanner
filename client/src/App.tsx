@@ -14,6 +14,7 @@ import showSearchDropdown from './components/utils/showSearchDropdown';
 import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
+import AddedProductsList from './components/AddedProductsList/AddedProductsLists';
 
 function App() {
   // Refs
@@ -82,7 +83,7 @@ function App() {
         allChosenProducts={allChosenProducts}
         setAllChosenProducts={setAllChosenProducts}
       />
-      <hr className="dividers__search-bar dividers" />
+      <hr className="selected-product__divider--upper dividers" />
       <div className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionTitleBar
@@ -104,8 +105,10 @@ function App() {
           className={selectedProductClass}
         />
       </div>
-      <hr className="dividers__products dividers" />
-      <AddedProducts allChosenProducts={allChosenProducts} />
+      <hr className="added-products-list__divider--upper dividers" />
+      <AddedProductsList />
+      {/* <AddedProductsList /> */}
+      {/* <AddedProducts allChosenProducts={allChosenProducts} /> */}
     </div>
   );
 }

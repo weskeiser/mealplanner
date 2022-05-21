@@ -6,11 +6,23 @@ interface ISelectedProductTitle {
 
 const SelectedProductTitle = ({ selectedProduct }: ISelectedProductTitle) => {
   return (
-    <div className="selected-product__title">
-      <img src={selectedProduct.properties.logo} alt="" />
-      <h2>{selectedProduct.name},</h2>
-      <h3>{selectedProduct.properties.brand}</h3>
-    </div>
+    <>
+      <div className="selected-product__title">
+        <img
+          className="selected-product__title__logo"
+          src={selectedProduct.properties.logo}
+          alt=""
+        />
+        <div>
+          <h2 className="selected-product__title__name">
+            {selectedProduct.name}
+          </h2>
+          <h3 className="selected-product__title__brand">
+            {selectedProduct.properties.brand}
+          </h3>
+        </div>
+      </div>
+    </>
   );
 };
 

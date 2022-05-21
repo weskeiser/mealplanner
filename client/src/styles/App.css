@@ -20,6 +20,10 @@ body {
       touch-action: none;
 }
 
+.page {
+  margin-bottom: 10em;
+}
+
 .header {
   height: 6em;
   background-color: rgba(134, 178, 232, 0.2);
@@ -34,14 +38,6 @@ body {
   border-bottom: 1px solid #86b2e8;
   width: 90%;
   margin: 0 auto;
-}
-
-.dividers__search-bar {
-  margin-bottom: 0.6em;
-}
-
-.dividers__products {
-  margin-top: 1.5em;
 }
 
 .page-title {
@@ -149,7 +145,11 @@ body {
 }
 
 .selected-product {
-  margin: 0 1em;
+  margin: 0 1.6em;
+}
+
+.selected-product__divider--upper {
+  margin-bottom: 1.6em;
 }
 
 .selected-product__title {
@@ -159,19 +159,22 @@ body {
   display: flex;
 }
 
-.selected-product__title > * {
-  font-size: 1.2em;
-  color: #2d61a0;
+.selected-product__title__logo {
+  width: 3.5em;
+  height: 3em;
+  margin-right: 0.5em;
 }
 
-.selected-product__title > img {
-  width: 1.3em;
-  height: 1.3em;
-}
-
-.selected-product__title h2,
-.selected-product__title h3 {
+.selected-product__title__name {
   margin-left: 0.4em;
+  color: #2d61a0;
+  font-size: 1.2em;
+}
+
+.selected-product__title__brand {
+  color: rgba(45, 97, 160, 0.6);
+  margin-left: 1.1em;
+  font-size: 0.8em;
 }
 
 .selected-product__nutrition-list__heading {
@@ -181,34 +184,52 @@ body {
   display: -ms-flexbox;
   display: flex;
   margin-top: 3em;
+  margin-bottom: 0.3em;
 }
 
 .selected-product__nutrition-list__heading__gram-input {
-  width: 4em;
+  margin-left: auto;
+  margin-right: -0.9em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.selected-product__nutrition-list__heading__gram-input::before {
+  content: 'Pr.';
+  margin-top: auto;
+}
+
+.selected-product__nutrition-list__heading__gram-input::after {
+  content: 'g';
+  margin-top: auto;
+}
+
+.selected-product__nutrition-list__heading__gram-input__input {
+  margin: 0 0.1em 0 0.3em;
+  width: 3.5em;
+  height: 1.5em;
   text-align: center;
   border: 1px solid #86b2e8;
   outline: none;
   color: rgba(45, 97, 160, 0.6);
+  font-size: 1.5em;
 }
 
-.selected-product__nutrition-list__heading__gram-input:focus::-webkit-input-placeholder {
+.selected-product__nutrition-list__heading__gram-input__input:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
-.selected-product__nutrition-list__heading__gram-input:focus:-ms-input-placeholder {
+.selected-product__nutrition-list__heading__gram-input__input:focus:-ms-input-placeholder {
   color: transparent;
 }
 
-.selected-product__nutrition-list__heading__gram-input:focus::-ms-input-placeholder {
+.selected-product__nutrition-list__heading__gram-input__input:focus::-ms-input-placeholder {
   color: transparent;
 }
 
-.selected-product__nutrition-list__heading__gram-input:focus::placeholder {
+.selected-product__nutrition-list__heading__gram-input__input:focus::placeholder {
   color: transparent;
-}
-
-.selected-product__nutrition-list__heading > :last-child {
-  margin-left: auto;
 }
 
 .selected-product__nutrition-list__list-item {
@@ -258,10 +279,51 @@ body {
   color: #86b2e8;
   width: 1em;
   height: 1em;
-  vertical-align: middle;
   line-height: 1em;
   font-size: 2em;
   cursor: pointer;
+}
+
+.added-products-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1em;
+}
+
+.added-products-list__divider--upper {
+  margin-top: 1.5em;
+}
+
+.added-products-list__title {
+  color: #2d61a0;
+  font-size: 1.2em;
+  margin-left: 1.5em;
+}
+
+.added-products-list__arrow__outter {
+  margin-left: auto;
+  margin-right: 1.5em;
+  margin-top: -0.7em;
+  width: 3em;
+  height: 3em;
+  padding-left: 0.95em;
+  padding-top: 0.7em;
+  cursor: pointer;
+}
+
+.added-products-list__arrow__inner {
+  border: 0.2em solid black;
+  border-top: transparent;
+  border-left: transparent;
+  width: 1em;
+  height: 1em;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.added-products-list__divider--lower {
+  padding-top: 0.3em;
 }
 
 .added-products__product {

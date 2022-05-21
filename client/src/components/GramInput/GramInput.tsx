@@ -62,15 +62,17 @@ const GramInput = forwardRef(
     };
 
     return (
-      <input
-        ref={gramInputRef}
-        className={className}
-        type="text"
-        name="amountInGrams"
-        id="addProduct"
-        onInput={(e) => updateNutritionList(e)}
-        placeholder="100"
-      />
+      <div className={className}>
+        <input
+          ref={gramInputRef}
+          className={className + '__input'}
+          type="text"
+          name="amountInGrams"
+          id="addProduct"
+          onInput={(e) => updateNutritionList(e)}
+          placeholder="100"
+        />
+      </div>
     );
   }
 );
