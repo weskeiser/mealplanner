@@ -1,4 +1,5 @@
 import { IProducts } from '../../Interfaces/Products';
+import GramInput from '../GramInput/GramInput';
 
 interface IAddToList {
   className: string;
@@ -6,6 +7,9 @@ interface IAddToList {
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
   allChosenProducts: IProducts[];
   setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  gramInputRef: React.MutableRefObject<undefined>;
+  currentProduct: IProducts | {};
+  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
 
 const AddToList = ({
@@ -13,14 +17,26 @@ const AddToList = ({
   selectedProduct,
   allChosenProducts,
   setAllChosenProducts,
+  setSelectedProduct,
+  gramInputRef,
+  currentProduct,
+  setCurrentProduct,
 }: IAddToList) => {
-  const addProduct = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const addProduct = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     setAllChosenProducts([...allChosenProducts, selectedProduct]);
   };
 
   return (
     <div className={className + '__add-to-list'}>
+      <GramInput
+        ref={gramInputRef}
+        className={className + '__add-to-list__gram-input'}
+        selectedProduct={selectedProduct}
+        setSelectedProduct={setSelectedProduct}
+        currentProduct={currentProduct}
+        setCurrentProduct={setCurrentProduct}
+      />
       <select
         name="list-dropdown"
         id="list-dropdown"
@@ -29,7 +45,10 @@ const AddToList = ({
         <option value="">Legg til i</option>
         <option value="">Dag 1</option>
       </select>
-      <div className={className + '__add-to-list__add'} onClick={addProduct}>
+      <div
+        className={className + '__add-to-list__add'}
+        onClick={(e) => addProduct(e)}
+      >
         &#65291;
       </div>
     </div>

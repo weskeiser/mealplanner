@@ -23,23 +23,41 @@ function App() {
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
-    id: 0,
-    name: 'None',
-    category: 'None',
+    // id: 0,
+    // name: 'None',
+    // category: 'None',
+    // properties: {
+    //   brand: 'None',
+    //   logo: '',
+    //   serving: 100,
+    //   calories: 0,
+    //   macros: {
+    //     fat: 0,
+    //     protein: 0,
+    //     carbs: {
+    //       total: 0,
+    //       sugars: 0,
+    //     },
+    //   },
+    //   salt: 0,
+    // },
+    id: 2,
+    name: 'Kjøttdeig 14%',
+    category: 'Kjøtt',
     properties: {
-      brand: 'None',
-      logo: '',
+      brand: 'Gilde',
+      logo: 'https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357',
       serving: 100,
-      calories: 0,
+      calories: 194,
       macros: {
-        fat: 0,
-        protein: 0,
+        fat: 14,
+        protein: 17,
         carbs: {
           total: 0,
           sugars: 0,
         },
       },
-      salt: 0,
+      salt: 1.1,
     },
   });
   const [searchTerm, setSearchTerm] = useState('');
@@ -86,13 +104,7 @@ function App() {
       <hr className="selected-product__divider--upper dividers" />
       <div className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
-        <NutritionTitleBar
-          gramInputRef={gramInputRef}
-          selectedProduct={selectedProduct}
-          setSelectedProduct={setSelectedProduct}
-          currentProduct={currentProduct}
-          setCurrentProduct={setCurrentProduct}
-        />
+        <NutritionTitleBar selectedProduct={selectedProduct} />
         <NutritionList
           className={selectedProductClass + '__nutrition-list'}
           selectedProduct={selectedProduct}
@@ -103,11 +115,13 @@ function App() {
           allChosenProducts={allChosenProducts}
           setAllChosenProducts={setAllChosenProducts}
           className={selectedProductClass}
+          gramInputRef={gramInputRef}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
         />
       </div>
       <hr className="added-products-list__divider--upper dividers" />
       <AddedProductsList />
-      {/* <AddedProductsList /> */}
       {/* <AddedProducts allChosenProducts={allChosenProducts} /> */}
     </div>
   );
