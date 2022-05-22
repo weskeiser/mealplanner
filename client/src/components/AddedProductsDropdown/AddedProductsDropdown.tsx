@@ -2,11 +2,11 @@ import { useState } from 'react';
 import Imealplans from '../../Interfaces/Mealplans';
 import AddedProducts from '../AddedProducts/AddedProducts';
 
-interface IAddedProductsList {
+interface IAddedProductsDropdown {
   mealplan: Imealplans;
 }
 
-const AddedProductsList = ({ mealplan }: IAddedProductsList) => {
+const AddedProductsDropdown = ({ mealplan }: IAddedProductsDropdown) => {
   const [hidden, setHidden] = useState<Boolean>(true);
 
   const { listName } = mealplan;
@@ -18,10 +18,13 @@ const AddedProductsList = ({ mealplan }: IAddedProductsList) => {
   const decideVisibility = hidden ? 'hidden' : '';
   return (
     <>
-      <div className="added-products-list">
-        <h2 className="added-products-list__title">{listName}</h2>
-        <div className="added-products-list__arrow__outter" onClick={openList}>
-          <div className="added-products-list__arrow__inner"></div>
+      <div className="added-products-dropdown">
+        <h2 className="added-products-dropdown__title">{listName}</h2>
+        <div
+          className="added-products-dropdown__arrow__outter"
+          onClick={openList}
+        >
+          <div className="added-products-dropdown__arrow__inner"></div>
         </div>
       </div>
 
@@ -29,9 +32,9 @@ const AddedProductsList = ({ mealplan }: IAddedProductsList) => {
         <AddedProducts mealplan={mealplan} />
       </div>
 
-      <hr className="added-products-list__divider--lower dividers" />
+      <hr className="added-products-dropdown__divider--lower dividers" />
     </>
   );
 };
 
-export default AddedProductsList;
+export default AddedProductsDropdown;

@@ -190,6 +190,7 @@ body {
 .selected-product__nutrition-list__heading__serving {
   margin-left: auto;
   margin-top: 0.3em;
+  font-weight: bold;
 }
 
 .selected-product__nutrition-list__list-item {
@@ -232,7 +233,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 0.5em;
+  margin-left: auto;
 }
 
 .selected-product__add-to-list__gram-input::after {
@@ -270,7 +271,7 @@ body {
   background-color: #fff;
   border: 1px solid #86b2e8;
   color: #2d61a0;
-  margin-left: auto;
+  margin-left: 0.5em;
   height: 100%;
 }
 
@@ -284,24 +285,24 @@ body {
   margin-left: 0.5em;
 }
 
-.added-products-list {
+.added-products-dropdown {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 1em;
 }
 
-.added-products-list__divider--upper {
+.added-products-dropdown__divider--upper {
   margin-top: 1.5em;
 }
 
-.added-products-list__title {
+.added-products-dropdown__title {
   color: #2d61a0;
   font-size: 1.2em;
   margin-left: 1.5em;
 }
 
-.added-products-list__arrow__outter {
+.added-products-dropdown__arrow__outter {
   margin-left: auto;
   margin-top: -0.7em;
   width: 5em;
@@ -311,7 +312,7 @@ body {
   cursor: pointer;
 }
 
-.added-products-list__arrow__inner {
+.added-products-dropdown__arrow__inner {
   border: 0.2em solid black;
   border-color: #2d61a0;
   border-top: transparent;
@@ -322,27 +323,111 @@ body {
           transform: rotate(45deg);
 }
 
-.added-products-list__divider--lower {
+.added-products-dropdown__divider--lower {
   padding-top: 0.3em;
+}
+
+.added-products {
+  margin-top: 0.5em;
 }
 
 .added-products__product {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  list-style: none;
   color: #2d61a0;
+  margin: 0.2em 1em;
+  display: flex;
+}
+
+.added-products__product__title {
+  max-width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.added-products__product__title__brand {
+  font-size: 0.7em;
+}
+
+.added-products__product__serving-remove-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+}
+
+.added-products__product__remove {
+  margin-left: 0.5em;
+  margin-top: 0.05em;
+  padding: 0 0.6em;
+  color: #86b2e8;
+  color: #cba0a0;
+  background-color: #fff;
+  border: none;
+  height: 1em;
+  font-size: 1.2em;
+  line-height: 1em;
+  cursor: pointer;
+}
+
+.added-products__nutrition-list {
+  margin: 0 1.6em;
+  margin-bottom: 1.5em;
+}
+
+.added-products__nutrition-list__heading {
+  margin: 0 2.3em;
+}
+
+.added-products__nutrition-list__heading__title {
+  margin-top: auto;
+}
+
+.added-products__nutrition-list__heading__serving {
+  font-size: 1.1em;
+}
+
+.added-products__nutrition-list__heading {
+  color: #2d61a0;
+  font-size: 0.7em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 0.2em;
+}
+
+.added-products__nutrition-list__heading__serving {
+  margin-left: auto;
+  margin-top: 0.3em;
+  font-weight: bold;
+}
+
+.added-products__nutrition-list__list-item {
+  color: #2d61a0;
+  border-top: 1px solid #86b2e8;
+  border-right: 1px solid #86b2e8;
+  border-left: 1px solid #86b2e8;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2fr 2fr 1fr;
-      grid-template-columns: 2fr 2fr 1fr;
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
 }
 
-.added-products__product > li {
-  margin-right: 1em;
+.added-products__nutrition-list__list-item > * {
+  padding: 0 0.3em;
 }
 
-.added-products__product__serving {
+.added-products__nutrition-list__list-item:last-child {
+  border-bottom: 1px solid #86b2e8;
+}
+
+.added-products__nutrition-list__list-item__key {
+  border-right: 1px solid #86b2e8;
+}
+
+.added-products__nutrition-list__list-item__value {
   margin-left: auto;
 }
 /*# sourceMappingURL=App.css.map */

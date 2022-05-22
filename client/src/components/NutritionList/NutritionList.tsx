@@ -1,9 +1,10 @@
 import ListItem from '../ListItem/index';
 import { IProducts } from '../../Interfaces/Products';
+import { ItotalNutritionalValue } from '../AddedProducts/AddedProducts';
 
 interface IListContent {
   className: string;
-  selectedProduct: IProducts;
+  selectedProduct: IProducts | ItotalNutritionalValue;
 }
 
 const NutritionList = ({ className, selectedProduct }: IListContent) => {
@@ -42,7 +43,7 @@ const NutritionList = ({ className, selectedProduct }: IListContent) => {
             </>
           }
           className={className + '__list-item'}
-          key={key}
+          key={className + key}
         />
       ))}
     </ul>

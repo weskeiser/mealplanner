@@ -7,7 +7,6 @@ import SearchBar from './components/SearchBar/SearchBar';
 import SearchDropdown from './components/SearchDropdown/SearchDropdown';
 import { IProducts } from './Interfaces/Products';
 import AddToList from './components/AddToList/AddToList';
-import AddedProducts from './components/AddedProducts/AddedProducts';
 import NutritionList from './components/NutritionList/NutritionList';
 
 import showSearchDropdown from './components/utils/showSearchDropdown';
@@ -22,6 +21,8 @@ function App() {
   const searchBarRef = useRef();
   const gramInputRef = useRef();
   const addToListDropdownRef = useRef();
+  const chooseMealRef = useRef();
+  console.log(chooseMealRef);
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
@@ -175,9 +176,10 @@ function App() {
           currentProduct={currentProduct}
           setCurrentProduct={setCurrentProduct}
           addToListDropdownRef={addToListDropdownRef}
+          chooseMealRef={chooseMealRef}
         />
       </div>
-      <hr className="added-products-list__divider--upper dividers" />
+      <hr className="added-products-dropdown__divider--upper dividers" />
       <Mealplan mealplans={mealplans} />
     </div>
   );

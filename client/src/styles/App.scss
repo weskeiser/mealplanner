@@ -19,6 +19,50 @@ body {
   touch-action: none;
 }
 
+@mixin nutrition-list {
+  &__heading {
+    color: $page-color-text;
+    font-size: 0.7em;
+    display: flex;
+    margin-top: 2em;
+    margin-bottom: 0.2em;
+
+    &__serving {
+      margin-left: auto;
+      margin-top: 0.3em;
+      font-weight: bold;
+    }
+  }
+
+  &__list-item {
+    color: $page-color-text;
+    border-top: 1px solid $page-color;
+    border-right: 1px solid $page-color;
+    border-left: 1px solid $page-color;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    & > * {
+      padding: 0 0.3em;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid $page-color;
+    }
+
+    &:nth-child(even) {
+    }
+
+    &__key {
+      border-right: 1px solid $page-color;
+    }
+
+    &__value {
+      margin-left: auto;
+    }
+  }
+}
+
 // $page-color: rgb(218, 165, 32);
 $page-color: rgb(134, 178, 232);
 $page-color-lighter: rgba($page-color, 0.2);
@@ -185,48 +229,7 @@ $search-bar-width: 85%;
 
   // - Nutrition List
   &__nutrition-list {
-    &__heading {
-      color: $page-color-text;
-      font-size: 0.7em;
-      display: flex;
-      margin-top: 2em;
-      margin-bottom: 0.2em;
-
-      &__serving {
-        margin-left: auto;
-        margin-top: 0.3em;
-      }
-    }
-
-    &__list-item {
-      color: $page-color-text;
-      border-top: 1px solid $page-color;
-      border-right: 1px solid $page-color;
-      border-left: 1px solid $page-color;
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-
-      & > * {
-        padding: 0 0.3em;
-      }
-
-      &:last-child {
-        border-bottom: 1px solid $page-color;
-      }
-
-      &:nth-child(even) {
-        // background-color: $page-color-lighter;
-        // color: #fff;
-      }
-
-      &__key {
-        border-right: 1px solid $page-color;
-      }
-
-      &__value {
-        margin-left: auto;
-      }
-    }
+    @include nutrition-list();
   }
 
   // - Add To List
@@ -238,7 +241,7 @@ $search-bar-width: 85%;
 
     &__gram-input {
       display: flex;
-      margin-left: 0.5em;
+      margin-left: auto;
 
       &::after {
         margin-top: auto;
@@ -264,7 +267,7 @@ $search-bar-width: 85%;
       background-color: #fff;
       border: 1px solid $page-color;
       color: $page-color-text;
-      margin-left: auto;
+      margin-left: 0.5em;
       height: 100%;
     }
 
@@ -281,7 +284,7 @@ $search-bar-width: 85%;
   }
 }
 
-.added-products-list {
+.added-products-dropdown {
   // border: 1px solid black;
   display: flex;
   margin-top: 1em;
@@ -326,19 +329,61 @@ $search-bar-width: 85%;
 }
 
 .added-products {
+  margin-top: 0.5em;
   &__product {
     display: flex;
-    list-style: none;
     color: $page-color-text;
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
+    margin: 0.2em 1em;
+    display: flex;
 
-    & > li {
-      margin-right: 1em;
+    &__title {
+      max-width: 75%;
+      white-space: nowrap;
+      overflow: hidden;
+      &__brand {
+        font-size: 0.7em;
+      }
+    }
+
+    &__serving-remove-container {
+      display: flex;
+      margin-left: auto;
     }
 
     &__serving {
-      margin-left: auto;
     }
+
+    &__remove {
+      margin-left: 0.5em;
+      margin-top: 0.05em;
+      padding: 0 0.6em;
+      color: $page-color;
+      color: rgb(203, 160, 160);
+      background-color: #fff;
+      border: none;
+      // border: 1px solid black;
+      height: 1em;
+      font-size: 1.2em;
+      line-height: 1em;
+      cursor: pointer;
+    }
+  }
+
+  &__nutrition-list {
+    margin: 0 1.6em;
+    margin-bottom: 1.5em;
+
+    &__heading {
+      margin: 0 2.3em;
+
+      &__title {
+        margin-top: auto;
+      }
+
+      &__serving {
+        font-size: 1.1em;
+      }
+    }
+    @include nutrition-list();
   }
 }
