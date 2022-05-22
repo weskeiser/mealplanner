@@ -237,11 +237,10 @@ $search-bar-width: 85%;
     margin-top: 1em;
 
     &__gram-input {
-      // margin-left: auto;
       display: flex;
+      margin-left: 0.5em;
 
       &::after {
-        content: 'g';
         margin-top: auto;
         margin-bottom: -0.27em;
         margin-left: 0.2em;
@@ -265,17 +264,19 @@ $search-bar-width: 85%;
       background-color: #fff;
       border: 1px solid $page-color;
       color: $page-color-text;
-      // margin-left: auto;
-      margin: 0 auto;
+      margin-left: auto;
+      height: 100%;
     }
 
     &__add {
       color: $page-color-text;
-      width: 1em;
-      height: 1em;
-      line-height: 1em;
-      font-size: 2em;
+      // background-color: #fff;
+      background-color: $page-color-lighter;
+      border: 1px solid $page-color;
       cursor: pointer;
+      width: 6em;
+      height: 100%;
+      margin-left: 0.5em;
     }
   }
 }
@@ -299,11 +300,10 @@ $search-bar-width: 85%;
     &__outter {
       // border: 1px solid black;
       margin-left: auto;
-      margin-right: 1.5em;
       margin-top: -0.7em;
-      width: 3em;
+      width: 5em;
       height: 3em;
-      padding-left: 0.95em;
+      padding-left: 1.5em;
       padding-top: 0.7em;
       cursor: pointer;
     }

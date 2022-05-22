@@ -1,11 +1,14 @@
+import Imealplans from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
+import AddToListDropdown from '../AddToListDropdown/AddToListDropdown';
 import GramInput from '../GramInput/GramInput';
 
 interface IAddToList {
   className: string;
   selectedProduct: IProducts;
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
-  allChosenProducts: IProducts[];
+  mealplans: Imealplans[];
+  setMealplans: React.Dispatch<React.SetStateAction<Imealplans[]>>;
   setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
   gramInputRef: React.MutableRefObject<undefined>;
   currentProduct: IProducts | {};
@@ -15,20 +18,36 @@ interface IAddToList {
 const AddToList = ({
   className,
   selectedProduct,
-  allChosenProducts,
-  setAllChosenProducts,
+  mealplans,
+  setMealplans,
   setSelectedProduct,
   gramInputRef,
   currentProduct,
   setCurrentProduct,
+  addToListDropdownRef,
 }: IAddToList) => {
-  const addProduct = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const addProductToList = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     e.preventDefault();
-    setAllChosenProducts([...allChosenProducts, selectedProduct]);
+    const currentListName = addToListDropdownRef.current.value;
+
+    const updatedMealplan = mealplans.map((mealplan) => {
+      if (mealplan.listName === currentListName) {
+        return {
+          ...mealplan,
+          products: [...mealplan.products, selectedProduct],
+        };
+      }
+      return mealplan;
+    });
+
+    setMealplans(updatedMealplan);
   };
 
   return (
     <div className={className + '__add-to-list'}>
+      <AddToListDropdown ref={addToListDropdownRef} className={className} />
       <GramInput
         ref={gramInputRef}
         className={className + '__add-to-list__gram-input'}
@@ -37,20 +56,12 @@ const AddToList = ({
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
       />
-      <select
-        name="list-dropdown"
-        id="list-dropdown"
-        className={className + '__add-to-list__list-dropdown'}
-      >
-        <option value="">Legg til i</option>
-        <option value="">Dag 1</option>
-      </select>
-      <div
+      <button
         className={className + '__add-to-list__add'}
-        onClick={(e) => addProduct(e)}
+        onClick={(e) => addProductToList(e)}
       >
-        &#65291;
-      </div>
+        Legg til
+      </button>
     </div>
   );
 };

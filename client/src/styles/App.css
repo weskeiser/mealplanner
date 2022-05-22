@@ -232,10 +232,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-left: 0.5em;
 }
 
 .selected-product__add-to-list__gram-input::after {
-  content: 'g';
   margin-top: auto;
   margin-bottom: -0.27em;
   margin-left: 0.2em;
@@ -270,16 +270,18 @@ body {
   background-color: #fff;
   border: 1px solid #86b2e8;
   color: #2d61a0;
-  margin: 0 auto;
+  margin-left: auto;
+  height: 100%;
 }
 
 .selected-product__add-to-list__add {
   color: #2d61a0;
-  width: 1em;
-  height: 1em;
-  line-height: 1em;
-  font-size: 2em;
+  background-color: rgba(134, 178, 232, 0.2);
+  border: 1px solid #86b2e8;
   cursor: pointer;
+  width: 6em;
+  height: 100%;
+  margin-left: 0.5em;
 }
 
 .added-products-list {
@@ -301,11 +303,10 @@ body {
 
 .added-products-list__arrow__outter {
   margin-left: auto;
-  margin-right: 1.5em;
   margin-top: -0.7em;
-  width: 3em;
+  width: 5em;
   height: 3em;
-  padding-left: 0.95em;
+  padding-left: 1.5em;
   padding-top: 0.7em;
   cursor: pointer;
 }

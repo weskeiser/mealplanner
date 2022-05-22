@@ -1,35 +1,59 @@
-import { IProducts } from '../../Interfaces/Products';
-import ListItem from '../ListItem';
+import Imealplans from '../../Interfaces/Mealplans';
+import AddedProduct from '../AddedProduct/AddedProduct';
+import NutritionList from '../NutritionList/NutritionList';
 
 interface IAddedProducts {
-  allChosenProducts: IProducts[];
+  mealplan: Imealplans;
 }
 
-const AddedProducts = ({ allChosenProducts }: IAddedProducts) => {
-  const addedProduct = ({ name, properties }: IProducts) => {
-    return (
-      <ol className="added-products__product">
-        <ListItem children={name} key={name} />
-        <ListItem children={properties.brand} key={properties.brand} />
-        <ListItem
-          children={properties.serving + 'g'}
-          key={properties.serving}
-          className="added-products__product__serving"
-        />
-      </ol>
-    );
-  };
+const AddedProducts = ({ mealplan }: IAddedProducts) => {
+  const totalNutritionalValue = mealplan.products.reduce(
+    (prev, curr) => {
+      return {
+        ...prev,
+        properties: {
+          ...prev.properties,
+          calories: prev.properties.calories + curr.properties.calories,
+          macros: {
+            fat: prev.properties.macros.fat + curr.properties.macros.fat,
+            protein:
+              prev.properties.macros.protein + curr.properties.macros.protein,
+            carbs: {
+              total:
+                prev.properties.macros.carbs.total +
+                curr.properties.macros.carbs.total,
+              sugars:
+                prev.properties.macros.carbs.sugars +
+                curr.properties.macros.carbs.sugars,
+            },
+          },
+          salt: prev.properties.salt + curr.properties.salt,
+        },
+      };
+    },
+    {
+      properties: {
+        calories: 0,
+        macros: {
+          fat: 0,
+          protein: 0,
+          carbs: {
+            total: 0,
+            sugars: 0,
+          },
+        },
+        salt: 0,
+      },
+    }
+  );
 
   return (
-    <ol className="added-products">
-      {allChosenProducts.map((product, index) => (
-        <ListItem
-          className="added-products__name"
-          children={addedProduct(product)}
-          key={product.id + index}
-        />
-      ))}
-    </ol>
+    <div>
+      <div className="added-products">
+        <AddedProduct mealplan={mealplan} />
+      </div>
+      <NutritionList className="lol" selectedProduct={totalNutritionalValue} />
+    </div>
   );
 };
 

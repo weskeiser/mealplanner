@@ -70,7 +70,7 @@ const GramInput = forwardRef(
           name="amountInGrams"
           id="addProduct"
           onInput={(e) => updateNutritionList(e)}
-          placeholder="100"
+          placeholder="100g"
         />
       </div>
     );
