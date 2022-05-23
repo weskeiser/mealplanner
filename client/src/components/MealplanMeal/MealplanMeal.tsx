@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { IMealplanD } from '../../Interfaces/Mealplans';
+import { IMeal, IMealPlansD } from '../../Interfaces/MealPlans';
 import AddedProducts from '../AddedProducts/AddedProducts';
 
-const MealplanMeal = ({ mealplan }: IMealplanD) => {
+const MealPlanMeal = ({ mealPlan, mealPlans, setMealPlans }: IMealPlansD) => {
   const [hidden, setHidden] = useState<Boolean>(true);
 
   const openList = () => {
@@ -13,19 +13,24 @@ const MealplanMeal = ({ mealplan }: IMealplanD) => {
 
   return (
     <>
-      <div className="mealplan__meal">
-        <h3 className="mealplan__meal__title">Måltid 1</h3>
-        <div className="mealplan__meal__arrow__outter" onClick={openList}>
-          <div className="mealplan__meal__arrow__inner"></div>
+      <div className="mealPlan__meal">
+        <h3 className="mealPlan__meal__title">Måltid 1</h3>
+        <div className="mealPlan__meal__arrow__outter" onClick={openList}>
+          <div className="mealPlan__meal__arrow__inner"></div>
         </div>
       </div>
       <div className={decideVisibility}>
-        {mealplan.meals.map((meal) => (
-          <AddedProducts meal={meal} />
+        {mealPlan.meals.map((meal: IMeal) => (
+          <AddedProducts
+            meal={meal}
+            mealPlanDayName={mealPlan.listName}
+            mealPlans={mealPlans}
+            setMealPlans={setMealPlans}
+          />
         ))}
       </div>
     </>
   );
 };
 
-export default MealplanMeal;
+export default MealPlanMeal;

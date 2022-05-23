@@ -1,6 +1,6 @@
 import { IProducts } from './Products';
 
-export interface IMealplan {
+export interface IMealPlans {
   listName: string;
   meals: {
     listName: string;
@@ -8,8 +8,10 @@ export interface IMealplan {
   };
 }
 
-export interface IMealplanD {
-  mealplan: IMealplan;
+export interface IMealPlansD {
+  mealPlan?: IMealPlans;
+  mealPlans: IMealPlans;
+  setMealPlans: ;
 }
 
 export interface IMeal {

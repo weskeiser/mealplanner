@@ -5,10 +5,10 @@ interface IAddToListDropdown {
 }
 
 const AddToListDropdown = forwardRef(
-  ({ className }: IAddToListDropdown, selectMealplanDayRef) => {
+  ({ className }: IAddToListDropdown, selectMealPlanDayRef) => {
     return (
       <select
-        ref={selectMealplanDayRef}
+        ref={selectMealPlanDayRef}
         name="list-dropdown"
         id="list-dropdown"
         className={className + '__add-to-list__list-dropdown'}

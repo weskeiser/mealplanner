@@ -1,16 +1,21 @@
-import Imealplans from '../../Interfaces/Mealplans';
-import MealplanDay from '../MealplanDay/MealplanDay';
+import { IMealPlans } from '../../Interfaces/MealPlans';
+import MealPlanDay from '../MealPlanDay/MealPlanDay';
 
-interface IMealplan {
-  mealplans: Imealplans[];
+interface IMealPlan {
+  mealPlans: IMealPlans[];
+  setMealPlans: React.Dispatch<React.SetStateAction<IMealPlan[]>>;
 }
 
-const Mealplan = ({ mealplans }: IMealplan) => {
-  const allMealplans = mealplans.map((mealplan) => (
-    <MealplanDay mealplan={mealplan} />
+const MealPlan = ({ mealPlans, setMealPlans }: IMealPlan) => {
+  const allMealPlans = mealPlans.map((mealPlan) => (
+    <MealPlanDay
+      mealPlan={mealPlan}
+      mealPlans={mealPlans}
+      setMealPlans={setMealPlans}
+    />
   ));
 
-  return <>{allMealplans}</>;
+  return <>{allMealPlans}</>;
 };
 
-export default Mealplan;
+export default MealPlan;

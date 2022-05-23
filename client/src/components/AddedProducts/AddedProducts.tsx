@@ -1,6 +1,12 @@
-import { IMealD } from '../../Interfaces/Mealplans';
+import { IMeal, IMealPlans } from '../../Interfaces/MealPlans';
 import AddedProduct from '../AddedProduct/AddedProduct';
 import NutritionList from '../NutritionList/NutritionList';
+
+interface IAddedProducts {
+  meal: IMeal;
+  mealPlans: IMealPlans;
+  setMealPlans: React.Dispatch<React.SetStateAction<IMealPlans[]>>;
+}
 
 export interface ItotalNutritionalValue {
   id: number | string;
@@ -17,8 +23,12 @@ export interface ItotalNutritionalValue {
   };
 }
 
-const AddedProducts = ({ meal }: IMealD) => {
-  console.log(meal);
+const AddedProducts = ({
+  meal,
+  mealPlans,
+  setMealPlans,
+  mealPlanDayName,
+}: IAddedProducts) => {
   const totalNutritionalValue: ItotalNutritionalValue = meal.products.reduce(
     (prev, curr) => {
       return {
@@ -63,7 +73,12 @@ const AddedProducts = ({ meal }: IMealD) => {
   return (
     <div>
       <div className="added-products">
-        <AddedProduct meal={meal} />
+        <AddedProduct
+          meal={meal}
+          mealPlans={mealPlans}
+          setMealPlans={setMealPlans}
+          mealPlanDayName={mealPlanDayName}
+        />
       </div>
       <div className="added-products__nutrition-list__heading">
         <h3 className="added-products__nutrition-list__heading__title">

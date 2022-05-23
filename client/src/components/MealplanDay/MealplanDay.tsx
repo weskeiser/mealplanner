@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { IMealplanD } from '../../Interfaces/Mealplans';
-import MealplanMeal from '../MealplanMeal/MealplanMeal';
+import { IMealPlansD } from '../../Interfaces/MealPlans';
+import MealPlanMeal from '../MealPlanMeal/MealPlanMeal';
 
-const MealplanDay = ({ mealplan }: IMealplanD) => {
+const MealPlanDay = ({ mealPlan, mealPlans, setMealPlans }: IMealPlansD) => {
   const [hidden, setHidden] = useState<Boolean>(true);
 
   const openList = () => {
@@ -12,20 +12,24 @@ const MealplanDay = ({ mealplan }: IMealplanD) => {
   const decideVisibility = hidden ? 'hidden' : '';
   return (
     <>
-      <div className="mealplan__day">
-        <h2 className="mealplan__day__title">{mealplan.listName}</h2>
-        <div className="mealplan__day__arrow__outter" onClick={openList}>
-          <div className="mealplan__day__arrow__inner"></div>
+      <div className="mealPlan__day">
+        <h2 className="mealPlan__day__title">{mealPlan.listName}</h2>
+        <div className="mealPlan__day__arrow__outter" onClick={openList}>
+          <div className="mealPlan__day__arrow__inner"></div>
         </div>
       </div>
 
       <div className={decideVisibility}>
-        <MealplanMeal mealplan={mealplan} />
+        <MealPlanMeal
+          mealPlan={mealPlan}
+          mealPlans={mealPlans}
+          setMealPlans={setMealPlans}
+        />
       </div>
 
-      <hr className="mealplan__day__divider--lower dividers" />
+      <hr className="mealPlan__day__divider--lower dividers" />
     </>
   );
 };
 
-export default MealplanDay;
+export default MealPlanDay;

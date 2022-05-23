@@ -22,5 +22,7 @@ export interface IProducts {
   id: number;
   name: string;
   category: string;
+  mealPlanDay?: string;
+  mealPlanMeal?: string;
   properties: IProperties;
 }

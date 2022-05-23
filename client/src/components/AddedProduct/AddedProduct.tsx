@@ -1,29 +1,50 @@
-import { IMealD } from '../../Interfaces/Mealplans';
+import { IMeal, IMealPlans } from '../../Interfaces/MealPlans';
 import { IProducts } from '../../Interfaces/Products';
 
-const AddedProducts = ({ meal }: IAddedProducts) => {
-  // const removeProductFromList = (
-  //   e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  // ) => {
-  //   e.preventDefault();
-  //   const currentListName = addToListDropdownRef.current.value;
+interface IAddedProducts {
+  meal: IMeal;
+  mealPlans: IMealPlans;
+  setMealPlans: React.Dispatch<React.SetStateAction<IMealPlans[]>>;
+}
 
-  //   const updatedMealplan = mealplans.map((mealplan) => {
-  //     if (mealplan.listName === currentListName) {
-  //       return {
-  //         ...mealplan,
-  //         products: [...mealplan.products, selectedProduct],
-  //       };
-  //     }
-  //     return mealplan;
-  //   });
+const AddedProducts = ({
+  meal,
+  mealPlans,
+  setMealPlans,
+  mealPlanDayName,
+}: IAddedProducts) => {
+  const removeProductFromMeal = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
 
-  //   setMealplans(updatedMealplan);
-  // };
+    const updatedMealPlan = mealPlans.map((mealPlan) => {
+      const mealPlanMealName = meal.listName;
+
+      if (mealPlan.listName === mealPlanDayName) {
+        return {
+          ...mealPlan,
+          meals: mealPlan.meals.map((meal) => {
+            if (meal.listName === mealPlanMealName) {
+              const productsWithItemRemoved = [...meal.products];
+              productsWithItemRemoved.splice(e.target.dataset.remove, 1);
+              return {
+                ...meal,
+                products: productsWithItemRemoved,
+              };
+            }
+            return meal;
+          }),
+        };
+      }
+      return mealPlan;
+    });
+    setMealPlans(updatedMealPlan);
+  };
 
   return (
     <>
-      {meal.products.map(({ name, properties }: IProducts) => (
+      {meal.products.map(({ name, properties }: IProducts, index) => (
         <div className="added-products__product">
           <p className="added-products__product__title">
             {name},{' '}
@@ -37,7 +58,8 @@ const AddedProducts = ({ meal }: IAddedProducts) => {
             </p>
             <button
               className="added-products__product__remove"
-              onClick={(e) => console.log('ho')}
+              data-remove={index}
+              onClick={(e) => removeProductFromMeal(e)}
             >
               &#10005;
             </button>
