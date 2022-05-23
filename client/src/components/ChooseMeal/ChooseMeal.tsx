@@ -12,7 +12,7 @@ const ChooseMeal = forwardRef(({ className }: IChooseMeal, chooseMealRef) => {
       id="list-dropdown"
       className={className + '__add-to-list__list-dropdown'}
     >
-      <option value="Mandag">Måltid 1</option>
+      <option value="Måltid 1">Måltid 1</option>
     </select>
   );
 });

@@ -14,15 +14,14 @@ import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar'
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
 import Mealplan from './components/Mealplan/Mealplan';
-import Imealplans from './Interfaces/Mealplans';
+import { IMealplan } from './Interfaces/Mealplans';
 
 function App() {
   // Refs
   const searchBarRef = useRef();
   const gramInputRef = useRef();
-  const addToListDropdownRef = useRef();
-  const chooseMealRef = useRef();
-  console.log(chooseMealRef);
+  const selectMealplanDayRef = useRef();
+  const selectMealplanMealRef = useRef();
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
@@ -71,54 +70,64 @@ function App() {
   // - Used for remembering selectedProduct when GramInput goes to 0.
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
   // -----
-  const [mealplans, setMealplans] = useState<Imealplans[]>([
+  const [mealplans, setMealplans] = useState<IMealplan[]>([
     {
       listName: 'Mandag',
-      products: [
+      meals: [
         {
-          id: 2,
-          name: 'Kjøttdeig 14%',
-          category: 'Kjøtt',
-          properties: {
-            brand: 'Gilde',
-            logo: 'https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357',
-            serving: 100,
-            calories: 194,
-            macros: {
-              fat: 14,
-              protein: 17,
-              carbs: {
-                total: 0,
-                sugars: 0,
+          listName: 'Måltid 1',
+          products: [
+            {
+              id: 2,
+              name: 'Kjøttdeig 14%',
+              category: 'Kjøtt',
+              properties: {
+                brand: 'Gilde',
+                logo: 'https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357',
+                serving: 100,
+                calories: 194,
+                macros: {
+                  fat: 14,
+                  protein: 17,
+                  carbs: {
+                    total: 0,
+                    sugars: 0,
+                  },
+                },
+                salt: 1.1,
               },
             },
-            salt: 1.1,
-          },
+          ],
         },
       ],
     },
     {
       listName: 'Tirsdag',
-      products: [
+      meals: [
         {
-          id: 2,
-          name: 'Kjøttdeig 14%',
-          category: 'Kjøtt',
-          properties: {
-            brand: 'Gilde',
-            logo: 'https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357',
-            serving: 100,
-            calories: 194,
-            macros: {
-              fat: 14,
-              protein: 17,
-              carbs: {
-                total: 0,
-                sugars: 0,
+          listName: 'Måltid 1',
+          products: [
+            {
+              id: 2,
+              name: 'Kjøttdeig 14%',
+              category: 'Kjøtt',
+              properties: {
+                brand: 'Gilde',
+                logo: 'https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357',
+                serving: 100,
+                calories: 194,
+                macros: {
+                  fat: 14,
+                  protein: 17,
+                  carbs: {
+                    total: 0,
+                    sugars: 0,
+                  },
+                },
+                salt: 1.1,
               },
             },
-            salt: 1.1,
-          },
+          ],
         },
       ],
     },
@@ -175,11 +184,11 @@ function App() {
           gramInputRef={gramInputRef}
           currentProduct={currentProduct}
           setCurrentProduct={setCurrentProduct}
-          addToListDropdownRef={addToListDropdownRef}
-          chooseMealRef={chooseMealRef}
+          selectMealplanDayRef={selectMealplanDayRef}
+          selectMealplanMealRef={selectMealplanMealRef}
         />
       </div>
-      <hr className="added-products-dropdown__divider--upper dividers" />
+      <hr className="mealplan__divider--upper dividers" />
       <Mealplan mealplans={mealplans} />
     </div>
   );

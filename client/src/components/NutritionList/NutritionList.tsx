@@ -43,7 +43,7 @@ const NutritionList = ({ className, selectedProduct }: IListContent) => {
             </>
           }
           className={className + '__list-item'}
-          key={className + key}
+          key={className + key + selectedProduct.id}
         />
       ))}
     </ul>

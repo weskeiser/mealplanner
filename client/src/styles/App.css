@@ -285,24 +285,24 @@ body {
   margin-left: 0.5em;
 }
 
-.added-products-dropdown {
+.mealplan__day {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 1em;
 }
 
-.added-products-dropdown__divider--upper {
+.mealplan__day__divider--upper {
   margin-top: 1.5em;
 }
 
-.added-products-dropdown__title {
+.mealplan__day__title {
   color: #2d61a0;
   font-size: 1.2em;
   margin-left: 1.5em;
 }
 
-.added-products-dropdown__arrow__outter {
+.mealplan__day__arrow__outter {
   margin-left: auto;
   margin-top: -0.7em;
   width: 5em;
@@ -312,7 +312,7 @@ body {
   cursor: pointer;
 }
 
-.added-products-dropdown__arrow__inner {
+.mealplan__day__arrow__inner {
   border: 0.2em solid black;
   border-color: #2d61a0;
   border-top: transparent;
@@ -323,8 +323,41 @@ body {
           transform: rotate(45deg);
 }
 
-.added-products-dropdown__divider--lower {
+.mealplan__day__divider--lower {
   padding-top: 0.3em;
+}
+
+.mealplan__meal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1em;
+  font-size: 0.9em;
+}
+
+.mealplan__meal__title {
+  color: #2d61a0;
+  margin-left: 2.5em;
+}
+
+.mealplan__meal__arrow__outter {
+  margin-top: -0.7em;
+  width: 5em;
+  height: 3em;
+  padding-left: 1.5em;
+  padding-top: 0.7em;
+  cursor: pointer;
+}
+
+.mealplan__meal__arrow__inner {
+  border: 0.2em solid black;
+  border-color: #2d61a0;
+  border-top: transparent;
+  border-left: transparent;
+  width: 1em;
+  height: 1em;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .added-products {

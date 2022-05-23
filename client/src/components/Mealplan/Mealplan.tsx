@@ -1,5 +1,5 @@
 import Imealplans from '../../Interfaces/Mealplans';
-import AddedProductsDropdown from '../AddedProductsDropdown/AddedProductsDropdown';
+import MealplanDay from '../MealplanDay/MealplanDay';
 
 interface IMealplan {
   mealplans: Imealplans[];
@@ -7,7 +7,7 @@ interface IMealplan {
 
 const Mealplan = ({ mealplans }: IMealplan) => {
   const allMealplans = mealplans.map((mealplan) => (
-    <AddedProductsDropdown mealplan={mealplan} />
+    <MealplanDay mealplan={mealplan} />
   ));
 
   return <>{allMealplans}</>;

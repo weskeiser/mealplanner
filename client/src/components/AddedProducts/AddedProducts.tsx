@@ -1,12 +1,9 @@
-import Imealplans from '../../Interfaces/Mealplans';
+import { IMealD } from '../../Interfaces/Mealplans';
 import AddedProduct from '../AddedProduct/AddedProduct';
 import NutritionList from '../NutritionList/NutritionList';
 
-interface IAddedProducts {
-  mealplan: Imealplans;
-}
-
 export interface ItotalNutritionalValue {
+  id: number | string;
   properties: {
     calories: number;
     macros: {
@@ -20,52 +17,53 @@ export interface ItotalNutritionalValue {
   };
 }
 
-const AddedProducts = ({ mealplan }: IAddedProducts) => {
-  const totalNutritionalValue: ItotalNutritionalValue =
-    mealplan.products.reduce(
-      (prev, curr) => {
-        return {
-          ...prev,
-          properties: {
-            ...prev.properties,
-            calories: prev.properties.calories + curr.properties.calories,
-            macros: {
-              fat: prev.properties.macros.fat + curr.properties.macros.fat,
-              protein:
-                prev.properties.macros.protein + curr.properties.macros.protein,
-              carbs: {
-                total:
-                  prev.properties.macros.carbs.total +
-                  curr.properties.macros.carbs.total,
-                sugars:
-                  prev.properties.macros.carbs.sugars +
-                  curr.properties.macros.carbs.sugars,
-              },
-            },
-            salt: prev.properties.salt + curr.properties.salt,
-          },
-        };
-      },
-      {
+const AddedProducts = ({ meal }: IMealD) => {
+  console.log(meal);
+  const totalNutritionalValue: ItotalNutritionalValue = meal.products.reduce(
+    (prev, curr) => {
+      return {
+        ...prev,
         properties: {
-          calories: 0,
+          ...prev.properties,
+          calories: prev.properties.calories + curr.properties.calories,
           macros: {
-            fat: 0,
-            protein: 0,
+            fat: prev.properties.macros.fat + curr.properties.macros.fat,
+            protein:
+              prev.properties.macros.protein + curr.properties.macros.protein,
             carbs: {
-              total: 0,
-              sugars: 0,
+              total:
+                prev.properties.macros.carbs.total +
+                curr.properties.macros.carbs.total,
+              sugars:
+                prev.properties.macros.carbs.sugars +
+                curr.properties.macros.carbs.sugars,
             },
           },
-          salt: 0,
+          salt: prev.properties.salt + curr.properties.salt,
         },
-      }
-    );
+      };
+    },
+    {
+      id: meal.listName,
+      properties: {
+        calories: 0,
+        macros: {
+          fat: 0,
+          protein: 0,
+          carbs: {
+            total: 0,
+            sugars: 0,
+          },
+        },
+        salt: 0,
+      },
+    }
+  );
 
   return (
     <div>
       <div className="added-products">
-        <AddedProduct mealplan={mealplan} />
+        <AddedProduct meal={meal} />
       </div>
       <div className="added-products__nutrition-list__heading">
         <h3 className="added-products__nutrition-list__heading__title">

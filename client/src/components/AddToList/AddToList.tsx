@@ -1,4 +1,4 @@
-import Imealplans from '../../Interfaces/Mealplans';
+import { IMealplan } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
 import AddToListDropdown from '../AddToListDropdown/AddToListDropdown';
 import ChooseMeal from '../ChooseMeal/ChooseMeal';
@@ -8,11 +8,12 @@ interface IAddToList {
   className: string;
   selectedProduct: IProducts;
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
-  mealplans: Imealplans[];
+  mealplans: IMealplan[];
   setMealplans: React.Dispatch<React.SetStateAction<Imealplans[]>>;
   setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
   gramInputRef: React.MutableRefObject<undefined>;
-  chooseMealRef: React.MutableRefObject<undefined>;
+  selectMealplanDayRef: React.MutableRefObject<undefined>;
+  selectMealplanMealRef: React.MutableRefObject<undefined>;
   currentProduct: IProducts | {};
   setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
@@ -23,28 +24,33 @@ const AddToList = ({
   mealplans,
   setMealplans,
   setSelectedProduct,
-  gramInputRef,
-  chooseMealRef,
   currentProduct,
   setCurrentProduct,
-  addToListDropdownRef,
+  gramInputRef,
+  selectMealplanDayRef,
+  selectMealplanMealRef,
 }: IAddToList) => {
   const addProductToList = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const currentListName = addToListDropdownRef.current.value;
+    const mealPlanDayName = selectMealplanDayRef.current.value;
+    const mealPlanMealName = selectMealplanMealRef.current.value;
 
     const updatedMealplan = mealplans.map((mealplan) => {
-      if (mealplan.listName === currentListName) {
+      if (mealplan.listName === mealPlanDayName) {
         return {
           ...mealplan,
-          products: [...mealplan.products, selectedProduct],
+          meals: mealplan.meals.map((meal) => {
+            if (meal.listName === mealPlanMealName) {
+              return { ...meal, products: [...meal.products, selectedProduct] };
+            }
+            return meal;
+          }),
         };
       }
       return mealplan;
     });
-
     setMealplans(updatedMealplan);
   };
 
@@ -58,8 +64,8 @@ const AddToList = ({
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
       />
-      <AddToListDropdown ref={addToListDropdownRef} className={className} />
-      <ChooseMeal ref={chooseMealRef} className={className} />
+      <AddToListDropdown ref={selectMealplanDayRef} className={className} />
+      <ChooseMeal ref={selectMealplanMealRef} className={className} />
       <button
         className={className + '__add-to-list__add'}
         onClick={(e) => addProductToList(e)}

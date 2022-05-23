@@ -1,11 +1,7 @@
-import Imealplans from '../../Interfaces/Mealplans';
+import { IMealD } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
 
-interface IAddedProducts {
-  mealplan: Imealplans;
-}
-
-const AddedProducts = ({ mealplan }: IAddedProducts) => {
+const AddedProducts = ({ meal }: IAddedProducts) => {
   // const removeProductFromList = (
   //   e: React.MouseEvent<HTMLDivElement, MouseEvent>
   // ) => {
@@ -27,7 +23,7 @@ const AddedProducts = ({ mealplan }: IAddedProducts) => {
 
   return (
     <>
-      {mealplan.products.map(({ name, properties }: IProducts) => (
+      {meal.products.map(({ name, properties }: IProducts) => (
         <div className="added-products__product">
           <p className="added-products__product__title">
             {name},{' '}

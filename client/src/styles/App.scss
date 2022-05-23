@@ -284,47 +284,83 @@ $search-bar-width: 85%;
   }
 }
 
-.added-products-dropdown {
-  // border: 1px solid black;
-  display: flex;
-  margin-top: 1em;
+.mealplan {
+  &__day {
+    // border: 1px solid black;
+    display: flex;
+    margin-top: 1em;
 
-  &__divider--upper {
-    margin-top: 1.5em;
-  }
-
-  &__title {
-    color: $page-color-text;
-    font-size: 1.2em;
-    margin-left: 1.5em;
-  }
-
-  &__arrow {
-    &__outter {
-      // border: 1px solid black;
-      margin-left: auto;
-      margin-top: -0.7em;
-      width: 5em;
-      height: 3em;
-      padding-left: 1.5em;
-      padding-top: 0.7em;
-      cursor: pointer;
+    &__divider--upper {
+      margin-top: 1.5em;
     }
 
-    &__inner {
-      border: 0.2em solid black;
-      border-color: $page-color-text;
-      border-top: transparent;
-      border-left: transparent;
-      width: 1em;
-      height: 1em;
-      transform: rotate(45deg);
-      // border-radius: 0.1em;
+    &__title {
+      color: $page-color-text;
+      font-size: 1.2em;
+      margin-left: 1.5em;
+    }
+
+    &__arrow {
+      &__outter {
+        // border: 1px solid black;
+        margin-left: auto;
+        margin-top: -0.7em;
+        width: 5em;
+        height: 3em;
+        padding-left: 1.5em;
+        padding-top: 0.7em;
+        cursor: pointer;
+      }
+
+      &__inner {
+        border: 0.2em solid black;
+        border-color: $page-color-text;
+        border-top: transparent;
+        border-left: transparent;
+        width: 1em;
+        height: 1em;
+        transform: rotate(45deg);
+        // border-radius: 0.1em;
+      }
+    }
+
+    &__divider--lower {
+      padding-top: 0.3em;
     }
   }
 
-  &__divider--lower {
-    padding-top: 0.3em;
+  &__meal {
+    display: flex;
+    margin-top: 1em;
+    font-size: 0.9em;
+    &__title {
+      color: $page-color-text;
+      margin-left: 2.5em;
+    }
+
+    &__arrow {
+      &__outter {
+        // border: 1px solid black;
+        // margin-left: auto;
+        margin-top: -0.7em;
+        width: 5em;
+        height: 3em;
+        padding-left: 1.5em;
+        padding-top: 0.7em;
+        cursor: pointer;
+      }
+
+      &__inner {
+        border: 0.2em solid black;
+        border-color: $page-color-text;
+        border-top: transparent;
+        border-left: transparent;
+        width: 1em;
+        height: 1em;
+        transform: rotate(45deg);
+        // border-radius: 0.1em;
+      }
+    }
   }
 }
 
