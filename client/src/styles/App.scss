@@ -145,7 +145,7 @@ $search-bar-width: 85%;
 
 // Drop-down
 .dropdown {
-  position: fixed;
+  position: absolute;
   display: grid;
   grid-template-columns: 1fr $search-bar-width 1fr;
   font-size: 1.2em;
@@ -254,8 +254,8 @@ $search-bar-width: 85%;
         text-align: center;
         border: 1px solid $page-color;
         outline: none;
-        color: rgba($page-color-text, 0.6);
         font-size: 1.5em;
+        color: $page-color-text;
 
         &:focus::placeholder {
           color: transparent;
@@ -269,6 +269,7 @@ $search-bar-width: 85%;
       color: $page-color-text;
       margin-left: 0.5em;
       height: 100%;
+      // appearance: none;
     }
 
     &__add {
@@ -285,14 +286,14 @@ $search-bar-width: 85%;
 }
 
 .mealPlan {
+  &__divider--upper {
+    margin-top: 1.5em;
+  }
+
   &__day {
     // border: 1px solid black;
     display: flex;
     margin-top: 1em;
-
-    &__divider--upper {
-      margin-top: 1.5em;
-    }
 
     &__title {
       color: $page-color-text;
@@ -340,19 +341,18 @@ $search-bar-width: 85%;
 
     &__arrow {
       &__outter {
-        // border: 1px solid black;
-        // margin-left: auto;
         margin-top: -0.7em;
-        width: 5em;
+        width: 4em;
         height: 3em;
         padding-left: 1.5em;
-        padding-top: 0.7em;
+        padding-top: 0.9em;
         cursor: pointer;
+        // border: 1px solid black;
       }
 
       &__inner {
-        border: 0.2em solid black;
-        border-color: $page-color-text;
+        font-size: 0.8em;
+        border: 0.2em solid $page-color-text;
         border-top: transparent;
         border-left: transparent;
         width: 1em;

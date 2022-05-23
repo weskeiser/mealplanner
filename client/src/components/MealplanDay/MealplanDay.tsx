@@ -1,9 +1,15 @@
 import { useState } from 'react';
-import { IMealPlansD } from '../../Interfaces/MealPlans';
-import MealPlanMeal from '../MealPlanMeal/MealPlanMeal';
+import { IMealplans } from '../../Interfaces/Mealplans';
+import MealplanMeal from '../MealplanMeal/MealplanMeal';
 
-const MealPlanDay = ({ mealPlan, mealPlans, setMealPlans }: IMealPlansD) => {
-  const [hidden, setHidden] = useState<Boolean>(true);
+interface IMealplanDay {
+  mealPlan: IMealplans;
+  mealPlans: IMealplans[];
+  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+}
+
+const MealplanDay = ({ mealPlan, mealPlans, setMealplans }: IMealplanDay) => {
+  const [hidden, setHidden] = useState<Boolean>(false);
 
   const openList = () => {
     setHidden(!hidden);
@@ -20,10 +26,10 @@ const MealPlanDay = ({ mealPlan, mealPlans, setMealPlans }: IMealPlansD) => {
       </div>
 
       <div className={decideVisibility}>
-        <MealPlanMeal
+        <MealplanMeal
           mealPlan={mealPlan}
           mealPlans={mealPlans}
-          setMealPlans={setMealPlans}
+          setMealplans={setMealplans}
         />
       </div>
 
@@ -32,4 +38,4 @@ const MealPlanDay = ({ mealPlan, mealPlans, setMealPlans }: IMealPlansD) => {
   );
 };
 
-export default MealPlanDay;
+export default MealplanDay;

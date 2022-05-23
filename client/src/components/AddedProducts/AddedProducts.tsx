@@ -1,11 +1,11 @@
-import { IMeal, IMealPlans } from '../../Interfaces/MealPlans';
+import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import AddedProduct from '../AddedProduct/AddedProduct';
 import NutritionList from '../NutritionList/NutritionList';
 
 interface IAddedProducts {
   meal: IMeal;
-  mealPlans: IMealPlans;
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealPlans[]>>;
+  mealPlans: IMealplans;
+  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
 }
 
 export interface ItotalNutritionalValue {
@@ -26,7 +26,7 @@ export interface ItotalNutritionalValue {
 const AddedProducts = ({
   meal,
   mealPlans,
-  setMealPlans,
+  setMealplans,
   mealPlanDayName,
 }: IAddedProducts) => {
   const totalNutritionalValue: ItotalNutritionalValue = meal.products.reduce(
@@ -76,7 +76,7 @@ const AddedProducts = ({
         <AddedProduct
           meal={meal}
           mealPlans={mealPlans}
-          setMealPlans={setMealPlans}
+          setMealplans={setMealplans}
           mealPlanDayName={mealPlanDayName}
         />
       </div>

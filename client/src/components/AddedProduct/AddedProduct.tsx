@@ -1,24 +1,26 @@
-import { IMeal, IMealPlans } from '../../Interfaces/MealPlans';
+import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
 
 interface IAddedProducts {
   meal: IMeal;
-  mealPlans: IMealPlans;
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealPlans[]>>;
+  mealPlans: IMealplans[];
+  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  mealPlanDayName: string;
 }
 
 const AddedProducts = ({
   meal,
   mealPlans,
-  setMealPlans,
+  setMealplans,
   mealPlanDayName,
 }: IAddedProducts) => {
   const removeProductFromMeal = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+    console.log(mealPlans);
 
-    const updatedMealPlan = mealPlans.map((mealPlan) => {
+    const updatedMealplan = mealPlans.map((mealPlan) => {
       const mealPlanMealName = meal.listName;
 
       if (mealPlan.listName === mealPlanDayName) {
@@ -27,7 +29,7 @@ const AddedProducts = ({
           meals: mealPlan.meals.map((meal) => {
             if (meal.listName === mealPlanMealName) {
               const productsWithItemRemoved = [...meal.products];
-              productsWithItemRemoved.splice(e.target.dataset.remove, 1);
+              productsWithItemRemoved.splice(e.target.dataset.index, 1);
               return {
                 ...meal,
                 products: productsWithItemRemoved,
@@ -39,7 +41,7 @@ const AddedProducts = ({
       }
       return mealPlan;
     });
-    setMealPlans(updatedMealPlan);
+    setMealplans(updatedMealplan);
   };
 
   return (
@@ -58,7 +60,7 @@ const AddedProducts = ({
             </p>
             <button
               className="added-products__product__remove"
-              data-remove={index}
+              data-index={index}
               onClick={(e) => removeProductFromMeal(e)}
             >
               &#10005;

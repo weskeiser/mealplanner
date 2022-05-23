@@ -6,22 +6,22 @@ import SearchBar from './components/SearchBar/SearchBar';
 
 import SearchDropdown from './components/SearchDropdown/SearchDropdown';
 import { IProducts } from './Interfaces/Products';
-import AddToList from './components/AddToList/AddToList';
+import AddToMealplan from './components/AddToMealplan/AddToMealplan';
 import NutritionList from './components/NutritionList/NutritionList';
 
 import showSearchDropdown from './components/utils/showSearchDropdown';
 import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
-import MealPlan from './components/MealPlan/MealPlan';
-import { IMealPlan } from './Interfaces/MealPlans';
+import Mealplan from './components/Mealplan/Mealplan';
+import { IMealplans } from './Interfaces/Mealplans';
 
 function App() {
   // Refs
   const searchBarRef = useRef();
   const gramInputRef = useRef();
-  const selectMealPlanDayRef = useRef();
-  const selectMealPlanMealRef = useRef();
+  const selectMealplanDayRef = useRef();
+  const selectMealplanMealRef = useRef();
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
@@ -70,7 +70,8 @@ function App() {
   // - Used for remembering selectedProduct when GramInput goes to 0.
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
   // -----
-  const [mealPlans, setMealPlans] = useState<IMealPlan[]>([
+
+  const [mealPlans, setMealplans] = useState<IMealplans[]>([
     {
       listName: 'Mandag',
       meals: [
@@ -174,22 +175,22 @@ function App() {
           className={selectedProductClass + '__nutrition-list'}
           selectedProduct={selectedProduct}
         />
-        <AddToList
+        <AddToMealplan
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
           mealPlans={mealPlans}
-          setMealPlans={setMealPlans}
+          setMealplans={setMealplans}
           setAllChosenProducts={setAllChosenProducts}
           className={selectedProductClass}
           gramInputRef={gramInputRef}
           currentProduct={currentProduct}
           setCurrentProduct={setCurrentProduct}
-          selectMealPlanDayRef={selectMealPlanDayRef}
-          selectMealPlanMealRef={selectMealPlanMealRef}
+          selectMealplanDayRef={selectMealplanDayRef}
+          selectMealplanMealRef={selectMealplanMealRef}
         />
       </div>
       <hr className="mealPlan__divider--upper dividers" />
-      <MealPlan mealPlans={mealPlans} setMealPlans={setMealPlans} />
+      <Mealplan mealPlans={mealPlans} setMealplans={setMealplans} />
     </div>
   );
 }

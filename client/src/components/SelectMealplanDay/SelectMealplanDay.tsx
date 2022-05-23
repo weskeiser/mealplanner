@@ -1,14 +1,14 @@
 import { forwardRef } from 'react';
 
-interface IAddToListDropdown {
+interface ISelectMealplanDay {
   className: string;
 }
 
-const AddToListDropdown = forwardRef(
-  ({ className }: IAddToListDropdown, selectMealPlanDayRef) => {
+const SelectMealplanDay = forwardRef(
+  ({ className }: ISelectMealplanDay, selectMealplanDayRef) => {
     return (
       <select
-        ref={selectMealPlanDayRef}
+        ref={selectMealplanDayRef}
         name="list-dropdown"
         id="list-dropdown"
         className={className + '__add-to-list__list-dropdown'}
@@ -20,4 +20,4 @@ const AddToListDropdown = forwardRef(
   }
 );
 
-export default AddToListDropdown;
+export default SelectMealplanDay;

@@ -1,17 +1,19 @@
 import { IProducts } from './Products';
 
-export interface IMealPlans {
+export interface IMealplans {
   listName: string;
-  meals: {
-    listName: string;
-    products: IProducts[];
-  };
+  meals: [
+    {
+      listName: string;
+      products: IProducts[];
+    }
+  ];
 }
 
-export interface IMealPlansD {
-  mealPlan?: IMealPlans;
-  mealPlans: IMealPlans;
-  setMealPlans: ;
+export interface IMealplansD {
+  mealPlan?: IMealplans;
+  mealPlans: IMealplans;
+  setMealplans: React.Dispatch<React.SetStateAction<IMealplans>>;
 }
 
 export interface IMeal {
