@@ -1,7 +1,7 @@
 import ListItem from '../ListItem';
 import { IProducts } from '../../Interfaces/Products';
 
-interface ISearchDropdownProps {
+interface ISearchResultsProps {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchDropdownContents: IProducts[];
@@ -11,7 +11,7 @@ interface ISearchDropdownProps {
   setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
 
-const SearchDropdown = ({
+const SearchResults = ({
   searchTerm,
   searchDropdownContents,
   setSelectedProduct,
@@ -19,7 +19,7 @@ const SearchDropdown = ({
   searchBarRef,
   gramInputRef,
   setCurrentProduct,
-}: ISearchDropdownProps) => {
+}: ISearchResultsProps) => {
   const selectProduct = (key) => {
     searchDropdownContents.map((product) => {
       if (product.id === key) {
@@ -32,7 +32,7 @@ const SearchDropdown = ({
     setSearchTerm('');
   };
 
-  const visibleIfSearchTerm = searchTerm ? 'dropdown' : 'dropdown hidden';
+  const visibleIfSearchTerm = searchTerm ? 'search-results' : 'hidden';
 
   return (
     <ul className={visibleIfSearchTerm}>
@@ -43,15 +43,17 @@ const SearchDropdown = ({
               <img
                 src={product.properties.logo}
                 alt={product.properties.brand}
-                className="dropdown__list-item__logo"
+                className="search-results__list-item__logo"
               />
-              <div className="dropdown__list-item__name">{product.name}</div>
-              <div className="dropdown__list-item__brand">
+              <div className="search-results__list-item__name">
+                {product.name}
+              </div>
+              <div className="search-results__list-item__brand">
                 {product.properties.brand}
               </div>
             </>
           }
-          className="dropdown__list-item"
+          className="search-results__list-item"
           key={product.id}
           onClick={(e) => selectProduct(product.id)}
         />
@@ -60,4 +62,4 @@ const SearchDropdown = ({
   );
 };
 
-export default SearchDropdown;
+export default SearchResults;

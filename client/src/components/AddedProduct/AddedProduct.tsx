@@ -1,5 +1,6 @@
 import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
+import ListItem from '../ListItem';
 
 interface IAddedProducts {
   meal: IMeal;
@@ -46,28 +47,39 @@ const AddedProducts = ({
 
   return (
     <>
-      {meal.products.map(({ name, properties }: IProducts, index) => (
-        <div className="added-products__product">
-          <p className="added-products__product__title">
-            {name},{' '}
-            <span className="added-products__product__title__brand">
-              {properties.brand}
-            </span>
-          </p>
-          <div className="added-products__product__serving-remove-container">
-            <p className="added-products__product__serving">
-              {properties.serving}g
-            </p>
-            <button
-              className="added-products__product__remove"
-              data-index={index}
-              onClick={(e) => removeProductFromMeal(e)}
-            >
-              &#10005;
-            </button>
-          </div>
-        </div>
-      ))}
+      {meal.products.map(
+        (
+          { name, properties, mealplanDayName, mealplanMealName }: IProducts,
+          index
+        ) => (
+          <ListItem
+            className="added-products__product"
+            key={mealplanDayName + mealplanMealName + name + properties.serving}
+            children={
+              <>
+                <p className="added-products__product__title">
+                  {name},{' '}
+                  <span className="added-products__product__title__brand">
+                    {properties.brand}
+                  </span>
+                </p>
+                <div className="added-products__product__serving-remove-container">
+                  <p className="added-products__product__serving">
+                    {properties.serving}g
+                  </p>
+                  <button
+                    className="added-products__product__remove"
+                    data-index={index}
+                    onClick={(e) => removeProductFromMeal(e)}
+                  >
+                    &#10005;
+                  </button>
+                </div>
+              </>
+            }
+          />
+        )
+      )}
     </>
   );
 };

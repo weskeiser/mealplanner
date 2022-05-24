@@ -4,12 +4,12 @@ import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
 
-import SearchDropdown from './components/SearchDropdown/SearchDropdown';
+import SearchResults from './components/SearchResults/SearchResults';
 import { IProducts } from './Interfaces/Products';
 import AddToMealplan from './components/AddToMealplan/AddToMealplan';
 import NutritionList from './components/NutritionList/NutritionList';
 
-import showSearchDropdown from './components/utils/showSearchDropdown';
+import showSearchResults from './components/utils/showSearchResults';
 import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
@@ -63,7 +63,7 @@ function App() {
     },
   });
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchDropdownContents, setSearchDropdownContents] = useState<
+  const [searchDropdownContents, setSearchResultsContents] = useState<
     IProducts[]
   >([]);
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
@@ -80,6 +80,8 @@ function App() {
           products: [
             {
               id: 2,
+              mealplanDayName: 'Mandag',
+              mealplanMealName: 'Måltid 1',
               name: 'Kjøttdeig 14%',
               category: 'Kjøtt',
               properties: {
@@ -110,6 +112,8 @@ function App() {
           products: [
             {
               id: 2,
+              mealplanDayName: 'Tirsdag',
+              mealplanMealName: 'Måltid 1',
               name: 'Kjøttdeig 14%',
               category: 'Kjøtt',
               properties: {
@@ -137,7 +141,7 @@ function App() {
   // Custom Hooks
   useFetchEffect(
     'products.json',
-    showSearchDropdown(setSearchDropdownContents, searchTerm),
+    showSearchResults(setSearchResultsContents, searchTerm),
     [searchTerm],
     300
   );
@@ -151,10 +155,10 @@ function App() {
       <h1 className="page-title">Næringsinnholdkalkulator</h1>
       <SearchBar
         setSearchTerm={setSearchTerm}
-        setSearchDropdownContents={setSearchDropdownContents}
+        setSearchResultsContents={setSearchResultsContents}
         ref={searchBarRef}
       />
-      <SearchDropdown
+      <SearchResults
         searchTerm={searchTerm}
         searchDropdownContents={searchDropdownContents}
         setSelectedProduct={setSelectedProduct}

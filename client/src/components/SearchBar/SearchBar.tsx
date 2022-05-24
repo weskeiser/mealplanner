@@ -2,18 +2,18 @@ import { forwardRef } from 'react';
 
 interface ISearchBarProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  setSearchDropdownContents: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  setSearchResultsContents: React.Dispatch<React.SetStateAction<IProducts[]>>;
 }
 
 const SearchBar = forwardRef(
   (
-    { setSearchTerm, setSearchDropdownContents }: ISearchBarProps,
+    { setSearchTerm, setSearchResultsContents }: ISearchBarProps,
     searchBarRef
   ) => {
     const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
       const input = e.target as HTMLInputElement;
       if (!input.value) {
-        setSearchDropdownContents([]);
+        setSearchResultsContents([]);
       }
       setSearchTerm(input.value);
     };
@@ -26,6 +26,7 @@ const SearchBar = forwardRef(
           onInput={(e) => handleInput(e)}
           placeholder="Søk etter produkt.."
         />
+        <img src="magnifying-glass.png" alt="" />
       </div>
     );
   }

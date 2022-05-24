@@ -1,11 +1,11 @@
 import { IProducts } from '../../Interfaces/Products';
 
-const showSearchDropdown = (
-  setSearchDropdownContents: React.Dispatch<React.SetStateAction<IProducts[]>>,
+const showSearchResults = (
+  setSearchResultsContents: React.Dispatch<React.SetStateAction<IProducts[]>>,
   searchTerm: string
 ) => {
   return (returnedJSON: IProducts[]) => {
-    setSearchDropdownContents([]);
+    setSearchResultsContents([]);
     returnedJSON.forEach((product) => {
       if (
         searchTerm &&
@@ -15,7 +15,7 @@ const showSearchDropdown = (
             .toLowerCase()
             .includes(searchTerm.toLocaleLowerCase()))
       ) {
-        setSearchDropdownContents((currentState: IProducts[]) => [
+        setSearchResultsContents((currentState: IProducts[]) => [
           ...currentState,
           product,
         ]);
@@ -24,4 +24,4 @@ const showSearchDropdown = (
   };
 };
 
-export default showSearchDropdown;
+export default showSearchResults;

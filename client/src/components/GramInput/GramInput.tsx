@@ -71,6 +71,7 @@ const GramInput = forwardRef(
           id="addProduct"
           onInput={(e) => updateNutritionList(e)}
           placeholder="100g"
+          autoComplete="off"
         />
       </div>
     );

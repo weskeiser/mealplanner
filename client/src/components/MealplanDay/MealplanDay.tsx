@@ -15,7 +15,7 @@ const MealplanDay = ({ mealPlan, mealPlans, setMealplans }: IMealplanDay) => {
     setHidden(!hidden);
   };
 
-  const decideVisibility = hidden ? 'hidden' : '';
+  const toggleHidden = hidden ? 'hidden' : '';
   return (
     <>
       <div className="mealPlan__day">
@@ -25,7 +25,9 @@ const MealplanDay = ({ mealPlan, mealPlans, setMealplans }: IMealplanDay) => {
         </div>
       </div>
 
-      <div className={decideVisibility}>
+      {/* <hr /> */}
+
+      <div className={toggleHidden}>
         <MealplanMeal
           mealPlan={mealPlan}
           mealPlans={mealPlans}

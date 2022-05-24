@@ -63,10 +63,13 @@ body {
   }
 }
 
-// $page-color: rgb(218, 165, 32);
+// Page color 1
 $page-color: rgb(134, 178, 232);
 $page-color-lighter: rgba($page-color, 0.2);
 $page-color-text: rgb(45, 97, 160);
+
+// Page color 2
+$page-color2: rgb(120, 45, 45);
 
 $search-bar-width: 85%;
 
@@ -106,6 +109,11 @@ $search-bar-width: 85%;
   grid-template-columns: 1fr $search-bar-width 1fr;
   margin-top: 1.6em;
 
+  & > input,
+  & > img {
+    grid-row: 1;
+  }
+
   & > input {
     width: 100%;
     grid-column: 2;
@@ -116,14 +124,26 @@ $search-bar-width: 85%;
     color: $page-color;
     outline: none;
   }
+
+  & > img {
+    grid-column: 2;
+    margin: auto 0;
+    margin-left: auto;
+    margin-right: 1em;
+    opacity: 0.2;
+
+    // border: 1px solid black;
+    width: 1.3em;
+    height: 1.3em;
+  }
 }
 
 // Add Custom Product
 .custom-product {
   // position: fixed;
-  margin: 0em 10%;
-  margin-bottom: 0.6em;
   &__initializer {
+    margin: 0em 10%;
+    margin-bottom: 0.6em;
     cursor: pointer;
     font-size: 0.7em;
     background-color: #fff;
@@ -132,19 +152,80 @@ $search-bar-width: 85%;
   }
 
   &__form {
-    & > * {
-      color: $page-color-text;
+    margin-left: 2em;
+    &__list {
+      // border: 1px solid black;
+      width: 70%;
+
+      &__input {
+        // display: flex;
+        border-right: 1px solid $page-color;
+        border-left: 1px solid $page-color;
+        border-top: 1px solid $page-color;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+
+        & > * {
+          padding: 0 0.3em;
+        }
+
+        &:last-child {
+          border-bottom: 1px solid $page-color;
+        }
+
+        // &:first-child {
+        //   border-top: 1px solid $page-color;
+        // }
+
+        & > p {
+          border-right: 1px solid $page-color;
+          background-color: $page-color-lighter;
+        }
+
+        & > input {
+          width: 100%;
+          border: 0;
+          margin-left: auto;
+        }
+      }
     }
 
-    & > input {
-      padding-left: 0.4em;
-      font-size: 1em;
+    &__list-item {
+      color: $page-color-text;
+      border-top: 1px solid $page-color;
+      border-right: 1px solid $page-color;
+      border-left: 1px solid $page-color;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+
+      & > * {
+        padding: 0 0.3em;
+      }
+
+      &:last-child {
+        border-bottom: 1px solid $page-color;
+      }
+
+      &:nth-child(even) {
+      }
+
+      &__key {
+        border-right: 1px solid $page-color;
+      }
+
+      &__value {
+        margin-left: auto;
+      }
+    }
+
+    & > * {
+      color: $page-color-text;
     }
   }
 }
 
 // Drop-down
-.dropdown {
+.search-results {
   position: absolute;
   display: grid;
   grid-template-columns: 1fr $search-bar-width 1fr;
@@ -153,46 +234,57 @@ $search-bar-width: 85%;
 
   &__list-item {
     background-color: $page-color;
-    color: #fff;
+    background-color: #fff;
+    color: $page-color-text;
     grid-column: 2;
     cursor: pointer;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid $page-color;
+    border-right: 1px solid $page-color;
     height: 1.9em;
 
-    &:hover {
-    }
-
-    & > * {
-    }
-
-    &:nth-child(1) {
+    &:last-of-type {
+      & img {
+        border-bottom: 1px solid $page-color;
+      }
     }
 
     &__logo {
       background-color: #fff;
-      border: 1px solid $page-color;
+      border-left: 1px solid $page-color;
+      border-right: 1px solid $page-color;
       height: 100%;
-      // aspect-ratio: 1;
 
       width: 100%;
       grid-column: 1;
-      &::before {
-        display: none;
-      }
     }
 
     &__name {
+      font-size: 0.7em;
+      font-weight: 600;
       grid-column: 2/6;
-      padding: 0.28em 0;
+      margin: auto 0;
       margin-left: 0.3em;
+      max-width: 17em;
+      padding-right: 0.5em;
+      white-space: nowrap;
+      overflow: hidden;
+      // border-right: 1px solid $page-color;
+      // height: 100%;
     }
 
     &__brand {
-      grid-column: 7 / 9;
+      color: rgba($page-color-text, 0.6);
+      font-weight: 600;
+      grid-column: 7 / 10;
       font-size: 0.6em;
-      padding: 0.28em 0;
+      margin: auto 0;
+      white-space: nowrap;
+      padding-left: 0.5em;
+      margin-right: 0.5em;
+      // max-width: 2em;
+      overflow: hidden;
     }
   }
 }
@@ -234,23 +326,18 @@ $search-bar-width: 85%;
 
   // - Add To List
   &__add-to-list {
-    height: 2em;
-    display: flex;
+    display: grid;
     color: $page-color-text;
-    margin-top: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    grid-template-columns: 3fr 1fr;
+    grid-auto-rows: 2em;
+    gap: 0.2em;
+    width: 100%;
 
     &__gram-input {
-      display: flex;
-      margin-left: auto;
-
-      &::after {
-        margin-top: auto;
-        margin-bottom: -0.27em;
-        margin-left: 0.2em;
-      }
-
       &__input {
-        width: 3.5em;
+        width: 100%;
         text-align: center;
         border: 1px solid $page-color;
         outline: none;
@@ -267,27 +354,28 @@ $search-bar-width: 85%;
       background-color: #fff;
       border: 1px solid $page-color;
       color: $page-color-text;
-      margin-left: 0.5em;
-      height: 100%;
-      // appearance: none;
+      margin-left: 50%;
+    }
+
+    &__list-dropdown:nth-of-type(1) {
     }
 
     &__add {
       color: $page-color-text;
-      // background-color: #fff;
-      background-color: $page-color-lighter;
-      border: 1px solid $page-color;
+      font-weight: 600;
+      background-color: #fff;
+      border: 2px solid $page-color;
       cursor: pointer;
-      width: 6em;
-      height: 100%;
-      margin-left: 0.5em;
+      white-space: nowrap;
+      // background-color: rgb(241, 246, 251);
     }
   }
 }
 
 .mealPlan {
   &__divider--upper {
-    margin-top: 1.5em;
+    // margin-top: 1.5em;
+    width: 100%;
   }
 
   &__day {
@@ -326,7 +414,8 @@ $search-bar-width: 85%;
     }
 
     &__divider--lower {
-      padding-top: 0.3em;
+      // padding-top: 0.3em;
+      width: 100%;
     }
   }
 
@@ -334,13 +423,15 @@ $search-bar-width: 85%;
     display: flex;
     margin-top: 1em;
     font-size: 0.9em;
+    // font-weight: 600;
     &__title {
       color: $page-color-text;
-      margin-left: 2.5em;
+      margin-left: 2em;
     }
 
     &__arrow {
       &__outter {
+        display: inline-flex;
         margin-top: -0.7em;
         width: 4em;
         height: 3em;

@@ -62,6 +62,9 @@ const AddToMealplan = ({
 
   return (
     <div className={className + '__add-to-list'}>
+      {/* <div className={className + '__add-to-list__list-container'}> */}
+      <SelectMealplanDay ref={selectMealplanDayRef} className={className} />
+      {/* </div> */}
       <GramInput
         ref={gramInputRef}
         className={className + '__add-to-list__gram-input'}
@@ -70,7 +73,6 @@ const AddToMealplan = ({
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
       />
-      <SelectMealplanDay ref={selectMealplanDayRef} className={className} />
       <SelectMealplanMeal ref={selectMealplanMealRef} className={className} />
       <button
         className={className + '__add-to-list__add'}

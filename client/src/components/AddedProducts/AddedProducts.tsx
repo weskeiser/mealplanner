@@ -4,8 +4,9 @@ import NutritionList from '../NutritionList/NutritionList';
 
 interface IAddedProducts {
   meal: IMeal;
-  mealPlans: IMealplans;
+  mealPlans: IMealplans[];
   setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  mealPlanDayName: string;
 }
 
 export interface ItotalNutritionalValue {
@@ -72,14 +73,14 @@ const AddedProducts = ({
 
   return (
     <div>
-      <div className="added-products">
+      <ul className="added-products">
         <AddedProduct
           meal={meal}
           mealPlans={mealPlans}
           setMealplans={setMealplans}
           mealPlanDayName={mealPlanDayName}
         />
-      </div>
+      </ul>
       <div className="added-products__nutrition-list__heading">
         <h3 className="added-products__nutrition-list__heading__title">
           Næringsinnhold
