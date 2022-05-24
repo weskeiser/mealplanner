@@ -190,8 +190,8 @@ body {
   height: 1.9em;
 }
 
-.search-results__list-item:last-of-type img {
-  border-bottom: 1px solid #86b2e8;
+.search-results__list-item:focus {
+  background-color: red;
 }
 
 .search-results__list-item__logo {

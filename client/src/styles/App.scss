@@ -244,9 +244,13 @@ $search-bar-width: 85%;
     border-right: 1px solid $page-color;
     height: 1.9em;
 
+    &:focus {
+      background-color: red;
+    }
+
     &:last-of-type {
       & img {
-        border-bottom: 1px solid $page-color;
+        // border-bottom: 1px solid $page-color;
       }
     }
 

@@ -3,6 +3,7 @@ import { IProducts } from '../../Interfaces/Products';
 import SelectMealplanDay from '../SelectMealplanDay/SelectMealplanDay';
 import SelectMealplanMeal from '../SelectMealplanMeal/SelectMealplanMeal';
 import GramInput from '../GramInput/GramInput';
+import { useRef } from 'react';
 
 interface IAddToMealplan {
   className: string;
@@ -27,9 +28,10 @@ const AddToMealplan = ({
   currentProduct,
   setCurrentProduct,
   gramInputRef,
-  selectMealplanDayRef,
-  selectMealplanMealRef,
 }: IAddToMealplan) => {
+  const selectMealplanDayRef = useRef();
+  const selectMealplanMealRef = useRef();
+
   const addProductToMeal = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {

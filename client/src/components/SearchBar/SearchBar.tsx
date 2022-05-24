@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
 interface ISearchBarProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
@@ -7,7 +7,13 @@ interface ISearchBarProps {
 
 const SearchBar = forwardRef(
   (
-    { setSearchTerm, setSearchResultsContents }: ISearchBarProps,
+    {
+      setSearchTerm,
+      setSearchResultsContents,
+      searchResultsRef,
+      focusedSearchResult,
+      setFocusedSearchResult,
+    }: ISearchBarProps,
     searchBarRef
   ) => {
     const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -18,15 +24,39 @@ const SearchBar = forwardRef(
       setSearchTerm(input.value);
     };
 
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const searchBarEl = searchResultsRef.current;
+        searchResultsRef.current.children[focusedSearchResult].focus();
+
+        console.log(focusedSearchResult);
+        setFocusedSearchResult((focusedSearchResult) => {
+          // if (focusedSearchResult >= searchBarEl.children.length - 1) {
+          //   return 0;
+          // } else {
+          //   return focusedSearchResult + 1;
+          // }
+          return focusedSearchResult + 1;
+        });
+      }
+    };
+
     return (
       <div className="search-bar">
         <input
+          className="search-bar__input"
           ref={searchBarRef}
           type="text"
           onInput={(e) => handleInput(e)}
+          onKeyDown={(e) => handleKeyDown(e)}
           placeholder="Søk etter produkt.."
         />
-        <img src="magnifying-glass.png" alt="" />
+        <img
+          onClick={(e) => searchBarRef.current.focus()}
+          src="magnifying-glass.png"
+          alt=""
+        />
       </div>
     );
   }

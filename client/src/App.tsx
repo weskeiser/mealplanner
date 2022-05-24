@@ -9,6 +9,7 @@ import { IProducts } from './Interfaces/Products';
 import AddToMealplan from './components/AddToMealplan/AddToMealplan';
 import NutritionList from './components/NutritionList/NutritionList';
 
+import hideSearchResults from './components/utils/hideSearchResults';
 import showSearchResults from './components/utils/showSearchResults';
 import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
@@ -20,8 +21,7 @@ function App() {
   // Refs
   const searchBarRef = useRef();
   const gramInputRef = useRef();
-  const selectMealplanDayRef = useRef();
-  const selectMealplanMealRef = useRef();
+  const searchResultsRef = useRef();
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
@@ -63,9 +63,10 @@ function App() {
     },
   });
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchDropdownContents, setSearchResultsContents] = useState<
+  const [searchResultsContents, setSearchResultsContents] = useState<
     IProducts[]
   >([]);
+  const [focusedSearchResult, setFocusedSearchResult] = useState(0);
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
   // - Used for remembering selectedProduct when GramInput goes to 0.
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
@@ -150,22 +151,39 @@ function App() {
   const selectedProductClass = 'selected-product';
 
   return (
-    <div className="page">
+    <div
+      className="page"
+      onClick={(e) =>
+        hideSearchResults(
+          e,
+          searchTerm,
+          searchBarRef,
+          setCurrentProduct,
+          setSearchTerm
+        )
+      }
+    >
       <div className="header"></div>
       <h1 className="page-title">Næringsinnholdkalkulator</h1>
       <SearchBar
+        ref={searchBarRef}
+        searchResultsRef={searchResultsRef}
         setSearchTerm={setSearchTerm}
         setSearchResultsContents={setSearchResultsContents}
-        ref={searchBarRef}
+        focusedSearchResult={focusedSearchResult}
+        setFocusedSearchResult={setFocusedSearchResult}
       />
       <SearchResults
+        ref={searchResultsRef}
         searchTerm={searchTerm}
-        searchDropdownContents={searchDropdownContents}
+        searchResultsContents={searchResultsContents}
         setSelectedProduct={setSelectedProduct}
         setSearchTerm={setSearchTerm}
         searchBarRef={searchBarRef}
         gramInputRef={gramInputRef}
         setCurrentProduct={setCurrentProduct}
+        focusedSearchResult={focusedSearchResult}
+        setFocusedSearchResult={setFocusedSearchResult}
       />
       <AddCustomProduct
         allChosenProducts={allChosenProducts}
@@ -189,8 +207,6 @@ function App() {
           gramInputRef={gramInputRef}
           currentProduct={currentProduct}
           setCurrentProduct={setCurrentProduct}
-          selectMealplanDayRef={selectMealplanDayRef}
-          selectMealplanMealRef={selectMealplanMealRef}
         />
       </div>
       <hr className="mealPlan__divider--upper dividers" />
