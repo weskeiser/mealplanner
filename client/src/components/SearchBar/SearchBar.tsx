@@ -1,4 +1,6 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
+import useFetchEffect from '../../hooks/useFetchEffect';
+import showSearchResults from '../utils/showSearchResults';
 
 interface ISearchBarProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
@@ -8,14 +10,23 @@ interface ISearchBarProps {
 const SearchBar = forwardRef(
   (
     {
+      searchTerm,
       setSearchTerm,
       setSearchResultsContents,
       searchResultsRef,
       focusedSearchResult,
       setFocusedSearchResult,
+      setCurrentProduct,
     }: ISearchBarProps,
     searchBarRef
   ) => {
+    useFetchEffect(
+      'products.json',
+      showSearchResults(setSearchResultsContents, searchTerm),
+      [searchTerm],
+      300
+    );
+
     const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
       const input = e.target as HTMLInputElement;
       if (!input.value) {
@@ -27,18 +38,27 @@ const SearchBar = forwardRef(
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        const searchBarEl = searchResultsRef.current;
-        searchResultsRef.current.children[focusedSearchResult].focus();
+        if (searchTerm) {
+          const searchBarEl = searchResultsRef.current;
+          const firstSearchResult =
+            searchBarEl.children[focusedSearchResult + 0];
 
-        console.log(focusedSearchResult);
-        setFocusedSearchResult((focusedSearchResult) => {
-          // if (focusedSearchResult >= searchBarEl.children.length - 1) {
-          //   return 0;
-          // } else {
-          //   return focusedSearchResult + 1;
-          // }
-          return focusedSearchResult + 1;
-        });
+          firstSearchResult.focus();
+          setFocusedSearchResult(
+            (focusedSearchResult) => focusedSearchResult + 0
+          );
+        }
+      }
+
+      if (e.key === 'Escape') {
+        setCurrentProduct({});
+        searchBarRef.current.value = '';
+        setSearchTerm('');
+        setFocusedSearchResult(0);
+
+        if (!searchTerm) {
+          searchBarRef.current.blur();
+        }
       }
     };
 
@@ -48,6 +68,7 @@ const SearchBar = forwardRef(
           className="search-bar__input"
           ref={searchBarRef}
           type="text"
+          // onClick={setFocusedSearchResult(0)}
           onInput={(e) => handleInput(e)}
           onKeyDown={(e) => handleKeyDown(e)}
           placeholder="Søk etter produkt.."

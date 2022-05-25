@@ -1,6 +1,6 @@
 import ListItem from '../ListItem';
 import { IProducts } from '../../Interfaces/Products';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 
 interface ISearchResultsProps {
   searchTerm: string;
@@ -27,9 +27,14 @@ const SearchResults = forwardRef(
     }: ISearchResultsProps,
     searchResultsRef
   ) => {
-    const selectProduct = (key) => {
+    useEffect(() => {
+      setFocusedSearchResult(0);
+    }, [searchTerm]);
+
+    const selectProduct = (productId) => {
       searchResultsContents.map((product) => {
-        if (product.id === key) {
+        if (product.id === productId) {
+          console.log(product);
           setSelectedProduct(product);
         }
       });
@@ -39,42 +44,49 @@ const SearchResults = forwardRef(
       setSearchTerm('');
     };
 
-    const handleKeyDown = (e) => {
+    // Navigate search results descending
+    const searchResultsNav = (e) => {
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        const allSearchResults = e.target.parentElement.children;
-        const nextSearchResult = allSearchResults[focusedSearchResult];
+        const allSearchResults = searchResultsRef.current.children;
 
-        nextSearchResult.focus();
-
-        setFocusedSearchResult((focusedSearchResult) => {
-          if (focusedSearchResult >= allSearchResults.length - 1) {
-            return 0;
-          } else {
-            return focusedSearchResult + 1;
-          }
-        });
+        if (focusedSearchResult === allSearchResults.length - 1) {
+          allSearchResults[0].focus();
+          setFocusedSearchResult(0);
+        } else {
+          allSearchResults[focusedSearchResult + 1].focus();
+          setFocusedSearchResult(
+            (focusedSearchResult) => focusedSearchResult + 1
+          );
+        }
       }
 
+      // Navigate search results ascending
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        console.log(focusedSearchResult);
-        const allSearchResults = e.target.parentElement.children;
-        const nextSearchResult = allSearchResults[focusedSearchResult - 1];
-        searchResultsRef.current.children[focusedSearchResult - 2].focus();
+        const allSearchResults = searchResultsRef.current.children;
 
-        console.log(nextSearchResult);
+        if (focusedSearchResult === 0) {
+          searchBarRef.current.focus();
+          setFocusedSearchResult(0);
+        } else {
+          allSearchResults[focusedSearchResult - 1].focus();
+          setFocusedSearchResult(
+            (focusedSearchResult) => focusedSearchResult - 1
+          );
+        }
+      }
 
-        // console.log(allSearchResults.length);
+      if (e.key === 'Enter') {
+        const productId = parseInt(e.target.dataset.id);
+        selectProduct(productId);
+      }
 
-        setFocusedSearchResult((focusedSearchResult) => {
-          // if (focusedSearchResult >= 1) {
-          //   return allSearchResults.length + 1;
-          // } else {
-          //   return focusedSearchResult - 1;
-          // }
-          return focusedSearchResult - 1;
-        });
+      if (e.key === 'Escape') {
+        setCurrentProduct({});
+        searchBarRef.current.value = '';
+        setSearchTerm('');
+        setFocusedSearchResult(0);
       }
     };
 
@@ -110,7 +122,8 @@ const SearchResults = forwardRef(
             key={product.id}
             onClick={(e) => selectProduct(product.id)}
             tabIndex={index}
-            onKeyDown={(e) => handleKeyDown(e)}
+            data-id={product.id}
+            onKeyDown={(e) => searchResultsNav(e)}
           />
         ))}
       </ul>

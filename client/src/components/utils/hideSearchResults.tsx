@@ -3,13 +3,15 @@ const hideSearchResults = (
   searchTerm,
   searchBarRef,
   setCurrentProduct,
-  setSearchTerm
+  setSearchTerm,
+  setFocusedSearchResult
 ) => {
   if (searchTerm && e.target.className !== 'search-bar__input') {
     console.log(e.target.className);
     setCurrentProduct({});
     searchBarRef.current.value = '';
     setSearchTerm('');
+    setFocusedSearchResult(0);
   }
 };
 

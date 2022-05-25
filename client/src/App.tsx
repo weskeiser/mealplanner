@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import useFetchEffect from './hooks/useFetchEffect';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -10,7 +9,6 @@ import AddToMealplan from './components/AddToMealplan/AddToMealplan';
 import NutritionList from './components/NutritionList/NutritionList';
 
 import hideSearchResults from './components/utils/hideSearchResults';
-import showSearchResults from './components/utils/showSearchResults';
 import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
@@ -139,14 +137,6 @@ function App() {
     },
   ]);
 
-  // Custom Hooks
-  useFetchEffect(
-    'products.json',
-    showSearchResults(setSearchResultsContents, searchTerm),
-    [searchTerm],
-    300
-  );
-
   // Classnames
   const selectedProductClass = 'selected-product';
 
@@ -159,7 +149,8 @@ function App() {
           searchTerm,
           searchBarRef,
           setCurrentProduct,
-          setSearchTerm
+          setSearchTerm,
+          setFocusedSearchResult
         )
       }
     >
@@ -168,10 +159,12 @@ function App() {
       <SearchBar
         ref={searchBarRef}
         searchResultsRef={searchResultsRef}
+        searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         setSearchResultsContents={setSearchResultsContents}
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
+        setCurrentProduct={setCurrentProduct}
       />
       <SearchResults
         ref={searchResultsRef}
