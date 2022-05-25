@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -136,6 +136,7 @@ function App() {
       ],
     },
   ]);
+  const [highlighted, setHighlighted] = useState(false);
 
   // Classnames
   const selectedProductClass = 'selected-product';
@@ -165,6 +166,7 @@ function App() {
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
         setCurrentProduct={setCurrentProduct}
+        setHighlighted={setHighlighted}
       />
       <SearchResults
         ref={searchResultsRef}
@@ -177,6 +179,8 @@ function App() {
         setCurrentProduct={setCurrentProduct}
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
+        highlighted={highlighted}
+        setHighlighted={setHighlighted}
       />
       <AddCustomProduct
         allChosenProducts={allChosenProducts}

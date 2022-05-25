@@ -1,13 +1,18 @@
-import { forwardRef } from 'react';
+import { FC, forwardRef } from 'react';
 import useFetchEffect from '../../hooks/useFetchEffect';
 import showSearchResults from '../utils/showSearchResults';
 
 interface ISearchBarProps {
+  searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setSearchResultsContents: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  searchResultsRef: React.MutableRefObject<undefined> | undefined;
+  focusedSearchResult: number;
+  setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
 
-const SearchBar = forwardRef(
+const SearchBar: FC<ISearchBarProps> = forwardRef(
   (
     {
       searchTerm,
@@ -17,7 +22,7 @@ const SearchBar = forwardRef(
       focusedSearchResult,
       setFocusedSearchResult,
       setCurrentProduct,
-    }: ISearchBarProps,
+    },
     searchBarRef
   ) => {
     useFetchEffect(
@@ -35,11 +40,12 @@ const SearchBar = forwardRef(
       setSearchTerm(input.value);
     };
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         if (searchTerm) {
-          const searchBarEl = searchResultsRef.current;
+          const searchBarEl: HTMLUListElement | undefined =
+            searchResultsRef.current;
           const firstSearchResult =
             searchBarEl.children[focusedSearchResult + 0];
 
@@ -74,7 +80,7 @@ const SearchBar = forwardRef(
           placeholder="Søk etter produkt.."
         />
         <img
-          onClick={(e) => searchBarRef.current.focus()}
+          onClick={() => searchBarRef.current.focus()}
           src="magnifying-glass.png"
           alt=""
         />

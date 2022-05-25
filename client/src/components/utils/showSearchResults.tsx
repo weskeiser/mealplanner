@@ -6,6 +6,8 @@ const showSearchResults = (
 ) => {
   return (returnedJSON: IProducts[]) => {
     setSearchResultsContents([]);
+
+    let searchResults: [] | IProducts[] = [];
     returnedJSON.forEach((product) => {
       if (
         searchTerm &&
@@ -13,15 +15,30 @@ const showSearchResults = (
           product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
           product.properties.brand
             .toLowerCase()
-            .includes(searchTerm.toLocaleLowerCase()))
+            .includes(searchTerm.toLowerCase()))
       ) {
-        setSearchResultsContents((searchResultsContents: IProducts[]) => [
-          ...searchResultsContents,
-          product,
-        ]);
+        searchResults.push(product);
       }
     });
-    // Arrange here
+
+    searchResults.sort((a, b) => {
+      if (
+        a.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >
+        b.name.toLowerCase().indexOf(searchTerm.toLowerCase())
+      ) {
+        return 1;
+      } else if (
+        a.name.toLowerCase().indexOf(searchTerm.toLowerCase()) <
+        b.name.toLowerCase().indexOf(searchTerm.toLowerCase())
+      ) {
+        return -1;
+      } else {
+        if (a.name > b.name) return 1;
+        else return -1;
+      }
+    });
+
+    setSearchResultsContents(searchResults);
   };
 };
 

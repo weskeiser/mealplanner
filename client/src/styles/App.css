@@ -171,6 +171,7 @@ body {
   -ms-grid-columns: 1fr 85% 1fr;
       grid-template-columns: 1fr 85% 1fr;
   font-size: 1.2em;
+  line-height: 1.5em;
   color: #fff;
 }
 
@@ -191,7 +192,8 @@ body {
 }
 
 .search-results__list-item:focus {
-  background-color: red;
+  background-color: #9abde2;
+  outline: none;
 }
 
 .search-results__list-item__logo {
@@ -216,6 +218,13 @@ body {
   padding-right: 0.5em;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.search-results__list-item__name__highlighted {
+  background-color: greenyellow;
+  padding: 0.15em 0;
+  padding-left: 0.15em;
+  padding-right: 0;
 }
 
 .search-results__list-item__brand {

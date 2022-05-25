@@ -1,6 +1,8 @@
 import ListItem from '../ListItem';
 import { IProducts } from '../../Interfaces/Products';
 import { forwardRef, useEffect } from 'react';
+import ProductName from './ProductName';
+import { FC } from 'react';
 
 interface ISearchResultsProps {
   searchTerm: string;
@@ -10,9 +12,13 @@ interface ISearchResultsProps {
   searchBarRef: React.MutableRefObject<undefined>;
   gramInputRef: React.MutableRefObject<undefined>;
   setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  focusedSearchResult: number;
+  setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
+  highlighted: boolean;
+  setHighlighted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchResults = forwardRef(
+const SearchResults: FC<ISearchResultsProps> = forwardRef(
   (
     {
       searchTerm,
@@ -24,17 +30,34 @@ const SearchResults = forwardRef(
       setCurrentProduct,
       focusedSearchResult,
       setFocusedSearchResult,
-    }: ISearchResultsProps,
+      highlighted,
+      setHighlighted,
+    },
     searchResultsRef
   ) => {
     useEffect(() => {
       setFocusedSearchResult(0);
-    }, [searchTerm]);
+    }, [searchTerm, setFocusedSearchResult]);
 
+    // Highlight span if matching searchTerm.
+    useEffect(() => {
+      const allSearchResults = searchResultsRef.current.children;
+      if (
+        allSearchResults.length !== 0 &&
+        allSearchResults[0].children[1].title
+          .toLowerCase()
+          .startsWith(searchTerm.toLowerCase())
+      ) {
+        setHighlighted(true);
+      } else {
+        setHighlighted(false);
+      }
+    }, [searchResultsContents, searchResultsRef, setHighlighted]);
+
+    // Select product on click.
     const selectProduct = (productId) => {
       searchResultsContents.map((product) => {
         if (product.id === productId) {
-          console.log(product);
           setSelectedProduct(product);
         }
       });
@@ -44,12 +67,14 @@ const SearchResults = forwardRef(
       setSearchTerm('');
     };
 
-    // Navigate search results descending
     const searchResultsNav = (e) => {
+      const allSearchResults = searchResultsRef.current.children;
+
+      // - Navigate search results descending
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        const allSearchResults = searchResultsRef.current.children;
-        console.log(searchResultsContents);
+
+        console.log(allSearchResults[0].children[1].title);
 
         if (focusedSearchResult === allSearchResults.length - 1) {
           allSearchResults[0].focus();
@@ -62,10 +87,9 @@ const SearchResults = forwardRef(
         }
       }
 
-      // Navigate search results ascending
+      // - Navigate search results ascending
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        const allSearchResults = searchResultsRef.current.children;
 
         if (focusedSearchResult === 0) {
           searchBarRef.current.focus();
@@ -79,14 +103,13 @@ const SearchResults = forwardRef(
       }
 
       if (e.key === 'Enter') {
+        e.preventDefault();
         const productId = parseInt(e.target.dataset.id);
         selectProduct(productId);
       }
 
       if (e.key === 'Escape') {
-        setCurrentProduct({});
-        searchBarRef.current.value = '';
-        setSearchTerm('');
+        searchBarRef.current.focus();
         setFocusedSearchResult(0);
       }
     };
@@ -109,7 +132,11 @@ const SearchResults = forwardRef(
                   title={product.name}
                   className="search-results__list-item__name"
                 >
-                  {product.name}
+                  <ProductName
+                    productName={product.name}
+                    highlighted={highlighted}
+                    searchTerm={searchTerm}
+                  />
                 </p>
                 <p
                   title={product.properties.brand}
