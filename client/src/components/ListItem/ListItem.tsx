@@ -1,21 +1,11 @@
-import { MouseEventHandler } from 'react';
+import { FC } from 'react';
 
 export interface IListItem {
   children: any;
-  className?: string;
-  onClick?: MouseEventHandler<HTMLLIElement> | undefined;
   rest?: any;
+  className: string;
 }
 
-export const ListItem = ({
-  className,
-  children,
-  onClick,
-  ...rest
-}: IListItem) => {
-  return (
-    <li className={className} onClick={onClick} {...rest}>
-      {children}
-    </li>
-  );
+export const ListItem: FC<IListItem> = ({ children, ...rest }) => {
+  return <li {...rest}>{children}</li>;
 };

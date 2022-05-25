@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 import ListItem from '../ListItem';
 
@@ -7,14 +7,14 @@ interface IAddCustomProduct {
   setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
 }
 
-const AddCustomProduct = ({
+const AddCustomProduct: FC<IAddCustomProduct> = ({
   allChosenProducts,
   setAllChosenProducts,
-}: IAddCustomProduct) => {
-  const [formHidden, setFormHidden] = useState(true);
+}) => {
+  const [visible, setVisible] = useState(false);
 
   const toggleFormHidden = () => {
-    setFormHidden(!formHidden);
+    setVisible(!visible);
   };
 
   // const addCustomProduct = (
@@ -99,26 +99,28 @@ const AddCustomProduct = ({
       >
         Legg til egendefinert
       </button>
-      <form className={formHidden ? 'hidden' : 'custom-product__form'}>
-        <ul className="custom-product__form__list">
-          {inputNames.map((key) => (
-            <ListItem
-              className="custom-product__form__list__input"
-              key={key}
-              children={
-                <>
-                  <p>{key}</p>
-                  <input type="text" name={key} placeholder="" />
-                </>
-              }
-            />
-          ))}
-        </ul>
-        <input type="text" placeholder="Matvarenavn" />
-        <button type="button" onClick={(e) => addCustomProduct(e)}>
-          Legg til
-        </button>
-      </form>
+      {visible && (
+        <form className="custom-product__form">
+          <ul className="custom-product__form__list">
+            {inputNames.map((key) => (
+              <ListItem
+                className="custom-product__form__list__input"
+                key={key}
+                children={
+                  <>
+                    <p>{key}</p>
+                    <input type="text" name={key} placeholder="" />
+                  </>
+                }
+              />
+            ))}
+          </ul>
+          <input type="text" placeholder="Matvarenavn" />
+          <button type="button" onClick={(e) => addCustomProduct(e)}>
+            Legg til
+          </button>
+        </form>
+      )}
     </div>
   );
 };

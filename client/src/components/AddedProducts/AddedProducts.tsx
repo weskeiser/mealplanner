@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import AddedProduct from '../AddedProduct/AddedProduct';
 import NutritionList from '../NutritionList/NutritionList';
@@ -21,15 +22,16 @@ export interface ItotalNutritionalValue {
         sugars: number;
       };
     };
+    salt: number;
   };
 }
 
-const AddedProducts = ({
+const AddedProducts: FC<IAddedProducts> = ({
   meal,
   mealPlans,
   setMealplans,
   mealPlanDayName,
-}: IAddedProducts) => {
+}) => {
   const totalNutritionalValue: ItotalNutritionalValue = meal.products.reduce(
     (prev, curr) => {
       return {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import AddedProducts from '../AddedProducts/AddedProducts';
 
@@ -8,14 +8,16 @@ interface IMealplanMeal {
   setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
 }
 
-const MealplanMeal = ({ mealPlan, mealPlans, setMealplans }: IMealplanMeal) => {
-  const [hidden, setHidden] = useState<Boolean>(false);
+const MealplanMeal: FC<IMealplanMeal> = ({
+  mealPlan,
+  mealPlans,
+  setMealplans,
+}) => {
+  const [visible, setVisible] = useState<Boolean>(true);
 
   const openList = () => {
-    setHidden(!hidden);
+    setVisible(!visible);
   };
-
-  const toggleHidden = hidden ? 'hidden' : '';
 
   return (
     <>
@@ -26,16 +28,18 @@ const MealplanMeal = ({ mealPlan, mealPlans, setMealplans }: IMealplanMeal) => {
           <div className="mealPlan__meal__arrow__inner"></div>
         </div>
       </div>
-      <div className={toggleHidden}>
-        {mealPlan.meals.map((meal: IMeal) => (
-          <AddedProducts
-            meal={meal}
-            mealPlanDayName={mealPlan.listName}
-            mealPlans={mealPlans}
-            setMealplans={setMealplans}
-          />
-        ))}
-      </div>
+      {visible && (
+        <div>
+          {mealPlan.meals.map((meal: IMeal) => (
+            <AddedProducts
+              meal={meal}
+              mealPlanDayName={mealPlan.listName}
+              mealPlans={mealPlans}
+              setMealplans={setMealplans}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };

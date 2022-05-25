@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
 interface INutritionTitleBar {
   selectedProduct: IProducts;
 }
 
-const NutritionTitleBar = ({ selectedProduct }: INutritionTitleBar) => {
+const NutritionTitleBar: FC<INutritionTitleBar> = ({ selectedProduct }) => {
   return (
     <>
       <div className="selected-product__nutrition-list__heading">

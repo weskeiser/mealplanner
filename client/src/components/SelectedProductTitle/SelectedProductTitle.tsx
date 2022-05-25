@@ -1,10 +1,13 @@
+import { FC } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
 interface ISelectedProductTitle {
   selectedProduct: IProducts;
 }
 
-const SelectedProductTitle = ({ selectedProduct }: ISelectedProductTitle) => {
+const SelectedProductTitle: FC<ISelectedProductTitle> = ({
+  selectedProduct,
+}) => {
   return (
     <>
       <div className="selected-product__title">

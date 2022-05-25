@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -199,7 +199,6 @@ function App() {
           setSelectedProduct={setSelectedProduct}
           mealPlans={mealPlans}
           setMealplans={setMealplans}
-          setAllChosenProducts={setAllChosenProducts}
           className={selectedProductClass}
           gramInputRef={gramInputRef}
           currentProduct={currentProduct}

@@ -1,13 +1,14 @@
 import ListItem from '../ListItem/index';
 import { IProducts } from '../../Interfaces/Products';
 import { ItotalNutritionalValue } from '../AddedProducts/AddedProducts';
+import { FC } from 'react';
 
 interface IListContent {
   className: string;
   selectedProduct: IProducts | ItotalNutritionalValue;
 }
 
-const NutritionList = ({ className, selectedProduct }: IListContent) => {
+const NutritionList: FC<IListContent> = ({ className, selectedProduct }) => {
   const { properties } = selectedProduct;
   const { calories, salt, macros } = properties;
   const { fat, protein, carbs } = macros;

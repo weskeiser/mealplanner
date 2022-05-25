@@ -3,23 +3,20 @@ import { IProducts } from '../../Interfaces/Products';
 import SelectMealplanDay from '../SelectMealplanDay/SelectMealplanDay';
 import SelectMealplanMeal from '../SelectMealplanMeal/SelectMealplanMeal';
 import GramInput from '../GramInput/GramInput';
-import { useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 
 interface IAddToMealplan {
   className: string;
   selectedProduct: IProducts;
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
-  setMealplans: React.Dispatch<React.SetStateAction<ImealPlans[]>>;
-  setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
   gramInputRef: React.MutableRefObject<undefined>;
-  selectMealplanDayRef: React.MutableRefObject<undefined>;
-  selectMealplanMealRef: React.MutableRefObject<undefined>;
   currentProduct: IProducts | {};
   setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
 
-const AddToMealplan = ({
+const AddToMealplan: FC<IAddToMealplan> = ({
   className,
   selectedProduct,
   mealPlans,
@@ -28,12 +25,14 @@ const AddToMealplan = ({
   currentProduct,
   setCurrentProduct,
   gramInputRef,
-}: IAddToMealplan) => {
+}) => {
   const selectMealplanDayRef = useRef();
   const selectMealplanMealRef = useRef();
 
+  const [errorMessage, setErrorMessage] = useState(false);
+
   const addProductToMeal = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
     const mealPlanDayName = selectMealplanDayRef.current.value;
@@ -41,17 +40,33 @@ const AddToMealplan = ({
 
     const newProduct = {
       ...selectedProduct,
-      mealPlanDay: selectMealplanDayRef.current.value,
-      mealPlanMeal: selectMealplanMealRef.current.value,
+      mealplanDayName: selectMealplanDayRef.current.value,
+      mealplanMealName: selectMealplanMealRef.current.value,
     };
 
-    const updatedMealplan = mealPlans.map((mealPlan) => {
+    const updatedMealPlans = mealPlans.map((mealPlan) => {
+      const alreadyExists = mealPlan.meals.some((meal) => {
+        return meal.products.some((product) => {
+          return (
+            product.id + product.properties.serving ==
+            newProduct.id + newProduct.properties.serving
+          );
+        });
+      });
+
+      if (alreadyExists) {
+        return;
+      }
+
       if (mealPlan.listName === mealPlanDayName) {
         return {
           ...mealPlan,
           meals: mealPlan.meals.map((meal) => {
             if (meal.listName === mealPlanMealName) {
-              return { ...meal, products: [...meal.products, newProduct] };
+              return {
+                ...meal,
+                products: [...meal.products, newProduct],
+              };
             }
             return meal;
           }),
@@ -59,30 +74,36 @@ const AddToMealplan = ({
       }
       return mealPlan;
     });
-    setMealplans(updatedMealplan);
+
+    if (updatedMealPlans[0] === undefined) {
+      console.log('already exists');
+      return;
+    }
+    setMealplans(updatedMealPlans);
   };
 
   return (
-    <div className={className + '__add-to-list'}>
-      {/* <div className={className + '__add-to-list__list-container'}> */}
-      <SelectMealplanDay ref={selectMealplanDayRef} className={className} />
-      {/* </div> */}
-      <GramInput
-        ref={gramInputRef}
-        className={className + '__add-to-list__gram-input'}
-        selectedProduct={selectedProduct}
-        setSelectedProduct={setSelectedProduct}
-        currentProduct={currentProduct}
-        setCurrentProduct={setCurrentProduct}
-      />
-      <SelectMealplanMeal ref={selectMealplanMealRef} className={className} />
-      <button
-        className={className + '__add-to-list__add'}
-        onClick={(e) => addProductToMeal(e)}
-      >
-        Legg til
-      </button>
-    </div>
+    <>
+      <div className={className + '__add-to-list'}>
+        <SelectMealplanDay ref={selectMealplanDayRef} className={className} />
+        <GramInput
+          ref={gramInputRef}
+          className={className + '__add-to-list__gram-input'}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
+        />
+        <SelectMealplanMeal ref={selectMealplanMealRef} className={className} />
+        <button
+          className={className + '__add-to-list__add'}
+          onClick={(e) => addProductToMeal(e)}
+        >
+          Legg til
+        </button>
+      </div>
+      {true && <p>blabla</p>}
+    </>
   );
 };
 

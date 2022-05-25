@@ -1,11 +1,11 @@
-import { forwardRef } from 'react';
+import { FC, forwardRef } from 'react';
 
 interface ISelectMealplanMeal {
   className: string;
 }
 
-const SelectMealplanMeal = forwardRef(
-  ({ className }: ISelectMealplanMeal, chooseMealRef) => {
+const SelectMealplanMeal: FC<ISelectMealplanMeal> = forwardRef(
+  ({ className }, chooseMealRef) => {
     return (
       <select
         ref={chooseMealRef}

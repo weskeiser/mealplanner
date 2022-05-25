@@ -1,6 +1,8 @@
+import { FC } from 'react';
 import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
 import ListItem from '../ListItem';
+import placeholderProduct from '../utils/placeholderProduct';
 
 interface IAddedProducts {
   meal: IMeal;
@@ -9,12 +11,12 @@ interface IAddedProducts {
   mealPlanDayName: string;
 }
 
-const AddedProducts = ({
+const AddedProducts: FC<IAddedProducts> = ({
   meal,
   mealPlans,
   setMealplans,
   mealPlanDayName,
-}: IAddedProducts) => {
+}) => {
   const removeProductFromMeal = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -31,9 +33,12 @@ const AddedProducts = ({
             if (meal.listName === mealPlanMealName) {
               const productsWithItemRemoved = [...meal.products];
               productsWithItemRemoved.splice(e.target.dataset.index, 1);
+              console.log(productsWithItemRemoved);
               return {
                 ...meal,
-                products: productsWithItemRemoved,
+                products: productsWithItemRemoved
+                  ? productsWithItemRemoved
+                  : [placeholderProduct],
               };
             }
             return meal;

@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { IMealplans } from '../../Interfaces/Mealplans';
 import MealplanDay from '../MealplanDay/MealplanDay';
 
@@ -6,7 +7,7 @@ interface IMealplan {
   setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
 }
 
-const Mealplan = ({ mealPlans, setMealplans }: IMealplan) => {
+const Mealplan: FC<IMealplan> = ({ mealPlans, setMealplans }) => {
   const allMealplans = mealPlans.map((mealPlan) => (
     <MealplanDay
       mealPlan={mealPlan}

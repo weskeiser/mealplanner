@@ -1,15 +1,15 @@
-import { forwardRef } from 'react';
+import { FC, forwardRef } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
 interface IGramInput {
   selectedProduct: IProducts;
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
   className: string;
-  currentProduct: IProducts | {};
+  currentProduct: IProducts;
   setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
 
-const GramInput = forwardRef(
+const GramInput: FC<IGramInput> = forwardRef(
   (
     {
       className,
@@ -17,7 +17,7 @@ const GramInput = forwardRef(
       setSelectedProduct,
       currentProduct,
       setCurrentProduct,
-    }: IGramInput,
+    },
     gramInputRef
   ) => {
     const { properties } = selectedProduct;

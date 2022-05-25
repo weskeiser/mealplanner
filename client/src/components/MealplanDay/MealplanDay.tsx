@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { IMealplans } from '../../Interfaces/Mealplans';
 import MealplanMeal from '../MealplanMeal/MealplanMeal';
 
@@ -8,14 +8,17 @@ interface IMealplanDay {
   setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
 }
 
-const MealplanDay = ({ mealPlan, mealPlans, setMealplans }: IMealplanDay) => {
-  const [hidden, setHidden] = useState<Boolean>(false);
+const MealplanDay: FC<IMealplanDay> = ({
+  mealPlan,
+  mealPlans,
+  setMealplans,
+}) => {
+  const [visible, setVisible] = useState<Boolean>(true);
 
   const openList = () => {
-    setHidden(!hidden);
+    setVisible(!visible);
   };
 
-  const toggleHidden = hidden ? 'hidden' : '';
   return (
     <>
       <div className="mealPlan__day">
@@ -25,15 +28,15 @@ const MealplanDay = ({ mealPlan, mealPlans, setMealplans }: IMealplanDay) => {
         </div>
       </div>
 
-      {/* <hr /> */}
-
-      <div className={toggleHidden}>
-        <MealplanMeal
-          mealPlan={mealPlan}
-          mealPlans={mealPlans}
-          setMealplans={setMealplans}
-        />
-      </div>
+      {visible && (
+        <div className="">
+          <MealplanMeal
+            mealPlan={mealPlan}
+            mealPlans={mealPlans}
+            setMealplans={setMealplans}
+          />
+        </div>
+      )}
 
       <hr className="mealPlan__day__divider--lower dividers" />
     </>
