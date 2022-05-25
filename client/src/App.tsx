@@ -79,8 +79,8 @@ function App() {
           products: [
             {
               id: 2,
-              mealplanDayName: 'Mandag',
-              mealplanMealName: 'Måltid 1',
+              mealPlanDayName: 'Mandag',
+              mealPlanMealName: 'Måltid 1',
               name: 'Kjøttdeig 14%',
               category: 'Kjøtt',
               properties: {
@@ -111,8 +111,8 @@ function App() {
           products: [
             {
               id: 2,
-              mealplanDayName: 'Tirsdag',
-              mealplanMealName: 'Måltid 1',
+              mealPlanDayName: 'Tirsdag',
+              mealPlanMealName: 'Måltid 1',
               name: 'Kjøttdeig 14%',
               category: 'Kjøtt',
               properties: {

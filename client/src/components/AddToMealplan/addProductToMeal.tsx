@@ -18,8 +18,8 @@ const addProductToMeal = (
 
   const newProduct = {
     ...selectedProduct,
-    mealplanDayName: mealPlanDayName,
-    mealplanMealName: mealPlanMealName,
+    mealPlanDayName: mealPlanDayName,
+    mealPlanMealName: mealPlanMealName,
   };
 
   const updatedMealPlans = mealPlans.map((mealPlan) => {
@@ -28,14 +28,14 @@ const addProductToMeal = (
         const uniqueProduct =
           product.id +
           product.properties.serving +
-          product.mealplanDayName +
-          product.mealplanMealName;
+          product.mealPlanDayName +
+          product.mealPlanMealName;
 
         const uniqueNewProduct =
           newProduct.id +
           newProduct.properties.serving +
-          newProduct.mealplanDayName +
-          newProduct.mealplanMealName;
+          newProduct.mealPlanDayName +
+          newProduct.mealPlanMealName;
         return uniqueProduct === uniqueNewProduct;
       });
     });
@@ -44,6 +44,7 @@ const addProductToMeal = (
       setErrorMessage(
         `${newProduct.name}, ${newProduct.properties.serving}g eksisterer allerede i listen.`
       );
+      setMealplans(mealPlans);
       return;
     }
 
@@ -68,7 +69,8 @@ const addProductToMeal = (
     console.log('already exists');
     return;
   }
-
+  console.log(mealPlans);
+  console.log(updatedMealPlans);
   setMealplans(updatedMealPlans);
 };
 

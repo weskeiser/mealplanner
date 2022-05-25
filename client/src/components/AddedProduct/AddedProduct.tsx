@@ -51,12 +51,12 @@ const AddedProducts: FC<IAddedProducts> = ({
     <>
       {meal.products.map(
         (
-          { name, properties, mealplanDayName, mealplanMealName }: IProducts,
+          { name, properties, mealPlanDayName, mealPlanMealName }: IProducts,
           index
         ) => (
           <ListItem
             className="added-products__product"
-            key={mealplanDayName + mealplanMealName + name + properties.serving}
+            key={mealPlanDayName + mealPlanMealName + name + properties.serving}
             children={
               <>
                 <p className="added-products__product__title">
