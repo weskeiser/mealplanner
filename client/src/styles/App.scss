@@ -346,6 +346,7 @@ $search-bar-width: 85%;
     color: $page-color-text;
     margin-top: 0.5em;
     margin-bottom: 2em;
+    // margin-bottom: 0.2em;
     grid-template-columns: 3fr 1fr;
     grid-auto-rows: 2em;
     gap: 0.2em;
@@ -384,6 +385,16 @@ $search-bar-width: 85%;
       cursor: pointer;
       white-space: nowrap;
       // background-color: rgb(241, 246, 251);
+    }
+
+    &__error {
+      font-size: 0.7em;
+      color: red;
+      width: 100%;
+      text-align: end;
+      height: 1em;
+      grid-column: 1/3;
+      // position: absolute;
     }
   }
 }

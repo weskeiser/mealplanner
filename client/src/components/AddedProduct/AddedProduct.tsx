@@ -33,12 +33,9 @@ const AddedProducts: FC<IAddedProducts> = ({
             if (meal.listName === mealPlanMealName) {
               const productsWithItemRemoved = [...meal.products];
               productsWithItemRemoved.splice(e.target.dataset.index, 1);
-              console.log(productsWithItemRemoved);
               return {
                 ...meal,
-                products: productsWithItemRemoved
-                  ? productsWithItemRemoved
-                  : [placeholderProduct],
+                products: productsWithItemRemoved,
               };
             }
             return meal;

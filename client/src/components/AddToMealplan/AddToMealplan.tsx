@@ -4,6 +4,7 @@ import SelectMealplanDay from '../SelectMealplanDay/SelectMealplanDay';
 import SelectMealplanMeal from '../SelectMealplanMeal/SelectMealplanMeal';
 import GramInput from '../GramInput/GramInput';
 import { FC, useRef, useState } from 'react';
+import addProductToMeal from './addProductToMeal';
 
 interface IAddToMealplan {
   className: string;
@@ -15,7 +16,6 @@ interface IAddToMealplan {
   currentProduct: IProducts | {};
   setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
 }
-
 const AddToMealplan: FC<IAddToMealplan> = ({
   className,
   selectedProduct,
@@ -29,81 +29,40 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   const selectMealplanDayRef = useRef();
   const selectMealplanMealRef = useRef();
 
-  const [errorMessage, setErrorMessage] = useState(false);
-
-  const addProductToMeal = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    const mealPlanDayName = selectMealplanDayRef.current.value;
-    const mealPlanMealName = selectMealplanMealRef.current.value;
-
-    const newProduct = {
-      ...selectedProduct,
-      mealplanDayName: selectMealplanDayRef.current.value,
-      mealplanMealName: selectMealplanMealRef.current.value,
-    };
-
-    const updatedMealPlans = mealPlans.map((mealPlan) => {
-      const alreadyExists = mealPlan.meals.some((meal) => {
-        return meal.products.some((product) => {
-          return (
-            product.id + product.properties.serving ==
-            newProduct.id + newProduct.properties.serving
-          );
-        });
-      });
-
-      if (alreadyExists) {
-        return;
-      }
-
-      if (mealPlan.listName === mealPlanDayName) {
-        return {
-          ...mealPlan,
-          meals: mealPlan.meals.map((meal) => {
-            if (meal.listName === mealPlanMealName) {
-              return {
-                ...meal,
-                products: [...meal.products, newProduct],
-              };
-            }
-            return meal;
-          }),
-        };
-      }
-      return mealPlan;
-    });
-
-    if (updatedMealPlans[0] === undefined) {
-      console.log('already exists');
-      return;
-    }
-    setMealplans(updatedMealPlans);
-  };
+  const [errorMessage, setErrorMessage] = useState('');
 
   return (
-    <>
-      <div className={className + '__add-to-list'}>
-        <SelectMealplanDay ref={selectMealplanDayRef} className={className} />
-        <GramInput
-          ref={gramInputRef}
-          className={className + '__add-to-list__gram-input'}
-          selectedProduct={selectedProduct}
-          setSelectedProduct={setSelectedProduct}
-          currentProduct={currentProduct}
-          setCurrentProduct={setCurrentProduct}
-        />
-        <SelectMealplanMeal ref={selectMealplanMealRef} className={className} />
-        <button
-          className={className + '__add-to-list__add'}
-          onClick={(e) => addProductToMeal(e)}
-        >
-          Legg til
-        </button>
-      </div>
-      {true && <p>blabla</p>}
-    </>
+    <div className={className + '__add-to-list'}>
+      <SelectMealplanDay ref={selectMealplanDayRef} className={className} />
+      <GramInput
+        ref={gramInputRef}
+        className={className + '__add-to-list__gram-input'}
+        selectedProduct={selectedProduct}
+        setSelectedProduct={setSelectedProduct}
+        currentProduct={currentProduct}
+        setCurrentProduct={setCurrentProduct}
+      />
+      <SelectMealplanMeal ref={selectMealplanMealRef} className={className} />
+      <button
+        className={className + '__add-to-list__add'}
+        onClick={(e) =>
+          addProductToMeal(
+            e,
+            selectedProduct,
+            mealPlans,
+            setMealplans,
+            setErrorMessage,
+            selectMealplanMealRef,
+            selectMealplanDayRef
+          )
+        }
+      >
+        Legg til
+      </button>
+      {true && (
+        <p className={className + '__add-to-list__error'}>{errorMessage}</p>
+      )}
+    </div>
   );
 };
 
