@@ -49,6 +49,7 @@ const SearchResults = forwardRef(
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         const allSearchResults = searchResultsRef.current.children;
+        console.log(searchResultsContents);
 
         if (focusedSearchResult === allSearchResults.length - 1) {
           allSearchResults[0].focus();

@@ -15,12 +15,13 @@ const showSearchResults = (
             .toLowerCase()
             .includes(searchTerm.toLocaleLowerCase()))
       ) {
-        setSearchResultsContents((currentState: IProducts[]) => [
-          ...currentState,
+        setSearchResultsContents((searchResultsContents: IProducts[]) => [
+          ...searchResultsContents,
           product,
         ]);
       }
     });
+    // Arrange here
   };
 };
 

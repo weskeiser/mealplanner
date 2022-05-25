@@ -7,7 +7,6 @@ const hideSearchResults = (
   setFocusedSearchResult
 ) => {
   if (searchTerm && e.target.className !== 'search-bar__input') {
-    console.log(e.target.className);
     setCurrentProduct({});
     searchBarRef.current.value = '';
     setSearchTerm('');
