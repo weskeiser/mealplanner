@@ -26,14 +26,17 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   setCurrentProduct,
   gramInputRef,
 }) => {
-  const selectMealplanDayRef = useRef();
-  const selectMealplanMealRef = useRef();
+  const selectMealplanDayRef = useRef<HTMLSelectElement | undefined>();
+  const selectMealplanMealRef = useRef<HTMLSelectElement | undefined>();
 
   const [errorMessage, setErrorMessage] = useState('');
 
   return (
     <div className={className + '__add-to-list'}>
-      <SelectMealplanDay ref={selectMealplanDayRef} className={className} />
+      <SelectMealplanDay
+        selectMealplanDayRef={selectMealplanDayRef}
+        className={className}
+      />
       <GramInput
         ref={gramInputRef}
         className={className + '__add-to-list__gram-input'}
@@ -42,7 +45,10 @@ const AddToMealplan: FC<IAddToMealplan> = ({
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
       />
-      <SelectMealplanMeal ref={selectMealplanMealRef} className={className} />
+      <SelectMealplanMeal
+        selectMealplanMealRef={selectMealplanMealRef}
+        className={className}
+      />
       <button
         className={className + '__add-to-list__add'}
         onClick={(e) =>

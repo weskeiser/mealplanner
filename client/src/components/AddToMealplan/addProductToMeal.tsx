@@ -7,8 +7,8 @@ const addProductToMeal = (
   mealPlans: IMealplans[],
   setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>,
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
-  selectMealplanMealRef: React.MutableRefObject<undefined>,
-  selectMealplanDayRef: React.MutableRefObject<undefined>
+  selectMealplanMealRef: React.MutableRefObject<HTMLSelectElement | undefined>,
+  selectMealplanDayRef: React.MutableRefObject<HTMLSelectElement | undefined>
 ) => {
   e.preventDefault();
   setErrorMessage('');

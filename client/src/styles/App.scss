@@ -346,18 +346,70 @@ $search-bar-width: 85%;
     color: $page-color-text;
     margin-top: 0.5em;
     margin-bottom: 2em;
-    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-columns: 3fr 2fr 1.7fr;
     grid-auto-rows: 2em;
     gap: 0.2em;
     width: 100%;
 
+    &__list-dropdown {
+      background-color: #fff;
+      border: 1px solid $page-color;
+      color: $page-color-text;
+      // width: 6em;
+      // margin-left: 50%;
+
+      &__option {
+      }
+
+      &__add-list {
+        display: flex;
+
+        &__input {
+          width: 7.5em;
+          width: 100%;
+          border: 1px solid $page-color;
+          // margin-right: auto;
+          padding-left: 0.4em;
+          padding-top: 0.1em;
+          color: $page-color-text;
+          outline: none;
+        }
+
+        &__success-message {
+          font-size: 0.8em;
+          // width: 100%;
+          padding-top: 0.5em;
+          margin: 0 auto;
+          color: rgb(52, 188, 45);
+        }
+
+        &__button {
+          color: rgb(52, 188, 45);
+          cursor: pointer;
+          font-size: 1em;
+          font-weight: 600;
+          width: 2em;
+          height: 2em;
+          margin: auto 0;
+          margin-left: auto;
+          padding-left: 0.5em;
+          padding-top: 0.15em;
+          background-color: #fff;
+          border: none;
+        }
+      }
+    }
+
     &__gram-input {
       &__input {
+        font-family: 'Montserrat', sans-serif;
         width: 100%;
+        height: 100%;
+        // padding-top: 0.3em;
         text-align: center;
         border: 1px solid $page-color;
         outline: none;
-        font-size: 1.5em;
+        font-size: 1.1em;
         color: $page-color-text;
 
         &:focus::placeholder {
@@ -366,39 +418,16 @@ $search-bar-width: 85%;
       }
     }
 
-    &__list-dropdown {
-      background-color: #fff;
-      border: 1px solid $page-color;
-      color: $page-color-text;
-      // margin-left: 50%;
-
-      &__option {
-      }
-
-      &__add {
-        color: rgb(52, 188, 45);
-        cursor: pointer;
-        font-size: 1em;
-        font-weight: 600;
-        width: 2em;
-        height: 2em;
-        margin: auto 0;
-        margin-left: auto;
-        padding-left: 0.5em;
-        padding-top: 0.15em;
-        background-color: #fff;
-        border: none;
-      }
-    }
-
     &__add {
       color: $page-color-text;
-      font-weight: 600;
+      // font-weight: 600;
       background-color: #fff;
-      border: 2px solid $page-color;
+      border: 1px solid $page-color;
+      border-right: 2px solid $page-color;
+      border-bottom: 2px solid $page-color;
       cursor: pointer;
       white-space: nowrap;
-      background-color: rgb(241, 246, 251);
+      // background-color: rgb(241, 246, 251);
     }
 
     &__error {

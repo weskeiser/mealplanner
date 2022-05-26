@@ -1,43 +1,34 @@
-import { FC, forwardRef, useState } from 'react';
+import { FC, MutableRefObject, useState } from 'react';
+import SelectMealplan from '../SelectMealplan/SelectMealplan';
 
 interface ISelectMealplanDay {
   className: string;
+  selectMealplanDayRef: MutableRefObject<HTMLSelectElement | undefined>;
 }
 
-const SelectMealplanDay: FC<ISelectMealplanDay> = forwardRef(
-  ({ className }, selectMealplanDayRef) => {
-    const [listNames, setListNames] = useState(['Mandag', 'Tirsdag', 'Onsdag']);
-    // const [selectedListName, setSelectedListName] = useState('Mandag');
+const SelectMealplanDay: FC<ISelectMealplanDay> = ({
+  className,
+  selectMealplanDayRef,
+}) => {
+  const [listNames, setListNames] = useState([
+    'Mandag',
+    'Tirsdag',
+    'Onsdag',
+    'Torsdag',
+    'Fredag',
+    'Lørdag',
+    'Søndag',
+  ]);
+  // const [selectedListName, setSelectedListName] = useState('Mandag');
 
-    const listOptions = listNames.map((listName) => {
-      // if (listName !== selectedListName) {
-      return (
-        <option
-          value={listName}
-          className={className + '__add-to-list__list-dropdown__option'}
-        >
-          {listName}
-        </option>
-      );
-      // }
-    });
-
-    return (
-      <>
-        <button className={className + '__add-to-list__list-dropdown__add'}>
-          &#65291;
-        </button>
-        <select
-          ref={selectMealplanDayRef}
-          name="list-dropdown"
-          id="list-dropdown"
-          className={className + '__add-to-list__list-dropdown'}
-        >
-          {listOptions}
-        </select>
-      </>
-    );
-  }
-);
+  return (
+    <SelectMealplan
+      className={className}
+      listNames={listNames}
+      setListNames={setListNames}
+      ref={selectMealplanDayRef}
+    />
+  );
+};
 
 export default SelectMealplanDay;

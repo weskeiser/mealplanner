@@ -323,19 +323,65 @@ body {
   color: #2d61a0;
   margin-top: 0.5em;
   margin-bottom: 2em;
-  -ms-grid-columns: 3fr 2fr 2fr;
-      grid-template-columns: 3fr 2fr 2fr;
+  -ms-grid-columns: 3fr 2fr 1.7fr;
+      grid-template-columns: 3fr 2fr 1.7fr;
   grid-auto-rows: 2em;
   gap: 0.2em;
   width: 100%;
 }
 
-.selected-product__add-to-list__gram-input__input {
+.selected-product__add-to-list__list-dropdown {
+  background-color: #fff;
+  border: 1px solid #86b2e8;
+  color: #2d61a0;
+}
+
+.selected-product__add-to-list__list-dropdown__add-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.selected-product__add-to-list__list-dropdown__add-list__input {
+  width: 7.5em;
   width: 100%;
+  border: 1px solid #86b2e8;
+  padding-left: 0.4em;
+  padding-top: 0.1em;
+  color: #2d61a0;
+  outline: none;
+}
+
+.selected-product__add-to-list__list-dropdown__add-list__success-message {
+  font-size: 0.8em;
+  padding-top: 0.5em;
+  margin: 0 auto;
+  color: #34bc2d;
+}
+
+.selected-product__add-to-list__list-dropdown__add-list__button {
+  color: #34bc2d;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  width: 2em;
+  height: 2em;
+  margin: auto 0;
+  margin-left: auto;
+  padding-left: 0.5em;
+  padding-top: 0.15em;
+  background-color: #fff;
+  border: none;
+}
+
+.selected-product__add-to-list__gram-input__input {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  height: 100%;
   text-align: center;
   border: 1px solid #86b2e8;
   outline: none;
-  font-size: 1.5em;
+  font-size: 1.1em;
   color: #2d61a0;
 }
 
@@ -355,35 +401,14 @@ body {
   color: transparent;
 }
 
-.selected-product__add-to-list__list-dropdown {
-  background-color: #fff;
-  border: 1px solid #86b2e8;
-  color: #2d61a0;
-}
-
-.selected-product__add-to-list__list-dropdown__add {
-  color: #34bc2d;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: 600;
-  width: 2em;
-  height: 2em;
-  margin: auto 0;
-  margin-left: auto;
-  padding-left: 0.5em;
-  padding-top: 0.15em;
-  background-color: #fff;
-  border: none;
-}
-
 .selected-product__add-to-list__add {
   color: #2d61a0;
-  font-weight: 600;
   background-color: #fff;
-  border: 2px solid #86b2e8;
+  border: 1px solid #86b2e8;
+  border-right: 2px solid #86b2e8;
+  border-bottom: 2px solid #86b2e8;
   cursor: pointer;
   white-space: nowrap;
-  background-color: #f1f6fb;
 }
 
 .selected-product__add-to-list__error {
