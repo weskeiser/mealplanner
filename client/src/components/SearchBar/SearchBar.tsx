@@ -1,5 +1,6 @@
 import { FC, forwardRef } from 'react';
 import useFetchEffect from '../../hooks/useFetchEffect';
+import { IProducts } from '../../Interfaces/Products';
 import showSearchResults from '../utils/showSearchResults';
 
 interface ISearchBarProps {
@@ -69,7 +70,7 @@ const SearchBar: FC<ISearchBarProps> = forwardRef(
     };
 
     return (
-      <div className="search-bar">
+      <div className="search-bar" role="search">
         <input
           className="search-bar__input"
           ref={searchBarRef}
@@ -83,6 +84,7 @@ const SearchBar: FC<ISearchBarProps> = forwardRef(
           onClick={() => searchBarRef.current.focus()}
           src="magnifying-glass.png"
           alt=""
+          title="Magnifying glass"
         />
       </div>
     );

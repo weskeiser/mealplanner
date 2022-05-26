@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -17,9 +17,9 @@ import { IMealplans } from './Interfaces/Mealplans';
 
 function App() {
   // Refs
-  const searchBarRef = useRef();
+  const searchBarRef = useRef<HTMLInputElement | undefined>();
   const gramInputRef = useRef();
-  const searchResultsRef = useRef();
+  const searchResultsRef = useRef<HTMLUListElement | undefined>();
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({

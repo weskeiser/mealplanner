@@ -22,6 +22,7 @@ const addProductToMeal = (
     mealPlanMealName: mealPlanMealName,
   };
 
+  let returnIfExists = false;
   const updatedMealPlans = mealPlans.map((mealPlan) => {
     const alreadyExists = mealPlan.meals.some((meal) => {
       return meal.products.some((product) => {
@@ -30,21 +31,18 @@ const addProductToMeal = (
           product.properties.serving +
           product.mealPlanDayName +
           product.mealPlanMealName;
-
         const uniqueNewProduct =
           newProduct.id +
           newProduct.properties.serving +
           newProduct.mealPlanDayName +
           newProduct.mealPlanMealName;
+
         return uniqueProduct === uniqueNewProduct;
       });
     });
 
     if (alreadyExists) {
-      setErrorMessage(
-        `${newProduct.name}, ${newProduct.properties.serving}g eksisterer allerede i listen.`
-      );
-      setMealplans(mealPlans);
+      returnIfExists = true;
       return;
     }
 
@@ -65,12 +63,14 @@ const addProductToMeal = (
     return mealPlan;
   });
 
-  if (updatedMealPlans[0] === undefined) {
-    console.log('already exists');
+  if (returnIfExists) {
+    setErrorMessage(
+      `${newProduct.name}, ${newProduct.properties.serving}g eksisterer allerede i listen.`
+    );
+    setMealplans(mealPlans);
     return;
   }
-  console.log(mealPlans);
-  console.log(updatedMealPlans);
+
   setMealplans(updatedMealPlans);
 };
 

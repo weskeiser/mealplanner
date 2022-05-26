@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
 import ListItem from '../ListItem';
-import placeholderProduct from '../utils/placeholderProduct';
 
 interface IAddedProducts {
   meal: IMeal;

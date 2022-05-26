@@ -1,8 +1,7 @@
 import ListItem from '../ListItem';
 import { IProducts } from '../../Interfaces/Products';
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, RefForwardingComponent, useEffect } from 'react';
 import ProductName from './ProductName';
-import { FC } from 'react';
 
 interface ISearchResultsProps {
   searchTerm: string;
@@ -16,9 +15,14 @@ interface ISearchResultsProps {
   setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
   highlighted: boolean;
   setHighlighted: React.Dispatch<React.SetStateAction<boolean>>;
+  // ref?: MutableRefObject<HTMLUListElement> | undefined;
+  // searchResultsRef: React.MutableRefObject<HTMLUListElement | null>
 }
 
-const SearchResults: FC<ISearchResultsProps> = forwardRef(
+const SearchResults: RefForwardingComponent<
+  HTMLUListElement | undefined,
+  ISearchResultsProps
+> = forwardRef<HTMLUListElement | undefined, ISearchResultsProps>(
   (
     {
       searchTerm,
@@ -42,6 +46,7 @@ const SearchResults: FC<ISearchResultsProps> = forwardRef(
     // Highlight span if matching searchTerm.
     useEffect(() => {
       const allSearchResults = searchResultsRef.current.children;
+
       if (
         allSearchResults.length !== 0 &&
         allSearchResults[0].children[1].title
@@ -67,7 +72,7 @@ const SearchResults: FC<ISearchResultsProps> = forwardRef(
       setSearchTerm('');
     };
 
-    const searchResultsNav = (e) => {
+    const searchResultsNav = (e: React.KeyboardEvent<HTMLElement>) => {
       const allSearchResults = searchResultsRef.current.children;
 
       // - Navigate search results descending
@@ -148,10 +153,12 @@ const SearchResults: FC<ISearchResultsProps> = forwardRef(
             }
             className="search-results__list-item"
             key={product.id}
-            onClick={(e) => selectProduct(product.id)}
+            onClick={() => selectProduct(product.id)}
             tabIndex={index}
             data-id={product.id}
-            onKeyDown={(e) => searchResultsNav(e)}
+            onKeyDown={(e: React.KeyboardEvent<HTMLElement>) =>
+              searchResultsNav(e)
+            }
           />
         ))}
       </ul>
