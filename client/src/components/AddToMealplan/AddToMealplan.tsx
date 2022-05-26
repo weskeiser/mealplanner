@@ -1,17 +1,24 @@
 import { IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
-import SelectMealplanDay from '../SelectMealplanDay/SelectMealplanDay';
-import SelectMealplanMeal from '../SelectMealplanMeal/SelectMealplanMeal';
-import GramInput from '../GramInput/GramInput';
-import { FC, useRef, useState, MutableRefObject, Dispatch } from 'react';
+import GramInput from './GramInput/GramInput';
+import {
+  FC,
+  useRef,
+  useState,
+  MutableRefObject,
+  Dispatch,
+  useEffect,
+  useMemo,
+} from 'react';
 import addProductToMeal from './addProductToMeal';
+import SelectMealplan from './SelectMealplan/SelectMealplan';
 
 interface IAddToMealplan {
   className: string;
   selectedProduct: IProducts;
   setSelectedProduct: Dispatch<React.SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
-  setMealplans: Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>;
   gramInputRef: MutableRefObject<HTMLInputElement | undefined>;
   currentProduct: IProducts | {};
   setCurrentProduct: Dispatch<React.SetStateAction<IProducts>>;
@@ -20,7 +27,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   className,
   selectedProduct,
   mealPlans,
-  setMealplans,
+  setMealPlans,
   setSelectedProduct,
   currentProduct,
   setCurrentProduct,
@@ -31,11 +38,59 @@ const AddToMealplan: FC<IAddToMealplan> = ({
 
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [mealNamesList, setMealNamesList] = useState([
+    'Måltid 1',
+    'Måltid 2',
+    'Måltid 3',
+    'Måltid 4',
+  ]);
+
+  const [dayNamesList, setDayNamesList] = useState([
+    'Mandag',
+    'Tirsdag',
+    'Onsdag',
+    'Torsdag',
+    'Fredag',
+    'Lørdag',
+    'Søndag',
+  ]);
+
+  const [firstRenderDone, setFirstRenderDone] = useState(false);
+
+  useEffect(() => {
+    if (!firstRenderDone) {
+      setFirstRenderDone(true);
+    }
+
+    if (firstRenderDone) {
+      const newListName = dayNamesList[dayNamesList.length - 1];
+      const alreadyExists = mealPlans.some((mealPlan) => {
+        return mealPlan.listName === newListName;
+      });
+
+      if (alreadyExists) return;
+
+      const newMealPlanDay = {
+        listName: `${newListName}`,
+        meals: [
+          {
+            listName: 'Måltid 1',
+            products: [],
+          },
+        ],
+      };
+      const updatedMealPlan = mealPlans.concat(newMealPlanDay);
+      setMealPlans(updatedMealPlan);
+    }
+  }, [dayNamesList]);
+
   return (
     <div className={className + '__add-to-list'}>
-      <SelectMealplanDay
-        selectMealplanDayRef={selectMealplanDayRef}
+      <SelectMealplan
         className={className}
+        listNames={dayNamesList}
+        setListNames={setDayNamesList}
+        ref={selectMealplanDayRef}
       />
       <GramInput
         ref={gramInputRef}
@@ -45,9 +100,11 @@ const AddToMealplan: FC<IAddToMealplan> = ({
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
       />
-      <SelectMealplanMeal
-        selectMealplanMealRef={selectMealplanMealRef}
+      <SelectMealplan
         className={className}
+        listNames={mealNamesList}
+        setListNames={setMealNamesList}
+        ref={selectMealplanMealRef}
       />
       <button
         className={className + '__add-to-list__add'}
@@ -56,7 +113,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
             e,
             selectedProduct,
             mealPlans,
-            setMealplans,
+            setMealPlans,
             setErrorMessage,
             selectMealplanMealRef,
             selectMealplanDayRef

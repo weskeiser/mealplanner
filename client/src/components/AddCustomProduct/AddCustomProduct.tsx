@@ -44,7 +44,7 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({
   //     }
   //     return mealPlan;
   //   });
-  //   setMealplans(updatedMealplan);
+  //   setMealPlans(updatedMealplan);
   // };
 
   const addCustomProduct = (e) => {

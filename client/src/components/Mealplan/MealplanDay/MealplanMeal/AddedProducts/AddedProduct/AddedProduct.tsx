@@ -1,19 +1,19 @@
 import { FC } from 'react';
-import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
-import { IProducts } from '../../Interfaces/Products';
-import ListItem from '../ListItem';
+import { IMeal, IMealplans } from '../../../../../../Interfaces/Mealplans';
+import { IProducts } from '../../../../../../Interfaces/Products';
+import ListItem from '../../../../../ListItem';
 
 interface IAddedProducts {
   meal: IMeal;
   mealPlans: IMealplans[];
-  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
   mealPlanDayName: string;
 }
 
 const AddedProducts: FC<IAddedProducts> = ({
   meal,
   mealPlans,
-  setMealplans,
+  setMealPlans,
   mealPlanDayName,
 }) => {
   const removeProductFromMeal = (
@@ -43,7 +43,7 @@ const AddedProducts: FC<IAddedProducts> = ({
       }
       return mealPlan;
     });
-    setMealplans(updatedMealplan);
+    setMealPlans(updatedMealplan);
   };
 
   return (

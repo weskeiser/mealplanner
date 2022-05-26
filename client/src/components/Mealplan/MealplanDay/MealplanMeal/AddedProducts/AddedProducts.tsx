@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
-import AddedProduct from '../AddedProduct/AddedProduct';
-import NutritionList from '../NutritionList/NutritionList';
+import { IMeal, IMealplans } from '../../../../../Interfaces/Mealplans';
+import AddedProduct from './AddedProduct/AddedProduct';
+import NutritionList from '../../../../NutritionList/NutritionList';
 
 interface IAddedProducts {
   meal: IMeal;
   mealPlans: IMealplans[];
-  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
   mealPlanDayName: string;
 }
 
@@ -29,7 +29,7 @@ export interface ItotalNutritionalValue {
 const AddedProducts: FC<IAddedProducts> = ({
   meal,
   mealPlans,
-  setMealplans,
+  setMealPlans,
   mealPlanDayName,
 }) => {
   const totalNutritionalValue: ItotalNutritionalValue = meal.products.reduce(
@@ -79,7 +79,7 @@ const AddedProducts: FC<IAddedProducts> = ({
         <AddedProduct
           meal={meal}
           mealPlans={mealPlans}
-          setMealplans={setMealplans}
+          setMealPlans={setMealPlans}
           mealPlanDayName={mealPlanDayName}
         />
       </ul>

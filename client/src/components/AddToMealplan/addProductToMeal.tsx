@@ -5,7 +5,7 @@ const addProductToMeal = (
   e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   selectedProduct: IProducts,
   mealPlans: IMealplans[],
-  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>,
+  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>,
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
   selectMealplanMealRef: React.MutableRefObject<HTMLSelectElement | undefined>,
   selectMealplanDayRef: React.MutableRefObject<HTMLSelectElement | undefined>
@@ -67,11 +67,11 @@ const addProductToMeal = (
     setErrorMessage(
       `${newProduct.name}, ${newProduct.properties.serving}g eksisterer allerede i listen.`
     );
-    setMealplans(mealPlans);
+    setMealPlans(mealPlans);
     return;
   }
 
-  setMealplans(updatedMealPlans);
+  setMealPlans(updatedMealPlans);
 };
 
 export default addProductToMeal;

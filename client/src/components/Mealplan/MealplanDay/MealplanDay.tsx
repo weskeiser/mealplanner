@@ -1,17 +1,17 @@
 import { FC, useState } from 'react';
-import { IMealplans } from '../../Interfaces/Mealplans';
-import MealplanMeal from '../MealplanMeal/MealplanMeal';
+import { IMealplans } from '../../../Interfaces/Mealplans';
+import MealplanMeal from './MealplanMeal/MealplanMeal';
 
 interface IMealplanDay {
   mealPlan: IMealplans;
   mealPlans: IMealplans[];
-  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
 }
 
 const MealplanDay: FC<IMealplanDay> = ({
   mealPlan,
   mealPlans,
-  setMealplans,
+  setMealPlans,
 }) => {
   const [visible, setVisible] = useState<Boolean>(true);
 
@@ -33,7 +33,7 @@ const MealplanDay: FC<IMealplanDay> = ({
           <MealplanMeal
             mealPlan={mealPlan}
             mealPlans={mealPlans}
-            setMealplans={setMealplans}
+            setMealPlans={setMealPlans}
           />
         </div>
       )}

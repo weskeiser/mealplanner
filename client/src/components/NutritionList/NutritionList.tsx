@@ -1,6 +1,6 @@
 import ListItem from '../ListItem/index';
 import { IProducts } from '../../Interfaces/Products';
-import { ItotalNutritionalValue } from '../AddedProducts/AddedProducts';
+import { ItotalNutritionalValue } from '../Mealplan/MealplanDay/MealplanMeal/AddedProducts/AddedProducts';
 import { FC } from 'react';
 
 interface IListContent {

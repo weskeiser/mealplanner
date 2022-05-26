@@ -4,7 +4,7 @@ import {
   RefAttributes,
   Dispatch,
 } from 'react';
-import { IProducts } from '../../Interfaces/Products';
+import { IProducts } from '../../../Interfaces/Products';
 
 interface IGramInput {
   selectedProduct: IProducts;

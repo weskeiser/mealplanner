@@ -68,7 +68,7 @@ function App() {
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
 
-  const [mealPlans, setMealplans] = useState<IMealplans[]>([
+  const [mealPlans, setMealPlans] = useState<IMealplans[]>([
     {
       listName: 'Mandag',
       meals: [
@@ -196,7 +196,7 @@ function App() {
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
           mealPlans={mealPlans}
-          setMealplans={setMealplans}
+          setMealPlans={setMealPlans}
           className={selectedProductClass}
           gramInputRef={gramInputRef}
           currentProduct={currentProduct}
@@ -204,7 +204,7 @@ function App() {
         />
       </div>
       <hr className="mealPlan__divider--upper dividers" />
-      <Mealplan mealPlans={mealPlans} setMealplans={setMealplans} />
+      <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
     </div>
   );
 }
