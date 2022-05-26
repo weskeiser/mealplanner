@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -18,7 +18,7 @@ import { IMealplans } from './Interfaces/Mealplans';
 function App() {
   // Refs
   const searchBarRef = useRef<HTMLInputElement | undefined>();
-  const gramInputRef = useRef();
+  const gramInputRef = useRef<HTMLInputElement | undefined>();
   const searchResultsRef = useRef<HTMLUListElement | undefined>();
 
   // States
@@ -190,6 +190,7 @@ function App() {
         <NutritionList
           className={selectedProductClass + '__nutrition-list'}
           selectedProduct={selectedProduct}
+          additionalKeys={''}
         />
         <AddToMealplan
           selectedProduct={selectedProduct}

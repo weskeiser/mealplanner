@@ -32,6 +32,7 @@ const MealplanMeal: FC<IMealplanMeal> = ({
         <div>
           {mealPlan.meals.map((meal: IMeal) => (
             <AddedProducts
+              key={mealPlan.listName + meal.listName}
               meal={meal}
               mealPlanDayName={mealPlan.listName}
               mealPlans={mealPlans}

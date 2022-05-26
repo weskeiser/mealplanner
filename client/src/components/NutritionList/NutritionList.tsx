@@ -6,9 +6,14 @@ import { FC } from 'react';
 interface IListContent {
   className: string;
   selectedProduct: IProducts | ItotalNutritionalValue;
+  additionalKeys?: string;
 }
 
-const NutritionList: FC<IListContent> = ({ className, selectedProduct }) => {
+const NutritionList: FC<IListContent> = ({
+  className,
+  selectedProduct,
+  additionalKeys,
+}) => {
   const { properties } = selectedProduct;
   const { calories, salt, macros } = properties;
   const { fat, protein, carbs } = macros;
@@ -44,7 +49,7 @@ const NutritionList: FC<IListContent> = ({ className, selectedProduct }) => {
             </>
           }
           className={className + '__list-item'}
-          key={className + key + selectedProduct.id}
+          key={`${className}${key}${selectedProduct.id}${additionalKeys}`}
         />
       ))}
     </ul>

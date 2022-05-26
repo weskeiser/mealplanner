@@ -6,22 +6,24 @@ import {
   RefAttributes,
   useEffect,
   KeyboardEvent,
+  MutableRefObject,
+  Dispatch,
 } from 'react';
 import ProductName from './ProductName';
 import searchResultsNav from './searchResultsNav';
 
 interface ISearchResultsProps {
   searchTerm: string;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setSearchTerm: Dispatch<React.SetStateAction<string>>;
   searchResultsContents: IProducts[];
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
-  searchBarRef: React.MutableRefObject<HTMLInputElement | undefined>;
-  gramInputRef: React.MutableRefObject<undefined>;
-  setCurrentProduct: React.Dispatch<React.SetStateAction<{} | IProducts>>;
+  searchBarRef: MutableRefObject<HTMLInputElement | undefined>;
+  gramInputRef: MutableRefObject<HTMLInputElement | undefined>;
+  setCurrentProduct: Dispatch<React.SetStateAction<{} | IProducts>>;
   focusedSearchResult: number;
-  setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
+  setFocusedSearchResult: Dispatch<React.SetStateAction<number>>;
   highlighted: boolean;
-  setHighlighted: React.Dispatch<React.SetStateAction<boolean>>;
+  setHighlighted: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchResults: ForwardRefExoticComponent<

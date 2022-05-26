@@ -1,15 +1,22 @@
-import { FC, forwardRef } from 'react';
+import {
+  forwardRef,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  Dispatch,
+} from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
 interface IGramInput {
   selectedProduct: IProducts;
-  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setSelectedProduct: Dispatch<React.SetStateAction<IProducts>>;
   className: string;
-  currentProduct: IProducts;
-  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  currentProduct: IProducts | {};
+  setCurrentProduct: Dispatch<React.SetStateAction<IProducts>>;
 }
 
-const GramInput: FC<IGramInput> = forwardRef(
+const GramInput: ForwardRefExoticComponent<
+  IGramInput & RefAttributes<HTMLInputElement | undefined>
+> = forwardRef<HTMLInputElement | undefined, IGramInput>(
   (
     {
       className,

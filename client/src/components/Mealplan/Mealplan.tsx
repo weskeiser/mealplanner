@@ -13,6 +13,7 @@ const Mealplan: FC<IMealplan> = ({ mealPlans, setMealplans }) => {
       mealPlan={mealPlan}
       mealPlans={mealPlans}
       setMealplans={setMealplans}
+      key={mealPlan.listName}
     />
   ));
 

@@ -3,18 +3,18 @@ import { IProducts } from '../../Interfaces/Products';
 import SelectMealplanDay from '../SelectMealplanDay/SelectMealplanDay';
 import SelectMealplanMeal from '../SelectMealplanMeal/SelectMealplanMeal';
 import GramInput from '../GramInput/GramInput';
-import { FC, useRef, useState } from 'react';
+import { FC, useRef, useState, MutableRefObject, Dispatch } from 'react';
 import addProductToMeal from './addProductToMeal';
 
 interface IAddToMealplan {
   className: string;
   selectedProduct: IProducts;
-  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setSelectedProduct: Dispatch<React.SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
-  setMealplans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
-  gramInputRef: React.MutableRefObject<undefined>;
+  setMealplans: Dispatch<React.SetStateAction<IMealplans[]>>;
+  gramInputRef: MutableRefObject<HTMLInputElement | undefined>;
   currentProduct: IProducts | {};
-  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setCurrentProduct: Dispatch<React.SetStateAction<IProducts>>;
 }
 const AddToMealplan: FC<IAddToMealplan> = ({
   className,

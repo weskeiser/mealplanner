@@ -94,6 +94,7 @@ const AddedProducts: FC<IAddedProducts> = ({
       <NutritionList
         className="added-products__nutrition-list"
         selectedProduct={totalNutritionalValue}
+        additionalKeys={mealPlanDayName + meal.listName}
       />
     </div>
   );

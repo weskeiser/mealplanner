@@ -323,10 +323,6 @@ body {
   color: #2d61a0;
   margin-top: 0.5em;
   margin-bottom: 2em;
-  -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
-  grid-auto-rows: 2em;
-  gap: 0.2em;
   width: 100%;
 }
 
@@ -359,7 +355,6 @@ body {
   background-color: #fff;
   border: 1px solid #86b2e8;
   color: #2d61a0;
-  margin-left: 50%;
 }
 
 .selected-product__add-to-list__add {
