@@ -1,4 +1,4 @@
-import { FC, forwardRef } from 'react';
+import { FC, forwardRef, useState } from 'react';
 
 interface ISelectMealplanDay {
   className: string;
@@ -6,16 +6,35 @@ interface ISelectMealplanDay {
 
 const SelectMealplanDay: FC<ISelectMealplanDay> = forwardRef(
   ({ className }, selectMealplanDayRef) => {
+    const [listNames, setListNames] = useState(['Mandag', 'Tirsdag', 'Onsdag']);
+    // const [selectedListName, setSelectedListName] = useState('Mandag');
+
+    const listOptions = listNames.map((listName) => {
+      // if (listName !== selectedListName) {
+      return (
+        <option
+          value={listName}
+          className={className + '__add-to-list__list-dropdown__option'}
+        >
+          {listName}
+        </option>
+      );
+      // }
+    });
+
     return (
       <>
-        <div
+        <button className={className + '__add-to-list__list-dropdown__add'}>
+          &#65291;
+        </button>
+        <select
           ref={selectMealplanDayRef}
           name="list-dropdown"
           id="list-dropdown"
           className={className + '__add-to-list__list-dropdown'}
-        ></div>
-        <div value="Mandag">Mandag</div>
-        <div value="Tirsdag">Tirsdag</div>
+        >
+          {listOptions}
+        </select>
       </>
     );
   }

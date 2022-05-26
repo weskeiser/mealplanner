@@ -5,16 +5,21 @@ interface ISelectMealplanMeal {
 }
 
 const SelectMealplanMeal: FC<ISelectMealplanMeal> = forwardRef(
-  ({ className }, chooseMealRef) => {
+  ({ className }, selectMealplanMealRef) => {
     return (
-      <select
-        ref={chooseMealRef}
-        name="list-dropdown"
-        id="list-dropdown"
-        className={className + '__add-to-list__list-dropdown'}
-      >
-        <option value="Måltid 1">Måltid 1</option>
-      </select>
+      <>
+        <button className={className + '__add-to-list__list-dropdown__add'}>
+          &#65291;
+        </button>
+        <select
+          ref={selectMealplanMealRef}
+          name="list-dropdown"
+          id="list-dropdown"
+          className={className + '__add-to-list__list-dropdown'}
+        >
+          <option value="Måltid 1">Måltid 1</option>
+        </select>
+      </>
     );
   }
 );
