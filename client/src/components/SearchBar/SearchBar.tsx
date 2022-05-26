@@ -1,94 +1,57 @@
-import { FC, forwardRef } from 'react';
+import { FC, forwardRef, MutableRefObject } from 'react';
 import useFetchEffect from '../../hooks/useFetchEffect';
 import { IProducts } from '../../Interfaces/Products';
 import showSearchResults from '../utils/showSearchResults';
+import InputWithRef from './InputWithRef';
 
 interface ISearchBarProps {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setSearchResultsContents: React.Dispatch<React.SetStateAction<IProducts[]>>;
-  searchResultsRef: React.MutableRefObject<undefined> | undefined;
   focusedSearchResult: number;
   setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
   setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  searchResultsRef: MutableRefObject<HTMLUListElement | undefined>;
+  searchBarRef: MutableRefObject<HTMLInputElement | undefined>;
 }
 
-const SearchBar: FC<ISearchBarProps> = forwardRef(
-  (
-    {
-      searchTerm,
-      setSearchTerm,
-      setSearchResultsContents,
-      searchResultsRef,
-      focusedSearchResult,
-      setFocusedSearchResult,
-      setCurrentProduct,
-    },
-    searchBarRef
-  ) => {
-    useFetchEffect(
-      'products.json',
-      showSearchResults(setSearchResultsContents, searchTerm),
-      [searchTerm],
-      300
-    );
+const SearchBar: FC<ISearchBarProps> = ({
+  searchTerm,
+  setSearchTerm,
+  setSearchResultsContents,
+  searchResultsRef,
+  focusedSearchResult,
+  setFocusedSearchResult,
+  setCurrentProduct,
+  searchBarRef,
+}) => {
+  useFetchEffect(
+    'products.json',
+    showSearchResults(setSearchResultsContents, searchTerm),
+    [searchTerm],
+    300
+  );
 
-    const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
-      const input = e.target as HTMLInputElement;
-      if (!input.value) {
-        setSearchResultsContents([]);
-      }
-      setSearchTerm(input.value);
-    };
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (searchTerm) {
-          const searchBarEl: HTMLUListElement | undefined =
-            searchResultsRef.current;
-          const firstSearchResult =
-            searchBarEl.children[focusedSearchResult + 0];
-
-          firstSearchResult.focus();
-          setFocusedSearchResult(
-            (focusedSearchResult) => focusedSearchResult + 0
-          );
-        }
-      }
-
-      if (e.key === 'Escape') {
-        setCurrentProduct({});
-        searchBarRef.current.value = '';
-        setSearchTerm('');
-        setFocusedSearchResult(0);
-
-        if (!searchTerm) {
-          searchBarRef.current.blur();
-        }
-      }
-    };
-
-    return (
-      <div className="search-bar" role="search">
-        <input
-          className="search-bar__input"
-          ref={searchBarRef}
-          type="text"
-          // onClick={setFocusedSearchResult(0)}
-          onInput={(e) => handleInput(e)}
-          onKeyDown={(e) => handleKeyDown(e)}
-          placeholder="Søk etter produkt.."
-        />
-        <img
-          onClick={() => searchBarRef.current.focus()}
-          src="magnifying-glass.png"
-          alt=""
-          title="Magnifying glass"
-        />
-      </div>
-    );
-  }
-);
+  return (
+    <div className="search-bar" role="search">
+      <InputWithRef
+        ref={searchBarRef}
+        searchResultsRef={searchResultsRef}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        setSearchResultsContents={setSearchResultsContents}
+        focusedSearchResult={focusedSearchResult}
+        setFocusedSearchResult={setFocusedSearchResult}
+        setCurrentProduct={setCurrentProduct}
+      />
+      <img
+        onClick={() => searchBarRef.current.focus()}
+        src="magnifying-glass.png"
+        alt=""
+        title="Magnifying glass"
+      />
+    </div>
+  );
+};
 
 export default SearchBar;

@@ -1,27 +1,31 @@
 import ListItem from '../ListItem';
 import { IProducts } from '../../Interfaces/Products';
-import { forwardRef, RefForwardingComponent, useEffect } from 'react';
+import {
+  forwardRef,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  useEffect,
+  KeyboardEvent,
+} from 'react';
 import ProductName from './ProductName';
+import searchResultsNav from './searchResultsNav';
 
 interface ISearchResultsProps {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchResultsContents: IProducts[];
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
-  searchBarRef: React.MutableRefObject<undefined>;
+  searchBarRef: React.MutableRefObject<HTMLInputElement | undefined>;
   gramInputRef: React.MutableRefObject<undefined>;
-  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setCurrentProduct: React.Dispatch<React.SetStateAction<{} | IProducts>>;
   focusedSearchResult: number;
   setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
   highlighted: boolean;
   setHighlighted: React.Dispatch<React.SetStateAction<boolean>>;
-  // ref?: MutableRefObject<HTMLUListElement> | undefined;
-  // searchResultsRef: React.MutableRefObject<HTMLUListElement | null>
 }
 
-const SearchResults: RefForwardingComponent<
-  HTMLUListElement | undefined,
-  ISearchResultsProps
+const SearchResults: ForwardRefExoticComponent<
+  ISearchResultsProps & RefAttributes<HTMLUListElement | undefined>
 > = forwardRef<HTMLUListElement | undefined, ISearchResultsProps>(
   (
     {
@@ -45,11 +49,11 @@ const SearchResults: RefForwardingComponent<
 
     // Highlight span if matching searchTerm.
     useEffect(() => {
-      const allSearchResults = searchResultsRef.current.children;
+      const allSearchResultsEls = searchResultsRef.current.children;
 
       if (
-        allSearchResults.length !== 0 &&
-        allSearchResults[0].children[1].title
+        allSearchResultsEls.length !== 0 &&
+        allSearchResultsEls[0].children[1].title
           .toLowerCase()
           .startsWith(searchTerm.toLowerCase())
       ) {
@@ -60,63 +64,19 @@ const SearchResults: RefForwardingComponent<
     }, [searchResultsContents, searchResultsRef, setHighlighted]);
 
     // Select product on click.
-    const selectProduct = (productId) => {
-      searchResultsContents.map((product) => {
+    const selectProduct = (productId: number) => {
+      const gramInputEl = gramInputRef.current;
+      const searchBarEl = searchBarRef.current;
+
+      searchResultsContents.forEach((product) => {
         if (product.id === productId) {
           setSelectedProduct(product);
         }
       });
-      gramInputRef.current.value = '';
+      gramInputEl.value = '';
       setCurrentProduct({});
-      searchBarRef.current.value = '';
+      searchBarEl.value = '';
       setSearchTerm('');
-    };
-
-    const searchResultsNav = (e: React.KeyboardEvent<HTMLElement>) => {
-      const allSearchResults = searchResultsRef.current.children;
-
-      // - Navigate search results descending
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-
-        console.log(allSearchResults[0].children[1].title);
-
-        if (focusedSearchResult === allSearchResults.length - 1) {
-          allSearchResults[0].focus();
-          setFocusedSearchResult(0);
-        } else {
-          allSearchResults[focusedSearchResult + 1].focus();
-          setFocusedSearchResult(
-            (focusedSearchResult) => focusedSearchResult + 1
-          );
-        }
-      }
-
-      // - Navigate search results ascending
-      if (e.key === 'ArrowUp') {
-        e.preventDefault();
-
-        if (focusedSearchResult === 0) {
-          searchBarRef.current.focus();
-          setFocusedSearchResult(0);
-        } else {
-          allSearchResults[focusedSearchResult - 1].focus();
-          setFocusedSearchResult(
-            (focusedSearchResult) => focusedSearchResult - 1
-          );
-        }
-      }
-
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const productId = parseInt(e.target.dataset.id);
-        selectProduct(productId);
-      }
-
-      if (e.key === 'Escape') {
-        searchBarRef.current.focus();
-        setFocusedSearchResult(0);
-      }
     };
 
     const visibleIfSearchTerm = searchTerm ? 'search-results' : 'hidden';
@@ -156,8 +116,15 @@ const SearchResults: RefForwardingComponent<
             onClick={() => selectProduct(product.id)}
             tabIndex={index}
             data-id={product.id}
-            onKeyDown={(e: React.KeyboardEvent<HTMLElement>) =>
-              searchResultsNav(e)
+            onKeyDown={(e: KeyboardEvent<HTMLLIElement>) =>
+              searchResultsNav(
+                e,
+                searchBarRef,
+                focusedSearchResult,
+                setFocusedSearchResult,
+                searchResultsRef,
+                selectProduct
+              )
             }
           />
         ))}

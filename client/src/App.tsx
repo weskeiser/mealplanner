@@ -66,9 +66,7 @@ function App() {
   >([]);
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
-  // - Used for remembering selectedProduct when GramInput goes to 0.
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
-  // -----
 
   const [mealPlans, setMealplans] = useState<IMealplans[]>([
     {
@@ -158,7 +156,7 @@ function App() {
       <div className="header"></div>
       <h1 className="page-title">Næringsinnholdkalkulator</h1>
       <SearchBar
-        ref={searchBarRef}
+        searchBarRef={searchBarRef}
         searchResultsRef={searchResultsRef}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -166,7 +164,6 @@ function App() {
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
         setCurrentProduct={setCurrentProduct}
-        setHighlighted={setHighlighted}
       />
       <SearchResults
         ref={searchResultsRef}
