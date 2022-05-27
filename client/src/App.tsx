@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -12,7 +12,7 @@ import hideSearchResults from './components/utils/hideSearchResults';
 import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
-import Mealplan from './components/Mealplan/Mealplan';
+import Mealplanner from './components/Mealplanner/Mealplan';
 import { IMealplans } from './Interfaces/Mealplans';
 
 function App() {
@@ -67,7 +67,6 @@ function App() {
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
-  const [highlighted, setHighlighted] = useState(false);
 
   const temp = useRef([
     'Mandag',
@@ -84,10 +83,6 @@ function App() {
       meals: [
         {
           listName: 'Måltid 1',
-          products: [],
-        },
-        {
-          listName: 'Bla',
           products: [],
         },
       ],
@@ -134,8 +129,6 @@ function App() {
         setCurrentProduct={setCurrentProduct}
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
-        highlighted={highlighted}
-        setHighlighted={setHighlighted}
       />
       <AddCustomProduct
         allChosenProducts={allChosenProducts}
@@ -162,7 +155,7 @@ function App() {
         />
       </div>
       <hr className="mealPlan__divider--upper dividers" />
-      <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
+      <Mealplanner mealPlans={mealPlans} setMealPlans={setMealPlans} />
     </div>
   );
 }

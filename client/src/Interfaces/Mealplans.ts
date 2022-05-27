@@ -5,12 +5,12 @@ export interface IMealplans {
   meals: [
     {
       listName: string;
-      products: IProducts[];
+      products: IProducts[] | never[];
     }
   ];
 }
 
 export interface IMeal {
   listName: string;
-  products: IProducts[];
+  products: IProducts[] | never[];
 }

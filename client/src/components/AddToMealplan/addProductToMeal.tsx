@@ -67,7 +67,6 @@ const addProductToMeal = (
     setErrorMessage(
       `${newProduct.name}, ${newProduct.properties.serving}g eksisterer allerede i listen.`
     );
-    setMealPlans(mealPlans);
     return;
   }
 

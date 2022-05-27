@@ -8,6 +8,7 @@ import {
   KeyboardEvent,
   MutableRefObject,
   Dispatch,
+  useState,
 } from 'react';
 import ProductName from './ProductName';
 import searchResultsNav from './searchResultsNav';
@@ -22,8 +23,6 @@ interface ISearchResultsProps {
   setCurrentProduct: Dispatch<React.SetStateAction<{} | IProducts>>;
   focusedSearchResult: number;
   setFocusedSearchResult: Dispatch<React.SetStateAction<number>>;
-  highlighted: boolean;
-  setHighlighted: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchResults: ForwardRefExoticComponent<
@@ -40,14 +39,14 @@ const SearchResults: ForwardRefExoticComponent<
       setCurrentProduct,
       focusedSearchResult,
       setFocusedSearchResult,
-      highlighted,
-      setHighlighted,
     },
     searchResultsRef
   ) => {
     useEffect(() => {
       setFocusedSearchResult(0);
     }, [searchTerm, setFocusedSearchResult]);
+
+    const [highlighted, setHighlighted] = useState(false);
 
     // Highlight span if matching searchTerm.
     useEffect(() => {
@@ -95,16 +94,12 @@ const SearchResults: ForwardRefExoticComponent<
                   title={product.name}
                   className="search-results__list-item__logo"
                 />
-                <p
-                  title={product.name}
-                  className="search-results__list-item__name"
-                >
-                  <ProductName
-                    productName={product.name}
-                    highlighted={highlighted}
-                    searchTerm={searchTerm}
-                  />
-                </p>
+                <ProductName
+                  productName={product.name}
+                  highlighted={highlighted}
+                  searchTerm={searchTerm}
+                  product={product}
+                />
                 <p
                   title={product.properties.brand}
                   className="search-results__list-item__brand"

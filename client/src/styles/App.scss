@@ -280,13 +280,16 @@ $search-bar-width: 85%;
 
       &__highlighted {
         background-color: greenyellow;
-        padding: 0.15em 0;
+        background-color: rgb(232, 235, 239);
+        background-color: rgb(219, 225, 232);
+        border-radius: 0.2em 0 0 0.2em;
+        padding: 0.25em 0;
         padding-left: 0.15em;
         padding-right: 0;
       }
 
-      &__unhighlighted {
-        // padding: initial;
+      &__unhighlighted-product {
+        padding-left: 0.15em;
       }
     }
 
@@ -363,12 +366,11 @@ $search-bar-width: 85%;
 
       &__add-list {
         display: flex;
+        text-align: center;
 
         &__input {
-          width: 7.5em;
-          width: 100%;
+          width: 78%;
           border: 1px solid $page-color;
-          // margin-right: auto;
           padding-left: 0.4em;
           padding-top: 0.1em;
           color: $page-color-text;
@@ -384,7 +386,7 @@ $search-bar-width: 85%;
         }
 
         &__button {
-          color: rgb(52, 188, 45);
+          color: $page-color;
           cursor: pointer;
           font-size: 1em;
           font-weight: 600;
@@ -396,6 +398,7 @@ $search-bar-width: 85%;
           padding-top: 0.15em;
           background-color: #fff;
           border: none;
+          // border: 1px solid black;
         }
       }
     }
@@ -403,9 +406,10 @@ $search-bar-width: 85%;
     &__gram-input {
       &__input {
         font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
         width: 100%;
         height: 100%;
-        // padding-top: 0.3em;
+        padding-top: 0.1em;
         text-align: center;
         border: 1px solid $page-color;
         outline: none;
@@ -471,14 +475,22 @@ $search-bar-width: 85%;
       }
 
       &__inner {
-        border: 0.2em solid black;
-        border-color: $page-color-text;
+        border: 0.2em solid $page-color-text;
         border-top: transparent;
         border-left: transparent;
         width: 1em;
         height: 1em;
         transform: rotate(45deg);
         // border-radius: 0.1em;
+
+        &__make-line {
+          border: 1px solid $page-color-text;
+          transform: none;
+          margin-top: 0.5em;
+          height: 0;
+          width: 1.3em;
+          margin-left: -0.2em;
+        }
       }
     }
 
@@ -502,9 +514,9 @@ $search-bar-width: 85%;
       &__outter {
         display: inline-flex;
         margin-top: -0.7em;
-        width: 4em;
+        width: 3em;
         height: 3em;
-        padding-left: 1.5em;
+        padding-left: 1.2em;
         padding-top: 0.9em;
         cursor: pointer;
         // border: 1px solid black;
@@ -518,7 +530,14 @@ $search-bar-width: 85%;
         width: 1em;
         height: 1em;
         transform: rotate(45deg);
-        // transform: rotate(225deg);
+
+        &__make-line {
+          border: 1px solid $page-color-text;
+          transform: none;
+          margin-top: 0.5em;
+          height: 0.1em;
+          width: 1.3em;
+        }
       }
     }
   }
@@ -582,4 +601,16 @@ $search-bar-width: 85%;
     }
     @include nutrition-list();
   }
+}
+
+.green {
+  color: rgb(52, 188, 45);
+}
+
+.red {
+  color: red;
+}
+
+.wide {
+  width: 100%;
 }

@@ -8,8 +8,6 @@ import {
   MutableRefObject,
   Dispatch,
   useEffect,
-  useMemo,
-  useCallback,
 } from 'react';
 import addProductToMeal from './addProductToMeal';
 import SelectMealplan from './SelectMealplan/SelectMealplan';
@@ -88,12 +86,10 @@ const AddToMealplan: FC<IAddToMealplan> = ({
       const newListName = mealNamesList[mealNamesList.length - 1];
 
       const alreadyExists = mealPlans.some((mealPlan) => {
-        console.log(mealPlan);
         return mealPlan.meals.some((meal: IMeal) => {
           return meal.listName === newListName;
         });
       });
-      console.log(alreadyExists);
       if (alreadyExists) return;
 
       const newMealPlanContents = mealPlans.map((mealPlan) => {
@@ -108,8 +104,6 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           ],
         };
       });
-      console.log(mealPlans);
-      console.log(newMealPlanContents);
 
       setMealPlans(newMealPlanContents);
     }
@@ -130,6 +124,11 @@ const AddToMealplan: FC<IAddToMealplan> = ({
         setSelectedProduct={setSelectedProduct}
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
+        mealPlans={mealPlans}
+        setMealPlans={setMealPlans}
+        setErrorMessage={setErrorMessage}
+        selectMealplanMealRef={selectMealplanMealRef}
+        selectMealplanDayRef={selectMealplanDayRef}
       />
       <SelectMealplan
         className={className}
@@ -147,7 +146,8 @@ const AddToMealplan: FC<IAddToMealplan> = ({
             setMealPlans,
             setErrorMessage,
             selectMealplanMealRef,
-            selectMealplanDayRef
+            selectMealplanDayRef,
+            gramInputRef
           )
         }
       >

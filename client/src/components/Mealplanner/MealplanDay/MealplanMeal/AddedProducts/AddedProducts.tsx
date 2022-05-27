@@ -74,7 +74,7 @@ const AddedProducts: FC<IAddedProducts> = ({
   );
 
   return (
-    <div>
+    <>
       <ul className="added-products">
         <AddedProduct
           meal={meal}
@@ -96,7 +96,7 @@ const AddedProducts: FC<IAddedProducts> = ({
         selectedProduct={totalNutritionalValue}
         additionalKeys={mealPlanDayName + meal.listName}
       />
-    </div>
+    </>
   );
 };
 

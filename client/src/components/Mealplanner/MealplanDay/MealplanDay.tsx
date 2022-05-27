@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { IMealplans } from '../../../Interfaces/Mealplans';
+import { IMeal, IMealplans } from '../../../Interfaces/Mealplans';
 import MealplanMeal from './MealplanMeal/MealplanMeal';
 
 interface IMealplanDay {
@@ -13,30 +13,37 @@ const MealplanDay: FC<IMealplanDay> = ({
   mealPlans,
   setMealPlans,
 }) => {
-  const [visible, setVisible] = useState<Boolean>(true);
+  const [visible, setVisible] = useState<Boolean>(false);
 
   const openList = () => {
     setVisible(!visible);
   };
+
+  const mealPlanMeals = mealPlan.meals.map((meal: IMeal, mealIndex) => (
+    <MealplanMeal
+      key={mealPlan.listName + meal.listName}
+      mealPlan={mealPlan}
+      mealPlans={mealPlans}
+      setMealPlans={setMealPlans}
+      meal={meal}
+      mealIndex={mealIndex}
+    />
+  ));
+
+  const arrowOrLine = visible
+    ? 'mealPlan__day__arrow__inner mealPlan__day__arrow__inner__make-line'
+    : 'mealPlan__day__arrow__inner';
 
   return (
     <>
       <div className="mealPlan__day">
         <h2 className="mealPlan__day__title">{mealPlan.listName}</h2>
         <div className="mealPlan__day__arrow__outter" onClick={openList}>
-          <div className="mealPlan__day__arrow__inner"></div>
+          <div className={arrowOrLine}></div>
         </div>
       </div>
 
-      {visible && (
-        <div className="">
-          <MealplanMeal
-            mealPlan={mealPlan}
-            mealPlans={mealPlans}
-            setMealPlans={setMealPlans}
-          />
-        </div>
-      )}
+      {visible && <>{mealPlanMeals}</>}
 
       <hr className="mealPlan__day__divider--lower dividers" />
     </>
