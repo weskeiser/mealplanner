@@ -2,15 +2,9 @@ import { FC, useState } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 import ListItem from '../ListItem';
 
-interface IAddCustomProduct {
-  allChosenProducts: IProducts[];
-  setAllChosenProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
-}
+interface IAddCustomProduct {}
 
-const AddCustomProduct: FC<IAddCustomProduct> = ({
-  allChosenProducts,
-  setAllChosenProducts,
-}) => {
+const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
   const [visible, setVisible] = useState(false);
 
   const toggleFormHidden = () => {

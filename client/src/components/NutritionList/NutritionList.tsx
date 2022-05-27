@@ -1,7 +1,7 @@
 import ListItem from '../ListItem/index';
 import { IProducts } from '../../Interfaces/Products';
-import { ItotalNutritionalValue } from '../Mealplan/MealplanDay/MealplanMeal/AddedProducts/AddedProducts';
 import { FC } from 'react';
+import { ItotalNutritionalValue } from '../Mealplanner/MealplanDay/MealplanMeal/AddedProducts/AddedProducts';
 
 interface IListContent {
   className: string;

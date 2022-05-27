@@ -44,6 +44,7 @@ const MealplanDay: FC<IMealplanDay> = ({
       </div>
 
       {visible && <>{mealPlanMeals}</>}
+      {/* {visible && <p>totalt</p>} */}
 
       <hr className="mealPlan__day__divider--lower dividers" />
     </>

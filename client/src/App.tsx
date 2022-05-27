@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './styles/App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -60,13 +60,12 @@ function App() {
       salt: 1.1,
     },
   });
+  const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResultsContents, setSearchResultsContents] = useState<
     IProducts[]
   >([]);
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
-  const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
-  const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
 
   const temp = useRef([
     'Mandag',
@@ -130,10 +129,7 @@ function App() {
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
       />
-      <AddCustomProduct
-        allChosenProducts={allChosenProducts}
-        setAllChosenProducts={setAllChosenProducts}
-      />
+      <AddCustomProduct />
       <hr className="selected-product__divider--upper dividers" />
       <div className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
@@ -141,7 +137,6 @@ function App() {
         <NutritionList
           className={selectedProductClass + '__nutrition-list'}
           selectedProduct={selectedProduct}
-          additionalKeys={''}
         />
         <AddToMealplan
           selectedProduct={selectedProduct}

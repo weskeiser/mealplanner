@@ -11,7 +11,7 @@ interface IAddedProducts {
 }
 
 export interface ItotalNutritionalValue {
-  id: number | string;
+  id: string;
   properties: {
     calories: number;
     macros: {
@@ -32,8 +32,8 @@ const AddedProducts: FC<IAddedProducts> = ({
   setMealPlans,
   mealPlanDayName,
 }) => {
-  const totalNutritionalValue: ItotalNutritionalValue = meal.products.reduce(
-    (prev, curr) => {
+  const totalNutritionalValue = meal.products.reduce(
+    (prev: ItotalNutritionalValue, curr: ItotalNutritionalValue) => {
       return {
         ...prev,
         properties: {

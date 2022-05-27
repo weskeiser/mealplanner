@@ -146,8 +146,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
             setMealPlans,
             setErrorMessage,
             selectMealplanMealRef,
-            selectMealplanDayRef,
-            gramInputRef
+            selectMealplanDayRef
           )
         }
       >
