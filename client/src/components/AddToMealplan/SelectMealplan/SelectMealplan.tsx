@@ -16,7 +16,7 @@ const SelectMealplan: ForwardRefExoticComponent<
   ISelectMealplan & RefAttributes<HTMLSelectElement | undefined>
 > = forwardRef<HTMLSelectElement | undefined, ISelectMealplan>(
   ({ className, listNames, setListNames }, ref) => {
-    const [inputVisible, setInputVisible] = useState(true);
+    const [inputVisible, setInputVisible] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
 
     const listOptions = listNames.map((listName) => {

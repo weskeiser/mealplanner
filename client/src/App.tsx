@@ -67,74 +67,32 @@ function App() {
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
   const [allChosenProducts, setAllChosenProducts] = useState<IProducts[]>([]);
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
-
-  const [mealPlans, setMealPlans] = useState<IMealplans[]>([
-    {
-      listName: 'Mandag',
-      meals: [
-        {
-          listName: 'Måltid 1',
-          products: [
-            {
-              id: 2,
-              mealPlanDayName: 'Mandag',
-              mealPlanMealName: 'Måltid 1',
-              name: 'Kjøttdeig 14%',
-              category: 'Kjøtt',
-              properties: {
-                brand: 'Gilde',
-                logo: 'https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357',
-                serving: 100,
-                calories: 194,
-                macros: {
-                  fat: 14,
-                  protein: 17,
-                  carbs: {
-                    total: 0,
-                    sugars: 0,
-                  },
-                },
-                salt: 1.1,
-              },
-            },
-          ],
-        },
-      ],
-    },
-    {
-      listName: 'Tirsdag',
-      meals: [
-        {
-          listName: 'Måltid 1',
-          products: [
-            {
-              id: 2,
-              mealPlanDayName: 'Tirsdag',
-              mealPlanMealName: 'Måltid 1',
-              name: 'Kjøttdeig 14%',
-              category: 'Kjøtt',
-              properties: {
-                brand: 'Gilde',
-                logo: 'https://bilder.kolonial.no/local_products/c5db60d1-8bb0-498d-b99c-b333815cc9a9.jpeg?auto=format&fit=max&w=376&s=4740d15034cec94697dc5f5b57e5b357',
-                serving: 100,
-                calories: 194,
-                macros: {
-                  fat: 14,
-                  protein: 17,
-                  carbs: {
-                    total: 0,
-                    sugars: 0,
-                  },
-                },
-                salt: 1.1,
-              },
-            },
-          ],
-        },
-      ],
-    },
-  ]);
   const [highlighted, setHighlighted] = useState(false);
+
+  const temp = useRef([
+    'Mandag',
+    'Tirsdag',
+    'Onsdag',
+    'Torsdag',
+    'Fredag',
+    'Lørdag',
+    'Søndag',
+  ]);
+  const [mealPlans, setMealPlans] = useState<IMealplans[]>(
+    temp.current.map((day) => ({
+      listName: `${day}`,
+      meals: [
+        {
+          listName: 'Måltid 1',
+          products: [],
+        },
+        {
+          listName: 'Bla',
+          products: [],
+        },
+      ],
+    }))
+  );
 
   // Classnames
   const selectedProductClass = 'selected-product';

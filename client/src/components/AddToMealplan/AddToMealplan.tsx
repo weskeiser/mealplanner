@@ -1,4 +1,4 @@
-import { IMealplans } from '../../Interfaces/Mealplans';
+import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
 import GramInput from './GramInput/GramInput';
 import {
@@ -9,6 +9,7 @@ import {
   Dispatch,
   useEffect,
   useMemo,
+  useCallback,
 } from 'react';
 import addProductToMeal from './addProductToMeal';
 import SelectMealplan from './SelectMealplan/SelectMealplan';
@@ -38,13 +39,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
 
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [mealNamesList, setMealNamesList] = useState([
-    'Måltid 1',
-    'Måltid 2',
-    'Måltid 3',
-    'Måltid 4',
-  ]);
-
+  const [mealNamesList, setMealNamesList] = useState(['Måltid 1']);
   const [dayNamesList, setDayNamesList] = useState([
     'Mandag',
     'Tirsdag',
@@ -83,6 +78,42 @@ const AddToMealplan: FC<IAddToMealplan> = ({
       setMealPlans(updatedMealPlan);
     }
   }, [dayNamesList]);
+
+  useEffect(() => {
+    if (!firstRenderDone) {
+      setFirstRenderDone(true);
+    }
+
+    if (firstRenderDone) {
+      const newListName = mealNamesList[mealNamesList.length - 1];
+
+      const alreadyExists = mealPlans.some((mealPlan) => {
+        console.log(mealPlan);
+        return mealPlan.meals.some((meal: IMeal) => {
+          return meal.listName === newListName;
+        });
+      });
+      console.log(alreadyExists);
+      if (alreadyExists) return;
+
+      const newMealPlanContents = mealPlans.map((mealPlan) => {
+        return {
+          ...mealPlan,
+          meals: [
+            ...mealPlan.meals,
+            {
+              listName: newListName,
+              products: [],
+            },
+          ],
+        };
+      });
+      console.log(mealPlans);
+      console.log(newMealPlanContents);
+
+      setMealPlans(newMealPlanContents);
+    }
+  }, [mealNamesList]);
 
   return (
     <div className={className + '__add-to-list'}>
