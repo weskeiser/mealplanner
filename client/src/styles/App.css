@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .hidden {
@@ -17,7 +17,7 @@ html {
 body {
   height: 100%;
   -ms-touch-action: none;
-      touch-action: none;
+  touch-action: none;
 }
 
 #root {
@@ -53,7 +53,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 85% 1fr;
-      grid-template-columns: 1fr 85% 1fr;
+  grid-template-columns: 1fr 85% 1fr;
   margin-top: 1.6em;
 }
 
@@ -89,7 +89,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 85% 1fr;
-      grid-template-columns: 1fr 85% 1fr;
+  grid-template-columns: 1fr 85% 1fr;
   font-size: 1.2em;
   line-height: 1.5em;
   color: #fff;
@@ -104,8 +104,8 @@ main {
   cursor: pointer;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[9];
-      grid-template-columns: repeat(9, 1fr);
+  -ms-grid-columns: (1fr) [9];
+  grid-template-columns: repeat(9, 1fr);
   border-bottom: 1px solid #86b2e8;
   border-right: 1px solid #86b2e8;
   height: 1.9em;
@@ -189,7 +189,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 1fr;
   width: 15em;
 }
 
@@ -208,7 +208,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 
 .custom-product__form__list__input > * {
@@ -238,7 +238,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 
 .custom-product__form__list-item > * {
@@ -318,7 +318,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 
 .selected-product__nutrition-list__list-item > * {
@@ -343,7 +343,7 @@ main {
   color: #2d61a0;
   margin-top: 0.5em;
   -ms-grid-columns: 3fr 2fr 1.7fr;
-      grid-template-columns: 3fr 2fr 1.7fr;
+  grid-template-columns: 3fr 2fr 1.7fr;
   grid-auto-rows: 2em;
   gap: 0.2em;
   width: 100%;
@@ -484,13 +484,13 @@ main {
   width: 1em;
   height: 1em;
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .mealPlan__day__arrow__inner__make-line {
   border: 1px solid #2d61a0;
   -webkit-transform: none;
-          transform: none;
+  transform: none;
   margin-top: 0.5em;
   height: 0;
   width: 1.3em;
@@ -517,7 +517,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 7fr 1fr;
-      grid-template-columns: 7fr 1fr;
+  grid-template-columns: 7fr 1fr;
   font-size: 0.9em;
 }
 
@@ -546,45 +546,45 @@ main {
   width: 1em;
   height: 1em;
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .mealPlan__meals__meal__title__toggle__inner__make-line {
   border: 1px solid #2d61a0;
   -webkit-transform: none;
-          transform: none;
+  transform: none;
   margin-top: 0.5em;
   height: 0.1em;
   width: 1.3em;
 }
 
-.mealPlan__meals__meal__added-products {
+.mealPlan__meals__meal__products-and-nutrition {
   margin-top: 0.5em;
 }
 
-.mealPlan__meals__meal__added-products__product {
+.mealPlan__meals__meal__products-and-nutrition__product {
   color: #2d61a0;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 6fr 1fr 1fr;
-      grid-template-columns: 6fr 1fr 1fr;
+  grid-template-columns: 6fr 1fr 1fr;
 }
 
-.mealPlan__meals__meal__added-products__product:first-of-type {
+.mealPlan__meals__meal__products-and-nutrition__product:first-of-type {
   margin-top: 1em;
 }
 
-.mealPlan__meals__meal__added-products__product__title {
+.mealPlan__meals__meal__products-and-nutrition__product__title {
   white-space: nowrap;
   overflow: hidden;
   margin-right: 0.3em;
 }
 
-.mealPlan__meals__meal__added-products__product__title__brand {
+.mealPlan__meals__meal__products-and-nutrition__product__title__brand {
   font-size: 0.7em;
 }
 
-.mealPlan__meals__meal__added-products__product__remove {
+.mealPlan__meals__meal__products-and-nutrition__product__remove {
   margin-top: 0.05em;
   padding: 0 0.6em;
   color: #86b2e8;
@@ -597,23 +597,23 @@ main {
   cursor: pointer;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list {
   margin: 0 1.6em;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__heading {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__heading {
   margin: 0 2.3em;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__heading__title {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__heading__title {
   margin-top: auto;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__heading__serving {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__heading__serving {
   font-size: 1.1em;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__heading {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__heading {
   color: #2d61a0;
   font-size: 0.7em;
   display: -webkit-box;
@@ -623,13 +623,13 @@ main {
   margin-bottom: 0.2em;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__heading__serving {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__heading__serving {
   margin-left: auto;
   margin-top: 0.3em;
   font-weight: bold;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__list-item {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__list-item {
   color: #2d61a0;
   border-top: 1px solid #86b2e8;
   border-right: 1px solid #86b2e8;
@@ -637,22 +637,22 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__list-item > * {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__list-item > * {
   padding: 0 0.3em;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__list-item:last-child {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__list-item:last-child {
   border-bottom: 1px solid #86b2e8;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__list-item__key {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__list-item__key {
   border-right: 1px solid #86b2e8;
 }
 
-.mealPlan__meals__meal__added-products__nutrition-list__list-item__value {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__list-item__value {
   margin-left: auto;
 }
 

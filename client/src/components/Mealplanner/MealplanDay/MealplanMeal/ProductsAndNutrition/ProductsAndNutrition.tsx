@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IMeal, IMealplans } from '../../../../../Interfaces/Mealplans';
-import AddedProduct from './AddedProduct/AddedProduct';
+import AddedProducts from './AddedProducts/AddedProducts';
 import NutritionList from '../../../../NutritionList/NutritionList';
 
 interface IProductsAndNutrition {
@@ -73,37 +73,29 @@ const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
     }
   );
 
-  const ProductsAndNutritionClass = 'mealPlan__meals__meal__added-products';
+  const pAndNClass = 'mealPlan__meals__meal__products-and-nutrition';
 
   return (
     <>
-      <ul className={ProductsAndNutritionClass}>
-        <AddedProduct
+      <ul className={pAndNClass}>
+        <AddedProducts
           meal={meal}
           mealPlans={mealPlans}
           setMealPlans={setMealPlans}
           mealPlanDayName={mealPlanDayName}
-          ProductsAndNutritionClass={ProductsAndNutritionClass}
+          pAndNClass={pAndNClass}
         />
       </ul>
-      <div className={ProductsAndNutritionClass + '__nutrition-list__heading'}>
-        <h3
-          className={
-            ProductsAndNutritionClass + '__nutrition-list__heading__title'
-          }
-        >
+      <div className={pAndNClass + '__nutrition-list__heading'}>
+        <h3 className={pAndNClass + '__nutrition-list__heading__title'}>
           Næringsinnhold
         </h3>
-        <p
-          className={
-            ProductsAndNutritionClass + '__nutrition-list__heading__serving'
-          }
-        >
+        <p className={pAndNClass + '__nutrition-list__heading__serving'}>
           Totalt
         </p>
       </div>
       <NutritionList
-        className={ProductsAndNutritionClass + '__nutrition-list'}
+        className={pAndNClass + '__nutrition-list'}
         selectedProduct={totalNutritionalValue}
         additionalKeys={mealPlanDayName + meal.listName}
       />
