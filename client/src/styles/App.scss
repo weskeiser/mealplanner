@@ -227,7 +227,7 @@ main {
   }
 
   $custom-template-columns: 3fr 1fr;
-  $custom-width: 12em;
+  $custom-width: 15em;
   &__form {
     margin-bottom: 1em;
 
@@ -515,116 +515,122 @@ main {
       width: 100%;
     }
   }
-  .temp {
-    background-color: red;
-  }
-  &__meal {
-    // $meal-background: rgb(246, 249, 255);
-    $meal-background: rgb(240, 245, 254);
 
-    background-color: $meal-background;
-    margin: 1em 1em;
-    padding: 1em 1em;
-    border-radius: 1em;
-    border: 1px solid $page-color-opacity2;
+  &__meals {
+    margin-bottom: 3em;
 
-    &__title {
-      // border: 1px solid black;
-      display: flex;
-      font-size: 0.9em;
-      &__name {
+    &__meal {
+      $meal-background: rgb(246, 249, 255);
+      $meal-background: rgb(240, 245, 254);
+
+      background-color: $meal-background;
+      margin: 1em 1em;
+      padding: 1em 1em;
+      border-radius: 1em;
+      border: 1px solid $page-color-opacity2;
+
+      &__title {
         // border: 1px solid black;
-        color: $page-color-text;
-        // margin-left: 2em;
-      }
-
-      &__toggle {
-        // border: 1px solid black;
-        margin-left: auto;
-        display: inline-flex;
-        margin-top: -0.7em;
-        width: 4em;
-        // height: 3em;
-        padding-left: 1.4em;
-        padding-top: 0.9em;
-        cursor: pointer;
-
-        &__inner {
-          font-size: 0.8em;
-          border: 0.2em solid $page-color-text;
-          border-top: transparent;
-          border-left: transparent;
-          width: 1em;
-          height: 1em;
-          transform: rotate(45deg);
-
-          &__make-line {
-            border: 1px solid $page-color-text;
-            transform: none;
-            margin-top: 0.5em;
-            height: 0.1em;
-            width: 1.3em;
-          }
-        }
-      }
-    }
-
-    &__added-products {
-      margin-top: 0.5em;
-      &__product {
-        display: flex;
-        color: $page-color-text;
-        margin: 0.2em 1em;
-        display: flex;
-
-        &__title {
-          max-width: 75%;
-          white-space: nowrap;
-          overflow: hidden;
-          &__brand {
-            font-size: 0.7em;
-          }
-        }
-
-        &__serving-remove-container {
-          display: flex;
-          margin-left: auto;
-        }
-
-        &__serving {
-        }
-
-        &__remove {
-          margin-left: 0.5em;
-          margin-top: 0.05em;
-          padding: 0 0.6em;
-          color: $page-color;
-          color: rgb(203, 160, 160);
-          background-color: $meal-background;
-          border: none;
+        // display: flex;
+        display: grid;
+        grid-template-columns: 7fr 1fr;
+        font-size: 0.9em;
+        &__name {
           // border: 1px solid black;
-          height: 1em;
-          font-size: 1.2em;
-          line-height: 1em;
+          color: $page-color-text;
+        }
+
+        &__toggle {
+          // border: 1px solid black;
+          margin-left: auto;
+          margin-top: -0.7em;
+          width: 3em;
+          padding-top: 0.9em;
+          padding-left: 0.3em;
           cursor: pointer;
+          display: flex;
+
+          &__inner {
+            margin: 0 auto;
+            font-size: 0.8em;
+            border: 0.2em solid $page-color-text;
+            border-top: transparent;
+            border-left: transparent;
+            width: 1em;
+            height: 1em;
+            transform: rotate(45deg);
+
+            &__make-line {
+              border: 1px solid $page-color-text;
+              transform: none;
+              margin-top: 0.5em;
+              height: 0.1em;
+              width: 1.3em;
+            }
+          }
         }
       }
 
-      &__nutrition-list {
-        margin: 0 1.6em;
+      &__added-products {
+        margin-top: 0.5em;
+        &__product {
+          color: $page-color-text;
+          // margin: 0.2em 1em;
+          // display: flex;
+          display: grid;
+          grid-template-columns: 6fr 1fr 1fr;
 
-        &__heading {
-          margin: 0 2.3em;
+          &:first-of-type {
+            margin-top: 1em;
+          }
 
           &__title {
-            margin-top: auto;
+            // border: 1px solid black;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-right: 0.3em;
+
+            &__brand {
+              font-size: 0.7em;
+            }
           }
 
           &__serving {
-            font-size: 1.1em;
+            // border: 1px solid black;
+          }
+
+          &__remove {
+            // margin-left: 0.5em;
+            margin-top: 0.05em;
+            padding: 0 0.6em;
+            color: $page-color;
+            color: rgb(203, 160, 160);
+            background-color: $meal-background;
+            border: none;
+            height: 1em;
+            font-size: 1.2em;
+            line-height: 1em;
+            cursor: pointer;
+            // border: 1px solid black;
           }
         }
-        @include nutrition-list();
+
+        &__nutrition-list {
+          margin: 0 1.6em;
+
+          &__heading {
+            margin: 0 2.3em;
+
+            &__title {
+              margin-top: auto;
+            }
+
+            &__serving {
+              font-size: 1.1em;
+            }
+          }
+          @include nutrition-list();
+        }
       }
     }
   }

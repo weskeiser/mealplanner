@@ -36,17 +36,22 @@ const MealplanDay: FC<IMealplanDay> = ({
   return (
     <>
       <section className="mealPlan">
-        <div className="mealPlan__day">
+        <section className="mealPlan__day">
           <h2 className="mealPlan__day__title">{mealPlan.listName}</h2>
           <div className="mealPlan__day__arrow__outter" onClick={openList}>
             <div className={arrowOrLine}></div>
           </div>
-        </div>
+        </section>
 
-        <section className="temp">{visible && <>{mealPlanMeals}</>}</section>
+        {visible && (
+          <section className="mealPlan__meals">
+            <>{mealPlanMeals}</>
+          </section>
+        )}
 
         {/* {visible && <p>totalt</p>} */}
       </section>
+
       <hr className="mealPlan__day__divider--lower dividers" />
     </>
   );

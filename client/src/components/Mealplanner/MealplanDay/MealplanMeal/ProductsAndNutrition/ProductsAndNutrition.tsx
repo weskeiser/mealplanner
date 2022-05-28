@@ -3,7 +3,7 @@ import { IMeal, IMealplans } from '../../../../../Interfaces/Mealplans';
 import AddedProduct from './AddedProduct/AddedProduct';
 import NutritionList from '../../../../NutritionList/NutritionList';
 
-interface IAddedProducts {
+interface IProductsAndNutrition {
   meal: IMeal;
   mealPlans: IMealplans[];
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
@@ -26,7 +26,7 @@ export interface ItotalNutritionalValue {
   };
 }
 
-const AddedProducts: FC<IAddedProducts> = ({
+const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
   meal,
   mealPlans,
   setMealPlans,
@@ -73,31 +73,37 @@ const AddedProducts: FC<IAddedProducts> = ({
     }
   );
 
-  const addedProductsClass = 'mealPlan__meal__added-products';
+  const ProductsAndNutritionClass = 'mealPlan__meals__meal__added-products';
 
   return (
     <>
-      <ul className={addedProductsClass}>
+      <ul className={ProductsAndNutritionClass}>
         <AddedProduct
           meal={meal}
           mealPlans={mealPlans}
           setMealPlans={setMealPlans}
           mealPlanDayName={mealPlanDayName}
-          addedProductsClass={addedProductsClass}
+          ProductsAndNutritionClass={ProductsAndNutritionClass}
         />
       </ul>
-      <div className={addedProductsClass + '__nutrition-list__heading'}>
-        <h3 className={addedProductsClass + '__nutrition-list__heading__title'}>
+      <div className={ProductsAndNutritionClass + '__nutrition-list__heading'}>
+        <h3
+          className={
+            ProductsAndNutritionClass + '__nutrition-list__heading__title'
+          }
+        >
           Næringsinnhold
         </h3>
         <p
-          className={addedProductsClass + '__nutrition-list__heading__serving'}
+          className={
+            ProductsAndNutritionClass + '__nutrition-list__heading__serving'
+          }
         >
           Totalt
         </p>
       </div>
       <NutritionList
-        className={addedProductsClass + '__nutrition-list'}
+        className={ProductsAndNutritionClass + '__nutrition-list'}
         selectedProduct={totalNutritionalValue}
         additionalKeys={mealPlanDayName + meal.listName}
       />
@@ -105,4 +111,4 @@ const AddedProducts: FC<IAddedProducts> = ({
   );
 };
 
-export default AddedProducts;
+export default ProductsAndNutrition;

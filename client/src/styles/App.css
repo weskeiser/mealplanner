@@ -190,7 +190,7 @@ main {
   display: grid;
   -ms-grid-columns: 3fr 1fr;
       grid-template-columns: 3fr 1fr;
-  width: 12em;
+  width: 15em;
 }
 
 .custom-product__form__name-and-serving > * {
@@ -198,7 +198,7 @@ main {
 }
 
 .custom-product__form__list {
-  width: 12em;
+  width: 15em;
 }
 
 .custom-product__form__list__input {
@@ -501,11 +501,11 @@ main {
   width: 100%;
 }
 
-.mealPlan .temp {
-  background-color: red;
+.mealPlan__meals {
+  margin-bottom: 3em;
 }
 
-.mealPlan__meal {
+.mealPlan__meals__meal {
   background-color: #f0f5fe;
   margin: 1em 1em;
   padding: 1em 1em;
@@ -513,30 +513,32 @@ main {
   border: 1px solid rgba(134, 178, 232, 0.2);
 }
 
-.mealPlan__meal__title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.mealPlan__meals__meal__title {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 7fr 1fr;
+      grid-template-columns: 7fr 1fr;
   font-size: 0.9em;
 }
 
-.mealPlan__meal__title__name {
+.mealPlan__meals__meal__title__name {
   color: #2d61a0;
 }
 
-.mealPlan__meal__title__toggle {
+.mealPlan__meals__meal__title__toggle {
   margin-left: auto;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
   margin-top: -0.7em;
-  width: 4em;
-  padding-left: 1.4em;
+  width: 3em;
   padding-top: 0.9em;
+  padding-left: 0.3em;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.mealPlan__meal__title__toggle__inner {
+.mealPlan__meals__meal__title__toggle__inner {
+  margin: 0 auto;
   font-size: 0.8em;
   border: 0.2em solid #2d61a0;
   border-top: transparent;
@@ -547,7 +549,7 @@ main {
           transform: rotate(45deg);
 }
 
-.mealPlan__meal__title__toggle__inner__make-line {
+.mealPlan__meals__meal__title__toggle__inner__make-line {
   border: 1px solid #2d61a0;
   -webkit-transform: none;
           transform: none;
@@ -556,38 +558,33 @@ main {
   width: 1.3em;
 }
 
-.mealPlan__meal__added-products {
+.mealPlan__meals__meal__added-products {
   margin-top: 0.5em;
 }
 
-.mealPlan__meal__added-products__product {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.mealPlan__meals__meal__added-products__product {
   color: #2d61a0;
-  margin: 0.2em 1em;
-  display: flex;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 6fr 1fr 1fr;
+      grid-template-columns: 6fr 1fr 1fr;
 }
 
-.mealPlan__meal__added-products__product__title {
-  max-width: 75%;
+.mealPlan__meals__meal__added-products__product:first-of-type {
+  margin-top: 1em;
+}
+
+.mealPlan__meals__meal__added-products__product__title {
   white-space: nowrap;
   overflow: hidden;
+  margin-right: 0.3em;
 }
 
-.mealPlan__meal__added-products__product__title__brand {
+.mealPlan__meals__meal__added-products__product__title__brand {
   font-size: 0.7em;
 }
 
-.mealPlan__meal__added-products__product__serving-remove-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: auto;
-}
-
-.mealPlan__meal__added-products__product__remove {
-  margin-left: 0.5em;
+.mealPlan__meals__meal__added-products__product__remove {
   margin-top: 0.05em;
   padding: 0 0.6em;
   color: #86b2e8;
@@ -600,23 +597,23 @@ main {
   cursor: pointer;
 }
 
-.mealPlan__meal__added-products__nutrition-list {
+.mealPlan__meals__meal__added-products__nutrition-list {
   margin: 0 1.6em;
 }
 
-.mealPlan__meal__added-products__nutrition-list__heading {
+.mealPlan__meals__meal__added-products__nutrition-list__heading {
   margin: 0 2.3em;
 }
 
-.mealPlan__meal__added-products__nutrition-list__heading__title {
+.mealPlan__meals__meal__added-products__nutrition-list__heading__title {
   margin-top: auto;
 }
 
-.mealPlan__meal__added-products__nutrition-list__heading__serving {
+.mealPlan__meals__meal__added-products__nutrition-list__heading__serving {
   font-size: 1.1em;
 }
 
-.mealPlan__meal__added-products__nutrition-list__heading {
+.mealPlan__meals__meal__added-products__nutrition-list__heading {
   color: #2d61a0;
   font-size: 0.7em;
   display: -webkit-box;
@@ -626,13 +623,13 @@ main {
   margin-bottom: 0.2em;
 }
 
-.mealPlan__meal__added-products__nutrition-list__heading__serving {
+.mealPlan__meals__meal__added-products__nutrition-list__heading__serving {
   margin-left: auto;
   margin-top: 0.3em;
   font-weight: bold;
 }
 
-.mealPlan__meal__added-products__nutrition-list__list-item {
+.mealPlan__meals__meal__added-products__nutrition-list__list-item {
   color: #2d61a0;
   border-top: 1px solid #86b2e8;
   border-right: 1px solid #86b2e8;
@@ -643,19 +640,19 @@ main {
       grid-template-columns: 3fr 1fr;
 }
 
-.mealPlan__meal__added-products__nutrition-list__list-item > * {
+.mealPlan__meals__meal__added-products__nutrition-list__list-item > * {
   padding: 0 0.3em;
 }
 
-.mealPlan__meal__added-products__nutrition-list__list-item:last-child {
+.mealPlan__meals__meal__added-products__nutrition-list__list-item:last-child {
   border-bottom: 1px solid #86b2e8;
 }
 
-.mealPlan__meal__added-products__nutrition-list__list-item__key {
+.mealPlan__meals__meal__added-products__nutrition-list__list-item__key {
   border-right: 1px solid #86b2e8;
 }
 
-.mealPlan__meal__added-products__nutrition-list__list-item__value {
+.mealPlan__meals__meal__added-products__nutrition-list__list-item__value {
   margin-left: auto;
 }
 

@@ -3,20 +3,20 @@ import { IMeal, IMealplans } from '../../../../../../Interfaces/Mealplans';
 import { IProducts } from '../../../../../../Interfaces/Products';
 import ListItem from '../../../../../ListItem';
 
-interface IAddedProducts {
+interface IProductsAndNutrition {
   meal: IMeal;
   mealPlans: IMealplans[];
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
   mealPlanDayName: string;
-  addedProductsClass: string;
+  ProductsAndNutritionClass: string;
 }
 
-const AddedProducts: FC<IAddedProducts> = ({
+const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
   meal,
   mealPlans,
   setMealPlans,
   mealPlanDayName,
-  addedProductsClass,
+  ProductsAndNutritionClass,
 }) => {
   const removeProductFromMeal = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -55,34 +55,30 @@ const AddedProducts: FC<IAddedProducts> = ({
           index
         ) => (
           <ListItem
-            className={addedProductsClass + '__product'}
+            className={ProductsAndNutritionClass + '__product'}
             key={mealPlanDayName + mealPlanMealName + name + properties.serving}
             children={
               <>
-                <p className={addedProductsClass + '__product__title'}>
+                <p className={ProductsAndNutritionClass + '__product__title'}>
                   {name},{' '}
                   <span
-                    className={addedProductsClass + '__product__title__brand'}
+                    className={
+                      ProductsAndNutritionClass + '__product__title__brand'
+                    }
                   >
                     {properties.brand}
                   </span>
                 </p>
-                <div
-                  className={
-                    addedProductsClass + '__product__serving-remove-container'
-                  }
+                <p className={ProductsAndNutritionClass + '__product__serving'}>
+                  {properties.serving}g
+                </p>
+                <button
+                  className={ProductsAndNutritionClass + '__product__remove'}
+                  data-index={index}
+                  onClick={(e) => removeProductFromMeal(e)}
                 >
-                  <p className={addedProductsClass + '__product__serving'}>
-                    {properties.serving}g
-                  </p>
-                  <button
-                    className={addedProductsClass + '__product__remove'}
-                    data-index={index}
-                    onClick={(e) => removeProductFromMeal(e)}
-                  >
-                    &#10005;
-                  </button>
-                </div>
+                  &#10005;
+                </button>
               </>
             }
           />
@@ -92,4 +88,4 @@ const AddedProducts: FC<IAddedProducts> = ({
   );
 };
 
-export default AddedProducts;
+export default ProductsAndNutrition;
