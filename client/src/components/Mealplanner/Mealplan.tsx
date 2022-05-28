@@ -17,7 +17,14 @@ const Mealplanner: FC<IMealplan> = ({ mealPlans, setMealPlans }) => {
     />
   ));
 
-  return <>{allMealplans}</>;
+  return (
+    <>
+      {/* <h1 className="mealPlan__title">Måltidsplan</h1> */}
+      <h2 className="mealPlan__title">Ukeplan</h2>
+      <hr className="mealPlan__divider--upper dividers" />
+      {allMealplans}
+    </>
+  );
 };
 
 export default Mealplanner;

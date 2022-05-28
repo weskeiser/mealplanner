@@ -18,7 +18,7 @@ import { IMealplans } from './Interfaces/Mealplans';
 function App() {
   // Refs
   const searchBarRef = useRef<HTMLInputElement | undefined>();
-  const gramInputRef = useRef<HTMLInputElement | undefined>();
+  const servingInputRef = useRef<HTMLInputElement | undefined>();
   const searchResultsRef = useRef<HTMLUListElement | undefined>();
 
   // States
@@ -84,6 +84,14 @@ function App() {
           listName: 'Måltid 1',
           products: [],
         },
+        {
+          listName: 'Måltid 2',
+          products: [],
+        },
+        {
+          listName: 'Måltid 3',
+          products: [],
+        },
       ],
     }))
   );
@@ -92,8 +100,7 @@ function App() {
   const selectedProductClass = 'selected-product';
 
   return (
-    <div
-      className="page"
+    <main
       onClick={(e) =>
         hideSearchResults(
           e,
@@ -105,33 +112,34 @@ function App() {
         )
       }
     >
-      <div className="header"></div>
-      <h1 className="page-title">Næringsinnholdkalkulator</h1>
-      <SearchBar
-        searchBarRef={searchBarRef}
-        searchResultsRef={searchResultsRef}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        setSearchResultsContents={setSearchResultsContents}
-        focusedSearchResult={focusedSearchResult}
-        setFocusedSearchResult={setFocusedSearchResult}
-        setCurrentProduct={setCurrentProduct}
-      />
-      <SearchResults
-        ref={searchResultsRef}
-        searchTerm={searchTerm}
-        searchResultsContents={searchResultsContents}
-        setSelectedProduct={setSelectedProduct}
-        setSearchTerm={setSearchTerm}
-        searchBarRef={searchBarRef}
-        gramInputRef={gramInputRef}
-        setCurrentProduct={setCurrentProduct}
-        focusedSearchResult={focusedSearchResult}
-        setFocusedSearchResult={setFocusedSearchResult}
-      />
+      <h1 className="page-title">Måltidsplanlegger</h1>
+      <section className="search-section" aria-label="search for product">
+        <SearchBar
+          searchBarRef={searchBarRef}
+          searchResultsRef={searchResultsRef}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          setSearchResultsContents={setSearchResultsContents}
+          focusedSearchResult={focusedSearchResult}
+          setFocusedSearchResult={setFocusedSearchResult}
+          setCurrentProduct={setCurrentProduct}
+        />
+        <SearchResults
+          ref={searchResultsRef}
+          searchTerm={searchTerm}
+          searchResultsContents={searchResultsContents}
+          setSelectedProduct={setSelectedProduct}
+          setSearchTerm={setSearchTerm}
+          searchBarRef={searchBarRef}
+          servingInputRef={servingInputRef}
+          setCurrentProduct={setCurrentProduct}
+          focusedSearchResult={focusedSearchResult}
+          setFocusedSearchResult={setFocusedSearchResult}
+        />
+      </section>
       <AddCustomProduct />
       <hr className="selected-product__divider--upper dividers" />
-      <div className={selectedProductClass}>
+      <section className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionTitleBar selectedProduct={selectedProduct} />
         <NutritionList
@@ -144,14 +152,13 @@ function App() {
           mealPlans={mealPlans}
           setMealPlans={setMealPlans}
           className={selectedProductClass}
-          gramInputRef={gramInputRef}
+          servingInputRef={servingInputRef}
           currentProduct={currentProduct}
           setCurrentProduct={setCurrentProduct}
         />
-      </div>
-      <hr className="mealPlan__divider--upper dividers" />
+      </section>
       <Mealplanner mealPlans={mealPlans} setMealPlans={setMealPlans} />
-    </div>
+    </main>
   );
 }
 

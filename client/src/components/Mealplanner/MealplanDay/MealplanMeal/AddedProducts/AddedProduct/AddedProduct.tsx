@@ -8,6 +8,7 @@ interface IAddedProducts {
   mealPlans: IMealplans[];
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
   mealPlanDayName: string;
+  addedProductsClass: string;
 }
 
 const AddedProducts: FC<IAddedProducts> = ({
@@ -15,12 +16,12 @@ const AddedProducts: FC<IAddedProducts> = ({
   mealPlans,
   setMealPlans,
   mealPlanDayName,
+  addedProductsClass,
 }) => {
   const removeProductFromMeal = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    console.log(mealPlans);
 
     const updatedMealplan = mealPlans.map((mealPlan) => {
       const mealPlanMealName = meal.listName;
@@ -54,22 +55,28 @@ const AddedProducts: FC<IAddedProducts> = ({
           index
         ) => (
           <ListItem
-            className="added-products__product"
+            className={addedProductsClass + '__product'}
             key={mealPlanDayName + mealPlanMealName + name + properties.serving}
             children={
               <>
-                <p className="added-products__product__title">
+                <p className={addedProductsClass + '__product__title'}>
                   {name},{' '}
-                  <span className="added-products__product__title__brand">
+                  <span
+                    className={addedProductsClass + '__product__title__brand'}
+                  >
                     {properties.brand}
                   </span>
                 </p>
-                <div className="added-products__product__serving-remove-container">
-                  <p className="added-products__product__serving">
+                <div
+                  className={
+                    addedProductsClass + '__product__serving-remove-container'
+                  }
+                >
+                  <p className={addedProductsClass + '__product__serving'}>
                     {properties.serving}g
                   </p>
                   <button
-                    className="added-products__product__remove"
+                    className={addedProductsClass + '__product__remove'}
                     data-index={index}
                     onClick={(e) => removeProductFromMeal(e)}
                   >

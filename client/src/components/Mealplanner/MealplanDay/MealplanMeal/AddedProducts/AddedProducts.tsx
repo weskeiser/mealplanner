@@ -73,26 +73,31 @@ const AddedProducts: FC<IAddedProducts> = ({
     }
   );
 
+  const addedProductsClass = 'mealPlan__meal__added-products';
+
   return (
     <>
-      <ul className="added-products">
+      <ul className={addedProductsClass}>
         <AddedProduct
           meal={meal}
           mealPlans={mealPlans}
           setMealPlans={setMealPlans}
           mealPlanDayName={mealPlanDayName}
+          addedProductsClass={addedProductsClass}
         />
       </ul>
-      <div className="added-products__nutrition-list__heading">
-        <h3 className="added-products__nutrition-list__heading__title">
+      <div className={addedProductsClass + '__nutrition-list__heading'}>
+        <h3 className={addedProductsClass + '__nutrition-list__heading__title'}>
           Næringsinnhold
         </h3>
-        <p className="added-products__nutrition-list__heading__serving">
+        <p
+          className={addedProductsClass + '__nutrition-list__heading__serving'}
+        >
           Totalt
         </p>
       </div>
       <NutritionList
-        className="added-products__nutrition-list"
+        className={addedProductsClass + '__nutrition-list'}
         selectedProduct={totalNutritionalValue}
         additionalKeys={mealPlanDayName + meal.listName}
       />

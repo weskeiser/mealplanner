@@ -20,14 +20,14 @@ const ProductName: FC<IProductName> = ({
   const highlightedStyle =
     highlighted &&
     productName.toLowerCase().startsWith(searchTerm.toLowerCase())
-      ? 'search-results__list-item__name__highlighted'
+      ? 'search-section__search-results__list-item__name__highlighted'
       : '';
 
   const checkForHighlight =
     highlighted &&
     productName.toLowerCase().startsWith(searchTerm.toLowerCase())
-      ? 'search-results__list-item__name'
-      : 'search-results__list-item__name search-results__list-item__name__unhighlighted-product';
+      ? 'search-section__search-results__list-item__name'
+      : 'search-section__search-results__list-item__name search-section__search-results__list-item__name__unhighlighted-product';
   console.log(highlighted, productName);
 
   return (

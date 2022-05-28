@@ -68,7 +68,6 @@ const InputWithRef: ForwardRefExoticComponent<
 
     return (
       <input
-        className="search-bar__input"
         ref={searchBarRef}
         type="text"
         onInput={(e) => handleInput(e)}

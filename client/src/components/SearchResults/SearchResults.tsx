@@ -19,7 +19,7 @@ interface ISearchResultsProps {
   searchResultsContents: IProducts[];
   setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
   searchBarRef: MutableRefObject<HTMLInputElement | undefined>;
-  gramInputRef: MutableRefObject<HTMLInputElement | undefined>;
+  servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
   setCurrentProduct: Dispatch<React.SetStateAction<{} | IProducts>>;
   focusedSearchResult: number;
   setFocusedSearchResult: Dispatch<React.SetStateAction<number>>;
@@ -35,7 +35,7 @@ const SearchResults: ForwardRefExoticComponent<
       setSelectedProduct,
       setSearchTerm,
       searchBarRef,
-      gramInputRef,
+      servingInputRef,
       setCurrentProduct,
       focusedSearchResult,
       setFocusedSearchResult,
@@ -66,7 +66,7 @@ const SearchResults: ForwardRefExoticComponent<
 
     // Select product on click.
     const selectProduct = (productId: number) => {
-      const gramInputEl = gramInputRef.current;
+      const servingInputEl = servingInputRef.current;
       const searchBarEl = searchBarRef.current;
 
       searchResultsContents.forEach((product) => {
@@ -74,13 +74,15 @@ const SearchResults: ForwardRefExoticComponent<
           setSelectedProduct(product);
         }
       });
-      gramInputEl.value = '';
+      servingInputEl.value = '';
       setCurrentProduct({});
       searchBarEl.value = '';
       setSearchTerm('');
     };
 
-    const visibleIfSearchTerm = searchTerm ? 'search-results' : 'hidden';
+    const visibleIfSearchTerm = searchTerm
+      ? 'search-section__search-results'
+      : 'hidden';
 
     return (
       <ul className={visibleIfSearchTerm} ref={searchResultsRef}>
@@ -92,7 +94,7 @@ const SearchResults: ForwardRefExoticComponent<
                   src={product.properties.logo}
                   alt={product.name}
                   title={product.name}
-                  className="search-results__list-item__logo"
+                  className="search-section__search-results__list-item__logo"
                 />
                 <ProductName
                   productName={product.name}
@@ -102,13 +104,13 @@ const SearchResults: ForwardRefExoticComponent<
                 />
                 <p
                   title={product.properties.brand}
-                  className="search-results__list-item__brand"
+                  className="search-section__search-results__list-item__brand"
                 >
                   {product.properties.brand}
                 </p>
               </>
             }
-            className="search-results__list-item"
+            className="search-section__search-results__list-item"
             key={product.id}
             onClick={() => selectProduct(product.id)}
             tabIndex={index}

@@ -7,7 +7,7 @@ interface IAddCustomProduct {}
 const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
   const [visible, setVisible] = useState(false);
 
-  const toggleFormHidden = () => {
+  const toggleVisibility = () => {
     setVisible(!visible);
   };
 
@@ -53,7 +53,6 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
     'Karbohydrater',
     '- Hvorav sukkerarter',
     'Salt',
-    'Antall Gram',
   ];
 
   const KeyAndInput = () => {
@@ -89,17 +88,29 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
     <div className="custom-product">
       <button
         className="custom-product__initializer"
-        onClick={toggleFormHidden}
+        onClick={toggleVisibility}
       >
         Legg til egendefinert
       </button>
       {visible && (
         <form className="custom-product__form">
+          <div className="custom-product__form__name-and-serving">
+            <input
+              className="custom-product__form__name-and-serving__name"
+              type="text"
+              placeholder="Matvarenavn"
+            />
+            <input
+              className="custom-product__form__name-and-serving__name"
+              type="text"
+              placeholder="gram"
+            />
+          </div>
           <ul className="custom-product__form__list">
             {inputNames.map((key) => (
               <ListItem
                 className="custom-product__form__list__input"
-                key={key}
+                key={'custom' + key}
                 children={
                   <>
                     <p>{key}</p>
@@ -109,7 +120,6 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
               />
             ))}
           </ul>
-          <input type="text" placeholder="Matvarenavn" />
           <button type="button" onClick={(e) => addCustomProduct(e)}>
             Legg til
           </button>

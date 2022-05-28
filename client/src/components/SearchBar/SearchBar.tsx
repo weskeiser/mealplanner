@@ -1,4 +1,4 @@
-import { FC, forwardRef, MutableRefObject } from 'react';
+import { FC, MutableRefObject, Dispatch, SetStateAction } from 'react';
 import useFetchEffect from '../../hooks/useFetchEffect';
 import { IProducts } from '../../Interfaces/Products';
 import showSearchResults from '../utils/showSearchResults';
@@ -6,11 +6,11 @@ import InputWithRef from './InputWithRef';
 
 interface ISearchBarProps {
   searchTerm: string;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  setSearchResultsContents: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
+  setSearchResultsContents: Dispatch<SetStateAction<IProducts[]>>;
   focusedSearchResult: number;
-  setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
-  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setFocusedSearchResult: Dispatch<SetStateAction<number>>;
+  setCurrentProduct: Dispatch<SetStateAction<IProducts>>;
   searchResultsRef: MutableRefObject<HTMLUListElement | undefined>;
   searchBarRef: MutableRefObject<HTMLInputElement | undefined>;
 }
@@ -33,7 +33,7 @@ const SearchBar: FC<ISearchBarProps> = ({
   );
 
   return (
-    <div className="search-bar" role="search">
+    <div className="search-section__search-bar">
       <InputWithRef
         ref={searchBarRef}
         searchResultsRef={searchResultsRef}

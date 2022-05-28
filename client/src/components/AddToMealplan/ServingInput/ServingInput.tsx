@@ -9,7 +9,7 @@ import { IMealplans } from '../../../Interfaces/Mealplans';
 import { IProducts } from '../../../Interfaces/Products';
 import addProductToMeal from '../addProductToMeal';
 
-interface IGramInput {
+interface IServingInput {
   selectedProduct: IProducts;
   setSelectedProduct: Dispatch<React.SetStateAction<IProducts>>;
   className: string;
@@ -19,12 +19,12 @@ interface IGramInput {
   setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>;
   selectMealplanDayRef: MutableRefObject<HTMLSelectElement | undefined>;
   selectMealplanMealRef: MutableRefObject<HTMLSelectElement | undefined>;
-  setErrorMessage: Dispatch<React.SetStateAction<string>>;
+  setExistsErrorMessage: Dispatch<React.SetStateAction<string>>;
 }
 
-const GramInput: ForwardRefExoticComponent<
-  IGramInput & RefAttributes<HTMLInputElement | undefined>
-> = forwardRef<HTMLInputElement | undefined, IGramInput>(
+const ServingInput: ForwardRefExoticComponent<
+  IServingInput & RefAttributes<HTMLInputElement | undefined>
+> = forwardRef<HTMLInputElement | undefined, IServingInput>(
   (
     {
       className,
@@ -34,11 +34,11 @@ const GramInput: ForwardRefExoticComponent<
       setCurrentProduct,
       mealPlans,
       setMealPlans,
-      setErrorMessage,
+      setExistsErrorMessage,
       selectMealplanMealRef,
       selectMealplanDayRef,
     },
-    gramInputRef
+    servingInputRef
   ) => {
     const { properties } = selectedProduct;
     const { serving, calories, salt, macros } = properties;
@@ -47,14 +47,14 @@ const GramInput: ForwardRefExoticComponent<
 
     const updateNutritionList = (e: React.FormEvent<HTMLInputElement>) => {
       const input = e.target as HTMLInputElement;
-      const gramInput = parseFloat(input.value);
+      const servingInput = parseFloat(input.value);
 
       const inputFieldValue = input.value;
       const inputCharacter = parseInt(
         inputFieldValue[inputFieldValue.length - 1]
       );
 
-      if (!gramInput) {
+      if (!servingInput) {
         setSelectedProduct(currentProduct);
         return;
       }
@@ -68,25 +68,25 @@ const GramInput: ForwardRefExoticComponent<
         setCurrentProduct(selectedProduct);
       }
 
-      const byGramInput = (value: number) => {
-        return (value / serving) * gramInput;
+      const byServingInput = (value: number) => {
+        return (value / serving) * servingInput;
       };
 
       setSelectedProduct({
         ...selectedProduct,
         properties: {
           ...properties,
-          serving: gramInput,
-          calories: +byGramInput(calories).toFixed(3),
+          serving: servingInput,
+          calories: +byServingInput(calories).toFixed(3),
           macros: {
-            fat: +byGramInput(fat).toFixed(3),
-            protein: +byGramInput(protein).toFixed(3),
+            fat: +byServingInput(fat).toFixed(3),
+            protein: +byServingInput(protein).toFixed(3),
             carbs: {
-              total: +byGramInput(total).toFixed(3),
-              sugars: +byGramInput(sugars).toFixed(3),
+              total: +byServingInput(total).toFixed(3),
+              sugars: +byServingInput(sugars).toFixed(3),
             },
           },
-          salt: +byGramInput(salt).toFixed(3),
+          salt: +byServingInput(salt).toFixed(3),
         },
       });
     };
@@ -98,7 +98,7 @@ const GramInput: ForwardRefExoticComponent<
           selectedProduct,
           mealPlans,
           setMealPlans,
-          setErrorMessage,
+          setExistsErrorMessage,
           selectMealplanMealRef,
           selectMealplanDayRef
         );
@@ -108,7 +108,7 @@ const GramInput: ForwardRefExoticComponent<
     return (
       <div className={className}>
         <input
-          ref={gramInputRef}
+          ref={servingInputRef}
           className={className + '__input'}
           type="text"
           name="amountInGrams"
@@ -123,4 +123,4 @@ const GramInput: ForwardRefExoticComponent<
   }
 );
 
-export default GramInput;
+export default ServingInput;

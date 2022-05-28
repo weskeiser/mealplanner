@@ -13,20 +13,19 @@ const MealplanDay: FC<IMealplanDay> = ({
   mealPlans,
   setMealPlans,
 }) => {
-  const [visible, setVisible] = useState<Boolean>(false);
+  const [visible, setVisible] = useState<Boolean>(true);
 
   const openList = () => {
     setVisible(!visible);
   };
 
-  const mealPlanMeals = mealPlan.meals.map((meal: IMeal, mealIndex) => (
+  const mealPlanMeals = mealPlan.meals.map((meal: IMeal) => (
     <MealplanMeal
       key={mealPlan.listName + meal.listName}
       mealPlan={mealPlan}
       mealPlans={mealPlans}
       setMealPlans={setMealPlans}
       meal={meal}
-      mealIndex={mealIndex}
     />
   ));
 
@@ -36,16 +35,18 @@ const MealplanDay: FC<IMealplanDay> = ({
 
   return (
     <>
-      <div className="mealPlan__day">
-        <h2 className="mealPlan__day__title">{mealPlan.listName}</h2>
-        <div className="mealPlan__day__arrow__outter" onClick={openList}>
-          <div className={arrowOrLine}></div>
+      <section className="mealPlan">
+        <div className="mealPlan__day">
+          <h2 className="mealPlan__day__title">{mealPlan.listName}</h2>
+          <div className="mealPlan__day__arrow__outter" onClick={openList}>
+            <div className={arrowOrLine}></div>
+          </div>
         </div>
-      </div>
 
-      {visible && <>{mealPlanMeals}</>}
-      {/* {visible && <p>totalt</p>} */}
+        <section className="temp">{visible && <>{mealPlanMeals}</>}</section>
 
+        {/* {visible && <p>totalt</p>} */}
+      </section>
       <hr className="mealPlan__day__divider--lower dividers" />
     </>
   );

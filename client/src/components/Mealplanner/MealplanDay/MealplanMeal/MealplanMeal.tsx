@@ -3,7 +3,6 @@ import { IMeal, IMealplans } from '../../../../Interfaces/Mealplans';
 import AddedProducts from './AddedProducts/AddedProducts';
 
 interface IMealplanMeal {
-  mealIndex: number;
   meal: IMeal;
   mealPlan: IMealplans;
   mealPlans: IMealplans[];
@@ -12,7 +11,6 @@ interface IMealplanMeal {
 
 const MealplanMeal: FC<IMealplanMeal> = ({
   meal,
-  mealIndex,
   mealPlan,
   mealPlans,
   setMealPlans,
@@ -23,22 +21,15 @@ const MealplanMeal: FC<IMealplanMeal> = ({
     setVisible(!visible);
   };
 
-  const firstHrWider = (index: number): string => {
-    return index === 0
-      ? 'mealPlan__meal__divider--upper dividers wide'
-      : 'mealPlan__meal__divider--upper dividers';
-  };
-
   const arrowOrLine = visible
-    ? 'mealPlan__meal__arrow__inner mealPlan__meal__arrow__inner__make-line'
-    : 'mealPlan__meal__arrow__inner';
+    ? 'mealPlan__meal__title__toggle__inner mealPlan__meal__title__toggle__inner__make-line'
+    : 'mealPlan__meal__title__toggle__inner';
 
   return (
-    <>
-      <hr className={firstHrWider(mealIndex)} />
-      <div className="mealPlan__meal">
-        <h3 className="mealPlan__meal__title">{meal.listName}</h3>
-        <div className="mealPlan__meal__arrow__outter" onClick={openList}>
+    <div className="mealPlan__meal">
+      <div className="mealPlan__meal__title">
+        <h3 className="mealPlan__meal__title__name">{meal.listName}</h3>
+        <div className="mealPlan__meal__title__toggle" onClick={openList}>
           <div className={arrowOrLine}></div>
         </div>
       </div>
@@ -51,7 +42,7 @@ const MealplanMeal: FC<IMealplanMeal> = ({
           setMealPlans={setMealPlans}
         />
       )}
-    </>
+    </div>
   );
 };
 

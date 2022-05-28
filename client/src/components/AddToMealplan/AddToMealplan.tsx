@@ -1,6 +1,6 @@
 import { IMeal, IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
-import GramInput from './GramInput/GramInput';
+import ServingInput from './ServingInput/ServingInput';
 import {
   FC,
   useRef,
@@ -18,7 +18,7 @@ interface IAddToMealplan {
   setSelectedProduct: Dispatch<React.SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
   setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>;
-  gramInputRef: MutableRefObject<HTMLInputElement | undefined>;
+  servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
   currentProduct: IProducts | {};
   setCurrentProduct: Dispatch<React.SetStateAction<IProducts>>;
 }
@@ -30,12 +30,12 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   setSelectedProduct,
   currentProduct,
   setCurrentProduct,
-  gramInputRef,
+  servingInputRef,
 }) => {
   const selectMealplanDayRef = useRef<HTMLSelectElement | undefined>();
   const selectMealplanMealRef = useRef<HTMLSelectElement | undefined>();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [existsErrorMessage, setExistsErrorMessage] = useState('');
 
   const [mealNamesList, setMealNamesList] = useState(['Måltid 1']);
   const [dayNamesList, setDayNamesList] = useState([
@@ -117,8 +117,8 @@ const AddToMealplan: FC<IAddToMealplan> = ({
         setListNames={setDayNamesList}
         ref={selectMealplanDayRef}
       />
-      <GramInput
-        ref={gramInputRef}
+      <ServingInput
+        ref={servingInputRef}
         className={className + '__add-to-list__gram-input'}
         selectedProduct={selectedProduct}
         setSelectedProduct={setSelectedProduct}
@@ -126,7 +126,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
         setCurrentProduct={setCurrentProduct}
         mealPlans={mealPlans}
         setMealPlans={setMealPlans}
-        setErrorMessage={setErrorMessage}
+        setExistsErrorMessage={setExistsErrorMessage}
         selectMealplanMealRef={selectMealplanMealRef}
         selectMealplanDayRef={selectMealplanDayRef}
       />
@@ -144,7 +144,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
             selectedProduct,
             mealPlans,
             setMealPlans,
-            setErrorMessage,
+            setExistsErrorMessage,
             selectMealplanMealRef,
             selectMealplanDayRef
           )
@@ -152,9 +152,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
       >
         Legg til
       </button>
-      {true && (
-        <p className={className + '__add-to-list__error'}>{errorMessage}</p>
-      )}
+      <p className={className + '__add-to-list__error'}>{existsErrorMessage}</p>
     </div>
   );
 };
