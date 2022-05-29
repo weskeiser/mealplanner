@@ -16,63 +16,23 @@ html {
 body {
   height: 100%;
   // REMOVE AFTER DEV
-  touch-action: none;
-}
-
-@mixin nutrition-list {
-  &__heading {
-    color: $page-color-text;
-    font-size: 0.7em;
-    display: flex;
-    margin-top: 2em;
-    margin-bottom: 0.2em;
-
-    &__serving {
-      margin-left: auto;
-      margin-top: 0.3em;
-      font-weight: bold;
-    }
-  }
-
-  &__list-item {
-    color: $page-color-text;
-    border-top: 1px solid $page-color;
-    border-right: 1px solid $page-color;
-    border-left: 1px solid $page-color;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-
-    & > * {
-      padding: 0 0.3em;
-    }
-
-    &:last-child {
-      border-bottom: 1px solid $page-color;
-    }
-
-    &:nth-child(even) {
-    }
-
-    &__key {
-      border-right: 1px solid $page-color;
-    }
-
-    &__value {
-      margin-left: auto;
-    }
-  }
+  // touch-action: none;
 }
 
 // Page color 1
 $page-color: rgb(134, 178, 232);
 $page-color-lighter: rgb(154, 189, 226);
 $page-color-text: rgb(45, 97, 160);
+$title-color: #d9bb7e;
+$title-color-lighter: #e7c376;
+
 $page-color-opacity2: rgba($page-color, 0.2);
 
-// Page color 2
-$page-color2: rgb(120, 45, 45);
+$data-ink: #dadada;
+$data-ink-text: #b7b7b7;
 
-$search-bar-width: 85%;
+$data-ink: #dadada;
+$data-ink-text: #9b9b9b;
 
 #root {
   height: 100%;
@@ -98,22 +58,20 @@ main {
 .page-title {
   text-align: center;
   font-size: 1.5em;
-  border: 1px solid $page-color;
+  border-top: 1px solid $page-color;
   padding: 0.4em 0;
   padding-top: 0.5em;
-  color: $page-color-text;
+  color: $title-color;
+  // color: #e2d6bc;
 }
 
 .search-section {
-  // - Search Bar
   &__search-bar {
     display: grid;
-    grid-template-columns: 1fr $search-bar-width 1fr;
-    margin-top: 1.6em;
 
     & > input {
       grid-row: 1;
-      grid-column: 2;
+      grid-column: 1/3;
       width: 100%;
       height: 3em;
       padding-left: 0.5em;
@@ -125,7 +83,7 @@ main {
 
     & > img {
       grid-row: 1;
-      grid-column: 2;
+      grid-column: 1/3;
       margin: auto 0;
       margin-left: auto;
       margin-right: 1em;
@@ -139,7 +97,6 @@ main {
   &__search-results {
     position: absolute;
     display: grid;
-    grid-template-columns: 1fr $search-bar-width 1fr;
     font-size: 1.2em;
     line-height: 1.5em;
     color: #fff;
@@ -148,10 +105,9 @@ main {
       background-color: $page-color;
       background-color: #fff;
       color: $page-color-text;
-      grid-column: 2;
       cursor: pointer;
       display: grid;
-      grid-template-columns: repeat(9, 1fr);
+      grid-template-columns: 1fr 5fr 3fr;
       border-bottom: 1px solid $page-color;
       border-right: 1px solid $page-color;
       height: 1.9em;
@@ -166,15 +122,12 @@ main {
         border-left: 1px solid $page-color;
         border-right: 1px solid $page-color;
         height: 100%;
-
         width: 100%;
-        grid-column: 1;
       }
 
       &__name {
         font-size: 0.7em;
         font-weight: 600;
-        grid-column: 2/6;
         margin: auto 0;
         margin-left: 0.3em;
         max-width: 17em;
@@ -200,7 +153,7 @@ main {
       &__brand {
         color: rgba($page-color-text, 0.6);
         font-weight: 600;
-        grid-column: 7 / 10;
+        // grid-column: 7 / 10;
         font-size: 0.6em;
         margin: auto 0;
         white-space: nowrap;
@@ -216,7 +169,7 @@ main {
 // Add Custom Product
 .custom-product {
   // position: fixed;
-  margin: 0em 2.26em;
+  margin-left: 1em;
   &__initializer {
     margin-bottom: 0.6em;
     cursor: pointer;
@@ -316,7 +269,8 @@ main {
 }
 
 .selected-product {
-  margin: 0 1.6em;
+  margin: 0 1em;
+  margin-top: 1.2em;
 
   &__divider--upper {
     margin-bottom: 1.6em;
@@ -336,6 +290,7 @@ main {
       margin-left: 0.4em;
       color: $page-color-text;
       font-size: 1.2em;
+      color: $title-color-lighter;
     }
 
     &__brand {
@@ -347,7 +302,42 @@ main {
 
   // - Nutrition List
   &__nutrition-list {
-    @include nutrition-list();
+    width: 100%;
+    color: $page-color-text;
+    // font-weight: 600;
+
+    &__heading {
+      color: $page-color-text;
+      font-size: 0.7em;
+      display: flex;
+      margin: 0 0.4em;
+      margin-top: 2em;
+      margin-bottom: 0.2em;
+
+      &__serving {
+        margin-left: auto;
+        margin-top: 0.3em;
+        font-weight: bold;
+      }
+    }
+
+    & > tbody {
+      & > tr {
+        & > td {
+          padding: 0.2em 0.3em;
+          &:first-child {
+            // border: 1px solid $page-color;
+            border: 1px solid $data-ink;
+          }
+
+          &:nth-child(2) {
+            // color: red;
+            text-align: right;
+            border: 1px solid $data-ink;
+          }
+        }
+      }
+    }
   }
 
   // - Add To List
@@ -521,23 +511,23 @@ main {
 
     &__meal {
       $meal-background: rgb(246, 249, 255);
-      $meal-background: rgb(240, 245, 254);
+      $meal-background: rgb(232, 232, 232);
+      $meal-background: #f6f6f6;
+      $meal-color: rgb(92, 122, 174);
 
       background-color: $meal-background;
       margin: 1em 1em;
       padding: 1em 1em;
-      border-radius: 1em;
-      border: 1px solid $page-color-opacity2;
+      border-radius: 0.3em;
 
       &__title {
         // border: 1px solid black;
-        // display: flex;
         display: grid;
         grid-template-columns: 7fr 1fr;
         font-size: 0.9em;
+        color: $meal-color;
         &__name {
           // border: 1px solid black;
-          color: $page-color-text;
         }
 
         &__toggle {
@@ -553,7 +543,7 @@ main {
           &__inner {
             margin: 0 auto;
             font-size: 0.8em;
-            border: 0.2em solid $page-color-text;
+            border: 0.2em solid $meal-color;
             border-top: transparent;
             border-left: transparent;
             width: 1em;
@@ -561,7 +551,7 @@ main {
             transform: rotate(45deg);
 
             &__make-line {
-              border: 1px solid $page-color-text;
+              border: 1px solid $meal-color;
               transform: none;
               margin-top: 0.5em;
               height: 0.1em;
@@ -574,7 +564,7 @@ main {
       &__products-and-nutrition {
         margin-top: 0.5em;
         &__product {
-          color: $page-color-text;
+          color: $meal-color;
           // margin: 0.2em 1em;
           // display: flex;
           display: grid;
@@ -597,6 +587,7 @@ main {
 
           &__serving {
             // border: 1px solid black;
+            margin-left: auto;
           }
 
           &__remove {
@@ -604,7 +595,8 @@ main {
             margin-top: 0.05em;
             padding: 0 0.6em;
             color: $page-color;
-            color: rgb(203, 160, 160);
+            // color: rgb(203, 160, 160);
+            color: rgb(170, 80, 80);
             background-color: $meal-background;
             border: none;
             height: 1em;
@@ -616,20 +608,92 @@ main {
         }
 
         &__nutrition-list {
-          margin: 0 1.6em;
+          // margin: 0 1.6em;
+          color: $meal-color;
+          width: 100%;
 
           &__heading {
-            margin: 0 2.3em;
+            font-size: 0.7em;
+            display: flex;
+            margin: 0 0.4em;
+            margin-top: 2em;
+            margin-bottom: 0.2em;
+            color: $data-ink-text;
 
             &__title {
               margin-top: auto;
             }
 
             &__serving {
+              margin-left: auto;
+              margin-top: 0.3em;
               font-size: 1.1em;
+              font-weight: bold;
             }
           }
-          @include nutrition-list();
+
+          & > thead {
+            // display: flex;
+            font-size: 0.7em;
+            // display: flex;
+            // margin: 0 0.4em;
+            // margin-top: 2em;
+            // margin-bottom: 0.2em;
+            color: $data-ink-text;
+            font-weight: bold;
+            // width: 100%;
+
+            & > tr :nth-child(1) {
+              text-align: left;
+            }
+
+            :nth-child(2) {
+              // margin-left: auto;
+            }
+          }
+
+          & > tbody {
+            & > tr {
+              & > td {
+                padding: 0.2em;
+                &:first-child {
+                  border: 1px solid $data-ink;
+                }
+
+                &:nth-child(2) {
+                  // color: red;
+                  text-align: right;
+                  border: 1px solid $data-ink;
+                }
+              }
+            }
+          }
+
+          &__list-item {
+            // color: $page-color-text;
+            border-top: 1px solid $data-ink;
+            border-right: 1px solid $data-ink;
+            border-left: 1px solid $data-ink;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            padding: 0.3em;
+
+            & > * {
+              padding: 0 0.3em;
+            }
+
+            &:last-child {
+              border-bottom: 1px solid $data-ink;
+            }
+
+            &__key {
+              border-right: 1px solid $data-ink;
+            }
+
+            &__value {
+              margin-left: auto;
+            }
+          }
         }
       }
     }

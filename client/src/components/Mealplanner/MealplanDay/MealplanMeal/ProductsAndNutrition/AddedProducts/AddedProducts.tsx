@@ -8,7 +8,7 @@ interface IProductsAndNutrition {
   mealPlans: IMealplans[];
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
   mealPlanDayName: string;
-  pAndNClass: string;
+  productsAndNutritionC: string;
 }
 
 const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
@@ -16,7 +16,7 @@ const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
   mealPlans,
   setMealPlans,
   mealPlanDayName,
-  pAndNClass,
+  productsAndNutritionC,
 }) => {
   const removeProductFromMeal = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -55,21 +55,25 @@ const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
           index
         ) => (
           <ListItem
-            className={pAndNClass + '__product'}
+            className={productsAndNutritionC + '__product'}
             key={mealPlanDayName + mealPlanMealName + name + properties.serving}
             children={
               <>
-                <p className={pAndNClass + '__product__title'}>
+                <p className={productsAndNutritionC + '__product__title'}>
                   {name},{' '}
-                  <span className={pAndNClass + '__product__title__brand'}>
+                  <span
+                    className={
+                      productsAndNutritionC + '__product__title__brand'
+                    }
+                  >
                     {properties.brand}
                   </span>
                 </p>
-                <p className={pAndNClass + '__product__serving'}>
+                <p className={productsAndNutritionC + '__product__serving'}>
                   {properties.serving}g
                 </p>
                 <button
-                  className={pAndNClass + '__product__remove'}
+                  className={productsAndNutritionC + '__product__remove'}
                   data-index={index}
                   onClick={(e) => removeProductFromMeal(e)}
                 >

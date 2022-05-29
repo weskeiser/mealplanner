@@ -113,7 +113,7 @@ function App() {
       }
     >
       <h1 className="page-title">Måltidsplanlegger</h1>
-      <section className="search-section" aria-label="search for product">
+      <section className="search-section" aria-label="product search">
         <SearchBar
           searchBarRef={searchBarRef}
           searchResultsRef={searchResultsRef}
@@ -138,7 +138,7 @@ function App() {
         />
       </section>
       <AddCustomProduct />
-      <hr className="selected-product__divider--upper dividers" />
+      {/* <hr className="selected-product__divider--upper dividers" /> */}
       <section className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionTitleBar selectedProduct={selectedProduct} />

@@ -28,7 +28,6 @@ const ProductName: FC<IProductName> = ({
     productName.toLowerCase().startsWith(searchTerm.toLowerCase())
       ? 'search-section__search-results__list-item__name'
       : 'search-section__search-results__list-item__name search-section__search-results__list-item__name__unhighlighted-product';
-  console.log(highlighted, productName);
 
   return (
     <p title={product.name} className={checkForHighlight}>

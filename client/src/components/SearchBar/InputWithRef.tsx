@@ -40,12 +40,12 @@ const InputWithRef: ForwardRefExoticComponent<
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      const searchBarEl = searchResultsRef.current;
+      const searchResultsEl = searchResultsRef.current;
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         if (searchTerm) {
           const firstSearchResult =
-            searchBarEl.children[focusedSearchResult + 0];
+            searchResultsEl.children[focusedSearchResult + 0];
 
           firstSearchResult.focus();
           setFocusedSearchResult(
@@ -56,12 +56,12 @@ const InputWithRef: ForwardRefExoticComponent<
 
       if (e.key === 'Escape') {
         setCurrentProduct({});
-        searchBarEl.value = '';
+        searchBarRef.current.value = '';
         setSearchTerm('');
         setFocusedSearchResult(0);
 
         if (!searchTerm) {
-          searchBarEl.blur();
+          searchBarRef.current.blur();
         }
       }
     };

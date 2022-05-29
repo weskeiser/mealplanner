@@ -73,31 +73,36 @@ const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
     }
   );
 
-  const pAndNClass = 'mealPlan__meals__meal__products-and-nutrition';
+  const productsAndNutritionC = 'mealPlan__meals__meal__products-and-nutrition';
 
   return (
     <>
-      <ul className={pAndNClass}>
+      <ul className={productsAndNutritionC}>
         <AddedProducts
           meal={meal}
           mealPlans={mealPlans}
           setMealPlans={setMealPlans}
           mealPlanDayName={mealPlanDayName}
-          pAndNClass={pAndNClass}
+          productsAndNutritionC={productsAndNutritionC}
         />
       </ul>
-      <div className={pAndNClass + '__nutrition-list__heading'}>
-        <h3 className={pAndNClass + '__nutrition-list__heading__title'}>
+      <div className={productsAndNutritionC + '__nutrition-list__heading'}>
+        <h3
+          className={productsAndNutritionC + '__nutrition-list__heading__title'}
+        >
           Næringsinnhold
         </h3>
-        <p className={pAndNClass + '__nutrition-list__heading__serving'}>
+        <p
+          className={
+            productsAndNutritionC + '__nutrition-list__heading__serving'
+          }
+        >
           Totalt
         </p>
       </div>
       <NutritionList
-        className={pAndNClass + '__nutrition-list'}
+        className={productsAndNutritionC + '__nutrition-list'}
         selectedProduct={totalNutritionalValue}
-        additionalKeys={mealPlanDayName + meal.listName}
       />
     </>
   );
