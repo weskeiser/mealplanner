@@ -44,7 +44,7 @@ main {
   border-top: 1px solid #86b2e8;
   padding: 0.4em 0;
   padding-top: 0.5em;
-  color: #d9bb7e;
+  color: #2d61a0;
 }
 
 .search-section__search-bar {
@@ -272,7 +272,7 @@ main {
   margin-left: 0.4em;
   color: #2d61a0;
   font-size: 1.2em;
-  color: #e7c376;
+  color: #86b2e8;
 }
 
 .selected-product__title__brand {

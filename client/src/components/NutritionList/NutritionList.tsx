@@ -19,14 +19,12 @@ const NutritionList: FC<IListContent> = ({
 
   return (
     <table className={className}>
-      <thead>
+      {/* <thead>
         <tr>
           <th>Næringsinnhold</th>
           <th>Get text from parent</th>
         </tr>
-        {/* <tr>Næringsinnhold</tr>
-        <tr>Pr. {serving}g</tr> */}
-      </thead>
+      </thead> */}
 
       <tbody>
         <tr>

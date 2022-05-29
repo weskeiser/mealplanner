@@ -61,7 +61,7 @@ main {
   border-top: 1px solid $page-color;
   padding: 0.4em 0;
   padding-top: 0.5em;
-  color: $title-color;
+  color: $page-color-text;
   // color: #e2d6bc;
 }
 
@@ -290,7 +290,7 @@ main {
       margin-left: 0.4em;
       color: $page-color-text;
       font-size: 1.2em;
-      color: $title-color-lighter;
+      color: $page-color;
     }
 
     &__brand {
