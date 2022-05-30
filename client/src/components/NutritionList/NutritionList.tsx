@@ -5,26 +5,27 @@ import { ItotalNutritionalValue } from '../Mealplanner/MealplanDay/MealplanMeal/
 interface IListContent {
   className: string;
   selectedProduct: IProducts | ItotalNutritionalValue;
+  totalServing: string;
 }
 
 const NutritionList: FC<IListContent> = ({
   className,
   selectedProduct,
-  servingTitle,
+  totalServing,
 }) => {
   const { properties } = selectedProduct;
-  const { serving, calories, salt, macros } = properties;
+  const { calories, salt, macros } = properties;
   const { fat, protein, carbs } = macros;
   const { total, sugars } = carbs;
 
   return (
-    <table className={className}>
-      {/* <thead>
+    <table className={className + '__nutrition-list'}>
+      <thead>
         <tr>
           <th>Næringsinnhold</th>
-          <th>Get text from parent</th>
+          <th>{totalServing}</th>
         </tr>
-      </thead> */}
+      </thead>
 
       <tbody>
         <tr>

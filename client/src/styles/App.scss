@@ -16,7 +16,7 @@ html {
 body {
   height: 100%;
   // REMOVE AFTER DEV
-  // touch-action: none;
+  touch-action: none;
 }
 
 // Page color 1
@@ -29,10 +29,49 @@ $title-color-lighter: #e7c376;
 $page-color-opacity2: rgba($page-color, 0.2);
 
 $data-ink: #dadada;
-$data-ink-text: #b7b7b7;
-
-$data-ink: #dadada;
 $data-ink-text: #9b9b9b;
+
+// Meal colors
+$meal-background: rgb(246, 249, 255);
+$meal-background: rgb(232, 232, 232);
+$meal-background: #f6f6f6;
+$meal-color: rgb(92, 122, 174);
+
+@mixin nutrition-list {
+  color: $page-color-text;
+  width: 100%;
+  border-collapse: collapse;
+
+  & > thead {
+    font-size: 0.7em;
+    color: $data-ink-text;
+    font-weight: bold;
+
+    & > tr :nth-child(1) {
+      text-align: left;
+    }
+
+    & > tr :nth-child(2) {
+      text-align: right;
+    }
+  }
+
+  & > tbody {
+    & > tr {
+      & > td {
+        padding: 0.2em 0.3em;
+        &:first-child {
+          border: 1px solid $data-ink;
+        }
+
+        &:nth-child(2) {
+          text-align: right;
+          border: 1px solid $data-ink;
+        }
+      }
+    }
+  }
+}
 
 #root {
   height: 100%;
@@ -221,7 +260,7 @@ main {
         //   border-top: 1px solid $page-color;
         // }
 
-        & > p {
+        & > label {
           border-right: 1px solid $page-color;
           background-color: $page-color-opacity2;
         }
@@ -278,66 +317,35 @@ main {
 
   &__title {
     margin-left: 0.3em;
-    display: flex;
+    display: grid;
+    grid-template-columns: 3.5em 1fr;
+    grid-template-rows: 2fr 1fr;
 
     &__logo {
       width: 3.5em;
       height: 3em;
-      margin-right: 0.5em;
+      // margin-right: 0.5em;
+      grid-row: 1/3;
     }
 
     &__name {
-      margin-left: 0.4em;
+      margin-left: 0.8em;
       color: $page-color-text;
       font-size: 1.2em;
-      color: $page-color;
     }
 
     &__brand {
       color: rgba($page-color-text, 0.6);
-      margin-left: 1.1em;
+      margin-left: 1.65em;
+      margin-top: -0.5em;
       font-size: 0.8em;
     }
   }
 
   // - Nutrition List
   &__nutrition-list {
-    width: 100%;
-    color: $page-color-text;
-    // font-weight: 600;
-
-    &__heading {
-      color: $page-color-text;
-      font-size: 0.7em;
-      display: flex;
-      margin: 0 0.4em;
-      margin-top: 2em;
-      margin-bottom: 0.2em;
-
-      &__serving {
-        margin-left: auto;
-        margin-top: 0.3em;
-        font-weight: bold;
-      }
-    }
-
-    & > tbody {
-      & > tr {
-        & > td {
-          padding: 0.2em 0.3em;
-          &:first-child {
-            // border: 1px solid $page-color;
-            border: 1px solid $data-ink;
-          }
-
-          &:nth-child(2) {
-            // color: red;
-            text-align: right;
-            border: 1px solid $data-ink;
-          }
-        }
-      }
-    }
+    @include nutrition-list();
+    margin-top: 1em;
   }
 
   // - Add To List
@@ -460,42 +468,33 @@ main {
   &__day {
     // border: 1px solid black;
     display: flex;
-    margin-top: 1em;
-    margin-left: 1.5em;
+    height: 3.5em;
 
     &__title {
+      margin: auto 0;
+      margin-left: 1em;
       color: $page-color-text;
       font-size: 1.2em;
-    }
 
-    &__arrow {
-      &__outter {
+      &__toggle {
         // border: 1px solid black;
+        display: flex;
         margin-left: auto;
-        margin-top: -0.7em;
         width: 5em;
-        height: 3em;
-        padding-left: 1.5em;
-        padding-top: 0.7em;
         cursor: pointer;
-      }
 
-      &__inner {
-        border: 0.2em solid $page-color-text;
-        border-top: transparent;
-        border-left: transparent;
-        width: 1em;
-        height: 1em;
-        transform: rotate(45deg);
-        // border-radius: 0.1em;
+        &__inner {
+          margin: auto auto;
+          border: 0.2em solid $page-color-text;
+          border-top: transparent;
+          border-left: transparent;
+          width: 1em;
+          height: 1em;
+          transform: rotate(-45deg);
 
-        &__make-line {
-          border: 1px solid $page-color-text;
-          transform: none;
-          margin-top: 0.5em;
-          height: 0;
-          width: 1.3em;
-          margin-left: -0.2em;
+          &__make-line {
+            transform: rotate(45deg);
+          }
         }
       }
     }
@@ -510,11 +509,6 @@ main {
     margin-bottom: 3em;
 
     &__meal {
-      $meal-background: rgb(246, 249, 255);
-      $meal-background: rgb(232, 232, 232);
-      $meal-background: #f6f6f6;
-      $meal-color: rgb(92, 122, 174);
-
       background-color: $meal-background;
       margin: 1em 1em;
       padding: 1em 1em;
@@ -526,47 +520,37 @@ main {
         grid-template-columns: 7fr 1fr;
         font-size: 0.9em;
         color: $meal-color;
-        &__name {
-          // border: 1px solid black;
-        }
 
         &__toggle {
           // border: 1px solid black;
+          padding-top: 0.25em;
           margin-left: auto;
-          margin-top: -0.7em;
-          width: 3em;
-          padding-top: 0.9em;
-          padding-left: 0.3em;
           cursor: pointer;
           display: flex;
+          width: 100%;
 
           &__inner {
-            margin: 0 auto;
-            font-size: 0.8em;
+            margin-left: auto;
+            margin-right: 0.8em;
             border: 0.2em solid $meal-color;
             border-top: transparent;
             border-left: transparent;
             width: 1em;
             height: 1em;
-            transform: rotate(45deg);
+            transform: rotate(-45deg);
 
             &__make-line {
-              border: 1px solid $meal-color;
-              transform: none;
-              margin-top: 0.5em;
-              height: 0.1em;
-              width: 1.3em;
+              margin-top: -0.25em;
+              transform: rotate(45deg);
             }
           }
         }
       }
 
       &__products-and-nutrition {
-        margin-top: 0.5em;
+        margin-bottom: 2em;
         &__product {
           color: $meal-color;
-          // margin: 0.2em 1em;
-          // display: flex;
           display: grid;
           grid-template-columns: 6fr 1fr 1fr;
 
@@ -591,11 +575,9 @@ main {
           }
 
           &__remove {
-            // margin-left: 0.5em;
             margin-top: 0.05em;
             padding: 0 0.6em;
             color: $page-color;
-            // color: rgb(203, 160, 160);
             color: rgb(170, 80, 80);
             background-color: $meal-background;
             border: none;
@@ -608,92 +590,7 @@ main {
         }
 
         &__nutrition-list {
-          // margin: 0 1.6em;
-          color: $meal-color;
-          width: 100%;
-
-          &__heading {
-            font-size: 0.7em;
-            display: flex;
-            margin: 0 0.4em;
-            margin-top: 2em;
-            margin-bottom: 0.2em;
-            color: $data-ink-text;
-
-            &__title {
-              margin-top: auto;
-            }
-
-            &__serving {
-              margin-left: auto;
-              margin-top: 0.3em;
-              font-size: 1.1em;
-              font-weight: bold;
-            }
-          }
-
-          & > thead {
-            // display: flex;
-            font-size: 0.7em;
-            // display: flex;
-            // margin: 0 0.4em;
-            // margin-top: 2em;
-            // margin-bottom: 0.2em;
-            color: $data-ink-text;
-            font-weight: bold;
-            // width: 100%;
-
-            & > tr :nth-child(1) {
-              text-align: left;
-            }
-
-            :nth-child(2) {
-              // margin-left: auto;
-            }
-          }
-
-          & > tbody {
-            & > tr {
-              & > td {
-                padding: 0.2em;
-                &:first-child {
-                  border: 1px solid $data-ink;
-                }
-
-                &:nth-child(2) {
-                  // color: red;
-                  text-align: right;
-                  border: 1px solid $data-ink;
-                }
-              }
-            }
-          }
-
-          &__list-item {
-            // color: $page-color-text;
-            border-top: 1px solid $data-ink;
-            border-right: 1px solid $data-ink;
-            border-left: 1px solid $data-ink;
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            padding: 0.3em;
-
-            & > * {
-              padding: 0 0.3em;
-            }
-
-            &:last-child {
-              border-bottom: 1px solid $data-ink;
-            }
-
-            &__key {
-              border-right: 1px solid $data-ink;
-            }
-
-            &__value {
-              margin-left: auto;
-            }
-          }
+          @include nutrition-list();
         }
       }
     }

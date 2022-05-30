@@ -16,14 +16,12 @@ const SelectedProductTitle: FC<ISelectedProductTitle> = ({
           src={selectedProduct.properties.logo}
           alt=""
         />
-        <div>
-          <h2 className="selected-product__title__name">
-            {selectedProduct.name}
-          </h2>
-          <h3 className="selected-product__title__brand">
-            {selectedProduct.properties.brand}
-          </h3>
-        </div>
+        <h2 className="selected-product__title__name">
+          {selectedProduct.name}
+        </h2>
+        <h3 className="selected-product__title__brand">
+          {selectedProduct.properties.brand}
+        </h3>
       </div>
     </>
   );

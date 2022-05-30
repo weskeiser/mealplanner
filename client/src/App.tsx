@@ -9,7 +9,6 @@ import AddToMealplan from './components/AddToMealplan/AddToMealplan';
 import NutritionList from './components/NutritionList/NutritionList';
 
 import hideSearchResults from './components/utils/hideSearchResults';
-import NutritionTitleBar from './components/NutritionTitleBar/NutritionTitleBar';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
 import Mealplanner from './components/Mealplanner/Mealplan';
@@ -138,13 +137,12 @@ function App() {
         />
       </section>
       <AddCustomProduct />
-      {/* <hr className="selected-product__divider--upper dividers" /> */}
       <section className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
-        <NutritionTitleBar selectedProduct={selectedProduct} />
         <NutritionList
-          className={selectedProductClass + '__nutrition-list'}
+          className={selectedProductClass}
           selectedProduct={selectedProduct}
+          totalServing={'Pr. ' + selectedProduct.properties.serving + 'g'}
         />
         <AddToMealplan
           selectedProduct={selectedProduct}

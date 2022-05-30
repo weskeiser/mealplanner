@@ -29,17 +29,17 @@ const MealplanDay: FC<IMealplanDay> = ({
     />
   ));
 
-  const arrowOrLine = visible
-    ? 'mealPlan__day__arrow__inner mealPlan__day__arrow__inner__make-line'
-    : 'mealPlan__day__arrow__inner';
+  const openOrClosed = visible
+    ? 'mealPlan__day__title__toggle__inner mealPlan__day__title__toggle__inner__make-line'
+    : 'mealPlan__day__title__toggle__inner';
 
   return (
     <>
       <section className="mealPlan">
         <section className="mealPlan__day">
           <h2 className="mealPlan__day__title">{mealPlan.listName}</h2>
-          <div className="mealPlan__day__arrow__outter" onClick={openList}>
-            <div className={arrowOrLine}></div>
+          <div className="mealPlan__day__title__toggle" onClick={openList}>
+            <div className={openOrClosed}></div>
           </div>
         </section>
 

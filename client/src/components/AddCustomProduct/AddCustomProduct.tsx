@@ -85,12 +85,12 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
   // ));
 
   return (
-    <div className="custom-product">
+    <section className="custom-product">
       <button
         className="custom-product__initializer"
         onClick={toggleVisibility}
       >
-        Legg til egendefinert
+        + Legg til egendefinert
       </button>
       {visible && (
         <form className="custom-product__form">
@@ -113,8 +113,13 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
                 key={'custom' + key}
                 children={
                   <>
-                    <p>{key}</p>
-                    <input type="text" name={key} placeholder="" />
+                    <label htmlFor={'addCustom' + key}>{key}</label>
+                    <input
+                      id={'addCustom' + key}
+                      type="text"
+                      name={key}
+                      placeholder=""
+                    />
                   </>
                 }
               />
@@ -125,7 +130,7 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
           </button>
         </form>
       )}
-    </div>
+    </section>
   );
 };
 

@@ -86,23 +86,11 @@ const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
           productsAndNutritionC={productsAndNutritionC}
         />
       </ul>
-      <div className={productsAndNutritionC + '__nutrition-list__heading'}>
-        <h3
-          className={productsAndNutritionC + '__nutrition-list__heading__title'}
-        >
-          Næringsinnhold
-        </h3>
-        <p
-          className={
-            productsAndNutritionC + '__nutrition-list__heading__serving'
-          }
-        >
-          Totalt
-        </p>
-      </div>
+
       <NutritionList
-        className={productsAndNutritionC + '__nutrition-list'}
+        className={productsAndNutritionC}
         selectedProduct={totalNutritionalValue}
+        totalServing={'Totalt'}
       />
     </>
   );

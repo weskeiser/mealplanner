@@ -21,7 +21,7 @@ const MealplanMeal: FC<IMealplanMeal> = ({
     setVisible(!visible);
   };
 
-  const arrowOrLine = visible
+  const openOrClosed = visible
     ? 'mealPlan__meals__meal__title__toggle__inner mealPlan__meals__meal__title__toggle__inner__make-line'
     : 'mealPlan__meals__meal__title__toggle__inner';
 
@@ -33,7 +33,7 @@ const MealplanMeal: FC<IMealplanMeal> = ({
           className="mealPlan__meals__meal__title__toggle"
           onClick={openList}
         >
-          <div className={arrowOrLine}></div>
+          <div className={openOrClosed}></div>
         </div>
       </div>
 
