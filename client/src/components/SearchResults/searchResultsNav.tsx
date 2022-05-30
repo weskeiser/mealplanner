@@ -15,8 +15,6 @@ const searchResultsNav = (
   if (e.key === 'ArrowDown') {
     e.preventDefault();
 
-    console.log(allSearchResults[0].children[1].title);
-
     if (focusedSearchResult === allSearchResults.length - 1) {
       allSearchResults[0].focus();
       setFocusedSearchResult(0);

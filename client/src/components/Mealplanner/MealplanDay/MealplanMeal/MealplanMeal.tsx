@@ -29,12 +29,12 @@ const MealplanMeal: FC<IMealplanMeal> = ({
     <section className="mealPlan__meals__meal">
       <div className="mealPlan__meals__meal__title">
         <h3 className="mealPlan__meals__meal__title__name">{meal.listName}</h3>
-        <div
+        <button
           className="mealPlan__meals__meal__title__toggle"
           onClick={openList}
         >
           <div className={openOrClosed}></div>
-        </div>
+        </button>
       </div>
 
       {visible && (

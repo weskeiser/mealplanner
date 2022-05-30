@@ -85,7 +85,11 @@ const SearchResults: ForwardRefExoticComponent<
       : 'hidden';
 
     return (
-      <ul className={visibleIfSearchTerm} ref={searchResultsRef}>
+      <ul
+        className={visibleIfSearchTerm}
+        ref={searchResultsRef}
+        aria-label="search results"
+      >
         {searchResultsContents.map((product, index) => (
           <ListItem
             children={

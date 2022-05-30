@@ -309,7 +309,7 @@ main {
 
 .selected-product {
   margin: 0 1em;
-  margin-top: 1.2em;
+  margin-top: 2em;
 
   &__divider--upper {
     margin-bottom: 1.6em;
@@ -351,61 +351,18 @@ main {
   // - Add To List
   &__add-to-list {
     display: grid;
+    grid-template-columns: 3fr 2fr;
     color: $page-color-text;
     margin-top: 0.5em;
-    grid-template-columns: 3fr 2fr 1.7fr;
     grid-auto-rows: 2em;
     gap: 0.2em;
-    width: 100%;
+    width: 52%;
+    margin-left: auto;
 
     &__list-dropdown {
       background-color: #fff;
       border: 1px solid $page-color;
       color: $page-color-text;
-      // width: 6em;
-      // margin-left: 50%;
-
-      &__option {
-      }
-
-      &__add-list {
-        display: flex;
-        text-align: center;
-
-        &__input {
-          width: 78%;
-          border: 1px solid $page-color;
-          padding-left: 0.4em;
-          padding-top: 0.1em;
-          color: $page-color-text;
-          outline: none;
-          // margin-left: auto;
-        }
-
-        &__success-message {
-          font-size: 0.8em;
-          // width: 100%;
-          padding-top: 0.5em;
-          margin: 0 auto;
-          color: rgb(52, 188, 45);
-        }
-
-        &__button {
-          color: $page-color;
-          cursor: pointer;
-          font-size: 1em;
-          font-weight: 600;
-          width: 2em;
-          height: 2em;
-          margin: auto 0;
-          margin-left: auto;
-          padding-left: 0.5em;
-          padding-top: 0.15em;
-          background-color: #fff;
-          border: none;
-          // border: 1px solid black;
-        }
-      }
     }
 
     &__gram-input {
@@ -429,7 +386,6 @@ main {
 
     &__add {
       color: $page-color-text;
-      // font-weight: 600;
       background-color: #fff;
       border: 1px solid $page-color;
       border-right: 2px solid $page-color;
@@ -445,19 +401,21 @@ main {
       width: 100%;
       text-align: end;
       height: 1em;
-      grid-column: 1/4;
+      grid-column: 1/3;
+      margin-top: 0.4em;
     }
   }
 }
 
 .mealPlan {
-  // margin-bottom: 3em;
+  margin-bottom: 3em;
 
   &__title {
     font-size: 1.5em;
     color: $page-color-text;
     text-align: center;
     padding: 0.4em 0;
+    margin-top: 1em;
   }
 
   &__divider--upper {
@@ -478,6 +436,8 @@ main {
 
       &__toggle {
         // border: 1px solid black;
+        border: none;
+        background-color: #fff;
         display: flex;
         margin-left: auto;
         width: 5em;
@@ -516,22 +476,26 @@ main {
 
       &__title {
         // border: 1px solid black;
-        display: grid;
-        grid-template-columns: 7fr 1fr;
+        // display: grid;
+        // grid-template-columns: 7fr 1fr;
+        display: flex;
         font-size: 0.9em;
         color: $meal-color;
 
         &__toggle {
-          // border: 1px solid black;
+          border: none;
+          background-color: $meal-background;
           padding-top: 0.25em;
           margin-left: auto;
           cursor: pointer;
           display: flex;
-          width: 100%;
+          // width: 100%;
+          width: 2em;
+          // border: 1px solid black;
 
           &__inner {
             margin-left: auto;
-            margin-right: 0.8em;
+            // margin-right: 0.8em;
             border: 0.2em solid $meal-color;
             border-top: transparent;
             border-left: transparent;
@@ -551,8 +515,7 @@ main {
         margin-bottom: 2em;
         &__product {
           color: $meal-color;
-          display: grid;
-          grid-template-columns: 6fr 1fr 1fr;
+          display: flex;
 
           &:first-of-type {
             margin-top: 1em;
@@ -575,15 +538,15 @@ main {
           }
 
           &__remove {
-            margin-top: 0.05em;
-            padding: 0 0.6em;
+            margin-top: 0.17em;
+            margin-left: 0.3em;
             color: $page-color;
             color: rgb(170, 80, 80);
             background-color: $meal-background;
             border: none;
-            height: 1em;
+            height: 0.8em;
             font-size: 1.2em;
-            line-height: 1em;
+            line-height: 0.7em;
             cursor: pointer;
             // border: 1px solid black;
           }
@@ -593,6 +556,20 @@ main {
           @include nutrition-list();
         }
       }
+    }
+  }
+
+  &__total {
+    margin: 2em;
+
+    &__title {
+      color: $meal-color;
+      text-align: center;
+      margin-bottom: 0.7em;
+    }
+
+    &__nutrition-list {
+      @include nutrition-list();
     }
   }
 }

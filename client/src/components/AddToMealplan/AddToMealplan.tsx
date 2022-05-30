@@ -37,7 +37,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
 
   const [existsErrorMessage, setExistsErrorMessage] = useState('');
 
-  const [mealNamesList, setMealNamesList] = useState(['Måltid 1']);
+  const [mealNamesList, setMealNamesList] = useState(['Måltid 1', 'Måltid 2']);
   const [dayNamesList, setDayNamesList] = useState([
     'Mandag',
     'Tirsdag',
@@ -110,50 +110,52 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   }, [mealNamesList]);
 
   return (
-    <div className={className + '__add-to-list'}>
-      <SelectMealplan
-        className={className}
-        listNames={dayNamesList}
-        setListNames={setDayNamesList}
-        ref={selectMealplanDayRef}
-      />
-      <ServingInput
-        ref={servingInputRef}
-        className={className + '__add-to-list__gram-input'}
-        selectedProduct={selectedProduct}
-        setSelectedProduct={setSelectedProduct}
-        currentProduct={currentProduct}
-        setCurrentProduct={setCurrentProduct}
-        mealPlans={mealPlans}
-        setMealPlans={setMealPlans}
-        setExistsErrorMessage={setExistsErrorMessage}
-        selectMealplanMealRef={selectMealplanMealRef}
-        selectMealplanDayRef={selectMealplanDayRef}
-      />
-      <SelectMealplan
-        className={className}
-        listNames={mealNamesList}
-        setListNames={setMealNamesList}
-        ref={selectMealplanMealRef}
-      />
-      <button
-        className={className + '__add-to-list__add'}
-        onClick={(e) =>
-          addProductToMeal(
-            e,
-            selectedProduct,
-            mealPlans,
-            setMealPlans,
-            setExistsErrorMessage,
-            selectMealplanMealRef,
-            selectMealplanDayRef
-          )
-        }
-      >
-        Legg til
-      </button>
+    <>
+      <section className={className + '__add-to-list'}>
+        <SelectMealplan
+          className={className}
+          listNames={dayNamesList}
+          setListNames={setDayNamesList}
+          ref={selectMealplanDayRef}
+        />
+        <ServingInput
+          ref={servingInputRef}
+          className={className + '__add-to-list__gram-input'}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
+          mealPlans={mealPlans}
+          setMealPlans={setMealPlans}
+          setExistsErrorMessage={setExistsErrorMessage}
+          selectMealplanMealRef={selectMealplanMealRef}
+          selectMealplanDayRef={selectMealplanDayRef}
+        />
+        <SelectMealplan
+          className={className}
+          listNames={mealNamesList}
+          setListNames={setMealNamesList}
+          ref={selectMealplanMealRef}
+        />
+        <button
+          className={className + '__add-to-list__add'}
+          onClick={(e) =>
+            addProductToMeal(
+              e,
+              selectedProduct,
+              mealPlans,
+              setMealPlans,
+              setExistsErrorMessage,
+              selectMealplanMealRef,
+              selectMealplanDayRef
+            )
+          }
+        >
+          Legg til
+        </button>
+      </section>
       <p className={className + '__add-to-list__error'}>{existsErrorMessage}</p>
-    </div>
+    </>
   );
 };
 
