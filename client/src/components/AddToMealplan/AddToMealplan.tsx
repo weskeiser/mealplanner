@@ -35,9 +35,14 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   const selectMealplanDayRef = useRef<HTMLSelectElement | undefined>();
   const selectMealplanMealRef = useRef<HTMLSelectElement | undefined>();
 
-  const [existsErrorMessage, setExistsErrorMessage] = useState('');
+  const [unsuccessfulAddition, setUnsuccessfulAddition] = useState<
+    string[] | never[]
+  >([]);
+  const [successfulAdditions, setSuccessfulAdditions] = useState<
+    string[] | never[]
+  >([]);
 
-  const [mealNamesList, setMealNamesList] = useState([
+  const [mealNamesList, setMealNamesList] = useState<string[]>([
     'Måltid 1',
     'Måltid 2',
     'Måltid 3',
@@ -45,7 +50,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
     'Måltid 5',
     'Måltid 6',
   ]);
-  const [dayNamesList, setDayNamesList] = useState([
+  const [dayNamesList, setDayNamesList] = useState<string[]>([
     'Mandag',
     'Tirsdag',
     'Onsdag',
@@ -54,8 +59,6 @@ const AddToMealplan: FC<IAddToMealplan> = ({
     'Lørdag',
     'Søndag',
   ]);
-
-  const [checkedMeals, setCheckedMeals] = useState([]);
 
   const [firstRenderDone, setFirstRenderDone] = useState(false);
 
@@ -118,26 +121,53 @@ const AddToMealplan: FC<IAddToMealplan> = ({
     }
   }, [mealNamesList]);
 
+  const SuccessMessages = () => {
+    return (
+      <>
+        {successfulAdditions.map((addition) => (
+          <p
+            className={className + '__add-to-list__success'}
+            key={'success' + addition}
+          >
+            {selectedProduct.name}, {selectedProduct.properties.serving}g ble
+            lagt til i {addition[0]}, {addition[1]}.
+          </p>
+        ))}
+      </>
+    );
+  };
+
+  const ErrorMessages = () => {
+    return (
+      <>
+        {unsuccessfulAddition.map((unsuccessfulAddition) => (
+          <p
+            className={className + '__add-to-list__error'}
+            key={'unsuccessful' + unsuccessfulAddition}
+          >
+            {selectedProduct.name}, {selectedProduct.properties.serving}g
+            eksisterer allerede i {unsuccessfulAddition[0]},{' '}
+            {unsuccessfulAddition[1]}.
+          </p>
+        ))}
+      </>
+    );
+  };
+
   return (
     <>
       <form id="addToList" className={className + '__add-to-list'}>
         <SelectMealplan
           className={className}
           listNames={dayNamesList}
-          setListNames={setDayNamesList}
-          ref={selectMealplanDayRef}
+          inputRef={selectMealplanDayRef}
           name="selectDay"
-          // checkedMeals={checkedMeals}
-          // setCheckedMeals={setCheckedMeals}
         />
         <SelectMealplan
           className={className}
           listNames={mealNamesList}
-          setListNames={setMealNamesList}
-          ref={selectMealplanMealRef}
+          inputRef={selectMealplanMealRef}
           name="selectMeal"
-          checkedMeals={checkedMeals}
-          setCheckedMeals={setCheckedMeals}
         />
         <ServingInput
           ref={servingInputRef}
@@ -148,7 +178,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           setCurrentProduct={setCurrentProduct}
           mealPlans={mealPlans}
           setMealPlans={setMealPlans}
-          setExistsErrorMessage={setExistsErrorMessage}
+          setUnsuccessfulAddition={setUnsuccessfulAddition}
           selectMealplanMealRef={selectMealplanMealRef}
           selectMealplanDayRef={selectMealplanDayRef}
         />
@@ -161,14 +191,17 @@ const AddToMealplan: FC<IAddToMealplan> = ({
               selectedProduct,
               mealPlans,
               setMealPlans,
-              setExistsErrorMessage
+              setUnsuccessfulAddition,
+              setSuccessfulAdditions
             )
           }
         >
           Legg til
         </button>
       </form>
-      <p className={className + '__add-to-list__error'}>{existsErrorMessage}</p>
+      {/* <p className={className + '__add-to-list__error'}>{unsuccessfulAddition}</p> */}
+      {unsuccessfulAddition.length > 0 && <ErrorMessages />}
+      <SuccessMessages />
     </>
   );
 };

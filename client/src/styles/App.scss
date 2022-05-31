@@ -363,30 +363,34 @@ main {
   // - Add To List
   &__add-to-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    // grid-auto-rows: 2em;
-    // gap: 0.2em;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     color: $page-color-text;
     margin-top: 0.5em;
-    // width: 52%;
-    // margin-left: auto;
 
     &__options {
+      border: none;
+
       &__option {
         background-color: #fff;
-        border: 1px solid $page-color;
+        background-color: rgb(237, 248, 255);
+        // border-right: 1px solid $page-color;
         color: $page-color-text;
         display: grid;
         grid-template-columns: 1fr;
+        height: 2em;
 
         & > input,
         & > label {
+          margin: auto 0;
+          text-align: center;
           grid-row: 1;
           grid-column: 1;
           width: 100%;
         }
 
         & > input {
+          opacity: 0;
+          cursor: pointer;
         }
 
         & > label {
@@ -396,21 +400,22 @@ main {
 
     &__serving {
       &__input {
-        // appearance: textfield;
-        // font-family: 'Montserrat', sans-serif;
-        // font-weight: 600;
-        // width: 100%;
+        appearance: textfield;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        width: 100%;
+        padding-top: 0.1em;
+        text-align: center;
+        border: 1px solid $page-color;
+        outline: none;
+        font-size: 1.1em;
+        color: $page-color-text;
+        grid-row: 1;
         // height: 100%;
-        // padding-top: 0.1em;
-        // text-align: center;
-        // border: 1px solid $page-color;
-        // outline: none;
-        // font-size: 1.1em;
-        // color: $page-color-text;
 
-        // &:focus::placeholder {
-        //   color: transparent;
-        // }
+        &:focus::placeholder {
+          color: transparent;
+        }
       }
     }
 
@@ -426,14 +431,22 @@ main {
       // background-color: rgb(241, 246, 251);
     }
 
-    &__error {
+    &__error,
+    &__success {
       font-size: 0.7em;
-      color: red;
       width: 100%;
-      text-align: end;
+      // text-align: end;
       height: 1em;
       // grid-column: 1/4;
       margin-top: 0.4em;
+    }
+
+    &__error {
+      color: red;
+    }
+
+    &__success {
+      color: rgb(52, 182, 52);
     }
   }
 }
@@ -614,4 +627,8 @@ main {
 
 .wide {
   width: 100%;
+}
+
+.selected {
+  background-color: rgb(177, 177, 220);
 }

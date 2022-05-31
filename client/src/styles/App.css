@@ -340,29 +340,74 @@ main {
 .selected-product__add-to-list {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
   color: #2d61a0;
   margin-top: 0.5em;
 }
 
+.selected-product__add-to-list__options {
+  border: none;
+}
+
 .selected-product__add-to-list__options__option {
   background-color: #fff;
-  border: 1px solid #86b2e8;
+  background-color: #edf8ff;
   color: #2d61a0;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
+  height: 2em;
 }
 
 .selected-product__add-to-list__options__option > input,
 .selected-product__add-to-list__options__option > label {
+  margin: auto 0;
+  text-align: center;
   -ms-grid-row: 1;
   grid-row: 1;
   -ms-grid-column: 1;
   grid-column: 1;
   width: 100%;
+}
+
+.selected-product__add-to-list__options__option > input {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.selected-product__add-to-list__serving__input {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  width: 100%;
+  padding-top: 0.1em;
+  text-align: center;
+  border: 1px solid #86b2e8;
+  outline: none;
+  font-size: 1.1em;
+  color: #2d61a0;
+  -ms-grid-row: 1;
+  grid-row: 1;
+}
+
+.selected-product__add-to-list__serving__input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.selected-product__add-to-list__serving__input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.selected-product__add-to-list__serving__input:focus::-ms-input-placeholder {
+  color: transparent;
+}
+
+.selected-product__add-to-list__serving__input:focus::placeholder {
+  color: transparent;
 }
 
 .selected-product__add-to-list__add {
@@ -375,13 +420,19 @@ main {
   white-space: nowrap;
 }
 
-.selected-product__add-to-list__error {
+.selected-product__add-to-list__error, .selected-product__add-to-list__success {
   font-size: 0.7em;
-  color: red;
   width: 100%;
-  text-align: end;
   height: 1em;
   margin-top: 0.4em;
+}
+
+.selected-product__add-to-list__error {
+  color: red;
+}
+
+.selected-product__add-to-list__success {
+  color: #34b634;
 }
 
 .mealPlan__title {
@@ -618,5 +669,9 @@ main {
 
 .wide {
   width: 100%;
+}
+
+.selected {
+  background-color: #b1b1dc;
 }
 /*# sourceMappingURL=App.css.map */

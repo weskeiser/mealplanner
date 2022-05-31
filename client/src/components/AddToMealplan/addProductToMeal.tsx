@@ -7,14 +7,15 @@ const addProductToMeal = (
   selectedProduct: IProducts,
   mealPlans: IMealplans[],
   setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>,
-  setExistsErrorMessage: Dispatch<React.SetStateAction<string>>
+  setUnsuccessfulAddition: Dispatch<React.SetStateAction<string[] | never[]>>,
+  setSuccessfulAdditions: Dispatch<React.SetStateAction<string[] | never[]>>
 ) => {
   e.preventDefault();
-  setExistsErrorMessage('');
+  setUnsuccessfulAddition([]);
+  setSuccessfulAdditions([]);
 
   const mealOptions = e.target.form.selectMeal.children;
   const dayOptions = e.target.form.selectDay.children;
-  console.log(dayOptions);
 
   let mealPlanDayNames: Array<string> = [];
   let mealPlanMealNames: Array<string> = [];
@@ -33,75 +34,43 @@ const addProductToMeal = (
     }
   }
 
-  const addButton = e.target as HTMLButtonElement;
-  // const mealPlanDayNames = (addButton.form as HTMLFormElement).selectDay.value;
-  // const mealPlanMealNames = (addButton.form as HTMLFormElement).selectMeal.value;
+  let showError: never[] | string[] = [];
+  let showSuccess: never[] | string[] = [];
+  const updatedMealPlans = mealPlans.map((mealPlan) => {
+    if (mealPlanDayNames.includes(mealPlan.listName)) {
+      return {
+        ...mealPlan,
+        meals: mealPlan.meals.map((meal) => {
+          const productExists = meal.products.some((product) => {
+            const existingProduct = product.id + product.properties.serving;
+            const newProduct =
+              selectedProduct.id + selectedProduct.properties.serving;
 
-  const newProduct = (dayName, mealName) => {
-    return {
-      ...selectedProduct,
-      mealPlanDayName: dayName,
-      mealPlanMealName: mealName,
-    };
-  };
+            return existingProduct === newProduct;
+          });
 
-  let returnIfExists = false;
-  const updatedMealPlans: IMealplans[] = mealPlans.map((mealPlan) => {
-    const alreadyExists = mealPlan.meals.some((meal) => {
-      return meal.products.some((product) => {
-        const dayMatches = mealPlanDayNames.some(
-          (name) => name === product.mealPlanDayName
-        );
-        const mealMatches = mealPlanMealNames.some(
-          (name) => name === product.mealPlanMealName
-        );
+          if (mealPlanMealNames.includes(meal.listName)) {
+            if (productExists) {
+              showError.push([mealPlan.listName, meal.listName]);
+              return meal;
+            }
+            showSuccess.push([mealPlan.listName, meal.listName]);
 
-        const uniqueProduct = product.id + product.properties.serving;
-        const uniqueNewProduct =
-          selectedProduct.id + selectedProduct.properties.serving;
-
-        return uniqueProduct === uniqueNewProduct && dayMatches && mealMatches;
-      });
-    });
-
-    if (alreadyExists) {
-      returnIfExists = true;
-      return;
+            return {
+              ...meal,
+              products: [...meal.products, selectedProduct],
+            };
+          }
+          return meal;
+        }),
+      };
     }
-
-    return mealPlanDayNames.map((dayName) => {
-      if (mealPlan.listName === dayName) {
-        return {
-          ...mealPlan,
-          meals: [
-            ...mealPlan.meals,
-            mealPlan.meals.map((meal) => {
-              return mealPlanMealNames.map((mealName) => {
-                if (meal.listName === mealName) {
-                  return {
-                    ...meal,
-                    products: [...meal.products, newProduct(dayName, mealName)],
-                  };
-                }
-                return meal;
-              });
-              // return meal;
-            }),
-          ],
-        };
-      }
-      return mealPlan;
-    });
+    return mealPlan;
   });
 
-  console.log(updatedMealPlans);
-  console.log(mealPlans);
-
-  if (returnIfExists) {
-    setExistsErrorMessage(
-      `${selectedProduct.name}, ${selectedProduct.properties.serving}g eksisterer allerede i listen.`
-    );
-    return;
+  setSuccessfulAdditions(showSuccess);
+  if (showError.length !== 0) {
+    setUnsuccessfulAddition(showError);
   }
 
   setMealPlans(updatedMealPlans);
