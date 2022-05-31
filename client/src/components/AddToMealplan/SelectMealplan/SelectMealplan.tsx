@@ -15,7 +15,7 @@ interface ISelectMealplan {
 const SelectMealplan: ForwardRefExoticComponent<
   ISelectMealplan & RefAttributes<HTMLSelectElement | undefined>
 > = forwardRef<HTMLSelectElement | undefined, ISelectMealplan>(
-  ({ className, listNames, setListNames }, ref) => {
+  ({ className, listNames, setListNames, name }, ref) => {
     // const [inputVisible, setInputVisible] = useState(false);
     // const [messageAndColor, setMessageAndColor] = useState(['']);
 
@@ -75,7 +75,7 @@ const SelectMealplan: ForwardRefExoticComponent<
       <>
         <select
           ref={ref}
-          name="list-dropdown"
+          name={name}
           id="list-dropdown"
           className={className + '__add-to-list__list-dropdown'}
         >

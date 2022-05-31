@@ -111,16 +111,17 @@ const AddToMealplan: FC<IAddToMealplan> = ({
 
   return (
     <>
-      <section className={className + '__add-to-list'}>
+      <form id="addToList" className={className + '__add-to-list'}>
         <SelectMealplan
           className={className}
           listNames={dayNamesList}
           setListNames={setDayNamesList}
           ref={selectMealplanDayRef}
+          name="selectDay"
         />
         <ServingInput
           ref={servingInputRef}
-          className={className + '__add-to-list__gram-input'}
+          className={className + '__add-to-list__serving'}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
           currentProduct={currentProduct}
@@ -136,8 +137,10 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           listNames={mealNamesList}
           setListNames={setMealNamesList}
           ref={selectMealplanMealRef}
+          name="selectMeal"
         />
         <button
+          formTarget="addToList"
           className={className + '__add-to-list__add'}
           onClick={(e) =>
             addProductToMeal(
@@ -153,7 +156,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
         >
           Legg til
         </button>
-      </section>
+      </form>
       <p className={className + '__add-to-list__error'}>{existsErrorMessage}</p>
     </>
   );

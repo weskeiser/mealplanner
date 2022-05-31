@@ -30,27 +30,27 @@ const NutritionList: FC<IListContent> = ({
       <tbody>
         <tr>
           <td>Kalorier</td>
-          <td>{+calories.toFixed()}</td>
+          <td>{parseInt(calories).toFixed()}</td>
         </tr>
         <tr>
           <td>Fett</td>
-          <td>{+fat.toFixed(1)}</td>
+          <td>{parseInt(fat).toFixed(1)}</td>
         </tr>
         <tr>
           <td>Proteiner</td>
-          <td>{+protein.toFixed(1)}</td>
+          <td>{parseInt(protein).toFixed(1)}</td>
         </tr>
         <tr>
           <td>Karbohydrater</td>
-          <td>{+total.toFixed(1)}</td>
+          <td>{parseInt(total).toFixed(1)}</td>
         </tr>
         <tr>
           <td>- Hvordav sukkerarter</td>
-          <td>{+sugars.toFixed(1)}</td>
+          <td>{parseInt(sugars).toFixed(1)}</td>
         </tr>
         <tr>
           <td>Salt</td>
-          <td>{+salt.toFixed(1)}</td>
+          <td>{parseInt(salt).toFixed(1)}</td>
         </tr>
       </tbody>
     </table>

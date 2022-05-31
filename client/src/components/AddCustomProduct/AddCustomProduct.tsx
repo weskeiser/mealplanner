@@ -1,49 +1,42 @@
-import { FC, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 import ListItem from '../ListItem';
 
-interface IAddCustomProduct {}
+interface IAddCustomProduct {
+  setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
+}
 
-const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
+const AddCustomProduct: FC<IAddCustomProduct> = ({ setSelectedProduct }) => {
   const [visible, setVisible] = useState(false);
 
   const toggleVisibility = () => {
     setVisible(!visible);
   };
 
-  // const addCustomProduct = (
-  //   e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  // ) => {
-  //   e.preventDefault();
-  //   const mealPlanDayName = 'Monday';
-  //   const mealPlanMealName =  'Måltid 1';
-
-  //   const newProduct = {
-  //     ...selectedProduct,
-  //     mealPlanDay: selectMealplanDayRef.current.value,
-  //     mealPlanMeal: selectMealplanMealRef.current.value,
-  //   };
-
-  //   const updatedMealplan = mealPlans.map((mealPlan) => {
-  //     if (mealPlan.listName === mealPlanDayName) {
-  //       return {
-  //         ...mealPlan,
-  //         meals: mealPlan.meals.map((meal) => {
-  //           if (meal.listName === mealPlanMealName) {
-  //             return { ...meal, products: [...meal.products, newProduct] };
-  //           }
-  //           return meal;
-  //         }),
-  //       };
-  //     }
-  //     return mealPlan;
-  //   });
-  //   setMealPlans(updatedMealplan);
-  // };
-
   const addCustomProduct = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    const form = e.target.form;
+    console.log(e.target.form.Kalorier.value);
+    setSelectedProduct({
+      id: 99999,
+      name: form.name.value,
+      category: '',
+      properties: {
+        brand: '',
+        logo: '',
+        serving: form.serving.value,
+        calories: form.Kalorier.value,
+        macros: {
+          fat: form.Fett.value,
+          protein: form.Proteiner.value,
+          carbs: {
+            total: form.Karbohydrater.value,
+            sugars: form[6].value,
+          },
+        },
+        salt: form.Salt.value,
+      },
+    });
   };
 
   const inputNames = [
@@ -55,35 +48,6 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
     'Salt',
   ];
 
-  const KeyAndInput = () => {
-    // const keyAndInput = (key) => {
-    //   return (
-    //     <>
-    //       <p>{key}</p>
-    //       <input type="text" name={key} placeholder="" />
-    //     </>
-    //   );
-    // };
-
-    return inputNames.map((key) => (
-      <ListItem
-        className="custom-product__form__list__input"
-        children={
-          <>
-            <p>{key}</p>
-            <input type="text" name={key} placeholder="" />
-          </>
-        }
-      />
-    ));
-  };
-
-  // const inputList = inputNames.map((key) => (
-  //   <ul>
-  //     <ListItem className="custom-product__input" children={keyAndInput(key)} />;
-  //   </ul>
-  // ));
-
   return (
     <section className="custom-product">
       <button
@@ -93,17 +57,19 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
         + Legg til egendefinert
       </button>
       {visible && (
-        <form className="custom-product__form">
+        <form className="custom-product__form" id="customProductForm">
           <div className="custom-product__form__name-and-serving">
             <input
               className="custom-product__form__name-and-serving__name"
               type="text"
               placeholder="Matvarenavn"
+              name="name"
             />
             <input
-              className="custom-product__form__name-and-serving__name"
-              type="text"
+              className="custom-product__form__name-and-serving__serving"
+              type="number"
               placeholder="gram"
+              name="serving"
             />
           </div>
           <ul className="custom-product__form__list">
@@ -116,7 +82,7 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
                     <label htmlFor={'addCustom' + key}>{key}</label>
                     <input
                       id={'addCustom' + key}
-                      type="text"
+                      type="number"
                       name={key}
                       placeholder=""
                     />
@@ -125,8 +91,12 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({}) => {
               />
             ))}
           </ul>
-          <button type="button" onClick={(e) => addCustomProduct(e)}>
-            Legg til
+          <button
+            formTarget="customProductForm"
+            type="button"
+            onClick={(e) => addCustomProduct(e)}
+          >
+            Velg
           </button>
         </form>
       )}

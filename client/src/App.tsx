@@ -112,7 +112,11 @@ function App() {
       }
     >
       <h1 className="page-title">Måltidsplanlegger</h1>
-      <section className="search-section" aria-label="product search">
+      <section
+        className="search-section"
+        role="search"
+        aria-label="product search"
+      >
         <SearchBar
           searchBarRef={searchBarRef}
           searchResultsRef={searchResultsRef}
@@ -136,7 +140,7 @@ function App() {
           setFocusedSearchResult={setFocusedSearchResult}
         />
       </section>
-      <AddCustomProduct />
+      <AddCustomProduct setSelectedProduct={setSelectedProduct} />
       <section className={selectedProductClass}>
         <SelectedProductTitle selectedProduct={selectedProduct} />
         <NutritionList

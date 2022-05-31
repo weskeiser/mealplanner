@@ -13,8 +13,11 @@ const addProductToMeal = (
   e.preventDefault();
   setErrorMessage('');
 
-  const mealPlanDayName = selectMealplanDayRef.current.value;
-  const mealPlanMealName = selectMealplanMealRef.current.value;
+  console.log(e.target.form.selectMeal.value);
+  console.log(e.target.form.selectDay.value);
+  const mealPlanDayName = e.target.form.selectDay.value;
+  const mealPlanMealName = e.target.form.selectMeal.value;
+  console.log(mealPlanDayName);
 
   const newProduct = {
     ...selectedProduct,

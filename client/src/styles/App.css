@@ -64,7 +64,9 @@ main {
   height: 3em;
   padding-left: 0.5em;
   padding-top: 0.3em;
-  border: 1px solid #86b2e8;
+  border: none;
+  border-top: 1px solid #86b2e8;
+  border-bottom: 1px solid #86b2e8;
   color: #86b2e8;
   outline: none;
 }
@@ -85,11 +87,10 @@ main {
 
 .search-section__search-results {
   position: absolute;
-  display: -ms-grid;
-  display: grid;
   font-size: 1.2em;
   line-height: 1.5em;
   color: #fff;
+  width: 100%;
 }
 
 .search-section__search-results__list-item {
@@ -97,12 +98,10 @@ main {
   background-color: #fff;
   color: #2d61a0;
   cursor: pointer;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 5fr 3fr;
-      grid-template-columns: 1fr 5fr 3fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   border-bottom: 1px solid #86b2e8;
-  border-right: 1px solid #86b2e8;
   height: 1.9em;
 }
 
@@ -113,10 +112,9 @@ main {
 
 .search-section__search-results__list-item__logo {
   background-color: #fff;
-  border-left: 1px solid #86b2e8;
   border-right: 1px solid #86b2e8;
   height: 100%;
-  width: 100%;
+  width: 2.5em;
 }
 
 .search-section__search-results__list-item__name {
@@ -152,6 +150,8 @@ main {
   white-space: nowrap;
   padding-left: 0.5em;
   margin-right: 0.5em;
+  margin-left: auto;
+  width: 30%;
   overflow: hidden;
 }
 
@@ -182,6 +182,18 @@ main {
 
 .custom-product__form__name-and-serving > * {
   width: 100%;
+  font-size: 1.3em;
+}
+
+.custom-product__form__name-and-serving__name {
+  padding-left: 0.15em;
+}
+
+.custom-product__form__name-and-serving__serving {
+  text-align: right;
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
 }
 
 .custom-product__form__list {
@@ -199,6 +211,9 @@ main {
 }
 
 .custom-product__form__list__input > * {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
   padding: 0 0.3em;
 }
 
@@ -208,13 +223,13 @@ main {
 
 .custom-product__form__list__input > label {
   border-right: 1px solid #86b2e8;
-  background-color: rgba(134, 178, 232, 0.2);
 }
 
 .custom-product__form__list__input > input {
   width: 100%;
   border: 0;
   margin-left: auto;
+  text-align: right;
 }
 
 .custom-product__form__list-item {
@@ -341,7 +356,10 @@ main {
   color: #2d61a0;
 }
 
-.selected-product__add-to-list__gram-input__input {
+.selected-product__add-to-list__serving__input {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   width: 100%;
@@ -354,19 +372,19 @@ main {
   color: #2d61a0;
 }
 
-.selected-product__add-to-list__gram-input__input:focus::-webkit-input-placeholder {
+.selected-product__add-to-list__serving__input:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
-.selected-product__add-to-list__gram-input__input:focus:-ms-input-placeholder {
+.selected-product__add-to-list__serving__input:focus:-ms-input-placeholder {
   color: transparent;
 }
 
-.selected-product__add-to-list__gram-input__input:focus::-ms-input-placeholder {
+.selected-product__add-to-list__serving__input:focus::-ms-input-placeholder {
   color: transparent;
 }
 
-.selected-product__add-to-list__gram-input__input:focus::placeholder {
+.selected-product__add-to-list__serving__input:focus::placeholder {
   color: transparent;
 }
 
@@ -401,7 +419,7 @@ main {
   color: #2d61a0;
   text-align: center;
   padding: 0.4em 0;
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 .mealPlan__divider--upper {

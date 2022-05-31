@@ -110,7 +110,7 @@ const ServingInput: ForwardRefExoticComponent<
         <input
           ref={servingInputRef}
           className={className + '__input'}
-          type="text"
+          type="number"
           name="amountInGrams"
           id="addProduct"
           onInput={(e) => updateNutritionList(e)}
