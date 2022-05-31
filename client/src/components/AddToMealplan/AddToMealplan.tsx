@@ -32,10 +32,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   setCurrentProduct,
   servingInputRef,
 }) => {
-  const selectMealplanDayRef = useRef<HTMLSelectElement | undefined>();
-  const selectMealplanMealRef = useRef<HTMLSelectElement | undefined>();
-
-  const [unsuccessfulAddition, setUnsuccessfulAddition] = useState<
+  const [unsuccessfulAdditions, setUnsuccessfulAdditions] = useState<
     string[] | never[]
   >([]);
   const [successfulAdditions, setSuccessfulAdditions] = useState<
@@ -140,13 +137,13 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   const ErrorMessages = () => {
     return (
       <>
-        {unsuccessfulAddition.map((unsuccessfulAddition) => (
+        {unsuccessfulAdditions.map((unsuccessfulAdditions) => (
           <p
             className={className + '__add-to-list__error'}
-            key={'unsuccessful' + unsuccessfulAddition}
+            key={'unsuccessful' + unsuccessfulAdditions}
           >
-            {selectedProduct.name}, {unsuccessfulAddition[2]}g eksisterer
-            allerede i {unsuccessfulAddition[0]}, {unsuccessfulAddition[1]}.
+            {selectedProduct.name}, {unsuccessfulAdditions[2]}g eksisterer
+            allerede i {unsuccessfulAdditions[0]}, {unsuccessfulAdditions[1]}.
           </p>
         ))}
       </>
@@ -159,14 +156,12 @@ const AddToMealplan: FC<IAddToMealplan> = ({
         <SelectMealplan
           className={className}
           listNames={dayNamesList}
-          inputRef={selectMealplanDayRef}
           name="selectDay"
         />
         <hr />
         <SelectMealplan
           className={className}
           listNames={mealNamesList}
-          inputRef={selectMealplanMealRef}
           name="selectMeal"
         />
         <div className={className + '__add-to-list__serving-and-add'}>
@@ -179,9 +174,8 @@ const AddToMealplan: FC<IAddToMealplan> = ({
             setCurrentProduct={setCurrentProduct}
             mealPlans={mealPlans}
             setMealPlans={setMealPlans}
-            setUnsuccessfulAddition={setUnsuccessfulAddition}
-            selectMealplanMealRef={selectMealplanMealRef}
-            selectMealplanDayRef={selectMealplanDayRef}
+            setUnsuccessfulAdditions={setUnsuccessfulAdditions}
+            setSuccessfulAdditions={setSuccessfulAdditions}
           />
           <button
             formTarget="addToList"
@@ -192,7 +186,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
                 selectedProduct,
                 mealPlans,
                 setMealPlans,
-                setUnsuccessfulAddition,
+                setUnsuccessfulAdditions,
                 setSuccessfulAdditions
               )
             }
@@ -201,7 +195,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           </button>
         </div>
       </form>
-      {unsuccessfulAddition.length > 0 && <ErrorMessages />}
+      {unsuccessfulAdditions.length > 0 && <ErrorMessages />}
       <SuccessMessages />
     </>
   );

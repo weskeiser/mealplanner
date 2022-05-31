@@ -1,11 +1,10 @@
-import { FC, MutableRefObject } from 'react';
+import { FC } from 'react';
 import ListOptions from './ListOptions';
 
 interface ISelectMealplan {
   className: string;
   listNames: string[];
   name: string;
-  inputRef: MutableRefObject<HTMLSelectElement | undefined>;
 }
 
 const SelectMealplan: FC<ISelectMealplan> = ({

@@ -17,9 +17,8 @@ interface IServingInput {
   setCurrentProduct: Dispatch<React.SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
   setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>;
-  selectMealplanDayRef: MutableRefObject<HTMLSelectElement | undefined>;
-  selectMealplanMealRef: MutableRefObject<HTMLSelectElement | undefined>;
-  setUnsuccessfulAddition: Dispatch<React.SetStateAction<string[] | never[]>>;
+  setUnsuccessfulAdditions: Dispatch<React.SetStateAction<string[] | never[]>>;
+  setSuccessfulAdditions: Dispatch<React.SetStateAction<string[] | never[]>>;
 }
 
 const ServingInput: ForwardRefExoticComponent<
@@ -34,9 +33,8 @@ const ServingInput: ForwardRefExoticComponent<
       setCurrentProduct,
       mealPlans,
       setMealPlans,
-      setUnsuccessfulAddition,
-      selectMealplanMealRef,
-      selectMealplanDayRef,
+      setUnsuccessfulAdditions,
+      setSuccessfulAdditions,
     },
     servingInputRef
   ) => {
@@ -95,9 +93,8 @@ const ServingInput: ForwardRefExoticComponent<
           selectedProduct,
           mealPlans,
           setMealPlans,
-          setUnsuccessfulAddition,
-          selectMealplanMealRef,
-          selectMealplanDayRef
+          setUnsuccessfulAdditions,
+          setSuccessfulAdditions
         );
       }
 

@@ -7,11 +7,11 @@ const addProductToMeal = (
   selectedProduct: IProducts,
   mealPlans: IMealplans[],
   setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>,
-  setUnsuccessfulAddition: Dispatch<React.SetStateAction<string[] | never[]>>,
+  setUnsuccessfulAdditions: Dispatch<React.SetStateAction<string[] | never[]>>,
   setSuccessfulAdditions: Dispatch<React.SetStateAction<string[] | never[]>>
 ) => {
   e.preventDefault();
-  setUnsuccessfulAddition([]);
+  setUnsuccessfulAdditions([]);
   setSuccessfulAdditions([]);
 
   const mealOptions = e.target.form.selectMeal.children;
@@ -78,7 +78,7 @@ const addProductToMeal = (
 
   setSuccessfulAdditions(showSuccess);
   if (showError.length !== 0) {
-    setUnsuccessfulAddition(showError);
+    setUnsuccessfulAdditions(showError);
   }
 
   setMealPlans(updatedMealPlans);
