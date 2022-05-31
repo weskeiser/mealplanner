@@ -26,6 +26,7 @@ const ListOptions: ForwardRefExoticComponent<
         // onFocus={(e) => (e.target.style.border = '1px solid #000')}
         // onFocus={(e) => console.log(e.target.style.border)}
         tabIndex={0}
+        onKeyDown={(e) => console.log(ref.current.children)}
       >
         <input
           tabIndex={0}

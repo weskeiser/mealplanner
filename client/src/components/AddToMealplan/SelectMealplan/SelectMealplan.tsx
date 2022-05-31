@@ -22,6 +22,7 @@ const SelectMealplan: FC<ISelectMealplan> = ({
         className={className}
         ref={inputRef}
         optionIndex={optionIndex}
+        name={name}
       />
     );
   });
