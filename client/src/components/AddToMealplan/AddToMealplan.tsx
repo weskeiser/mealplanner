@@ -129,8 +129,8 @@ const AddToMealplan: FC<IAddToMealplan> = ({
             className={className + '__add-to-list__success'}
             key={'success' + addition}
           >
-            {selectedProduct.name}, {selectedProduct.properties.serving}g ble
-            lagt til i {addition[0]}, {addition[1]}.
+            {selectedProduct.name}, {addition[2]}g ble lagt til i {addition[0]},{' '}
+            {addition[1]}, .
           </p>
         ))}
       </>
@@ -145,9 +145,8 @@ const AddToMealplan: FC<IAddToMealplan> = ({
             className={className + '__add-to-list__error'}
             key={'unsuccessful' + unsuccessfulAddition}
           >
-            {selectedProduct.name}, {selectedProduct.properties.serving}g
-            eksisterer allerede i {unsuccessfulAddition[0]},{' '}
-            {unsuccessfulAddition[1]}.
+            {selectedProduct.name}, {unsuccessfulAddition[2]}g eksisterer
+            allerede i {unsuccessfulAddition[0]}, {unsuccessfulAddition[1]}.
           </p>
         ))}
       </>
@@ -163,43 +162,45 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           inputRef={selectMealplanDayRef}
           name="selectDay"
         />
+        <hr />
         <SelectMealplan
           className={className}
           listNames={mealNamesList}
           inputRef={selectMealplanMealRef}
           name="selectMeal"
         />
-        <ServingInput
-          ref={servingInputRef}
-          className={className + '__add-to-list__serving'}
-          selectedProduct={selectedProduct}
-          setSelectedProduct={setSelectedProduct}
-          currentProduct={currentProduct}
-          setCurrentProduct={setCurrentProduct}
-          mealPlans={mealPlans}
-          setMealPlans={setMealPlans}
-          setUnsuccessfulAddition={setUnsuccessfulAddition}
-          selectMealplanMealRef={selectMealplanMealRef}
-          selectMealplanDayRef={selectMealplanDayRef}
-        />
-        <button
-          formTarget="addToList"
-          className={className + '__add-to-list__add'}
-          onClick={(e) =>
-            addProductToMeal(
-              e,
-              selectedProduct,
-              mealPlans,
-              setMealPlans,
-              setUnsuccessfulAddition,
-              setSuccessfulAdditions
-            )
-          }
-        >
-          Legg til
-        </button>
+        <div className={className + '__add-to-list__serving-and-add'}>
+          <ServingInput
+            ref={servingInputRef}
+            className={className + '__add-to-list__serving'}
+            selectedProduct={selectedProduct}
+            setSelectedProduct={setSelectedProduct}
+            currentProduct={currentProduct}
+            setCurrentProduct={setCurrentProduct}
+            mealPlans={mealPlans}
+            setMealPlans={setMealPlans}
+            setUnsuccessfulAddition={setUnsuccessfulAddition}
+            selectMealplanMealRef={selectMealplanMealRef}
+            selectMealplanDayRef={selectMealplanDayRef}
+          />
+          <button
+            formTarget="addToList"
+            className={className + '__add-to-list__add'}
+            onClick={(e) =>
+              addProductToMeal(
+                e,
+                selectedProduct,
+                mealPlans,
+                setMealPlans,
+                setUnsuccessfulAddition,
+                setSuccessfulAdditions
+              )
+            }
+          >
+            Legg til
+          </button>
+        </div>
       </form>
-      {/* <p className={className + '__add-to-list__error'}>{unsuccessfulAddition}</p> */}
       {unsuccessfulAddition.length > 0 && <ErrorMessages />}
       <SuccessMessages />
     </>

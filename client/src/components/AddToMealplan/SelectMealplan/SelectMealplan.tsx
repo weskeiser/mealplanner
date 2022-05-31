@@ -17,6 +17,7 @@ const SelectMealplan: FC<ISelectMealplan> = ({
   const listOptions = listNames.map((listName, optionIndex) => {
     return (
       <ListOptions
+        key={'listOptions' + listName}
         listName={listName}
         className={className}
         ref={inputRef}

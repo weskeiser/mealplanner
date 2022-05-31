@@ -34,8 +34,8 @@ const addProductToMeal = (
     }
   }
 
-  let showError: never[] | string[] = [];
-  let showSuccess: never[] | string[] = [];
+  let showError: string | number | never[] = [];
+  let showSuccess: string | number | never[] = [];
   const updatedMealPlans = mealPlans.map((mealPlan) => {
     if (mealPlanDayNames.includes(mealPlan.listName)) {
       return {
@@ -51,10 +51,18 @@ const addProductToMeal = (
 
           if (mealPlanMealNames.includes(meal.listName)) {
             if (productExists) {
-              showError.push([mealPlan.listName, meal.listName]);
+              showError.push([
+                mealPlan.listName,
+                meal.listName,
+                selectedProduct.properties.serving,
+              ]);
               return meal;
             }
-            showSuccess.push([mealPlan.listName, meal.listName]);
+            showSuccess.push([
+              mealPlan.listName,
+              meal.listName,
+              selectedProduct.properties.serving,
+            ]);
 
             return {
               ...meal,

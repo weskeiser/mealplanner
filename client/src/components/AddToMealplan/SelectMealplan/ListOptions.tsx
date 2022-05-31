@@ -21,14 +21,14 @@ const ListOptions: ForwardRefExoticComponent<
     return (
       <div
         ref={ref}
-        className={
-          highlighted
-            ? className + '__add-to-list__options__option selected'
-            : className + '__add-to-list__options__option'
-        }
+        className={className + '__add-to-list__options__option'}
         key={'select' + listName}
+        // onFocus={(e) => (e.target.style.border = '1px solid #000')}
+        // onFocus={(e) => console.log(e.target.style.border)}
+        tabIndex={0}
       >
         <input
+          tabIndex={0}
           name="checkBoxInput"
           value={listName}
           id={'select' + listName}
@@ -36,7 +36,12 @@ const ListOptions: ForwardRefExoticComponent<
           onInput={(e) => highlightOption(e)}
           defaultChecked={trueIfFirstOption}
         />
-        <label htmlFor={'select' + listName}>{listName}</label>
+        <label
+          className={highlighted ? 'selected' : ''}
+          htmlFor={'select' + listName}
+        >
+          {listName}
+        </label>
       </div>
     );
   }

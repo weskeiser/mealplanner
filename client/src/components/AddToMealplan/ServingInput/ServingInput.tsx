@@ -50,16 +50,13 @@ const ServingInput: ForwardRefExoticComponent<
       const servingInput = parseFloat(input.value);
 
       const inputFieldValue = input.value;
-      const inputCharacter = parseInt(
-        inputFieldValue[inputFieldValue.length - 1]
-      );
 
       if (!servingInput) {
         setSelectedProduct(currentProduct);
         return;
       }
 
-      if (isNaN(inputCharacter)) {
+      if (inputFieldValue.length >= 5) {
         e.target.value = inputFieldValue.slice(0, inputFieldValue.length - 1);
         return;
       }
@@ -103,6 +100,23 @@ const ServingInput: ForwardRefExoticComponent<
           selectMealplanDayRef
         );
       }
+
+      if (e.key === 'Tab') {
+        return;
+      }
+
+      if (e.key === 'Backspace') {
+        return;
+      }
+
+      if (e.key === 'Escape') {
+        e.target.blur();
+      }
+
+      const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      if (parseInt(e.key) !== numbers[parseInt(e.key)]) {
+        e.preventDefault();
+      }
     };
 
     return (
@@ -117,6 +131,7 @@ const ServingInput: ForwardRefExoticComponent<
           placeholder="100g"
           autoComplete="off"
           onKeyDown={(e) => handleKeyDown(e)}
+          maxLength={4}
         />
       </div>
     );

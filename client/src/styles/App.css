@@ -43,10 +43,9 @@ main {
 .page-title {
   text-align: center;
   font-size: 1.5em;
-  border-top: 1px solid #86b2e8;
   padding: 0.4em 0;
   padding-top: 0.5em;
-  color: #2d61a0;
+  color: #5582b8;
 }
 
 .search-section__search-bar {
@@ -96,7 +95,7 @@ main {
 .search-section__search-results__list-item {
   background-color: #86b2e8;
   background-color: #fff;
-  color: #2d61a0;
+  color: #5582b8;
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -143,7 +142,7 @@ main {
 }
 
 .search-section__search-results__list-item__brand {
-  color: rgba(45, 97, 160, 0.6);
+  color: rgba(85, 130, 184, 0.6);
   font-weight: 600;
   font-size: 0.6em;
   margin: auto 0;
@@ -165,7 +164,7 @@ main {
   font-size: 0.7em;
   background-color: #fff;
   border: none;
-  color: #2d61a0;
+  color: #5582b8;
 }
 
 .custom-product__form {
@@ -233,7 +232,7 @@ main {
 }
 
 .custom-product__form__list-item {
-  color: #2d61a0;
+  color: #5582b8;
   border-top: 1px solid #86b2e8;
   border-right: 1px solid #86b2e8;
   border-left: 1px solid #86b2e8;
@@ -260,7 +259,7 @@ main {
 }
 
 .custom-product__form > * {
-  color: #2d61a0;
+  color: #5582b8;
 }
 
 .selected-product {
@@ -292,19 +291,19 @@ main {
 
 .selected-product__title__name {
   margin-left: 0.8em;
-  color: #2d61a0;
+  color: #5582b8;
   font-size: 1.2em;
 }
 
 .selected-product__title__brand {
-  color: rgba(45, 97, 160, 0.6);
+  color: rgba(85, 130, 184, 0.6);
   margin-left: 1.65em;
   margin-top: -0.5em;
   font-size: 0.8em;
 }
 
 .selected-product__nutrition-list {
-  color: #2d61a0;
+  color: #5582b8;
   width: 100%;
   border-collapse: collapse;
   margin-top: 1em;
@@ -312,7 +311,7 @@ main {
 
 .selected-product__nutrition-list > thead {
   font-size: 0.7em;
-  color: #9b9b9b;
+  color: #5c7aae;
   font-weight: bold;
 }
 
@@ -338,38 +337,54 @@ main {
 }
 
 .selected-product__add-to-list {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-  color: #2d61a0;
-  margin-top: 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #5582b8;
+  margin-top: 1em;
+  height: 100%;
+  gap: 1em;
+}
+
+.selected-product__add-to-list > hr {
+  border: 1px solid #e2f2fc;
+  border: 1px solid #dadada;
+  border: 1px solid #f6f6f6;
 }
 
 .selected-product__add-to-list__options {
   border: none;
+  width: 14em;
+}
+
+.selected-product__add-to-list__options:focus {
+  border: 50px solid red;
+  outline: 50px solid red;
+  background-color: red;
+  width: 1px;
 }
 
 .selected-product__add-to-list__options__option {
   background-color: #fff;
-  background-color: #edf8ff;
-  color: #2d61a0;
+  color: #5582b8;
+  color: #83a2d5;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   height: 2em;
+  margin-bottom: 0.3em;
 }
 
 .selected-product__add-to-list__options__option > input,
 .selected-product__add-to-list__options__option > label {
   margin: auto 0;
-  text-align: center;
   -ms-grid-row: 1;
   grid-row: 1;
   -ms-grid-column: 1;
   grid-column: 1;
   width: 100%;
+  border-radius: 0.3em;
 }
 
 .selected-product__add-to-list__options__option > input {
@@ -377,7 +392,12 @@ main {
   cursor: pointer;
 }
 
+.selected-product__add-to-list__options__option > label {
+  padding: 0.25em 0.4em;
+}
+
 .selected-product__add-to-list__serving__input {
+  border-radius: 0.3em;
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
           appearance: textfield;
@@ -389,9 +409,10 @@ main {
   border: 1px solid #86b2e8;
   outline: none;
   font-size: 1.1em;
-  color: #2d61a0;
-  -ms-grid-row: 1;
-  grid-row: 1;
+  color: #5582b8;
+  height: 2em;
+  border-right: 2px solid #86b2e8;
+  border-bottom: 2px solid #86b2e8;
 }
 
 .selected-product__add-to-list__serving__input:focus::-webkit-input-placeholder {
@@ -411,7 +432,12 @@ main {
 }
 
 .selected-product__add-to-list__add {
-  color: #2d61a0;
+  border-radius: 0.3em;
+  margin-top: 0.3em;
+  height: 2em;
+  font-size: 1.1em;
+  width: 100%;
+  color: #5582b8;
   background-color: #fff;
   border: 1px solid #86b2e8;
   border-right: 2px solid #86b2e8;
@@ -423,7 +449,6 @@ main {
 .selected-product__add-to-list__error, .selected-product__add-to-list__success {
   font-size: 0.7em;
   width: 100%;
-  height: 1em;
   margin-top: 0.4em;
 }
 
@@ -437,7 +462,7 @@ main {
 
 .mealPlan__title {
   font-size: 1.5em;
-  color: #2d61a0;
+  color: #5582b8;
   text-align: center;
   padding: 0.4em 0;
   margin-top: 1.5em;
@@ -457,7 +482,7 @@ main {
 .mealPlan__day__title {
   margin: auto 0;
   margin-left: 1em;
-  color: #2d61a0;
+  color: #5582b8;
   font-size: 1.2em;
 }
 
@@ -474,7 +499,7 @@ main {
 
 .mealPlan__day__title__toggle__inner {
   margin: auto auto;
-  border: 0.2em solid #2d61a0;
+  border: 0.2em solid #5582b8;
   border-top: transparent;
   border-left: transparent;
   width: 1em;
@@ -584,14 +609,14 @@ main {
 }
 
 .mealPlan__meals__meal__products-and-nutrition__nutrition-list {
-  color: #2d61a0;
+  color: #5582b8;
   width: 100%;
   border-collapse: collapse;
 }
 
 .mealPlan__meals__meal__products-and-nutrition__nutrition-list > thead {
   font-size: 0.7em;
-  color: #9b9b9b;
+  color: #5c7aae;
   font-weight: bold;
 }
 
@@ -627,14 +652,14 @@ main {
 }
 
 .mealPlan__total__nutrition-list {
-  color: #2d61a0;
+  color: #5582b8;
   width: 100%;
   border-collapse: collapse;
 }
 
 .mealPlan__total__nutrition-list > thead {
   font-size: 0.7em;
-  color: #9b9b9b;
+  color: #5c7aae;
   font-weight: bold;
 }
 
@@ -672,6 +697,7 @@ main {
 }
 
 .selected {
-  background-color: #b1b1dc;
+  background-color: #e2f2fc;
+  color: #669ada;
 }
 /*# sourceMappingURL=App.css.map */
