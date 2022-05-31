@@ -37,7 +37,14 @@ const AddToMealplan: FC<IAddToMealplan> = ({
 
   const [existsErrorMessage, setExistsErrorMessage] = useState('');
 
-  const [mealNamesList, setMealNamesList] = useState(['Måltid 1', 'Måltid 2']);
+  const [mealNamesList, setMealNamesList] = useState([
+    'Måltid 1',
+    'Måltid 2',
+    'Måltid 3',
+    'Måltid 4',
+    'Måltid 5',
+    'Måltid 6',
+  ]);
   const [dayNamesList, setDayNamesList] = useState([
     'Mandag',
     'Tirsdag',
@@ -47,6 +54,8 @@ const AddToMealplan: FC<IAddToMealplan> = ({
     'Lørdag',
     'Søndag',
   ]);
+
+  const [checkedMeals, setCheckedMeals] = useState([]);
 
   const [firstRenderDone, setFirstRenderDone] = useState(false);
 
@@ -118,6 +127,17 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           setListNames={setDayNamesList}
           ref={selectMealplanDayRef}
           name="selectDay"
+          // checkedMeals={checkedMeals}
+          // setCheckedMeals={setCheckedMeals}
+        />
+        <SelectMealplan
+          className={className}
+          listNames={mealNamesList}
+          setListNames={setMealNamesList}
+          ref={selectMealplanMealRef}
+          name="selectMeal"
+          checkedMeals={checkedMeals}
+          setCheckedMeals={setCheckedMeals}
         />
         <ServingInput
           ref={servingInputRef}
@@ -132,13 +152,6 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           selectMealplanMealRef={selectMealplanMealRef}
           selectMealplanDayRef={selectMealplanDayRef}
         />
-        <SelectMealplan
-          className={className}
-          listNames={mealNamesList}
-          setListNames={setMealNamesList}
-          ref={selectMealplanMealRef}
-          name="selectMeal"
-        />
         <button
           formTarget="addToList"
           className={className + '__add-to-list__add'}
@@ -148,9 +161,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
               selectedProduct,
               mealPlans,
               setMealPlans,
-              setExistsErrorMessage,
-              selectMealplanMealRef,
-              selectMealplanDayRef
+              setExistsErrorMessage
             )
           }
         >

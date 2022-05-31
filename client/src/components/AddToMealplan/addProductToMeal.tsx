@@ -1,3 +1,4 @@
+import { Dispatch, MouseEvent } from 'react';
 import { IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
 
@@ -5,42 +6,61 @@ const addProductToMeal = (
   e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   selectedProduct: IProducts,
   mealPlans: IMealplans[],
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>,
-  setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
-  selectMealplanMealRef: React.MutableRefObject<HTMLSelectElement | undefined>,
-  selectMealplanDayRef: React.MutableRefObject<HTMLSelectElement | undefined>
+  setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>,
+  setExistsErrorMessage: Dispatch<React.SetStateAction<string>>
 ) => {
   e.preventDefault();
-  setErrorMessage('');
+  setExistsErrorMessage('');
 
-  console.log(e.target.form.selectMeal.value);
-  console.log(e.target.form.selectDay.value);
-  const mealPlanDayName = e.target.form.selectDay.value;
-  const mealPlanMealName = e.target.form.selectMeal.value;
-  console.log(mealPlanDayName);
+  const mealOptions = e.target.form.selectMeal.children;
+  const dayOptions = e.target.form.selectDay.children;
+  console.log(dayOptions);
 
-  const newProduct = {
-    ...selectedProduct,
-    mealPlanDayName: mealPlanDayName,
-    mealPlanMealName: mealPlanMealName,
+  let mealPlanDayNames: Array<string> = [];
+  let mealPlanMealNames: Array<string> = [];
+
+  for (let option of dayOptions) {
+    const checkBoxInput = option.children.checkBoxInput;
+    if (checkBoxInput.checked) {
+      mealPlanDayNames.push(checkBoxInput.value);
+    }
+  }
+
+  for (let option of mealOptions) {
+    const checkBoxInput = option.children.checkBoxInput;
+    if (checkBoxInput.checked) {
+      mealPlanMealNames.push(checkBoxInput.value);
+    }
+  }
+
+  const addButton = e.target as HTMLButtonElement;
+  // const mealPlanDayNames = (addButton.form as HTMLFormElement).selectDay.value;
+  // const mealPlanMealNames = (addButton.form as HTMLFormElement).selectMeal.value;
+
+  const newProduct = (dayName, mealName) => {
+    return {
+      ...selectedProduct,
+      mealPlanDayName: dayName,
+      mealPlanMealName: mealName,
+    };
   };
 
   let returnIfExists = false;
-  const updatedMealPlans = mealPlans.map((mealPlan) => {
+  const updatedMealPlans: IMealplans[] = mealPlans.map((mealPlan) => {
     const alreadyExists = mealPlan.meals.some((meal) => {
       return meal.products.some((product) => {
-        const uniqueProduct =
-          product.id +
-          product.properties.serving +
-          product.mealPlanDayName +
-          product.mealPlanMealName;
-        const uniqueNewProduct =
-          newProduct.id +
-          newProduct.properties.serving +
-          newProduct.mealPlanDayName +
-          newProduct.mealPlanMealName;
+        const dayMatches = mealPlanDayNames.some(
+          (name) => name === product.mealPlanDayName
+        );
+        const mealMatches = mealPlanMealNames.some(
+          (name) => name === product.mealPlanMealName
+        );
 
-        return uniqueProduct === uniqueNewProduct;
+        const uniqueProduct = product.id + product.properties.serving;
+        const uniqueNewProduct =
+          selectedProduct.id + selectedProduct.properties.serving;
+
+        return uniqueProduct === uniqueNewProduct && dayMatches && mealMatches;
       });
     });
 
@@ -49,26 +69,37 @@ const addProductToMeal = (
       return;
     }
 
-    if (mealPlan.listName === mealPlanDayName) {
-      return {
-        ...mealPlan,
-        meals: mealPlan.meals.map((meal) => {
-          if (meal.listName === mealPlanMealName) {
-            return {
-              ...meal,
-              products: [...meal.products, newProduct],
-            };
-          }
-          return meal;
-        }),
-      };
-    }
-    return mealPlan;
+    return mealPlanDayNames.map((dayName) => {
+      if (mealPlan.listName === dayName) {
+        return {
+          ...mealPlan,
+          meals: [
+            ...mealPlan.meals,
+            mealPlan.meals.map((meal) => {
+              return mealPlanMealNames.map((mealName) => {
+                if (meal.listName === mealName) {
+                  return {
+                    ...meal,
+                    products: [...meal.products, newProduct(dayName, mealName)],
+                  };
+                }
+                return meal;
+              });
+              // return meal;
+            }),
+          ],
+        };
+      }
+      return mealPlan;
+    });
   });
 
+  console.log(updatedMealPlans);
+  console.log(mealPlans);
+
   if (returnIfExists) {
-    setErrorMessage(
-      `${newProduct.name}, ${newProduct.properties.serving}g eksisterer allerede i listen.`
+    setExistsErrorMessage(
+      `${selectedProduct.name}, ${selectedProduct.properties.serving}g eksisterer allerede i listen.`
     );
     return;
   }
