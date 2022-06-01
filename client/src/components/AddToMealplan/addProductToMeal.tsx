@@ -14,8 +14,8 @@ const addProductToMeal = (
   setUnsuccessfulAdditions([]);
   setSuccessfulAdditions([]);
 
-  const mealOptions = e.target.form.selectMeal.children;
-  const dayOptions = e.target.form.selectDay.children;
+  const mealOptions = e.target.form.children.selectMeal.children;
+  const dayOptions = e.target.form.children.selectDay.children;
 
   let mealPlanDayNames: Array<string> = [];
   let mealPlanMealNames: Array<string> = [];

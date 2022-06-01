@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 
 interface IListOptions {
   className: string;
@@ -16,20 +16,28 @@ const ListOptions: FC<IListOptions> = ({
   const trueIfFirstOption = optionIndex === 0 ? true : false;
   const [highlighted, setHighlighted] = useState(trueIfFirstOption);
 
+  const inputRef = useRef();
+
   const highlightOption = (e) => {
     setHighlighted((highlighted) => !highlighted);
   };
 
   return (
-    <div
+    <fieldset
       className={className + '__add-to-list__options__option'}
       key={'select' + listName}
-      // onFocus={(e) => (e.target.style.border = '1px solid #000')}
-      // onFocus={(e) => console.log(e.target.style.border)}
-      tabIndex={0}
-      onKeyDown={(e) => console.log(e)}
+      onFocus={(e) => console.log(e.target)}
+      name={listName}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          inputRef.current.checked = true;
+          highlightOption(e);
+        }
+      }}
     >
       <input
+        ref={inputRef}
         tabIndex={0}
         name="checkBoxInput"
         value={listName}
@@ -45,7 +53,7 @@ const ListOptions: FC<IListOptions> = ({
       >
         {listName}
       </label>
-    </div>
+    </fieldset>
   );
 };
 

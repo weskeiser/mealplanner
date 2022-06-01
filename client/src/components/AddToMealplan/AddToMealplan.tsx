@@ -3,11 +3,11 @@ import { IProducts } from '../../Interfaces/Products';
 import ServingInput from './ServingInput/ServingInput';
 import {
   FC,
-  useRef,
   useState,
   MutableRefObject,
   Dispatch,
   useEffect,
+  SetStateAction,
 } from 'react';
 import addProductToMeal from './addProductToMeal';
 import SelectMealplan from './SelectMealplan/SelectMealplan';
@@ -15,12 +15,12 @@ import SelectMealplan from './SelectMealplan/SelectMealplan';
 interface IAddToMealplan {
   className: string;
   selectedProduct: IProducts;
-  setSelectedProduct: Dispatch<React.SetStateAction<IProducts>>;
+  setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
-  setMealPlans: Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
   servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
   currentProduct: IProducts | {};
-  setCurrentProduct: Dispatch<React.SetStateAction<IProducts>>;
+  setCurrentProduct: Dispatch<SetStateAction<IProducts>>;
 }
 const AddToMealplan: FC<IAddToMealplan> = ({
   className,
@@ -157,12 +157,16 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           className={className}
           listNames={dayNamesList}
           name="selectDay"
+          mealNamesList={mealNamesList}
+          setMealNamesList={setMealNamesList}
         />
         <hr />
         <SelectMealplan
           className={className}
           listNames={mealNamesList}
           name="selectMeal"
+          mealNamesList={mealNamesList}
+          setMealNamesList={setMealNamesList}
         />
         <hr />
         <div className={className + '__add-to-list__serving-and-add'}>
