@@ -4,12 +4,14 @@ interface IListOptions {
   className: string;
   listName: string;
   optionIndex: number;
+  disabled?: boolean;
 }
 
 const ListOptions: FC<IListOptions> = ({
   listName,
   className,
   optionIndex,
+  disabled,
 }) => {
   const trueIfFirstOption = optionIndex === 0 ? true : false;
   const [highlighted, setHighlighted] = useState(trueIfFirstOption);
@@ -35,6 +37,7 @@ const ListOptions: FC<IListOptions> = ({
         type="checkbox"
         onInput={(e) => highlightOption(e)}
         defaultChecked={trueIfFirstOption}
+        disabled={disabled}
       />
       <label
         className={highlighted ? 'selected' : ''}

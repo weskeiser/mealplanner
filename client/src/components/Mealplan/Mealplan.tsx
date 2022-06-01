@@ -7,7 +7,7 @@ interface IMealplan {
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
 }
 
-const Mealplanner: FC<IMealplan> = ({ mealPlans, setMealPlans }) => {
+const Mealplan: FC<IMealplan> = ({ mealPlans, setMealPlans }) => {
   const allMealplans = mealPlans.map((mealPlan) => (
     <MealplanDay
       mealPlan={mealPlan}
@@ -27,4 +27,4 @@ const Mealplanner: FC<IMealplan> = ({ mealPlans, setMealPlans }) => {
   );
 };
 
-export default Mealplanner;
+export default Mealplan;

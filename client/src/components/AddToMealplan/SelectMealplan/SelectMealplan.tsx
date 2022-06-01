@@ -1,5 +1,8 @@
 import { FC } from 'react';
-import ListOptions from './ListOptions';
+import ActiveMeals from './ActiveMeals/ActiveMeals';
+import InactiveMeals from './InactiveMeals/InactiveMeals';
+import IncrementMeals from './IncrementMeals/IncrementMeals';
+import ListOptions from './ListOptions/ListOptions';
 
 interface ISelectMealplan {
   className: string;
@@ -13,62 +16,42 @@ const SelectMealplan: FC<ISelectMealplan> = ({
   name,
   inputRef,
 }) => {
-  const listOptions = listNames.map((listName, optionIndex) => {
-    return (
-      <ListOptions
-        key={'listOptions' + listName}
-        listName={listName}
-        className={className}
-        ref={inputRef}
-        optionIndex={optionIndex}
-        name={name}
-      />
-    );
+  // const [inactiveMeals, setInactiveMeals] = useState([]);
+
+  // const activeMeals = listNames.map((listName, optionIndex) => {
+  //   return (
+  //     <ListOptions
+  //       key={'activeMeals' + listName}
+  //       listName={listName}
+  //       className={className}
+  //       optionIndex={optionIndex}
+  //     />
+  //   );
+  // });
+
+  const inactiveMeals = [1, 2, 3, 4, 5, 6].map((number) => {
+    const mealNumber = number + listNames.length;
+    if (number < 7 - listNames.length) {
+      return (
+        <ListOptions
+          key={'inactiveMeal' + mealNumber}
+          listName={'Måltid ' + mealNumber}
+          className={'disabled ' + className}
+          optionIndex={1}
+          disabled={true}
+        />
+      );
+    }
+    return null;
   });
-
-  // const addNewList = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   e.preventDefault();
-  //   const newListInputEl = e.target.parentElement.addNewListName;
-
-  //   if (newListInputEl) {
-  //     if (newListInputEl.value !== '') {
-  //       const alreadyExists = listNames.some((name) => {
-  //         return name === newListInputEl.value;
-  //       });
-  //       if (alreadyExists) {
-  //         setInputVisible((inputVisible) => !inputVisible);
-  //         setMessageAndColor(['Listen eksisterer', 'red']);
-  //         return;
-  //       }
-
-  //       setListNames((listNames) => listNames.concat(newListInputEl.value));
-  //       setMessageAndColor(['Ny liste lagt til', 'green']);
-  //     }
-  //   }
-  //   setInputVisible(!inputVisible);
-
-  //   if (!newListInputEl) {
-  //     setMessageAndColor([]);
-  //   }
-  // };
-
-  // const handleKeyDown = (e) => {
-  //   if (e.key === 'Enter') {
-  //     addNewList(e);
-  //   }
-
-  //   if (e.key === 'Escape') {
-  //     setInputVisible(!inputVisible);
-  //   }
-  // };
-
-  // const greenIfVisible = inputVisible
-  //   ? className + '__add-to-list__list-dropdown__add-list__button green'
-  //   : className + '__add-to-list__list-dropdown__add-list__button';
 
   return (
     <fieldset name={name} className={className + '__add-to-list__options'}>
-      {listOptions}
+      <ActiveMeals listNames={listNames} className={className} />
+      {name === 'selectMeal' && (
+        <InactiveMeals listNames={listNames} className={className} />
+      )}
+      {name === 'selectMeal' && <IncrementMeals />}
     </fieldset>
   );
 };

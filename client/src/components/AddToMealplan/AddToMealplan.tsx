@@ -43,9 +43,9 @@ const AddToMealplan: FC<IAddToMealplan> = ({
     'Måltid 1',
     'Måltid 2',
     'Måltid 3',
-    'Måltid 4',
-    'Måltid 5',
-    'Måltid 6',
+    // 'Måltid 4',
+    // 'Måltid 5',
+    // 'Måltid 6',
   ]);
   const [dayNamesList, setDayNamesList] = useState<string[]>([
     'Mandag',
@@ -137,13 +137,13 @@ const AddToMealplan: FC<IAddToMealplan> = ({
   const ErrorMessages = () => {
     return (
       <>
-        {unsuccessfulAdditions.map((unsuccessfulAdditions) => (
+        {unsuccessfulAdditions.map((unsuccessfulAddition) => (
           <p
             className={className + '__add-to-list__error'}
-            key={'unsuccessful' + unsuccessfulAdditions}
+            key={'unsuccessful' + unsuccessfulAddition}
           >
-            {selectedProduct.name}, {unsuccessfulAdditions[2]}g eksisterer
-            allerede i {unsuccessfulAdditions[0]}, {unsuccessfulAdditions[1]}.
+            {selectedProduct.name}, {unsuccessfulAddition[2]}g eksisterer
+            allerede i {unsuccessfulAddition[0]}, {unsuccessfulAddition[1]}.
           </p>
         ))}
       </>
@@ -164,6 +164,7 @@ const AddToMealplan: FC<IAddToMealplan> = ({
           listNames={mealNamesList}
           name="selectMeal"
         />
+        <hr />
         <div className={className + '__add-to-list__serving-and-add'}>
           <ServingInput
             ref={servingInputRef}

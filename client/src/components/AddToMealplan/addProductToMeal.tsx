@@ -21,16 +21,20 @@ const addProductToMeal = (
   let mealPlanMealNames: Array<string> = [];
 
   for (let option of dayOptions) {
-    const checkBoxInput = option.children.checkBoxInput;
-    if (checkBoxInput.checked) {
-      mealPlanDayNames.push(checkBoxInput.value);
+    if (option.children.checkBoxInput) {
+      const checkBoxInput = option.children.checkBoxInput;
+      if (checkBoxInput.checked) {
+        mealPlanDayNames.push(checkBoxInput.value);
+      }
     }
   }
 
   for (let option of mealOptions) {
-    const checkBoxInput = option.children.checkBoxInput;
-    if (checkBoxInput.checked) {
-      mealPlanMealNames.push(checkBoxInput.value);
+    if (option.children.checkBoxInput) {
+      const checkBoxInput = option.children.checkBoxInput;
+      if (checkBoxInput.checked) {
+        mealPlanMealNames.push(checkBoxInput.value);
+      }
     }
   }
 

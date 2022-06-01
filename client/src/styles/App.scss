@@ -370,24 +370,17 @@ main {
     color: $page-color-text;
     margin-top: 1em;
     height: 100%;
-    gap: 1em;
+    gap: 0.5em;
 
     & > hr {
       border: 1px solid rgb(226, 242, 252);
       border: 1px solid $data-ink;
       border: 1px solid $meal-background;
     }
-    // }
 
     &__options {
       border: none;
-      width: 14em;
-      &:focus {
-        border: 50px solid red;
-        outline: 50px solid red;
-        background-color: red;
-        width: 1px;
-      }
+      width: 10em;
 
       &__option {
         background-color: #fff;
@@ -396,7 +389,7 @@ main {
         display: grid;
         grid-template-columns: 1fr;
         height: 2em;
-        margin-bottom: 0.3em;
+        // margin-bottom: 0.3em;
         // border: 1px solid black;
 
         & > input,
@@ -665,7 +658,20 @@ main {
 
 .selected {
   background-color: rgb(226, 242, 252);
+  background-color: rgb(144, 213, 255);
   // background-color: $data-ink;
   // font-weight: 600;
-  color: rgb(102, 154, 218);
+  color: rgb(245, 249, 255);
+  border: 1px solid rgb(151, 181, 230);
+}
+
+.disabled {
+  & > * {
+    background-color: rgb(242, 242, 242);
+    color: rgb(209, 209, 209);
+  }
+
+  & > input {
+    pointer-events: none;
+  }
 }

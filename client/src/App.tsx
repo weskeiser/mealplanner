@@ -11,7 +11,7 @@ import NutritionList from './components/NutritionList/NutritionList';
 import hideSearchResults from './components/utils/hideSearchResults';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
-import Mealplanner from './components/Mealplanner/Mealplan';
+import Mealplan from './components/Mealplan/Mealplan';
 import { IMealplans } from './Interfaces/Mealplans';
 
 function App() {
@@ -159,7 +159,7 @@ function App() {
           setCurrentProduct={setCurrentProduct}
         />
       </section>
-      <Mealplanner mealPlans={mealPlans} setMealPlans={setMealPlans} />
+      <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
     </main>
   );
 }
