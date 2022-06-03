@@ -1,24 +1,19 @@
 import { useRef, useState } from 'react';
 import './styles/App.css';
 
-import SearchBar from './components/SearchBar/SearchBar';
-
-import SearchResults from './components/SearchResults/SearchResults';
 import { IProducts } from './Interfaces/Products';
-import AddToMealplan from './components/AddToMealplan/AddToMealplan';
-import NutritionList from './components/NutritionList/NutritionList';
-
 import hideSearchResults from './components/utils/hideSearchResults';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
-import SelectedProductTitle from './components/SelectedProductTitle/SelectedProductTitle';
-import Mealplan from './components/Mealplan/Mealplan';
+import Mealplans from './components/Mealplan/Mealplans/Mealplans';
 import { IMealplans } from './Interfaces/Mealplans';
+import SearchSection from './components/SearchSection/SearchSection';
+import ModifyMealplan from './components/ModifyMealplan/ModifyMealplan';
+import Mealplan from './components/Mealplan/Mealplan';
 
 function App() {
   // Refs
   const searchBarRef = useRef<HTMLInputElement | undefined>();
   const servingInputRef = useRef<HTMLInputElement | undefined>();
-  const searchResultsRef = useRef<HTMLUListElement | undefined>();
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
@@ -61,9 +56,6 @@ function App() {
   });
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResultsContents, setSearchResultsContents] = useState<
-    IProducts[]
-  >([]);
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
 
   const temp = useRef([
@@ -95,9 +87,6 @@ function App() {
     }))
   );
 
-  // Classnames
-  const selectedProductClass = 'selected-product';
-
   return (
     <main
       onClick={(e) =>
@@ -112,53 +101,26 @@ function App() {
       }
     >
       <h1 className="page-title">Måltidsplanlegger</h1>
-      <section
-        className="search-section"
-        role="search"
-        aria-label="product search"
-      >
-        <SearchBar
-          searchBarRef={searchBarRef}
-          searchResultsRef={searchResultsRef}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          setSearchResultsContents={setSearchResultsContents}
-          focusedSearchResult={focusedSearchResult}
-          setFocusedSearchResult={setFocusedSearchResult}
-          setCurrentProduct={setCurrentProduct}
-        />
-        <SearchResults
-          ref={searchResultsRef}
-          searchTerm={searchTerm}
-          searchResultsContents={searchResultsContents}
-          setSelectedProduct={setSelectedProduct}
-          setSearchTerm={setSearchTerm}
-          searchBarRef={searchBarRef}
-          servingInputRef={servingInputRef}
-          setCurrentProduct={setCurrentProduct}
-          focusedSearchResult={focusedSearchResult}
-          setFocusedSearchResult={setFocusedSearchResult}
-        />
-      </section>
+      <SearchSection
+        searchBarRef={searchBarRef}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        focusedSearchResult={focusedSearchResult}
+        setFocusedSearchResult={setFocusedSearchResult}
+        setCurrentProduct={setCurrentProduct}
+        setSelectedProduct={setSelectedProduct}
+        servingInputRef={servingInputRef}
+      />
       <AddCustomProduct setSelectedProduct={setSelectedProduct} />
-      <section className={selectedProductClass}>
-        <SelectedProductTitle selectedProduct={selectedProduct} />
-        <NutritionList
-          className={selectedProductClass}
-          selectedProduct={selectedProduct}
-          totalServing={'Pr. ' + selectedProduct.properties.serving + 'g'}
-        />
-        <AddToMealplan
-          selectedProduct={selectedProduct}
-          setSelectedProduct={setSelectedProduct}
-          mealPlans={mealPlans}
-          setMealPlans={setMealPlans}
-          className={selectedProductClass}
-          servingInputRef={servingInputRef}
-          currentProduct={currentProduct}
-          setCurrentProduct={setCurrentProduct}
-        />
-      </section>
+      <ModifyMealplan
+        selectedProduct={selectedProduct}
+        setSelectedProduct={setSelectedProduct}
+        mealPlans={mealPlans}
+        setMealPlans={setMealPlans}
+        servingInputRef={servingInputRef}
+        currentProduct={currentProduct}
+        setCurrentProduct={setCurrentProduct}
+      />
       <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
     </main>
   );

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
-interface ISelectedProductTitle {
+interface ISelectedProductDisplay {
   selectedProduct: IProducts;
 }
 
-const SelectedProductTitle: FC<ISelectedProductTitle> = ({
+const SelectedProductDisplay: FC<ISelectedProductDisplay> = ({
   selectedProduct,
 }) => {
   return (
@@ -27,4 +27,4 @@ const SelectedProductTitle: FC<ISelectedProductTitle> = ({
   );
 };
 
-export default SelectedProductTitle;
+export default SelectedProductDisplay;

@@ -1,10 +1,10 @@
 import { IProducts } from '../../Interfaces/Products';
 import { FC } from 'react';
-import { ItotalNutritionalValue } from '../Mealplan/MealplanDay/MealplanMeal/ProductsAndNutrition/ProductsAndNutrition';
+import { IgetDailyTotalNutrition } from '../Mealplan/Mealplans/Day/getDailyTotalNutrition';
 
 interface IListContent {
   className: string;
-  selectedProduct: IProducts | ItotalNutritionalValue;
+  selectedProduct: IProducts | IgetDailyTotalNutrition;
   totalServing: string;
 }
 

@@ -68,9 +68,13 @@ const addProductToMeal = (
               selectedProduct.properties.serving,
             ]);
 
+            // console.log(mealPlan.listName);
             return {
               ...meal,
-              products: [...meal.products, selectedProduct],
+              products: [
+                ...meal.products,
+                { ...selectedProduct, mealPlanDayName: mealPlan.listName },
+              ],
             };
           }
           return meal;

@@ -16,9 +16,9 @@ const ListOptions: FC<IListOptions> = ({
   const trueIfFirstOption = optionIndex === 0 ? true : false;
   const [highlighted, setHighlighted] = useState(trueIfFirstOption);
 
-  const inputRef = useRef();
+  const checkboxInputRef = useRef<HTMLInputElement | undefined>();
 
-  const highlightOption = (e) => {
+  const highlightOption = () => {
     setHighlighted((highlighted) => !highlighted);
   };
 
@@ -26,24 +26,23 @@ const ListOptions: FC<IListOptions> = ({
     <fieldset
       className={className + '__add-to-list__options__option'}
       key={'select' + listName}
-      onFocus={(e) => console.log(e.target)}
       name={listName}
       onKeyPress={(e) => {
         if (e.key === 'Enter') {
           e.preventDefault();
-          inputRef.current.checked = true;
-          highlightOption(e);
+          (checkboxInputRef.current as HTMLInputElement).checked = true;
+          highlightOption();
         }
       }}
     >
       <input
-        ref={inputRef}
+        ref={checkboxInputRef}
         tabIndex={0}
         name="checkBoxInput"
         value={listName}
         id={'select' + listName}
         type="checkbox"
-        onInput={(e) => highlightOption(e)}
+        onInput={() => highlightOption()}
         defaultChecked={trueIfFirstOption}
         disabled={disabled}
       />

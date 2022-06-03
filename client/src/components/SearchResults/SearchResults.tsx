@@ -9,20 +9,21 @@ import {
   MutableRefObject,
   Dispatch,
   useState,
+  SetStateAction,
 } from 'react';
-import ProductName from './ProductName';
-import searchResultsNav from './searchResultsNav';
+import navigateSearch from './navigateResults';
+import SearchResult from './SearchResult/SearchResult';
 
 interface ISearchResultsProps {
   searchTerm: string;
-  setSearchTerm: Dispatch<React.SetStateAction<string>>;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
   searchResultsContents: IProducts[];
-  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   searchBarRef: MutableRefObject<HTMLInputElement | undefined>;
   servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
-  setCurrentProduct: Dispatch<React.SetStateAction<{} | IProducts>>;
+  setCurrentProduct: Dispatch<SetStateAction<{} | IProducts>>;
   focusedSearchResult: number;
-  setFocusedSearchResult: Dispatch<React.SetStateAction<number>>;
+  setFocusedSearchResult: Dispatch<SetStateAction<number>>;
 }
 
 const SearchResults: ForwardRefExoticComponent<
@@ -88,39 +89,17 @@ const SearchResults: ForwardRefExoticComponent<
       <ul
         className={visibleIfSearchTerm}
         ref={searchResultsRef}
-        aria-label="search results"
+        title="search results"
       >
         {searchResultsContents.map((product, index) => (
           <ListItem
-            children={
-              <>
-                <img
-                  src={product.properties.logo}
-                  alt={product.name}
-                  title={product.name}
-                  className="search-section__search-results__list-item__logo"
-                />
-                <ProductName
-                  productName={product.name}
-                  highlighted={highlighted}
-                  searchTerm={searchTerm}
-                  product={product}
-                />
-                <p
-                  title={product.properties.brand}
-                  className="search-section__search-results__list-item__brand"
-                >
-                  {product.properties.brand}
-                </p>
-              </>
-            }
             className="search-section__search-results__list-item"
             key={product.id}
             onClick={() => selectProduct(product.id)}
             tabIndex={index}
             data-id={product.id}
             onKeyDown={(e: KeyboardEvent<HTMLLIElement>) =>
-              searchResultsNav(
+              navigateSearch(
                 e,
                 searchBarRef,
                 focusedSearchResult,
@@ -128,6 +107,13 @@ const SearchResults: ForwardRefExoticComponent<
                 searchResultsRef,
                 selectProduct
               )
+            }
+            children={
+              <SearchResult
+                product={product}
+                highlighted={highlighted}
+                searchTerm={searchTerm}
+              />
             }
           />
         ))}
