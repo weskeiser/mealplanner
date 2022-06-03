@@ -12,27 +12,27 @@ interface IAddedProducts {
   meal: IMeal;
   mealPlans: IMealplans[];
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
-  productsAndNutritionC: string;
+  prodAndNutrClass: string;
 }
 
 const AddedProducts: FC<IAddedProducts> = ({
   meal,
   mealPlans,
   setMealPlans,
-  productsAndNutritionC,
+  prodAndNutrClass,
 }) => {
   const addedProducts = meal.products;
 
   return (
     <>
-      <ul className={productsAndNutritionC}>
+      <ul className={prodAndNutrClass}>
         {addedProducts.map(
           (
             { name, properties, mealPlanDayName, mealPlanMealName }: IProducts,
             index
           ) => (
             <ListItem
-              className={productsAndNutritionC + '__product'}
+              className={prodAndNutrClass + '__product'}
               key={
                 (mealPlanDayName as string) +
                 mealPlanMealName +
@@ -42,12 +42,12 @@ const AddedProducts: FC<IAddedProducts> = ({
               children={
                 <>
                   <AddedProduct
-                    productsAndNutritionC={productsAndNutritionC}
+                    prodAndNutrClass={prodAndNutrClass}
                     name={name}
                     properties={properties}
                   />
                   <RemoveButton
-                    productsAndNutritionC={productsAndNutritionC}
+                    prodAndNutrClass={prodAndNutrClass}
                     index={index}
                     mealPlans={mealPlans}
                     meal={meal}

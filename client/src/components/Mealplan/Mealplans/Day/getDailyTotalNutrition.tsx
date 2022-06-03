@@ -1,7 +1,7 @@
 import { IMeal, IMealplans } from '../../../../Interfaces/Mealplans';
 import getTotalNutrition from './getTotalNutrition';
 
-export interface IgetDailyTotalNutrition {
+export interface getNutritionProps {
   id: string;
   properties: {
     calories: number;
@@ -19,7 +19,7 @@ export interface IgetDailyTotalNutrition {
 
 const getDailyTotalNutrition = (mealPlan: IMealplans) => {
   return mealPlan.meals.reduce(
-    (prev: IgetDailyTotalNutrition, curr: IMeal) => {
+    (prev: getNutritionProps, curr: IMeal | getNutritionProps) => {
       const perMeal = getTotalNutrition(curr.products, '');
 
       return {

@@ -1,6 +1,9 @@
-const getTotalNutrition = (products, id) => {
+import { IMeal } from '../../../../Interfaces/Mealplans';
+import { getNutritionProps } from './getDailyTotalNutrition';
+
+const getTotalNutrition = (products: IMeal, id: number) => {
   return products.reduce(
-    (prev, curr) => {
+    (prev: getNutritionProps, curr: getNutritionProps) => {
       return {
         ...prev,
         properties: {

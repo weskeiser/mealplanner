@@ -4,8 +4,8 @@ import {
   RefAttributes,
   Dispatch,
 } from 'react';
-import { IMealplans } from '../../../Interfaces/Mealplans';
-import { IProducts } from '../../../Interfaces/Products';
+import { IMealplans } from '../../../../Interfaces/Mealplans';
+import { IProducts } from '../../../../Interfaces/Products';
 import addProductToMeal from '../addProductToMeal';
 
 interface IServingInput {

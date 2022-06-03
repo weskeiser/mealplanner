@@ -1,5 +1,5 @@
-import { IMealplans } from '../../Interfaces/Mealplans';
-import { IProducts } from '../../Interfaces/Products';
+import { IMealplans } from '../../../Interfaces/Mealplans';
+import { IProducts } from '../../../Interfaces/Products';
 import ServingInput from './ServingInput/ServingInput';
 import {
   FC,

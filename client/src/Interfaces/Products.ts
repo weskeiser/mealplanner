@@ -9,7 +9,7 @@ interface IMacros {
   carbs: ICarbs;
 }
 
-interface IProperties {
+export interface IProperties {
   brand?: string;
   logo?: string;
   serving: number;

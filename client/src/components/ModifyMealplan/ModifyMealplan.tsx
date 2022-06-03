@@ -1,7 +1,7 @@
 import { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
 import { IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
-import AddToMealplan from '../AddToMealplan/AddToMealplan';
+import AddToMealplan from './AddToMealplan/AddToMealplan';
 import NutritionList from '../NutritionList/NutritionList';
 import SelectedProductDisplay from '../SelectedProductDisplay/SelectedProductDisplay';
 
@@ -26,13 +26,15 @@ const ModifyMealplan: FC<IModifyMealplan> = ({
 }) => {
   const selectedProductClass = 'selected-product';
   return (
-    <section className={selectedProductClass}>
-      <SelectedProductDisplay selectedProduct={selectedProduct} />
-      <NutritionList
-        className={selectedProductClass}
-        selectedProduct={selectedProduct}
-        totalServing={'Pr. ' + selectedProduct.properties.serving + 'g'}
-      />
+    <>
+      <section className={selectedProductClass}>
+        <SelectedProductDisplay selectedProduct={selectedProduct} />
+        <NutritionList
+          className={selectedProductClass}
+          selectedProduct={selectedProduct}
+          totalServing={'Pr. ' + selectedProduct.properties.serving + 'g'}
+        />
+      </section>
       <AddToMealplan
         selectedProduct={selectedProduct}
         setSelectedProduct={setSelectedProduct}
@@ -43,7 +45,7 @@ const ModifyMealplan: FC<IModifyMealplan> = ({
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
       />
-    </section>
+    </>
   );
 };
 

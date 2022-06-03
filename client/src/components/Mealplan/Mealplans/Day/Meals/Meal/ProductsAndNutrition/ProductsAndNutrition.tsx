@@ -17,7 +17,7 @@ const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
 }) => {
   const mealTotalNutrition = getTotalNutrition(meal.products, meal.listName);
 
-  const productsAndNutritionC = 'mealPlan__meals__meal__products-and-nutrition';
+  const prodAndNutrClass = 'mealPlan__meals__meal__products-and-nutrition';
 
   return (
     <>
@@ -25,11 +25,11 @@ const ProductsAndNutrition: FC<IProductsAndNutrition> = ({
         meal={meal}
         mealPlans={mealPlans}
         setMealPlans={setMealPlans}
-        productsAndNutritionC={productsAndNutritionC}
+        prodAndNutrClass={prodAndNutrClass}
       />
 
       <NutritionList
-        className={productsAndNutritionC}
+        className={prodAndNutrClass}
         selectedProduct={mealTotalNutrition}
         totalServing={'Totalt'}
       />

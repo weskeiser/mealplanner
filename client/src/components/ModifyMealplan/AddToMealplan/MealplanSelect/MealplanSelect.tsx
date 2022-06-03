@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { IMeal, IMealplans } from '../../../Interfaces/Mealplans';
+import { IMeal, IMealplans } from '../../../../Interfaces/Mealplans';
 import SelectMealplan from './SelectMealplan/SelectMealplan';
 
 interface IMealplanSelecters {

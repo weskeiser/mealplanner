@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IProducts } from '../../../Interfaces/Products';
+import { IProducts } from '../../../../Interfaces/Products';
 import ErrorMessages from './ErrorMessages/ErrorMessages';
 import SuccessMessages from './SuccessMessages/SuccessMessages';
 

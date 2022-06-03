@@ -3,59 +3,32 @@ import {
   IMeal,
   IMealplans,
 } from '../../../../../../../../../Interfaces/Mealplans';
+import removeProduct from './removeProduct';
 
 interface IRemoveButton {
   meal: IMeal;
   mealPlans: IMealplans[];
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
-  productsAndNutritionC: string;
+  prodAndNutrClass: string;
   index: number;
   mealPlanDayName: string;
 }
 
 const RemoveButton: FC<IRemoveButton> = ({
-  productsAndNutritionC,
+  prodAndNutrClass,
   index,
   mealPlans,
   meal,
   setMealPlans,
   mealPlanDayName,
 }) => {
-  const removeProduct = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-
-    const updatedMealplan = mealPlans.map((mealPlan) => {
-      const mealPlanMealName = meal.listName;
-
-      if (mealPlan.listName === mealPlanDayName) {
-        return {
-          ...mealPlan,
-          meals: mealPlan.meals.map((meal) => {
-            if (meal.listName === mealPlanMealName) {
-              const productsWithItemRemoved = [...meal.products];
-              productsWithItemRemoved.splice(e.target.dataset.index, 1);
-              return {
-                ...meal,
-                products: productsWithItemRemoved,
-              };
-            }
-            return meal;
-          }),
-        };
-      }
-      return mealPlan;
-    });
-
-    setMealPlans(updatedMealplan);
-  };
-
   return (
     <button
-      className={productsAndNutritionC + '__product__remove'}
+      className={prodAndNutrClass + '__product__remove'}
       data-index={index}
-      onClick={(e) => removeProduct(e)}
+      onClick={(e) =>
+        removeProduct(e, mealPlans, setMealPlans, meal, mealPlanDayName)
+      }
     >
       &#10005;
     </button>

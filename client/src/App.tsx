@@ -4,7 +4,6 @@ import './styles/App.css';
 import { IProducts } from './Interfaces/Products';
 import hideSearchResults from './components/utils/hideSearchResults';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
-import Mealplans from './components/Mealplan/Mealplans/Mealplans';
 import { IMealplans } from './Interfaces/Mealplans';
 import SearchSection from './components/SearchSection/SearchSection';
 import ModifyMealplan from './components/ModifyMealplan/ModifyMealplan';
