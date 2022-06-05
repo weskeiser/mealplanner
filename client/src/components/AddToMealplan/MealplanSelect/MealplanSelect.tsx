@@ -6,16 +6,16 @@ interface MealplanSelectProps {
   className: string;
   mealPlans: IMealplans[];
   setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
-  dayNamesList: string[];
+  daysOfTheWeek: string[];
 }
 
 const MealplanSelect: FC<MealplanSelectProps> = ({
   className,
   mealPlans,
   setMealPlans,
-  dayNamesList,
+  daysOfTheWeek,
 }) => {
-  const [mealNamesList, setMealNamesList] = useState<string[]>([
+  const [mealNames, setMealNames] = useState<string[]>([
     'Måltid 1',
     'Måltid 2',
     'Måltid 3',
@@ -29,7 +29,7 @@ const MealplanSelect: FC<MealplanSelectProps> = ({
     }
 
     if (firstRenderDone) {
-      const newListName = mealNamesList[mealNamesList.length - 1];
+      const newListName = mealNames[mealNames.length - 1];
 
       const alreadyExists = mealPlans.some((mealPlan) => {
         return mealPlan.meals.some((meal: IMeal) => {
@@ -53,24 +53,24 @@ const MealplanSelect: FC<MealplanSelectProps> = ({
 
       setMealPlans(newMealPlanContents);
     }
-  }, [mealNamesList]);
+  }, [mealNames]);
 
   return (
     <>
       <SelectMealplan
         name="selectDay"
         className={className}
-        listNames={dayNamesList}
-        mealNamesList={mealNamesList}
-        setMealNamesList={setMealNamesList}
+        listNames={daysOfTheWeek}
+        mealNames={mealNames}
+        setMealNames={setMealNames}
       />
       <hr />
       <SelectMealplan
         name="selectMeal"
         className={className}
-        listNames={mealNamesList}
-        mealNamesList={mealNamesList}
-        setMealNamesList={setMealNamesList}
+        listNames={mealNames}
+        mealNames={mealNames}
+        setMealNames={setMealNames}
       />
       <hr />
     </>

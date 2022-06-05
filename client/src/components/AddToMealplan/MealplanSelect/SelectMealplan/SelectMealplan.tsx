@@ -7,16 +7,16 @@ interface SelectMealplanProps {
   className: string;
   listNames: string[];
   name: string;
-  mealNamesList: string[];
-  setMealNamesList: Dispatch<SetStateAction<string[]>>;
+  mealNames: string[];
+  setMealNames: Dispatch<SetStateAction<string[]>>;
 }
 
 const SelectMealplan: FC<SelectMealplanProps> = ({
   name,
   className,
   listNames,
-  mealNamesList,
-  setMealNamesList,
+  mealNames,
+  setMealNames,
 }) => {
   return (
     <div className={className + '__add-to-list__options'} name={name}>
@@ -26,8 +26,8 @@ const SelectMealplan: FC<SelectMealplanProps> = ({
       )}
       {name === 'selectMeal' && (
         <IncrementMeals
-          mealNamesList={mealNamesList}
-          setMealNamesList={setMealNamesList}
+          mealNames={mealNames}
+          setMealNames={setMealNames}
           className={className}
         />
       )}

@@ -38,7 +38,7 @@ function App() {
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
 
-  const dayNamesList = [
+  const daysOfTheWeek = [
     'Mandag',
     'Tirsdag',
     'Onsdag',
@@ -49,7 +49,7 @@ function App() {
   ];
 
   const [mealPlans, setMealPlans] = useState<IMealplans[]>(
-    dayNamesList.map((day) => ({
+    daysOfTheWeek.map((day) => ({
       listName: `${day}`,
       meals: [
         {
@@ -89,7 +89,7 @@ function App() {
         servingInputRef={servingInputRef}
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
-        dayNamesList={dayNamesList}
+        daysOfTheWeek={daysOfTheWeek}
       />
       <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
     </main>

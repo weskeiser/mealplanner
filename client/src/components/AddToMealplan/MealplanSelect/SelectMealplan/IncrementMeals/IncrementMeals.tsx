@@ -2,28 +2,28 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import IncrementButton from './IncrementButton/IncrementButton';
 
 interface IncrementMealsProps {
-  setMealNamesList: Dispatch<SetStateAction<string[]>>;
-  mealNamesList: string[];
+  setMealNames: Dispatch<SetStateAction<string[]>>;
+  mealNames: string[];
   className: string;
 }
 
 interface IncrementMealsProps {
-  mealNamesList: string[];
-  setMealNamesList: Dispatch<SetStateAction<string[]>>;
+  mealNames: string[];
+  setMealNames: Dispatch<SetStateAction<string[]>>;
   className: string;
 }
 
 const IncrementMeals: FC<IncrementMealsProps> = ({
-  mealNamesList,
-  setMealNamesList,
+  mealNames,
+  setMealNames,
   className,
 }) => {
   return (
     <>
       <IncrementButton
         className={className}
-        mealNamesList={mealNamesList}
-        setMealNamesList={setMealNamesList}
+        mealNames={mealNames}
+        setMealNames={setMealNames}
         incrementType="decrement"
         children="
         &#8593;"
@@ -31,8 +31,8 @@ const IncrementMeals: FC<IncrementMealsProps> = ({
 
       <IncrementButton
         className={className}
-        mealNamesList={mealNamesList}
-        setMealNamesList={setMealNamesList}
+        mealNames={mealNames}
+        setMealNames={setMealNames}
         incrementType="increment"
         children="
         &#8595;"
