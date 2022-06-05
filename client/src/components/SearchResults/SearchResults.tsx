@@ -1,4 +1,4 @@
-import ListItem from '../ListItem';
+import ListItem from '../common/ListItem';
 import { IProducts } from '../../Interfaces/Products';
 import {
   forwardRef,
@@ -13,8 +13,10 @@ import {
 } from 'react';
 import navigateSearch from './navigateResults';
 import SearchResult from './SearchResult/SearchResult';
+import useHighlighter from './hooks/useHighlighter';
+import selectProduct from './selectProduct';
 
-interface ISearchResultsProps {
+interface SearchResultsProps {
   searchTerm: string;
   setSearchTerm: Dispatch<SetStateAction<string>>;
   searchResultsContents: IProducts[];
@@ -27,8 +29,8 @@ interface ISearchResultsProps {
 }
 
 const SearchResults: ForwardRefExoticComponent<
-  ISearchResultsProps & RefAttributes<HTMLUListElement | undefined>
-> = forwardRef<HTMLUListElement | undefined, ISearchResultsProps>(
+  SearchResultsProps & RefAttributes<HTMLUListElement | undefined>
+> = forwardRef<HTMLUListElement | undefined, SearchResultsProps>(
   (
     {
       searchTerm,
@@ -50,36 +52,11 @@ const SearchResults: ForwardRefExoticComponent<
     const [highlighted, setHighlighted] = useState(false);
 
     // Highlight span if matching searchTerm.
-    useEffect(() => {
-      const allSearchResultsEls = searchResultsRef.current.children;
-
-      if (
-        allSearchResultsEls.length !== 0 &&
-        allSearchResultsEls[0].children[1].title
-          .toLowerCase()
-          .startsWith(searchTerm.toLowerCase())
-      ) {
-        setHighlighted(true);
-      } else {
-        setHighlighted(false);
-      }
-    }, [searchResultsContents, searchResultsRef, setHighlighted]);
-
-    // Select product on click.
-    const selectProduct = (productId: number) => {
-      const servingInputEl = servingInputRef.current;
-      const searchBarEl = searchBarRef.current;
-
-      searchResultsContents.forEach((product) => {
-        if (product.id === productId) {
-          setSelectedProduct(product);
-        }
-      });
-      servingInputEl.value = '';
-      setCurrentProduct({});
-      searchBarEl.value = '';
-      setSearchTerm('');
-    };
+    useHighlighter(searchResultsRef, searchTerm, setHighlighted, [
+      searchResultsContents,
+      searchResultsRef,
+      setHighlighted,
+    ]);
 
     const visibleIfSearchTerm = searchTerm
       ? 'search-section__search-results'
@@ -95,9 +72,19 @@ const SearchResults: ForwardRefExoticComponent<
           <ListItem
             className="search-section__search-results__list-item"
             key={product.id}
-            onClick={() => selectProduct(product.id)}
             tabIndex={index}
             data-id={product.id}
+            onClick={() =>
+              selectProduct(
+                product.id,
+                servingInputRef,
+                searchBarRef,
+                searchResultsContents,
+                setSelectedProduct,
+                setCurrentProduct,
+                setSearchTerm
+              )
+            }
             onKeyDown={(e: KeyboardEvent<HTMLLIElement>) =>
               navigateSearch(
                 e,
@@ -105,17 +92,20 @@ const SearchResults: ForwardRefExoticComponent<
                 focusedSearchResult,
                 setFocusedSearchResult,
                 searchResultsRef,
-                selectProduct
+                servingInputRef,
+                searchResultsContents,
+                setSelectedProduct,
+                setCurrentProduct,
+                setSearchTerm
               )
             }
-            children={
-              <SearchResult
-                product={product}
-                highlighted={highlighted}
-                searchTerm={searchTerm}
-              />
-            }
-          />
+          >
+            <SearchResult
+              product={product}
+              highlighted={highlighted}
+              searchTerm={searchTerm}
+            />
+          </ListItem>
         ))}
       </ul>
     );

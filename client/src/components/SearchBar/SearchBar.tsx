@@ -1,8 +1,12 @@
 import {
+  Dispatch,
+  FormEvent,
   forwardRef,
   ForwardRefExoticComponent,
+  KeyboardEvent,
   MutableRefObject,
   RefAttributes,
+  SetStateAction,
 } from 'react';
 import useFetchEffect from '../../hooks/useFetchEffect';
 import { IProducts } from '../../Interfaces/Products';
@@ -10,11 +14,11 @@ import showSearchResults from '../utils/showSearchResults';
 
 interface IInputWithRef {
   searchTerm: string;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  setSearchResultsContents: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
+  setSearchResultsContents: Dispatch<SetStateAction<IProducts[]>>;
   focusedSearchResult: number;
-  setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>;
-  setCurrentProduct: React.Dispatch<React.SetStateAction<IProducts>>;
+  setFocusedSearchResult: Dispatch<SetStateAction<number>>;
+  setCurrentProduct: Dispatch<SetStateAction<IProducts>>;
   searchResultsRef: MutableRefObject<HTMLUListElement | undefined>;
 }
 
@@ -40,7 +44,7 @@ const InputWithRef: ForwardRefExoticComponent<
       300
     );
 
-    const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const handleInput = (e: FormEvent<HTMLInputElement>) => {
       const input = e.target as HTMLInputElement;
       if (!input.value) {
         setSearchResultsContents([]);
@@ -48,7 +52,7 @@ const InputWithRef: ForwardRefExoticComponent<
       setSearchTerm(input.value);
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
       const searchResultsEl = searchResultsRef.current as HTMLUListElement;
       if (e.key === 'ArrowDown') {
         e.preventDefault();

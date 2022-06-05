@@ -4,7 +4,7 @@ import {
   IMealplans,
 } from '../../../../../../../../Interfaces/Mealplans';
 import { IProducts } from '../../../../../../../../Interfaces/Products';
-import ListItem from '../../../../../../../ListItem';
+import ListItem from '../../../../../../../common/ListItem';
 import AddedProduct from './AddedProduct/AddedProduct';
 import RemoveButton from './RemoveButton/RemoveButton';
 
@@ -39,24 +39,23 @@ const AddedProducts: FC<IAddedProducts> = ({
                 name +
                 properties.serving
               }
-              children={
-                <>
-                  <AddedProduct
-                    prodAndNutrClass={prodAndNutrClass}
-                    name={name}
-                    properties={properties}
-                  />
-                  <RemoveButton
-                    prodAndNutrClass={prodAndNutrClass}
-                    index={index}
-                    mealPlans={mealPlans}
-                    meal={meal}
-                    setMealPlans={setMealPlans}
-                    mealPlanDayName={mealPlanDayName}
-                  />
-                </>
-              }
-            />
+            >
+              <>
+                <AddedProduct
+                  prodAndNutrClass={prodAndNutrClass}
+                  name={name}
+                  properties={properties}
+                />
+                <RemoveButton
+                  prodAndNutrClass={prodAndNutrClass}
+                  index={index}
+                  mealPlans={mealPlans}
+                  meal={meal}
+                  setMealPlans={setMealPlans}
+                  mealPlanDayName={mealPlanDayName as string}
+                />
+              </>
+            </ListItem>
           )
         )}
       </ul>

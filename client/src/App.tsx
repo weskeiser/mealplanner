@@ -2,12 +2,13 @@ import { useRef, useState } from 'react';
 import './styles/App.css';
 
 import { IProducts } from './Interfaces/Products';
-import hideSearchResults from './components/utils/hideSearchResults';
 import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import { IMealplans } from './Interfaces/Mealplans';
 import SearchSection from './components/SearchSection/SearchSection';
-import ModifyMealplan from './components/ModifyMealplan/ModifyMealplan';
+import SelectedProduct from './components/SelectedProduct/SelectedProduct';
 import Mealplan from './components/Mealplan/Mealplan';
+import AddToMealplan from './components/AddToMealplan/AddToMealplan';
+import Main from './components/Main/Main';
 
 function App() {
   // Refs
@@ -16,24 +17,6 @@ function App() {
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
-    // id: 0,
-    // name: 'None',
-    // category: 'None',
-    // properties: {
-    //   brand: 'None',
-    //   logo: '',
-    //   serving: 100,
-    //   calories: 0,
-    //   macros: {
-    //     fat: 0,
-    //     protein: 0,
-    //     carbs: {
-    //       total: 0,
-    //       sugars: 0,
-    //     },
-    //   },
-    //   salt: 0,
-    // },
     id: 2,
     name: 'Kjøttdeig 14%',
     category: 'Kjøtt',
@@ -57,7 +40,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
 
-  const temp = useRef([
+  const dayNamesList = [
     'Mandag',
     'Tirsdag',
     'Onsdag',
@@ -65,9 +48,10 @@ function App() {
     'Fredag',
     'Lørdag',
     'Søndag',
-  ]);
+  ];
+
   const [mealPlans, setMealPlans] = useState<IMealplans[]>(
-    temp.current.map((day) => ({
+    dayNamesList.map((day) => ({
       listName: `${day}`,
       meals: [
         {
@@ -87,17 +71,12 @@ function App() {
   );
 
   return (
-    <main
-      onClick={(e) =>
-        hideSearchResults(
-          e,
-          searchTerm,
-          searchBarRef,
-          setCurrentProduct,
-          setSearchTerm,
-          setFocusedSearchResult
-        )
-      }
+    <Main
+      searchTerm={searchTerm}
+      searchBarRef={searchBarRef}
+      setCurrentProduct={setCurrentProduct}
+      setSearchTerm={setSearchTerm}
+      setFocusedSearchResult={setFocusedSearchResult}
     >
       <h1 className="page-title">Måltidsplanlegger</h1>
       <SearchSection
@@ -111,17 +90,20 @@ function App() {
         servingInputRef={servingInputRef}
       />
       <AddCustomProduct setSelectedProduct={setSelectedProduct} />
-      <ModifyMealplan
+      <SelectedProduct selectedProduct={selectedProduct} />
+      <AddToMealplan
         selectedProduct={selectedProduct}
         setSelectedProduct={setSelectedProduct}
         mealPlans={mealPlans}
         setMealPlans={setMealPlans}
+        className={'add-to-mealplan'}
         servingInputRef={servingInputRef}
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
+        dayNamesList={dayNamesList}
       />
       <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
-    </main>
+    </Main>
   );
 }
 

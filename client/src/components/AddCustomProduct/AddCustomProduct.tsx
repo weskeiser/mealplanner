@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { IProducts } from '../../Interfaces/Products';
-import ListItem from '../ListItem';
+import ListItem from '../common/ListItem';
 
 interface IAddCustomProduct {
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
@@ -77,18 +77,17 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({ setSelectedProduct }) => {
               <ListItem
                 className="custom-product__form__list__input"
                 key={'custom' + key}
-                children={
-                  <>
-                    <label htmlFor={'addCustom' + key}>{key}</label>
-                    <input
-                      id={'addCustom' + key}
-                      type="number"
-                      name={key}
-                      placeholder=""
-                    />
-                  </>
-                }
-              />
+              >
+                <>
+                  <label htmlFor={'addCustom' + key}>{key}</label>
+                  <input
+                    id={'addCustom' + key}
+                    type="number"
+                    name={key}
+                    placeholder=""
+                  />
+                </>
+              </ListItem>
             ))}
           </ul>
           <button

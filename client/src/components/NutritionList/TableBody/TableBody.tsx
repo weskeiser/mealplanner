@@ -24,12 +24,10 @@ const TableBody: FC<TableBodyProps> = ({ selectedProduct }) => {
   return (
     <tbody>
       {tableData.map((dataPair) => (
-        <>
-          <tr>
-            <td>{dataPair[0]}</td>
-            <td>{dataPair[1].toFixed()}</td>
-          </tr>
-        </>
+        <tr key={dataPair + selectedProduct.id}>
+          <td>{dataPair[0]}</td>
+          <td>{dataPair[1].toFixed()}</td>
+        </tr>
       ))}
     </tbody>
   );

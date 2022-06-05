@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { IProducts } from '../../../Interfaces/Products';
-import ProductName from '../ProductName';
+import ProductName from './ProductName/ProductName';
 
-interface ISearchResult {
+interface SearchResultProps {
   product: IProducts;
   highlighted: boolean;
   searchTerm: string;
 }
 
-const SearchResult: FC<ISearchResult> = ({
+const SearchResult: FC<SearchResultProps> = ({
   product,
   highlighted,
   searchTerm,

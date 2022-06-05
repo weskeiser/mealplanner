@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { IMealplans } from '../../../../Interfaces/Mealplans';
 import Header from './Header/Header';
 import Meals from './Meals/Meals';
-import DayTotalNutrition from './DayTotalNutrition/DayTotalNutrition';
+import TotalNutritionPerDay from './TotalNutritionPerDay/TotalNutritionPerDay';
 
 interface IDay {
   mealPlan: IMealplans;
@@ -25,7 +25,7 @@ const Day: FC<IDay> = ({ mealPlan, mealPlans, setMealPlans }) => {
           setMealPlans={setMealPlans}
         />
 
-        <DayTotalNutrition visible={visible} mealPlan={mealPlan} />
+        <TotalNutritionPerDay visible={visible} mealPlan={mealPlan} />
       </section>
 
       <hr className="mealPlan__header__divider--lower dividers" />

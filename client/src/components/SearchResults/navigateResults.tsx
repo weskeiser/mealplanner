@@ -1,15 +1,28 @@
-import { ForwardedRef, KeyboardEvent } from 'react';
+import {
+  Dispatch,
+  ForwardedRef,
+  KeyboardEvent,
+  MutableRefObject,
+  SetStateAction,
+} from 'react';
+import { IProducts } from '../../Interfaces/Products';
+import selectProduct from './selectProduct';
 
 const searchResultsNav = (
   e: KeyboardEvent<HTMLLIElement>,
-  searchBarRef: React.MutableRefObject<HTMLInputElement | undefined>,
+  searchBarRef: MutableRefObject<HTMLInputElement | undefined>,
   focusedSearchResult: number,
-  setFocusedSearchResult: React.Dispatch<React.SetStateAction<number>>,
+  setFocusedSearchResult: Dispatch<SetStateAction<number>>,
   searchResultsRef: ForwardedRef<HTMLUListElement | undefined>,
-  selectProduct: (productId: number) => void
+  servingInputRef: HTMLInputElement | undefined,
+  searchResultsContents: IProducts[],
+  setSelectedProduct: Dispatch<SetStateAction<IProducts>>,
+  setCurrentProduct: Dispatch<SetStateAction<{} | IProducts>>,
+  setSearchTerm: Dispatch<SetStateAction<string>>
 ) => {
-  const allSearchResults = searchResultsRef.current.children;
-  const searchBarEl = searchBarRef.current;
+  const allSearchResults = (searchResultsRef.current as HTMLUListElement)
+    .children;
+  const searchBarEl = searchBarRef.current as HTMLInputElement;
 
   // - Navigate search results descending
   if (e.key === 'ArrowDown') {
@@ -40,7 +53,15 @@ const searchResultsNav = (
   if (e.key === 'Enter') {
     e.preventDefault();
     const productId = parseInt(e.target.dataset.id);
-    selectProduct(productId);
+    selectProduct(
+      productId,
+      servingInputRef,
+      searchBarRef,
+      searchResultsContents,
+      setSelectedProduct,
+      setCurrentProduct,
+      setSearchTerm
+    );
     searchBarEl.focus();
   }
 
