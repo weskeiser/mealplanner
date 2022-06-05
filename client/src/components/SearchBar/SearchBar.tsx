@@ -10,9 +10,9 @@ import {
 } from 'react';
 import useFetchEffect from '../../hooks/useFetchEffect';
 import { IProducts } from '../../Interfaces/Products';
-import showSearchResults from '../utils/showSearchResults';
+import showSearchResults from '../helpers/showSearchResults';
 
-interface IInputWithRef {
+interface SearchBarProps {
   searchTerm: string;
   setSearchTerm: Dispatch<SetStateAction<string>>;
   setSearchResultsContents: Dispatch<SetStateAction<IProducts[]>>;
@@ -22,9 +22,9 @@ interface IInputWithRef {
   searchResultsRef: MutableRefObject<HTMLUListElement | undefined>;
 }
 
-const InputWithRef: ForwardRefExoticComponent<
-  IInputWithRef & RefAttributes<HTMLInputElement | undefined>
-> = forwardRef<HTMLInputElement | undefined, IInputWithRef>(
+const SearchBar: ForwardRefExoticComponent<
+  SearchBarProps & RefAttributes<HTMLInputElement | undefined>
+> = forwardRef<HTMLInputElement | undefined, SearchBarProps>(
   (
     {
       searchTerm,
@@ -102,4 +102,4 @@ const InputWithRef: ForwardRefExoticComponent<
   }
 );
 
-export default InputWithRef;
+export default SearchBar;

@@ -1,4 +1,4 @@
-import { IMeal } from '../../../../Interfaces/Mealplans';
+import { IMeal } from '../../../../../Interfaces/Mealplans';
 import { getNutritionProps } from './getDailyTotalNutrition';
 
 const getTotalNutrition = (products: IMeal, id: number) => {

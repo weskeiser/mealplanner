@@ -11,10 +11,10 @@ import {
   useState,
   SetStateAction,
 } from 'react';
-import navigateSearch from './navigateResults';
+import navigateSearch from './helpers/navigateResults';
 import SearchResult from './SearchResult/SearchResult';
 import useHighlighter from './hooks/useHighlighter';
-import selectProduct from './selectProduct';
+import selectProduct from './helpers/selectProduct';
 
 interface SearchResultsProps {
   searchTerm: string;
@@ -58,13 +58,9 @@ const SearchResults: ForwardRefExoticComponent<
       setHighlighted,
     ]);
 
-    const visibleIfSearchTerm = searchTerm
-      ? 'search-section__search-results'
-      : 'hidden';
-
     return (
       <ul
-        className={visibleIfSearchTerm}
+        className="search-section__search-results"
         ref={searchResultsRef}
         title="search results"
       >

@@ -1,15 +1,20 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { IMealplans } from '../../../../../Interfaces/Mealplans';
 import Meal from './Meal/Meal';
 
-interface IMeals {
+interface MealsProps {
   mealPlan: IMealplans;
   mealPlans: IMealplans[];
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
   visible: boolean;
 }
 
-const Meals: FC<IMeals> = ({ mealPlan, mealPlans, setMealPlans, visible }) => {
+const Meals: FC<MealsProps> = ({
+  mealPlan,
+  mealPlans,
+  setMealPlans,
+  visible,
+}) => {
   return (
     <>
       {visible && (

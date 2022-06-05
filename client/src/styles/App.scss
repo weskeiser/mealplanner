@@ -555,7 +555,7 @@ main {
           height: 1em;
           transform: rotate(-45deg);
 
-          &__make-line {
+          &__closed {
             transform: rotate(45deg);
           }
         }
@@ -606,7 +606,7 @@ main {
             height: 1em;
             transform: rotate(-45deg);
 
-            &__make-line {
+            &__closed {
               margin-top: -0.25em;
               transform: rotate(45deg);
             }

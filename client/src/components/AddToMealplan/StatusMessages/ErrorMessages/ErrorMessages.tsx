@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { IProducts } from '../../../../Interfaces/Products';
 
-interface IErrorMessages {
+interface ErrorMessagesProps {
   unsuccessfulAdditions: string[] | never[];
   className: string;
   selectedProduct: IProducts;
 }
 
-const ErrorMessages: FC<IErrorMessages> = ({
+const ErrorMessages: FC<ErrorMessagesProps> = ({
   unsuccessfulAdditions,
   className,
   selectedProduct,

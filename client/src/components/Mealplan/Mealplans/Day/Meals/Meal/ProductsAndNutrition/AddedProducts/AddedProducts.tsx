@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import {
   IMeal,
   IMealplans,
@@ -8,14 +8,14 @@ import ListItem from '../../../../../../../common/ListItem';
 import AddedProduct from './AddedProduct/AddedProduct';
 import RemoveButton from './RemoveButton/RemoveButton';
 
-interface IAddedProducts {
+interface AddedProductsProps {
   meal: IMeal;
   mealPlans: IMealplans[];
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
   prodAndNutrClass: string;
 }
 
-const AddedProducts: FC<IAddedProducts> = ({
+const AddedProducts: FC<AddedProductsProps> = ({
   meal,
   mealPlans,
   setMealPlans,

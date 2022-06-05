@@ -12,9 +12,9 @@ interface SelectMealplanProps {
 }
 
 const SelectMealplan: FC<SelectMealplanProps> = ({
+  name,
   className,
   listNames,
-  name,
   mealNamesList,
   setMealNamesList,
 }) => {

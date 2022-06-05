@@ -1,18 +1,19 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import IncrementButton from './IncrementButton/IncrementButton';
 
-interface IIncrementMeals {
+interface IncrementMealsProps {
   setMealNamesList: Dispatch<SetStateAction<string[]>>;
   mealNamesList: string[];
   className: string;
 }
 
-interface IincrementMeals {
-  e: React.MouseEvent<HTMLButtonElement, MouseEvent>;
-  type: string;
+interface IncrementMealsProps {
+  mealNamesList: string[];
+  setMealNamesList: Dispatch<SetStateAction<string[]>>;
+  className: string;
 }
 
-const IncrementMeals: FC<IIncrementMeals> = ({
+const IncrementMeals: FC<IncrementMealsProps> = ({
   mealNamesList,
   setMealNamesList,
   className,

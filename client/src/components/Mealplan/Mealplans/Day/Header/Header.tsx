@@ -1,23 +1,19 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { IMealplans } from '../../../../../Interfaces/Mealplans';
 
-interface IMealplanHeader {
+interface HeaderProps {
   mealPlan: IMealplans;
   visible: Boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-const MealplanHeader: FC<IMealplanHeader> = ({
-  mealPlan,
-  setVisible,
-  visible,
-}) => {
+const MealplanHeader: FC<HeaderProps> = ({ mealPlan, setVisible, visible }) => {
   const openList = () => {
     setVisible(!visible);
   };
 
   const openOrClosed = visible
-    ? 'mealPlan__header__title__toggle__inner mealPlan__header__title__toggle__inner__make-line'
+    ? 'mealPlan__header__title__toggle__inner mealPlan__header__title__toggle__inner__closed'
     : 'mealPlan__header__title__toggle__inner';
 
   return (

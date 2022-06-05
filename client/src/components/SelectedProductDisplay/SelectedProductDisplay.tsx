@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 
-interface ISelectedProductDisplay {
+interface SelectedProductDisplayProps {
   selectedProduct: IProducts;
 }
 
-const SelectedProductDisplay: FC<ISelectedProductDisplay> = ({
+const SelectedProductDisplay: FC<SelectedProductDisplayProps> = ({
   selectedProduct,
 }) => {
   return (

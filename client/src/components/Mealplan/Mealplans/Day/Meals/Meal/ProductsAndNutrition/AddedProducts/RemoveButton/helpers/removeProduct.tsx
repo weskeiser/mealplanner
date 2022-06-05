@@ -1,7 +1,7 @@
 import {
   IMealplans,
   IMeal,
-} from '../../../../../../../../../Interfaces/Mealplans';
+} from '../../../../../../../../../../Interfaces/Mealplans';
 
 const removeProduct = (
   e: React.MouseEvent<HTMLButtonElement, MouseEvent>,

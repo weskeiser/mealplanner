@@ -58,17 +58,17 @@ const MealplanSelect: FC<MealplanSelectProps> = ({
   return (
     <>
       <SelectMealplan
+        name="selectDay"
         className={className}
         listNames={dayNamesList}
-        name="selectDay"
         mealNamesList={mealNamesList}
         setMealNamesList={setMealNamesList}
       />
       <hr />
       <SelectMealplan
+        name="selectMeal"
         className={className}
         listNames={mealNamesList}
-        name="selectMeal"
         mealNamesList={mealNamesList}
         setMealNamesList={setMealNamesList}
       />

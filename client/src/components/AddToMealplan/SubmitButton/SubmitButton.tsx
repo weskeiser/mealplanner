@@ -1,9 +1,9 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { IMealplans } from '../../../Interfaces/Mealplans';
 import { IProducts } from '../../../Interfaces/Products';
-import addProductToMeal from '../addProductToMeal';
+import addProductToMeal from '../helpers/addProductToMeal';
 
-interface ISubmitButton {
+interface SubmitButtonProps {
   className: string;
   selectedProduct: IProducts;
   mealPlans: IMealplans[];
@@ -12,7 +12,7 @@ interface ISubmitButton {
   setSuccessfulAdditions: Dispatch<SetStateAction<string[] | never[]>>;
 }
 
-const SubmitButton: FC<ISubmitButton> = ({
+const SubmitButton: FC<SubmitButtonProps> = ({
   className,
   selectedProduct,
   mealPlans,

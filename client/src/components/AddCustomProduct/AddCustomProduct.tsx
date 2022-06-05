@@ -2,11 +2,13 @@ import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 import ListItem from '../common/ListItem';
 
-interface IAddCustomProduct {
+interface AddCustomProductProps {
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
 }
 
-const AddCustomProduct: FC<IAddCustomProduct> = ({ setSelectedProduct }) => {
+const AddCustomProduct: FC<AddCustomProductProps> = ({
+  setSelectedProduct,
+}) => {
   const [visible, setVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -16,7 +18,7 @@ const AddCustomProduct: FC<IAddCustomProduct> = ({ setSelectedProduct }) => {
   const addCustomProduct = (e) => {
     e.preventDefault();
     const form = e.target.form;
-    console.log(e.target.form.Kalorier.value);
+    // console.log(e.target.form.Kalorier.value);
     setSelectedProduct({
       id: 99999,
       name: form.name.value,

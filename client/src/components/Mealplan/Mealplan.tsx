@@ -1,13 +1,13 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { IMealplans } from '../../Interfaces/Mealplans';
 import Mealplans from './Mealplans/Mealplans';
 
-interface IMealplan {
+interface MealplanProps {
   mealPlans: IMealplans[];
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
 }
 
-const Mealplan: FC<IMealplan> = ({ mealPlans, setMealPlans }) => {
+const Mealplan: FC<MealplanProps> = ({ mealPlans, setMealPlans }) => {
   return (
     <>
       <h2 className="mealPlan__title">Ukeplan</h2>

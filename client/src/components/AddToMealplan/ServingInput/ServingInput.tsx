@@ -7,10 +7,10 @@ import {
 } from 'react';
 import { IMealplans } from '../../../Interfaces/Mealplans';
 import { IProducts } from '../../../Interfaces/Products';
-import handleKeyDown from './handleKeyDown';
-import updateNutritionList from './updateNutritionList';
+import handleKeyDown from './helpers/handleKeyDown';
+import updateNutritionList from './helpers/updateNutritionList';
 
-interface IServingInput {
+interface ServingInputProps {
   selectedProduct: IProducts;
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   className: string;
@@ -23,8 +23,8 @@ interface IServingInput {
 }
 
 const ServingInput: ForwardRefExoticComponent<
-  IServingInput & RefAttributes<HTMLInputElement | undefined>
-> = forwardRef<HTMLInputElement | undefined, IServingInput>(
+  ServingInputProps & RefAttributes<HTMLInputElement | undefined>
+> = forwardRef<HTMLInputElement | undefined, ServingInputProps>(
   (
     {
       className,

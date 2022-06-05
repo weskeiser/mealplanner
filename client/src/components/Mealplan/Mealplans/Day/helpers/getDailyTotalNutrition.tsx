@@ -1,4 +1,4 @@
-import { IMeal, IMealplans } from '../../../../Interfaces/Mealplans';
+import { IMeal, IMealplans } from '../../../../../Interfaces/Mealplans';
 import getTotalNutrition from './getTotalNutrition';
 
 export interface getNutritionProps {

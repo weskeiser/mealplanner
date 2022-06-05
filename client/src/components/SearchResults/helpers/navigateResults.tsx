@@ -5,7 +5,7 @@ import {
   MutableRefObject,
   SetStateAction,
 } from 'react';
-import { IProducts } from '../../Interfaces/Products';
+import { IProducts } from '../../../Interfaces/Products';
 import selectProduct from './selectProduct';
 
 const searchResultsNav = (

@@ -1,7 +1,7 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
-import { IMealplans } from '../../../Interfaces/Mealplans';
-import { IProducts } from '../../../Interfaces/Products';
-import addProductToMeal from '../addProductToMeal';
+import { IMealplans } from '../../../../Interfaces/Mealplans';
+import { IProducts } from '../../../../Interfaces/Products';
+import addProductToMeal from '../../helpers/addProductToMeal';
 const handleKeyDown = (
   e: KeyboardEvent<HTMLInputElement>,
   selectedProduct: IProducts,

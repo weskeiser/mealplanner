@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { IMealplans } from '../../../../../Interfaces/Mealplans';
 import NutritionList from '../../../../NutritionList/NutritionList';
-import getDailyTotalNutrition from '../getDailyTotalNutrition';
+import getDailyTotalNutrition from '../helpers/getDailyTotalNutrition';
 
-interface ITotalNutritionPerDay {
+interface TotalNutritionPerDayProps {
   visible: boolean;
   mealPlan: IMealplans;
 }
 
-const TotalNutritionPerDay: FC<ITotalNutritionPerDay> = ({
+const TotalNutritionPerDay: FC<TotalNutritionPerDayProps> = ({
   visible,
   mealPlan,
 }) => {

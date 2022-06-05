@@ -8,7 +8,6 @@ import SearchSection from './components/SearchSection/SearchSection';
 import SelectedProduct from './components/SelectedProduct/SelectedProduct';
 import Mealplan from './components/Mealplan/Mealplan';
 import AddToMealplan from './components/AddToMealplan/AddToMealplan';
-import Main from './components/Main/Main';
 
 function App() {
   // Refs
@@ -37,7 +36,6 @@ function App() {
     },
   });
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
-  const [searchTerm, setSearchTerm] = useState('');
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
 
   const dayNamesList = [
@@ -71,18 +69,10 @@ function App() {
   );
 
   return (
-    <Main
-      searchTerm={searchTerm}
-      searchBarRef={searchBarRef}
-      setCurrentProduct={setCurrentProduct}
-      setSearchTerm={setSearchTerm}
-      setFocusedSearchResult={setFocusedSearchResult}
-    >
+    <main>
       <h1 className="page-title">Måltidsplanlegger</h1>
       <SearchSection
         searchBarRef={searchBarRef}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
         setCurrentProduct={setCurrentProduct}
@@ -96,14 +86,13 @@ function App() {
         setSelectedProduct={setSelectedProduct}
         mealPlans={mealPlans}
         setMealPlans={setMealPlans}
-        className={'add-to-mealplan'}
         servingInputRef={servingInputRef}
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
         dayNamesList={dayNamesList}
       />
       <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
-    </Main>
+    </main>
   );
 }
 

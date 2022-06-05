@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import incrementMeals from './incrementMeals';
+import incrementMeals from './helpers/incrementMeals';
 
 interface IncrementButtonProps {
   incrementType: string;

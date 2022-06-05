@@ -4,13 +4,13 @@ import Header from './Header/Header';
 import Meals from './Meals/Meals';
 import TotalNutritionPerDay from './TotalNutritionPerDay/TotalNutritionPerDay';
 
-interface IDay {
+interface DayProps {
   mealPlan: IMealplans;
   mealPlans: IMealplans[];
   setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
 }
 
-const Day: FC<IDay> = ({ mealPlan, mealPlans, setMealPlans }) => {
+const Day: FC<DayProps> = ({ mealPlan, mealPlans, setMealPlans }) => {
   const [visible, setVisible] = useState(true);
 
   return (

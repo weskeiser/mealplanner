@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IProducts } from '../../../Interfaces/Products';
-import { getNutritionProps } from '../../Mealplan/Mealplans/Day/getDailyTotalNutrition';
+import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
 
 interface TableBodyProps {
   selectedProduct: IProducts | getNutritionProps;

@@ -1,6 +1,6 @@
 import { Dispatch, MouseEvent } from 'react';
-import { IMealplans } from '../../Interfaces/Mealplans';
-import { IProducts } from '../../Interfaces/Products';
+import { IMealplans } from '../../../Interfaces/Mealplans';
+import { IProducts } from '../../../Interfaces/Products';
 
 const addProductToMeal = (
   e: React.MouseEvent<HTMLButtonElement, MouseEvent>,

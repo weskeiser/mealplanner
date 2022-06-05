@@ -1,20 +1,20 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import {
   IMeal,
   IMealplans,
 } from '../../../../../../../../../Interfaces/Mealplans';
-import removeProduct from './removeProduct';
+import removeProduct from './helpers/removeProduct';
 
-interface IRemoveButton {
+interface RemoveButtonProps {
   meal: IMeal;
   mealPlans: IMealplans[];
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
   prodAndNutrClass: string;
   index: number;
   mealPlanDayName: string;
 }
 
-const RemoveButton: FC<IRemoveButton> = ({
+const RemoveButton: FC<RemoveButtonProps> = ({
   prodAndNutrClass,
   index,
   mealPlans,

@@ -13,7 +13,6 @@ import MealplanSelect from './MealplanSelect/MealplanSelect';
 import StatusMessages from './StatusMessages/StatusMessages';
 
 interface AddToMealplanProps {
-  className: string;
   selectedProduct: IProducts;
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
@@ -24,7 +23,6 @@ interface AddToMealplanProps {
   dayNamesList: string[];
 }
 const AddToMealplan: FC<AddToMealplanProps> = ({
-  className,
   selectedProduct,
   mealPlans,
   setMealPlans,
@@ -40,6 +38,8 @@ const AddToMealplan: FC<AddToMealplanProps> = ({
   const [successfulAdditions, setSuccessfulAdditions] = useState<
     string[] | never[]
   >([]);
+
+  const className = 'add-to-mealplan';
 
   return (
     <>

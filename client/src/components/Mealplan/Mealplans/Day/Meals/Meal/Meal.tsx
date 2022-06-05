@@ -1,19 +1,17 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { IMeal, IMealplans } from '../../../../../../Interfaces/Mealplans';
 import Header from './Header/Header';
 import ProductsAndNutrition from './ProductsAndNutrition/ProductsAndNutrition';
 
-interface IMealLocal {
+interface MealProps {
   mealPlan: IMealplans;
   mealPlans: IMealplans[];
-  setMealPlans: React.Dispatch<React.SetStateAction<IMealplans[]>>;
+  setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
 }
 
-const MealplanMeal: FC<IMealLocal> = ({
-  mealPlan,
-  mealPlans,
-  setMealPlans,
-}) => {
+const MealplanMeal: FC<MealProps> = ({ mealPlan, mealPlans, setMealPlans }) => {
+  const [visible, setVisible] = useState(true);
+
   return (
     <>
       {mealPlan.meals.map((meal: IMeal) => (
@@ -22,12 +20,13 @@ const MealplanMeal: FC<IMealLocal> = ({
           key={mealPlan.listName + meal.listName}
           title={mealPlan.listName + ', ' + meal.listName}
         >
-          <Header meal={meal} />
+          <Header meal={meal} visible={visible} setVisible={setVisible} />
           <ProductsAndNutrition
             key={mealPlan.listName + meal.listName}
             meal={meal}
             mealPlans={mealPlans}
             setMealPlans={setMealPlans}
+            visible={visible}
           />
         </section>
       ))}

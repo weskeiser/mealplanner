@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { IProducts } from '../../../../Interfaces/Products';
 
-interface ISuccessMessages {
+interface SuccessMessagesProps {
   successfulAdditions: string[] | never[];
   className: string;
   selectedProduct: IProducts;
 }
-const SuccessMessages: FC<ISuccessMessages> = ({
+const SuccessMessages: FC<SuccessMessagesProps> = ({
   successfulAdditions,
   className,
   selectedProduct,

@@ -1,5 +1,5 @@
 import { Dispatch, FormEvent, SetStateAction } from 'react';
-import { IProducts } from '../../../Interfaces/Products';
+import { IProducts } from '../../../../Interfaces/Products';
 
 const updateNutritionList = (
   e: FormEvent<HTMLInputElement>,
