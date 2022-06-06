@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { IMeal, IMealplans } from '../../../../../../../Interfaces/Mealplans';
-import NutritionList from '../../../../../../NutritionList/NutritionList';
+import NutritionList from '../../../../../../common/NutritionList/NutritionList';
 import getTotalNutrition from '../../../helpers/getTotalNutrition';
 import AddedProducts from './AddedProducts/AddedProducts';
 

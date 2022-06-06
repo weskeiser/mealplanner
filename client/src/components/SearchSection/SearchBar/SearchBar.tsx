@@ -8,9 +8,9 @@ import {
   RefAttributes,
   SetStateAction,
 } from 'react';
-import useFetchEffect from '../../hooks/useFetchEffect';
-import { IProducts } from '../../Interfaces/Products';
-import showSearchResults from '../helpers/showSearchResults';
+import useFetchEffect from '../../../hooks/useFetchEffect';
+import { IProducts } from '../../../Interfaces/Products';
+import showSearchResults from '../../helpers/showSearchResults';
 
 interface SearchBarProps {
   searchTerm: string;

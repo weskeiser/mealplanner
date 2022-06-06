@@ -2,16 +2,25 @@ import { useRef, useState } from 'react';
 import './styles/App.css';
 
 import { IProducts } from './Interfaces/Products';
-import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import { IMealplans } from './Interfaces/Mealplans';
+import AddCustomProduct from './components/AddCustomProduct/AddCustomProduct';
 import SearchSection from './components/SearchSection/SearchSection';
 import SelectedProduct from './components/SelectedProduct/SelectedProduct';
 import Mealplan from './components/Mealplan/Mealplan';
 import AddToMealplan from './components/AddToMealplan/AddToMealplan';
 
+const daysOfTheWeek = [
+  'Mandag',
+  'Tirsdag',
+  'Onsdag',
+  'Torsdag',
+  'Fredag',
+  'Lørdag',
+  'Søndag',
+];
+
 function App() {
   // Refs
-  const searchBarRef = useRef<HTMLInputElement | undefined>();
   const servingInputRef = useRef<HTMLInputElement | undefined>();
 
   // States
@@ -36,18 +45,6 @@ function App() {
     },
   });
   const [currentProduct, setCurrentProduct] = useState<IProducts | {}>({});
-  const [focusedSearchResult, setFocusedSearchResult] = useState(0);
-
-  const daysOfTheWeek = [
-    'Mandag',
-    'Tirsdag',
-    'Onsdag',
-    'Torsdag',
-    'Fredag',
-    'Lørdag',
-    'Søndag',
-  ];
-
   const [mealPlans, setMealPlans] = useState<IMealplans[]>(
     daysOfTheWeek.map((day) => ({
       listName: `${day}`,
@@ -72,9 +69,6 @@ function App() {
     <main>
       <h1 className="page-title">Måltidsplanlegger</h1>
       <SearchSection
-        searchBarRef={searchBarRef}
-        focusedSearchResult={focusedSearchResult}
-        setFocusedSearchResult={setFocusedSearchResult}
         setCurrentProduct={setCurrentProduct}
         setSelectedProduct={setSelectedProduct}
         servingInputRef={servingInputRef}

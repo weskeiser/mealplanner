@@ -1,5 +1,5 @@
 import { Dispatch, MutableRefObject, SetStateAction } from 'react';
-import { IProducts } from '../../../Interfaces/Products';
+import { IProducts } from '../../../../Interfaces/Products';
 
 const selectProduct = (
   productId: number,

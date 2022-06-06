@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IProducts } from '../../../Interfaces/Products';
-import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
+import { IProducts } from '../../../../Interfaces/Products';
+import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
 
 interface TableBodyProps {
   selectedProduct: IProducts | getNutritionProps;
@@ -26,7 +26,7 @@ const TableBody: FC<TableBodyProps> = ({ selectedProduct }) => {
       {tableData.map((dataPair) => (
         <tr key={dataPair + selectedProduct.id}>
           <td>{dataPair[0]}</td>
-          <td>{dataPair[1].toFixed()}</td>
+          <td>{(dataPair[1] as number).toFixed()}</td>
         </tr>
       ))}
     </tbody>

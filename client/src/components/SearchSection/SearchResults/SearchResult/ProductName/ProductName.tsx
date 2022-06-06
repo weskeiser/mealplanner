@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IProducts } from '../../../../Interfaces/Products';
+import { IProducts } from '../../../../../Interfaces/Products';
 
 interface ProductNameProps {
   productName: string;

@@ -7,32 +7,28 @@ import {
   useState,
 } from 'react';
 import { IProducts } from '../../Interfaces/Products';
-import SearchBar from '../SearchBar/SearchBar';
-import SearchResults from '../SearchResults/SearchResults';
+import SearchBar from './SearchBar/SearchBar';
+import SearchResults from './SearchResults/SearchResults';
 
 interface SearchSectionProps {
-  focusedSearchResult: number;
-  setFocusedSearchResult: Dispatch<SetStateAction<number>>;
   setCurrentProduct: Dispatch<SetStateAction<IProducts | {}>>;
-  searchBarRef: MutableRefObject<HTMLInputElement | undefined>;
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({
-  focusedSearchResult,
-  setFocusedSearchResult,
   setCurrentProduct,
-  searchBarRef,
   setSelectedProduct,
   servingInputRef,
 }) => {
   const searchResultsRef = useRef<HTMLUListElement | undefined>();
+  const searchBarRef = useRef<HTMLInputElement | undefined>();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResultsContents, setSearchResultsContents] = useState<
     IProducts[]
   >([]);
+  const [focusedSearchResult, setFocusedSearchResult] = useState(0);
 
   return (
     <section

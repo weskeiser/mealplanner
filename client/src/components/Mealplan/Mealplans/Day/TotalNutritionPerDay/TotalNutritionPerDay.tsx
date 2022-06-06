@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IMealplans } from '../../../../../Interfaces/Mealplans';
-import NutritionList from '../../../../NutritionList/NutritionList';
+import NutritionList from '../../../../common/NutritionList/NutritionList';
 import getDailyTotalNutrition from '../helpers/getDailyTotalNutrition';
 
 interface TotalNutritionPerDayProps {

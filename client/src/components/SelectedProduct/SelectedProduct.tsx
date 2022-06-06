@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IProducts } from '../../Interfaces/Products';
-import NutritionList from '../NutritionList/NutritionList';
-import SelectedProductDisplay from '../SelectedProductDisplay/SelectedProductDisplay';
+import NutritionList from '../common/NutritionList/NutritionList';
+import SelectedProductDisplay from './SelectedProductDisplay/SelectedProductDisplay';
 
 interface SelectedProductProps {
   selectedProduct: IProducts;

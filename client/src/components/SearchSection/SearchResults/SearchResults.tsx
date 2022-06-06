@@ -1,5 +1,5 @@
-import ListItem from '../common/ListItem';
-import { IProducts } from '../../Interfaces/Products';
+import ListItem from '../../common/ListItem';
+import { IProducts } from '../../../Interfaces/Products';
 import {
   forwardRef,
   ForwardRefExoticComponent,
