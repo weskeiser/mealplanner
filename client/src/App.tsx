@@ -8,16 +8,7 @@ import SearchSection from './components/SearchSection/SearchSection';
 import SelectedProduct from './components/SelectedProduct/SelectedProduct';
 import Mealplan from './components/Mealplan/Mealplan';
 import AddToMealplan from './components/AddToMealplan/AddToMealplan';
-
-const daysOfTheWeek = [
-  'Mandag',
-  'Tirsdag',
-  'Onsdag',
-  'Torsdag',
-  'Fredag',
-  'Lørdag',
-  'Søndag',
-];
+import daysOfTheWeek from './components/helpers/daysOfTheWeek';
 
 function App() {
   // Refs
@@ -83,7 +74,6 @@ function App() {
         servingInputRef={servingInputRef}
         currentProduct={currentProduct}
         setCurrentProduct={setCurrentProduct}
-        daysOfTheWeek={daysOfTheWeek}
       />
       <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
     </main>

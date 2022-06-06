@@ -20,7 +20,6 @@ interface AddToMealplanProps {
   servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
   currentProduct: IProducts | {};
   setCurrentProduct: Dispatch<SetStateAction<IProducts>>;
-  daysOfTheWeek: string[];
 }
 const AddToMealplan: FC<AddToMealplanProps> = ({
   selectedProduct,
@@ -30,7 +29,6 @@ const AddToMealplan: FC<AddToMealplanProps> = ({
   currentProduct,
   setCurrentProduct,
   servingInputRef,
-  daysOfTheWeek,
 }) => {
   const [unsuccessfulAdditions, setUnsuccessfulAdditions] = useState<
     string[] | never[]
@@ -48,7 +46,6 @@ const AddToMealplan: FC<AddToMealplanProps> = ({
           className={className}
           mealPlans={mealPlans}
           setMealPlans={setMealPlans}
-          daysOfTheWeek={daysOfTheWeek}
         />
         <div className={className + '__add-to-list__serving-and-add'}>
           <ServingInput

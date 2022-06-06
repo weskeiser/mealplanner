@@ -1,19 +1,18 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { IMeal, IMealplans } from '../../../Interfaces/Mealplans';
+import daysOfTheWeek from '../../helpers/daysOfTheWeek';
 import SelectMealplan from './SelectMealplan/SelectMealplan';
 
 interface MealplanSelectProps {
   className: string;
   mealPlans: IMealplans[];
   setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
-  daysOfTheWeek: string[];
 }
 
 const MealplanSelect: FC<MealplanSelectProps> = ({
   className,
   mealPlans,
   setMealPlans,
-  daysOfTheWeek,
 }) => {
   const [mealNames, setMealNames] = useState<string[]>([
     'Måltid 1',
