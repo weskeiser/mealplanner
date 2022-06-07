@@ -18,7 +18,7 @@ interface SearchBarProps {
   setSearchResultsContents: Dispatch<SetStateAction<IProducts[]>>;
   focusedSearchResult: number;
   setFocusedSearchResult: Dispatch<SetStateAction<number>>;
-  setCurrentProduct: Dispatch<SetStateAction<IProducts>>;
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts>>;
   searchResultsRef: MutableRefObject<HTMLUListElement | undefined>;
 }
 
@@ -33,7 +33,7 @@ const SearchBar: ForwardRefExoticComponent<
       searchResultsRef,
       focusedSearchResult,
       setFocusedSearchResult,
-      setCurrentProduct,
+      setSelectedProductOriginalServing,
     },
     searchBarRef
   ) => {
@@ -68,7 +68,7 @@ const SearchBar: ForwardRefExoticComponent<
       }
 
       if (e.key === 'Escape') {
-        setCurrentProduct({});
+        setSelectedProductOriginalServing({});
         searchBarRef.current.value = '';
         setSearchTerm('');
         setFocusedSearchResult(0);

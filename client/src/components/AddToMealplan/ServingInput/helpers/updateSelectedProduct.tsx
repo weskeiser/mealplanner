@@ -1,12 +1,12 @@
 import { Dispatch, FormEvent, SetStateAction } from 'react';
 import { IProducts } from '../../../../Interfaces/Products';
 
-const updateNutritionList = (
+const updateSelectedProduct = (
   e: FormEvent<HTMLInputElement>,
   selectedProduct: IProducts,
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>,
-  currentProduct: IProducts | {},
-  setCurrentProduct: Dispatch<SetStateAction<IProducts>>
+  selectedProductOriginalServing: IProducts | {},
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts>>
 ) => {
   const { properties } = selectedProduct;
   const { serving, calories, salt, macros } = properties;
@@ -19,7 +19,7 @@ const updateNutritionList = (
   const inputFieldValue = input.value;
 
   if (!servingInput) {
-    setSelectedProduct(currentProduct);
+    setSelectedProduct(selectedProductOriginalServing);
     return;
   }
 
@@ -28,12 +28,12 @@ const updateNutritionList = (
     return;
   }
 
-  if (Object.keys(currentProduct).length === 0) {
-    setCurrentProduct(selectedProduct);
+  if (Object.keys(selectedProductOriginalServing).length === 0) {
+    setSelectedProductOriginalServing(selectedProduct);
   }
 
-  const byServingInput = (value: number) => {
-    return (value / serving) * servingInput;
+  const updateServing = (nutrientAmount: number) => {
+    return +((nutrientAmount / serving) * servingInput).toFixed(3);
   };
 
   setSelectedProduct({
@@ -41,18 +41,18 @@ const updateNutritionList = (
     properties: {
       ...properties,
       serving: servingInput,
-      calories: +byServingInput(calories).toFixed(3),
+      calories: updateServing(calories),
       macros: {
-        fat: +byServingInput(fat).toFixed(3),
-        protein: +byServingInput(protein).toFixed(3),
+        fat: updateServing(fat),
+        protein: updateServing(protein),
         carbs: {
-          total: +byServingInput(total).toFixed(3),
-          sugars: +byServingInput(sugars).toFixed(3),
+          total: updateServing(total),
+          sugars: updateServing(sugars),
         },
       },
-      salt: +byServingInput(salt).toFixed(3),
+      salt: +updateServing(salt).toFixed(3),
     },
   });
 };
 
-export default updateNutritionList;
+export default updateSelectedProduct;

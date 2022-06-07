@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .hidden {
@@ -17,7 +17,7 @@ html {
 body {
   height: 100%;
   -ms-touch-action: none;
-  touch-action: none;
+      touch-action: none;
 }
 
 #root {
@@ -114,6 +114,7 @@ main {
   border-right: 1px solid #86b2e8;
   height: 100%;
   width: 2.5em;
+  overflow: hidden;
 }
 
 .search-section__search-results__list-item__name {
@@ -171,28 +172,8 @@ main {
   margin-bottom: 1em;
 }
 
-.custom-product__form__name-and-serving {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 3fr 1fr;
-  grid-template-columns: 3fr 1fr;
+.custom-product__form__name {
   width: 15em;
-}
-
-.custom-product__form__name-and-serving > * {
-  width: 100%;
-  font-size: 1.3em;
-}
-
-.custom-product__form__name-and-serving__name {
-  padding-left: 0.15em;
-}
-
-.custom-product__form__name-and-serving__serving {
-  text-align: right;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
 }
 
 .custom-product__form__list {
@@ -206,13 +187,13 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 1fr;
-  grid-template-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
 }
 
 .custom-product__form__list__input > * {
   -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
   padding: 0 0.3em;
 }
 
@@ -239,7 +220,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 1fr;
-  grid-template-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
 }
 
 .custom-product__form__list-item > * {
@@ -310,9 +291,9 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3.5em 1fr;
-  grid-template-columns: 3.5em 1fr;
+      grid-template-columns: 3.5em 1fr;
   -ms-grid-rows: 2fr 1fr;
-  grid-template-rows: 2fr 1fr;
+      grid-template-rows: 2fr 1fr;
 }
 
 .selected-product__title__logo {
@@ -365,7 +346,7 @@ main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
-  grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
   height: 2em;
 }
 
@@ -420,8 +401,8 @@ main {
 .add-to-mealplan__add-to-list__serving {
   border-radius: 0.3em;
   -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   width: 100%;
@@ -473,8 +454,7 @@ main {
   min-height: 5em;
 }
 
-.add-to-mealplan__add-to-list__status__error,
-.add-to-mealplan__add-to-list__status__success {
+.add-to-mealplan__add-to-list__status__error, .add-to-mealplan__add-to-list__status__success {
   font-size: 0.7em;
   width: 100%;
 }
@@ -531,12 +511,12 @@ main {
   width: 1em;
   height: 1em;
   -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 .mealPlan__header__title__toggle__inner__closed {
   -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .mealPlan__header__divider--lower {
@@ -582,13 +562,13 @@ main {
   width: 1em;
   height: 1em;
   -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 .mealPlan__meals__meal__title__toggle__inner__closed {
   margin-top: -0.25em;
   -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .mealPlan__meals__meal__products-and-nutrition {
@@ -646,38 +626,23 @@ main {
   font-weight: bold;
 }
 
-.mealPlan__meals__meal__products-and-nutrition__nutrition-list
-  > thead
-  > tr
-  :nth-child(1) {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list > thead > tr :nth-child(1) {
   text-align: left;
 }
 
-.mealPlan__meals__meal__products-and-nutrition__nutrition-list
-  > thead
-  > tr
-  :nth-child(2) {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list > thead > tr :nth-child(2) {
   text-align: right;
 }
 
-.mealPlan__meals__meal__products-and-nutrition__nutrition-list
-  > tbody
-  > tr
-  > td {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list > tbody > tr > td {
   padding: 0.2em 0.3em;
 }
 
-.mealPlan__meals__meal__products-and-nutrition__nutrition-list
-  > tbody
-  > tr
-  > td:first-child {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list > tbody > tr > td:first-child {
   border: 1px solid #dadada;
 }
 
-.mealPlan__meals__meal__products-and-nutrition__nutrition-list
-  > tbody
-  > tr
-  > td:nth-child(2) {
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list > tbody > tr > td:nth-child(2) {
   text-align: right;
   border: 1px solid #dadada;
 }

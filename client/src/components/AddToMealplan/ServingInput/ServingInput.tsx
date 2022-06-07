@@ -8,14 +8,14 @@ import {
 import { IMealplans } from '../../../Interfaces/Mealplans';
 import { IProducts } from '../../../Interfaces/Products';
 import handleKeyDown from './helpers/handleKeyDown';
-import updateNutritionList from './helpers/updateNutritionList';
+import updateSelectedProduct from './helpers/updateSelectedProduct';
 
 interface ServingInputProps {
   selectedProduct: IProducts;
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   className: string;
-  currentProduct: IProducts | {};
-  setCurrentProduct: Dispatch<SetStateAction<IProducts>>;
+  selectedProductOriginalServing: IProducts | {};
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
   setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
   setUnsuccessfulAdditions: Dispatch<SetStateAction<string[] | never[]>>;
@@ -30,8 +30,8 @@ const ServingInput: ForwardRefExoticComponent<
       className,
       selectedProduct,
       setSelectedProduct,
-      currentProduct,
-      setCurrentProduct,
+      selectedProductOriginalServing,
+      setSelectedProductOriginalServing,
       mealPlans,
       setMealPlans,
       setUnsuccessfulAdditions,
@@ -50,12 +50,12 @@ const ServingInput: ForwardRefExoticComponent<
         autoComplete="off"
         maxLength={4}
         onInput={(e) =>
-          updateNutritionList(
+          updateSelectedProduct(
             e,
             selectedProduct,
             setSelectedProduct,
-            currentProduct,
-            setCurrentProduct
+            selectedProductOriginalServing,
+            setSelectedProductOriginalServing
           )
         }
         onKeyDown={(e) =>

@@ -23,7 +23,7 @@ interface SearchResultsProps {
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   searchBarRef: MutableRefObject<HTMLInputElement | undefined>;
   servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
-  setCurrentProduct: Dispatch<SetStateAction<{} | IProducts>>;
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<{} | IProducts>>;
   focusedSearchResult: number;
   setFocusedSearchResult: Dispatch<SetStateAction<number>>;
 }
@@ -39,7 +39,7 @@ const SearchResults: ForwardRefExoticComponent<
       setSearchTerm,
       searchBarRef,
       servingInputRef,
-      setCurrentProduct,
+      setSelectedProductOriginalServing,
       focusedSearchResult,
       setFocusedSearchResult,
     },
@@ -77,7 +77,7 @@ const SearchResults: ForwardRefExoticComponent<
                 searchBarRef,
                 searchResultsContents,
                 setSelectedProduct,
-                setCurrentProduct,
+                setSelectedProductOriginalServing,
                 setSearchTerm
               )
             }
@@ -91,7 +91,7 @@ const SearchResults: ForwardRefExoticComponent<
                 servingInputRef,
                 searchResultsContents,
                 setSelectedProduct,
-                setCurrentProduct,
+                setSelectedProductOriginalServing,
                 setSearchTerm
               )
             }

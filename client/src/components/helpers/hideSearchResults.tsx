@@ -5,12 +5,12 @@ const hideSearchResults = (
   e: MouseEvent<HTMLElement, MouseEvent>,
   searchTerm: string,
   searchBarRef: MutableRefObject<HTMLInputElement | undefined>,
-  setCurrentProduct: Dispatch<SetStateAction<{} | IProducts>>,
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<{} | IProducts>>,
   setSearchTerm: Dispatch<SetStateAction<string>>,
   setFocusedSearchResult: Dispatch<SetStateAction<number>>
 ) => {
   if (searchTerm && e.target.className !== 'search-bar__input') {
-    setCurrentProduct({});
+    setSelectedProductOriginalServing({});
     searchBarRef.current.value = '';
     setSearchTerm('');
     setFocusedSearchResult(0);

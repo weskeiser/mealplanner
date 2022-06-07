@@ -7,7 +7,7 @@ const selectProduct = (
   searchBarRef: MutableRefObject<HTMLInputElement | undefined>,
   searchResultsContents: IProducts[],
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>,
-  setCurrentProduct: Dispatch<SetStateAction<{} | IProducts>>,
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<{} | IProducts>>,
   setSearchTerm: Dispatch<SetStateAction<string>>
 ) => {
   const servingInputEl = servingInputRef.current;
@@ -19,7 +19,7 @@ const selectProduct = (
     }
   });
   servingInputEl.value = '';
-  setCurrentProduct({});
+  setSelectedProductOriginalServing({});
   searchBarEl.value = '';
   setSearchTerm('');
 };

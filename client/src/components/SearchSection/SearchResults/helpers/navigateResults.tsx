@@ -17,7 +17,7 @@ const searchResultsNav = (
   servingInputRef: HTMLInputElement | undefined,
   searchResultsContents: IProducts[],
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>,
-  setCurrentProduct: Dispatch<SetStateAction<{} | IProducts>>,
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<{} | IProducts>>,
   setSearchTerm: Dispatch<SetStateAction<string>>
 ) => {
   const allSearchResults = (searchResultsRef.current as HTMLUListElement)
@@ -59,7 +59,7 @@ const searchResultsNav = (
       searchBarRef,
       searchResultsContents,
       setSelectedProduct,
-      setCurrentProduct,
+      setSelectedProductOriginalServing,
       setSearchTerm
     );
     searchBarEl.focus();

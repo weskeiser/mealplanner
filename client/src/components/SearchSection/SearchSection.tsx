@@ -11,13 +11,13 @@ import SearchBar from './SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
 
 interface SearchSectionProps {
-  setCurrentProduct: Dispatch<SetStateAction<IProducts | {}>>;
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts | {}>>;
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
   servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({
-  setCurrentProduct,
+  setSelectedProductOriginalServing,
   setSelectedProduct,
   servingInputRef,
 }) => {
@@ -44,7 +44,7 @@ const SearchSection: FC<SearchSectionProps> = ({
         setSearchResultsContents={setSearchResultsContents}
         focusedSearchResult={focusedSearchResult}
         setFocusedSearchResult={setFocusedSearchResult}
-        setCurrentProduct={setCurrentProduct}
+        setSelectedProductOriginalServing={setSelectedProductOriginalServing}
       />
       {searchTerm && (
         <SearchResults
@@ -55,7 +55,7 @@ const SearchSection: FC<SearchSectionProps> = ({
           setSearchTerm={setSearchTerm}
           searchBarRef={searchBarRef}
           servingInputRef={servingInputRef}
-          setCurrentProduct={setCurrentProduct}
+          setSelectedProductOriginalServing={setSelectedProductOriginalServing}
           focusedSearchResult={focusedSearchResult}
           setFocusedSearchResult={setFocusedSearchResult}
         />

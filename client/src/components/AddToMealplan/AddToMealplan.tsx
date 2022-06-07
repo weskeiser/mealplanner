@@ -18,16 +18,16 @@ interface AddToMealplanProps {
   mealPlans: IMealplans[];
   setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
   servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
-  currentProduct: IProducts | {};
-  setCurrentProduct: Dispatch<SetStateAction<IProducts>>;
+  selectedProductOriginalServing: IProducts | {};
+  setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts>>;
 }
 const AddToMealplan: FC<AddToMealplanProps> = ({
   selectedProduct,
   mealPlans,
   setMealPlans,
   setSelectedProduct,
-  currentProduct,
-  setCurrentProduct,
+  selectedProductOriginalServing,
+  setSelectedProductOriginalServing,
   servingInputRef,
 }) => {
   const [unsuccessfulAdditions, setUnsuccessfulAdditions] = useState<
@@ -53,8 +53,10 @@ const AddToMealplan: FC<AddToMealplanProps> = ({
             className={className + '__add-to-list__serving'}
             selectedProduct={selectedProduct}
             setSelectedProduct={setSelectedProduct}
-            currentProduct={currentProduct}
-            setCurrentProduct={setCurrentProduct}
+            selectedProductOriginalServing={selectedProductOriginalServing}
+            setSelectedProductOriginalServing={
+              setSelectedProductOriginalServing
+            }
             mealPlans={mealPlans}
             setMealPlans={setMealPlans}
             setUnsuccessfulAdditions={setUnsuccessfulAdditions}
