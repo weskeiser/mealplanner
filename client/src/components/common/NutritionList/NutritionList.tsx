@@ -1,7 +1,9 @@
 import { IProducts } from '../../../Interfaces/Products';
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
 import TableBody from './TableBody/TableBody';
+import NutritionRadio from './NutritionRadio/NutritionRadio';
+import NutritionTable from './NutritionTable/NutritionTable';
 
 interface NutritionListProps {
   className: string;
@@ -14,27 +16,30 @@ const NutritionList: FC<NutritionListProps> = ({
   selectedProduct,
   totalServing,
 }) => {
+  const radioFormRef = useRef<HTMLFormElement | undefined>();
   const [mode, setMode] = useState('standard');
+
+  const replaceTable = (e) => {
+    setMode(e.target.value);
+  };
 
   return (
     <>
-      <table className={className + '__nutrition-list'}>
-        <thead>
-          <tr>
-            <th>Næringsinnhold</th>
-            <th>{totalServing}</th>
-          </tr>
-        </thead>
-
-        <TableBody mode={mode} selectedProduct={selectedProduct} />
-      </table>
-      <div>
-        <fieldset>
-          <input type="radio" name="nutrition-list" />
-          <input type="radio" name="nutrition-list" />
-          <input type="radio" name="nutrition-list" />
-        </fieldset>
-      </div>
+      <NutritionTable
+        className={className}
+        selectedProduct={selectedProduct}
+        totalServing={totalServing}
+        mode={mode}
+      />
+      <form
+        ref={radioFormRef}
+        className={className + '__nutrition-list__radio'}
+        onInput={(e) => replaceTable(e)}
+      >
+        <NutritionRadio value="simple" />
+        <NutritionRadio value="standard" defaultChecked={true} />
+        <NutritionRadio value="vitamins" />
+      </form>
     </>
   );
 };

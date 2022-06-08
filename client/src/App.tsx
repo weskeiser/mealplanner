@@ -16,29 +16,29 @@ function App() {
 
   // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
-    id: 2,
-    name: 'Kjøttdeig 14%',
-    description: 'blabla',
+    id: 3.47,
+    name: 'Leverpostei',
+    description: 'uspesifisert',
     properties: {
       serving: 100,
-      calories: 194,
+      calories: 233,
       macros: {
         fat: {
-          total: 14,
-          types: {},
-          cholesterol: 1,
-        },
-        protein: 17,
-        carbs: {
-          total: 0,
-          sugar: {
-            total: 0,
-            added: 0,
+          total: 18.7,
+          types: {
+            saturated: 3.8,
+            trans: 0,
+            monounsaturated: 9.1,
+            polyunsaturated: 5.2,
           },
+          cholesterol: 94,
         },
+        protein: 9.9,
+        carbs: { total: 5.9, sugar: { total: 5.9, added: 0 } },
       },
       fiber: 1,
-      salt: 1.1,
+      salt: 1.6,
+      source: 'matvaretabellen',
     },
   });
   const [selectedProductOriginalServing, setSelectedProductOriginalServing] =

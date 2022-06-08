@@ -277,6 +277,57 @@ main {
   border: 1px solid #dadada;
 }
 
+.selected-product__nutrition-list__radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.5em;
+}
+
+.selected-product__nutrition-list__radio > input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 1.6em;
+  height: 1.6em;
+  border: 2px solid #86b2e8;
+  border-radius: 1em;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  margin: 0;
+}
+
+.selected-product__nutrition-list__radio > input::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 120ms -webkit-transform ease-in-out;
+  transition: 120ms -webkit-transform ease-in-out;
+  transition: 120ms transform ease-in-out;
+  transition: 120ms transform ease-in-out, 120ms -webkit-transform ease-in-out;
+  -webkit-box-shadow: inset 1em 1em #86b2e8;
+          box-shadow: inset 1em 1em #86b2e8;
+}
+
+.selected-product__nutrition-list__radio > input:checked::before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.selected-product__nutrition-list__radio > input:first-of-type {
+  margin-left: auto;
+  margin-right: 0.5em;
+}
+
+.selected-product__nutrition-list__radio > input:nth-of-type(3) {
+  margin-right: auto;
+  margin-left: 0.5em;
+}
+
 .selected-product__divider--upper {
   margin-bottom: 1.6em;
 }
@@ -650,6 +701,57 @@ main {
   border: 1px solid #dadada;
 }
 
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.5em;
+}
+
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__radio > input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 1.6em;
+  height: 1.6em;
+  border: 2px solid #86b2e8;
+  border-radius: 1em;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  margin: 0;
+}
+
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__radio > input::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 120ms -webkit-transform ease-in-out;
+  transition: 120ms -webkit-transform ease-in-out;
+  transition: 120ms transform ease-in-out;
+  transition: 120ms transform ease-in-out, 120ms -webkit-transform ease-in-out;
+  -webkit-box-shadow: inset 1em 1em #86b2e8;
+          box-shadow: inset 1em 1em #86b2e8;
+}
+
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__radio > input:checked::before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__radio > input:first-of-type {
+  margin-left: auto;
+  margin-right: 0.5em;
+}
+
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__radio > input:nth-of-type(3) {
+  margin-right: auto;
+  margin-left: 0.5em;
+}
+
 .mealPlan__total {
   margin: 2em;
 }
@@ -691,6 +793,57 @@ main {
 .mealPlan__total__nutrition-list > tbody > tr > td:nth-child(2) {
   text-align: right;
   border: 1px solid #dadada;
+}
+
+.mealPlan__total__nutrition-list__radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.5em;
+}
+
+.mealPlan__total__nutrition-list__radio > input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 1.6em;
+  height: 1.6em;
+  border: 2px solid #86b2e8;
+  border-radius: 1em;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  margin: 0;
+}
+
+.mealPlan__total__nutrition-list__radio > input::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 120ms -webkit-transform ease-in-out;
+  transition: 120ms -webkit-transform ease-in-out;
+  transition: 120ms transform ease-in-out;
+  transition: 120ms transform ease-in-out, 120ms -webkit-transform ease-in-out;
+  -webkit-box-shadow: inset 1em 1em #86b2e8;
+          box-shadow: inset 1em 1em #86b2e8;
+}
+
+.mealPlan__total__nutrition-list__radio > input:checked::before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.mealPlan__total__nutrition-list__radio > input:first-of-type {
+  margin-left: auto;
+  margin-right: 0.5em;
+}
+
+.mealPlan__total__nutrition-list__radio > input:nth-of-type(3) {
+  margin-right: auto;
+  margin-left: 0.5em;
 }
 
 .green {

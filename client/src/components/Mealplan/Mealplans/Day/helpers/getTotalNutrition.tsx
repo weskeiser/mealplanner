@@ -3,33 +3,38 @@ import { getNutritionProps } from './getDailyTotalNutrition';
 
 const getTotalNutrition = (products: IMeal, id: number) => {
   return products.reduce(
-    (prev: getNutritionProps, curr: getNutritionProps) => {
+    (
+      prev: getNutritionProps,
+      { properties: currProperties }: getNutritionProps
+    ) => {
+      const prevProperties = prev.properties;
+
       return {
         ...prev,
         properties: {
-          ...prev.properties,
-          calories: prev.properties.calories + curr.properties.calories,
+          ...prevProperties,
+          calories: prevProperties.calories + currProperties.calories,
           macros: {
             fat: {
               total:
-                prev.properties.macros.fat.total +
-                curr.properties.macros.fat.total,
+                prevProperties.macros.fat.total +
+                currProperties.macros.fat.total,
             },
             protein:
-              prev.properties.macros.protein + curr.properties.macros.protein,
+              prevProperties.macros.protein + currProperties.macros.protein,
             carbs: {
               total:
-                prev.properties.macros.carbs.total +
-                curr.properties.macros.carbs.total,
+                prevProperties.macros.carbs.total +
+                currProperties.macros.carbs.total,
               sugar: {
                 total:
-                  prev.properties.macros.carbs.sugar.total +
-                  curr.properties.macros.carbs.sugar.total,
+                  prevProperties.macros.carbs.sugar.total +
+                  currProperties.macros.carbs.sugar.total,
               },
             },
           },
-          salt: prev.properties.salt + curr.properties.salt,
-          fiber: prev.properties.fiber + curr.properties.fiber,
+          salt: prevProperties.salt + currProperties.salt,
+          fiber: prevProperties.fiber + currProperties.fiber,
         },
       };
     },
