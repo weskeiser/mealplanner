@@ -277,14 +277,6 @@ main {
   border: 1px solid #dadada;
 }
 
-.selected-product__nutrition-list__source {
-  font-size: 0.7em;
-}
-
-.selected-product__nutrition-list__source:visited, .selected-product__nutrition-list__source:link {
-  color: #bebebe;
-}
-
 .selected-product__divider--upper {
   margin-bottom: 1.6em;
 }
@@ -318,6 +310,14 @@ main {
   margin-left: 1.65em;
   margin-top: -0.5em;
   font-size: 0.8em;
+}
+
+.selected-product__source-attribution {
+  font-size: 0.7em;
+}
+
+.selected-product__source-attribution:visited, .selected-product__source-attribution:link {
+  color: #bebebe;
 }
 
 .add-to-mealplan__add-to-list {
@@ -650,14 +650,6 @@ main {
   border: 1px solid #dadada;
 }
 
-.mealPlan__meals__meal__products-and-nutrition__nutrition-list__source {
-  font-size: 0.7em;
-}
-
-.mealPlan__meals__meal__products-and-nutrition__nutrition-list__source:visited, .mealPlan__meals__meal__products-and-nutrition__nutrition-list__source:link {
-  color: #bebebe;
-}
-
 .mealPlan__total {
   margin: 2em;
 }
@@ -699,14 +691,6 @@ main {
 .mealPlan__total__nutrition-list > tbody > tr > td:nth-child(2) {
   text-align: right;
   border: 1px solid #dadada;
-}
-
-.mealPlan__total__nutrition-list__source {
-  font-size: 0.7em;
-}
-
-.mealPlan__total__nutrition-list__source:visited, .mealPlan__total__nutrition-list__source:link {
-  color: #bebebe;
 }
 
 .green {

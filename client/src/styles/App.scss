@@ -75,14 +75,6 @@ $meal-color: rgb(92, 122, 174);
       }
     }
   }
-
-  &__source {
-    font-size: 0.7em;
-    &:visited,
-    &:link {
-      color: rgb(190, 190, 190);
-    }
-  }
 }
 
 #root {
@@ -345,6 +337,15 @@ main {
       margin-left: 1.65em;
       margin-top: -0.5em;
       font-size: 0.8em;
+    }
+  }
+
+  &__source-attribution {
+    font-size: 0.7em;
+    // float: right;
+    &:visited,
+    &:link {
+      color: rgb(190, 190, 190);
     }
   }
 }

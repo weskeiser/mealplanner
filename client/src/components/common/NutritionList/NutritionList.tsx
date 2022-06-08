@@ -28,13 +28,13 @@ const NutritionList: FC<NutritionListProps> = ({
 
         <TableBody mode={mode} selectedProduct={selectedProduct} />
       </table>
-      <a
-        className={className + '__nutrition-list__source'}
-        href="www.matvaretabellen.no"
-        title='"Matvaretabellen 2021. Mattilsynet. www.matvaretabellen.no"'
-      >
-        Kilde: Matvaretabellen.no
-      </a>
+      <div>
+        <fieldset>
+          <input type="radio" name="nutrition-list" />
+          <input type="radio" name="nutrition-list" />
+          <input type="radio" name="nutrition-list" />
+        </fieldset>
+      </div>
     </>
   );
 };
