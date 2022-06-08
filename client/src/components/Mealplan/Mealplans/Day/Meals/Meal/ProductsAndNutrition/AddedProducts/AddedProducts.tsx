@@ -28,7 +28,13 @@ const AddedProducts: FC<AddedProductsProps> = ({
       <ul className={prodAndNutrClass}>
         {addedProducts.map(
           (
-            { name, properties, mealPlanDayName, mealPlanMealName }: IProducts,
+            {
+              name,
+              properties,
+              mealPlanDayName,
+              mealPlanMealName,
+              description,
+            }: IProducts,
             index
           ) => (
             <ListItem
@@ -45,6 +51,7 @@ const AddedProducts: FC<AddedProductsProps> = ({
                   prodAndNutrClass={prodAndNutrClass}
                   name={name}
                   properties={properties}
+                  description={description}
                 />
                 <RemoveButton
                   prodAndNutrClass={prodAndNutrClass}

@@ -9,9 +9,12 @@ const updateSelectedProduct = (
   setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts>>
 ) => {
   const { properties } = selectedProduct;
-  const { serving, calories, salt, macros } = properties;
+  const { serving, calories, salt, fiber, macros } = properties;
   const { fat, protein, carbs } = macros;
-  const { total, sugars } = carbs;
+  const { total: fatTotal, cholesterol, types } = fat;
+  const { saturated, trans, monounsaturated, polyunsaturated } = types;
+  const { total, sugar } = carbs;
+  const { total: sugarTotal, added: sugarAdded } = sugar;
 
   const input = e.target as HTMLInputElement;
   const servingInput = parseFloat(input.value);
@@ -43,14 +46,27 @@ const updateSelectedProduct = (
       serving: servingInput,
       calories: updateServing(calories),
       macros: {
-        fat: updateServing(fat),
+        fat: {
+          total: updateServing(fatTotal),
+          types: {
+            saturated: updateServing(saturated),
+            trans: updateServing(trans),
+            monounsaturated: updateServing(monounsaturated),
+            polyunsaturated: updateServing(polyunsaturated),
+          },
+          cholesterol: updateServing(cholesterol),
+        },
         protein: updateServing(protein),
         carbs: {
           total: updateServing(total),
-          sugars: updateServing(sugars),
+          sugar: {
+            total: updateServing(sugarTotal),
+            added: updateServing(sugarAdded),
+          },
         },
       },
-      salt: +updateServing(salt).toFixed(3),
+      fiber: updateServing(fiber),
+      salt: updateServing(salt),
     },
   });
 };

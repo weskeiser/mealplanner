@@ -10,19 +10,26 @@ const getTotalNutrition = (products: IMeal, id: number) => {
           ...prev.properties,
           calories: prev.properties.calories + curr.properties.calories,
           macros: {
-            fat: prev.properties.macros.fat + curr.properties.macros.fat,
+            fat: {
+              total:
+                prev.properties.macros.fat.total +
+                curr.properties.macros.fat.total,
+            },
             protein:
               prev.properties.macros.protein + curr.properties.macros.protein,
             carbs: {
               total:
                 prev.properties.macros.carbs.total +
                 curr.properties.macros.carbs.total,
-              sugars:
-                prev.properties.macros.carbs.sugars +
-                curr.properties.macros.carbs.sugars,
+              sugar: {
+                total:
+                  prev.properties.macros.carbs.sugar.total +
+                  curr.properties.macros.carbs.sugar.total,
+              },
             },
           },
           salt: prev.properties.salt + curr.properties.salt,
+          fiber: prev.properties.fiber + curr.properties.fiber,
         },
       };
     },
@@ -31,13 +38,19 @@ const getTotalNutrition = (products: IMeal, id: number) => {
       properties: {
         calories: 0,
         macros: {
-          fat: 0,
+          fat: {
+            total: 0,
+          },
           protein: 0,
           carbs: {
             total: 0,
-            sugars: 0,
+            sugar: {
+              total: 0,
+              added: 0,
+            },
           },
         },
+        fiber: 0,
         salt: 0,
       },
     }

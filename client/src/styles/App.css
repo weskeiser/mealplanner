@@ -97,9 +97,10 @@ main {
   background-color: #fff;
   color: #5582b8;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid #86b2e8;
   height: 1.9em;
 }
@@ -107,14 +108,6 @@ main {
 .search-section__search-results__list-item:focus {
   background-color: #9abde2;
   outline: none;
-}
-
-.search-section__search-results__list-item__logo {
-  background-color: #fff;
-  border-right: 1px solid #86b2e8;
-  height: 100%;
-  width: 2.5em;
-  overflow: hidden;
 }
 
 .search-section__search-results__list-item__name {
@@ -150,9 +143,11 @@ main {
   white-space: nowrap;
   padding-left: 0.5em;
   margin-right: 0.5em;
-  margin-left: auto;
-  width: 30%;
   overflow: hidden;
+}
+
+.search-section__search-results__list-item__brand::first-letter {
+  text-transform: uppercase;
 }
 
 .custom-product {
@@ -280,6 +275,14 @@ main {
 .selected-product__nutrition-list > tbody > tr > td:nth-child(2) {
   text-align: right;
   border: 1px solid #dadada;
+}
+
+.selected-product__nutrition-list__source {
+  font-size: 0.7em;
+}
+
+.selected-product__nutrition-list__source:visited, .selected-product__nutrition-list__source:link {
+  color: #bebebe;
 }
 
 .selected-product__divider--upper {
@@ -647,6 +650,14 @@ main {
   border: 1px solid #dadada;
 }
 
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__source {
+  font-size: 0.7em;
+}
+
+.mealPlan__meals__meal__products-and-nutrition__nutrition-list__source:visited, .mealPlan__meals__meal__products-and-nutrition__nutrition-list__source:link {
+  color: #bebebe;
+}
+
 .mealPlan__total {
   margin: 2em;
 }
@@ -688,6 +699,14 @@ main {
 .mealPlan__total__nutrition-list > tbody > tr > td:nth-child(2) {
   text-align: right;
   border: 1px solid #dadada;
+}
+
+.mealPlan__total__nutrition-list__source {
+  font-size: 0.7em;
+}
+
+.mealPlan__total__nutrition-list__source:visited, .mealPlan__total__nutrition-list__source:link {
+  color: #bebebe;
 }
 
 .green {

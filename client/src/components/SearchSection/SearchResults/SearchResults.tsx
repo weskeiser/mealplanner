@@ -8,12 +8,10 @@ import {
   KeyboardEvent,
   MutableRefObject,
   Dispatch,
-  useState,
   SetStateAction,
 } from 'react';
 import navigateSearch from './helpers/navigateResults';
 import SearchResult from './SearchResult/SearchResult';
-import useHighlighter from './hooks/useHighlighter';
 import selectProduct from './helpers/selectProduct';
 
 interface SearchResultsProps {
@@ -48,15 +46,6 @@ const SearchResults: ForwardRefExoticComponent<
     useEffect(() => {
       setFocusedSearchResult(0);
     }, [searchTerm, setFocusedSearchResult]);
-
-    const [highlighted, setHighlighted] = useState(false);
-
-    // Highlight span if matching searchTerm.
-    useHighlighter(searchResultsRef, searchTerm, setHighlighted, [
-      searchResultsContents,
-      searchResultsRef,
-      setHighlighted,
-    ]);
 
     return (
       <ul
@@ -96,11 +85,7 @@ const SearchResults: ForwardRefExoticComponent<
               )
             }
           >
-            <SearchResult
-              product={product}
-              highlighted={highlighted}
-              searchTerm={searchTerm}
-            />
+            <SearchResult product={product} searchTerm={searchTerm} />
           </ListItem>
         ))}
       </ul>

@@ -6,14 +6,27 @@ export interface getNutritionProps {
   properties: {
     calories: number;
     macros: {
-      fat: number;
+      fat: {
+        total: number;
+        types: {
+          saturated: number;
+          trans: number;
+          monounsaturated: number;
+          polyunsaturated: number;
+        };
+        cholesterol: number;
+      };
       protein: number;
       carbs: {
         total: number;
-        sugars: number;
+        sugar: {
+          total: number;
+          added: number;
+        };
       };
     };
     salt: number;
+    fiber: number;
   };
 }
 
@@ -28,7 +41,11 @@ const getDailyTotalNutrition = (mealPlan: IMealplans) => {
           ...prev.properties,
           calories: prev.properties.calories + perMeal.properties.calories,
           macros: {
-            fat: prev.properties.macros.fat + perMeal.properties.macros.fat,
+            fat: {
+              total:
+                prev.properties.macros.fat.total +
+                perMeal.properties.macros.fat.total,
+            },
             protein:
               prev.properties.macros.protein +
               perMeal.properties.macros.protein,
@@ -36,12 +53,15 @@ const getDailyTotalNutrition = (mealPlan: IMealplans) => {
               total:
                 prev.properties.macros.carbs.total +
                 perMeal.properties.macros.carbs.total,
-              sugars:
-                prev.properties.macros.carbs.sugars +
-                perMeal.properties.macros.carbs.sugars,
+              sugar: {
+                total:
+                  prev.properties.macros.carbs.sugar.total +
+                  perMeal.properties.macros.carbs.sugar.total,
+              },
             },
           },
           salt: prev.properties.salt + perMeal.properties.salt,
+          fiber: prev.properties.fiber + perMeal.properties.fiber,
         },
       };
     },
@@ -50,14 +70,20 @@ const getDailyTotalNutrition = (mealPlan: IMealplans) => {
       properties: {
         calories: 0,
         macros: {
-          fat: 0,
+          fat: {
+            total: 0,
+          },
           protein: 0,
           carbs: {
             total: 0,
-            sugars: 0,
+            sugar: {
+              total: 0,
+              added: 0,
+            },
           },
         },
         salt: 0,
+        fiber: 0,
       },
     }
   );

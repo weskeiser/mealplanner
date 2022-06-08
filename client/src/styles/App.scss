@@ -75,6 +75,14 @@ $meal-color: rgb(92, 122, 174);
       }
     }
   }
+
+  &__source {
+    font-size: 0.7em;
+    &:visited,
+    &:link {
+      color: rgb(190, 190, 190);
+    }
+  }
 }
 
 #root {
@@ -152,21 +160,14 @@ main {
       background-color: #fff;
       color: $page-color-text;
       cursor: pointer;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       border-bottom: 1px solid $page-color;
       height: 1.9em;
 
       &:focus {
         background-color: $page-color-lighter;
         outline: none;
-      }
-
-      &__logo {
-        background-color: #fff;
-        border-right: 1px solid $page-color;
-        height: 100%;
-        width: 2.5em;
-        overflow: hidden;
       }
 
       &__name {
@@ -197,16 +198,16 @@ main {
       &__brand {
         color: rgba($page-color-text, 0.6);
         font-weight: 600;
-        // grid-column: 7 / 10;
         font-size: 0.6em;
         margin: auto 0;
         white-space: nowrap;
         padding-left: 0.5em;
         margin-right: 0.5em;
-        margin-left: auto;
-        width: 30%;
-        // max-width: 2em;
         overflow: hidden;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
       }
     }
   }

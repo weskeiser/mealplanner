@@ -38,7 +38,7 @@ const SearchBar: ForwardRefExoticComponent<
     searchBarRef
   ) => {
     useFetchEffect(
-      'products.json',
+      'nutrients.json',
       showSearchResults(setSearchResultsContents, searchTerm),
       [searchTerm],
       300

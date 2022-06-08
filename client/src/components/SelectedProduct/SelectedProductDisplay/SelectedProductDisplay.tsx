@@ -11,16 +11,12 @@ const SelectedProductDisplay: FC<SelectedProductDisplayProps> = ({
   return (
     <>
       <div className="selected-product__title">
-        <img
-          className="selected-product__title__logo"
-          src={selectedProduct.properties.logo}
-          alt=""
-        />
+        <img className="selected-product__title__logo" src="" alt="" />
         <h2 className="selected-product__title__name">
           {selectedProduct.name}
         </h2>
         <h3 className="selected-product__title__brand">
-          {selectedProduct.properties.brand}
+          {selectedProduct.description}
         </h3>
       </div>
     </>

@@ -4,34 +4,19 @@ import ProductName from './ProductName/ProductName';
 
 interface SearchResultProps {
   product: IProducts;
-  highlighted: boolean;
   searchTerm: string;
 }
 
-const SearchResult: FC<SearchResultProps> = ({
-  product,
-  highlighted,
-  searchTerm,
-}) => {
+const SearchResult: FC<SearchResultProps> = ({ product, searchTerm }) => {
   return (
     <>
-      <img
-        src={product.properties.logo}
-        alt={product.name}
-        title={product.name}
-        className="search-section__search-results__list-item__logo"
-      />
-      <ProductName
-        productName={product.name}
-        highlighted={highlighted}
-        searchTerm={searchTerm}
-        product={product}
-      />
+      <ProductName searchTerm={searchTerm} product={product} />
       <p
-        title={product.properties.brand}
         className="search-section__search-results__list-item__brand"
+        aria-label="product description"
+        title={product.description}
       >
-        {product.properties.brand}
+        {product.description}
       </p>
     </>
   );

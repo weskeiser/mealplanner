@@ -12,17 +12,18 @@ const showSearchResults = (
       if (
         searchTerm &&
         (product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.properties.brand
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()))
+          product.description.toLowerCase().includes(searchTerm.toLowerCase()))
       ) {
         searchResults.push(product);
       }
     });
 
     searchResults.sort((a, b) => {
-      if (
+      if (a.name.toLowerCase().startsWith(searchTerm.toLowerCase())) {
+        return 1;
+      } else if (b.name.toLowerCase().startsWith(searchTerm.toLowerCase())) {
+        return -1;
+      } else if (
         a.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >
         b.name.toLowerCase().indexOf(searchTerm.toLowerCase())
       ) {
@@ -37,6 +38,8 @@ const showSearchResults = (
         else return -1;
       }
     });
+
+    searchResults.reverse();
 
     setSearchResultsContents(searchResults);
   };

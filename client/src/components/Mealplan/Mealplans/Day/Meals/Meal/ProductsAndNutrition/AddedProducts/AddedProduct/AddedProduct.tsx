@@ -5,19 +5,21 @@ interface AddedProductProps {
   prodAndNutrClass: string;
   name: string;
   properties: IProperties;
+  description: string;
 }
 
 const AddedProduct: FC<AddedProductProps> = ({
   prodAndNutrClass,
   name,
   properties,
+  description,
 }) => {
   return (
     <>
       <p className={prodAndNutrClass + '__product__title'}>
         {name},{' '}
         <span className={prodAndNutrClass + '__product__title__brand'}>
-          {properties.brand}
+          {description}
         </span>
       </p>
       <p className={prodAndNutrClass + '__product__serving'}>

@@ -6,29 +6,39 @@ interface TableBodyProps {
   selectedProduct: IProducts | getNutritionProps;
 }
 
-const TableBody: FC<TableBodyProps> = ({ selectedProduct }) => {
+const TableBody: FC<TableBodyProps> = ({ selectedProduct, mode }) => {
   const { properties } = selectedProduct;
-  const { calories, salt, macros } = properties;
+  const { calories, macros, salt, fiber } = properties;
   const { fat, protein, carbs } = macros;
-  const { total, sugars } = carbs;
+  const { total: fatTotal } = fat;
+  const {
+    total,
+    sugar: { total: totalSugar },
+  } = carbs;
 
-  const tableData = [
+  const nutritionData = [
     ['Kalorier', calories],
-    ['Fett', fat],
+    ['Fett', fatTotal],
     ['Proteiner', protein],
     ['Karbohydrater', total],
-    ['- Hvorav sukkerarter', sugars],
+    ['- Hvorav sukkerarter', totalSugar],
+    ['Fiber', fiber],
     ['Salt', salt],
   ];
 
   return (
     <tbody>
-      {tableData.map((dataPair) => (
-        <tr key={dataPair + selectedProduct.id}>
-          <td>{dataPair[0]}</td>
-          <td>{(dataPair[1] as number).toFixed()}</td>
-        </tr>
-      ))}
+      {nutritionData.map((dataPair) => {
+        const key = dataPair[0];
+        const value = dataPair[1];
+
+        return (
+          <tr key={dataPair + selectedProduct.id}>
+            <td>{key}</td>
+            <td>{key === 'Kalorier' ? value.toFixed(0) : value.toFixed(1)}</td>
+          </tr>
+        );
+      })}
     </tbody>
   );
 };
