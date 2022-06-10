@@ -5,6 +5,7 @@ import NutrientTable from './NutrientTable/NutrientTable';
 import tableDataReducer from './helpers/tableReducer';
 import NutrientRadio from './NutrientRadio/NutrientRadio';
 import replaceTable from './helpers/replaceTable';
+import VitaminsTables from './VitaminsTables/VitaminsTables';
 
 interface NutrientsProps {
   className: string;
@@ -13,16 +14,12 @@ interface NutrientsProps {
 }
 
 export interface nutrientsData {
-  Kalorier: number;
-  Fett: number;
-  Proteiner: number;
-  Karbohydrater: number;
-  '- Hvorav sukkerarter': number;
-  Fiber: number;
-  Salt: number;
-  type: string;
-  title: string;
-  id: number | string;
+  data: [string, number][];
+  meta: {
+    type: string;
+    title: string;
+    id: string | number;
+  };
 }
 
 const Nutrients: FC<NutrientsProps> = ({
@@ -41,16 +38,20 @@ const Nutrients: FC<NutrientsProps> = ({
     } = carbs;
 
     return {
-      Kalorier: calories,
-      Fett: fatTotal,
-      Proteiner: protein,
-      Karbohydrater: total,
-      '- Hvorav sukkerarter': totalSugar,
-      Fiber: fiber,
-      Salt: salt,
-      type: 'standard',
-      title: 'Næringsinnhold',
-      id: selectedProduct.id,
+      data: [
+        ['Kalorier', calories],
+        ['Fett', fatTotal],
+        ['Proteiner', protein],
+        ['Karbohydrater', total],
+        ['- Hvorav sukkerarter', totalSugar],
+        ['Fiber', fiber],
+        ['Salt', salt],
+      ],
+      meta: {
+        type: 'standard',
+        title: 'Næringsinnhold',
+        id: selectedProduct.id,
+      },
     };
   }, [selectedProduct]);
 
@@ -61,48 +62,30 @@ const Nutrients: FC<NutrientsProps> = ({
 
   useEffect(() => {
     replaceTable(
-      tableData.type,
+      tableData.meta.type,
       nutrientsData,
       selectedProduct,
       dispatchTableData
     );
   }, [selectedProduct]);
 
-  const play = () => {
-    const vitamins = Object.entries(tableData);
-    const nonVitamins = vitamins.splice(-3);
-
-    const vitaminsLeftArray = vitamins.slice(0, 12).concat(nonVitamins);
-    const vitaminsRightArray = vitamins.slice(12).concat(nonVitamins);
-
-    return (
-      <>
-        <NutrientTable
-          className={className}
-          selectedProduct={selectedProduct}
-          totalServingTitle={totalServingTitle}
-          tableData={tableData}
-        />
-        <NutrientTable
-          className={className}
-          selectedProduct={selectedProduct}
-          totalServingTitle={totalServingTitle}
-          tableData={tableData}
-        />
-      </>
-    );
-  };
-
-  // play();
-
   return (
     <>
-      <NutrientTable
-        className={className}
-        selectedProduct={selectedProduct}
-        totalServingTitle={totalServingTitle}
-        tableData={tableData}
-      />
+      {tableData.meta.type === 'vitamins' ? (
+        <VitaminsTables
+          tableData={tableData}
+          className={className + '__nutrients__vitamins'}
+          selectedProduct={selectedProduct}
+          totalServingTitle={totalServingTitle}
+        />
+      ) : (
+        <NutrientTable
+          className={className + '__nutrients'}
+          selectedProduct={selectedProduct}
+          totalServingTitle={totalServingTitle}
+          tableData={tableData}
+        />
+      )}
 
       <NutrientRadio
         className={className}

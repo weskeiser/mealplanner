@@ -5,10 +5,10 @@ export interface IListItem {
   className: string;
   onKeyDown?: any;
   tabIndex?: number;
-  rest?: any;
+  props?: any;
   onClick?: any;
 }
 
-export const ListItem: FC<IListItem> = ({ children, ...rest }) => {
-  return <li {...rest}>{children}</li>;
+export const ListItem: FC<IListItem> = ({ ...props }) => {
+  return <li {...props} />;
 };

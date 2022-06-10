@@ -3,87 +3,109 @@ import fetchData from '../../../../helpers/fetchData';
 import { IProducts } from '../../../../Interfaces/Products';
 import { IVitamins } from '../../../../Interfaces/Vitamins';
 import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
+import translateNames from './translateNames';
 
 const fetchVitamins = (
   selectedProduct: IProducts | getNutritionProps,
   dispatchTableData: Dispatch<any>
 ) => {
   fetchData('./vitamins.json', (data: IVitamins[]) => {
-    // if (selectedProduct.tableId === 'meal') {
+    let vitamins = {};
 
-    // }
-    const isSelectedProduct = data.find((productVitamins) => {
-      return productVitamins.id === selectedProduct.id;
-    });
+    if (selectedProduct.meal) {
+      let productIds = [];
+      const selectedProducts = selectedProduct.meal.products.map((product) => {
+        productIds.push(product.id);
+        return [product.id, product.properties.serving];
+      });
 
-    const vitamins = isSelectedProduct.vitamins;
+      const selectedVitamins = data.filter((vitamins) =>
+        productIds.includes(vitamins.id)
+      );
+
+      const vitaminsPerMeal = selectedProducts.reduce(
+        (prev, curr) => {
+          const productId = curr[0];
+          const serving = curr[1];
+
+          const vitamins = selectedVitamins.find(
+            (fetchedProduct) => productId === fetchedProduct.id
+          ).vitamins;
+
+          const updateValue = (vitamin) =>
+            prev[vitamin] + vitamins[vitamin] * (serving / 100);
+
+          return Object.assign(prev, {
+            omega3: updateValue('omega3'),
+            omega6: updateValue('omega6'),
+            vitaminA: updateValue('vitaminA'),
+            retinol: updateValue('retinol'),
+            betacarotene: updateValue('betacarotene'),
+            vitaminD: updateValue('vitaminD'),
+            vitaminE: updateValue('vitaminE'),
+            thiamine: updateValue('thiamine'),
+            riboflavin: updateValue('riboflavin'),
+            niacin: updateValue('niacin'),
+            vitaminB6: updateValue('vitaminB6'),
+            folate: updateValue('folate'),
+            vitaminB12: updateValue('vitaminB12'),
+            vitaminC: updateValue('vitaminC'),
+            calcium: updateValue('calcium'),
+            iron: updateValue('iron'),
+            sodium: updateValue('sodium'),
+            potassium: updateValue('potassium'),
+            magnesium: updateValue('magnesium'),
+            zinc: updateValue('zinc'),
+            selenium: updateValue('selenium'),
+            copper: updateValue('copper'),
+            phosphorus: updateValue('phosphorus'),
+            iodine: updateValue('iodine'),
+          });
+        },
+        {
+          omega3: 0,
+          omega6: 0,
+          vitaminA: 0,
+          retinol: 0,
+          betacarotene: 0,
+          vitaminD: 0,
+          vitaminE: 0,
+          thiamine: 0,
+          riboflavin: 0,
+          niacin: 0,
+          vitaminB6: 0,
+          folate: 0,
+          vitaminB12: 0,
+          vitaminC: 0,
+          calcium: 0,
+          iron: 0,
+          sodium: 0,
+          potassium: 0,
+          magnesium: 0,
+          zinc: 0,
+          selenium: 0,
+          copper: 0,
+          phosphorus: 0,
+          iodine: 0,
+        }
+      );
+      vitamins = vitaminsPerMeal;
+    } else {
+      const isSelectedProduct = data.find((vitamins) => {
+        return vitamins.id === selectedProduct.id;
+      });
+      vitamins = isSelectedProduct.vitamins;
+    }
 
     const sortedVitamins = Object.entries(vitamins).sort((a, b) => b[1] - a[1]);
 
-    const sortedAndTranslated = sortedVitamins.reduce((prev, curr) => {
-      const sorted = (newKey: string) => {
-        return Object.assign(prev, { [newKey]: curr[1] });
-      };
+    const result = translateNames(sortedVitamins);
 
-      switch (curr[0]) {
-        case 'omega3':
-          return sorted('Omega3');
-        case 'omega6':
-          return sorted('Omega 6');
-        case 'vitaminA':
-          return sorted('Vitamin A');
-        case 'retinol':
-          return sorted('Retinol');
-        case 'betacarotene':
-          return sorted('Betakaroten');
-        case 'vitaminD':
-          return sorted('Vitamin D');
-        case 'vitaminE':
-          return sorted('Vitamin E');
-        case 'thiamine':
-          return sorted('Tiamin');
-        case 'riboflavin':
-          return sorted('Riboflavin');
-        case 'niacin':
-          return sorted('Niacin');
-        case 'vitaminB6':
-          return sorted('Vitamin B6');
-        case 'folate':
-          return sorted('Folat');
-        case 'vitaminB12':
-          return sorted('Vitamin B12');
-        case 'vitaminC':
-          return sorted('Vitamin C');
-        case 'calcium':
-          return sorted('Kalsium');
-        case 'iron':
-          return sorted('Jern');
-        case 'sodium':
-          return sorted('Natrium');
-        case 'potassium':
-          return sorted('Kalium');
-        case 'magnesium':
-          return sorted('Magnesium');
-        case 'zinc':
-          return sorted('Sink');
-        case 'selenium':
-          return sorted('Selenium');
-        case 'copper':
-          return sorted('Kobber');
-        case 'phosphorus':
-          return sorted('Fosfor');
-        case 'iodine':
-          return sorted('Jod');
-        default:
-          return 0;
-      }
-    }, {});
     dispatchTableData({
       type: 'vitamins',
       payload: {
-        ...sortedAndTranslated,
-        type: 'vitamins',
-        id: selectedProduct.id,
+        data: result,
+        meta: { type: 'vitamins', id: selectedProduct.id },
       },
     });
   });

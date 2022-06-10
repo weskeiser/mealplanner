@@ -9,13 +9,36 @@ const tableDataReducer = (
   tableData: nutrientsData,
   action: tableDataActions
 ) => {
+  const meta = action.payload.meta;
+
   switch (action.type) {
     case 'vitamins':
-      return { ...action.payload, type: 'vitamins', title: 'Vitaminer' };
+      return {
+        ...action.payload,
+        meta: {
+          ...meta,
+          type: 'vitamins',
+          title: 'Vitaminer',
+        },
+      };
     case 'simple':
-      return { ...action.payload, type: 'simple', title: 'Næringsinnhold' };
+      return {
+        ...action.payload,
+        meta: {
+          ...meta,
+          type: 'simple',
+          title: 'Næringsinnhold',
+        },
+      };
     case 'standard':
-      return { ...action.payload, type: 'standard', title: 'Næringsinnhold' };
+      return {
+        ...action.payload,
+        meta: {
+          ...meta,
+          type: 'standard',
+          title: 'Næringsinnhold',
+        },
+      };
     case 'update':
       return { ...action.payload };
     default:

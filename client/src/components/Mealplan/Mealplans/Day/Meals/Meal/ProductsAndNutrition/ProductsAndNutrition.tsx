@@ -32,10 +32,12 @@ const ProductsAndNutrition: FC<ProductsAndNutritionProps> = ({
             prodAndNutrClass={prodAndNutrClass}
           />
 
-          {console.log(meal.products)}
           <Nutrients
             className={prodAndNutrClass}
-            selectedProduct={{ ...mealTotalNutrition, tableId: 'meal' }}
+            selectedProduct={{
+              ...mealTotalNutrition,
+              meal: meal,
+            }}
             totalServingTitle={'Totalt'}
           />
         </>

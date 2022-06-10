@@ -16,16 +16,17 @@ const replaceTable = (
     type = viewType.target.value;
   }
 
-  // TODO: Identify selectedProduct by type to be able to render vitamins
-
   switch (type) {
     case 'standard':
       dispatchTableData({
         type: type,
         payload: {
           ...nutrientsData,
-          type: nutrientsData.type,
-          id: selectedProduct.id,
+          meta: {
+            ...nutrientsData.meta,
+            type: nutrientsData.meta.type,
+            id: selectedProduct.id,
+          },
         },
       });
       break;
@@ -34,13 +35,12 @@ const replaceTable = (
       dispatchTableData({
         type: type,
         payload: {
-          Kalorier: nutrientsData.Kalorier,
-          Fett: nutrientsData.Fett,
-          Proteiner: nutrientsData.Proteiner,
-          Karbohydrater: nutrientsData.Karbohydrater,
-          '- Hvorav sukkerarter': nutrientsData['- Hvorav sukkerarter'],
-          type: nutrientsData.type,
-          id: selectedProduct.id,
+          data: nutrientsData.data.slice(0, 4),
+          meta: {
+            ...nutrientsData.meta,
+            type: nutrientsData.meta.type,
+            id: selectedProduct.id,
+          },
         },
       });
       break;

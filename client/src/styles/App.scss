@@ -117,76 +117,81 @@ $meal-color: rgb(92, 122, 174);
   }
 
   &__vitamins {
-    color: $page-color-text;
-    width: 100%;
-    border-collapse: collapse;
+    display: flex;
+    // gap: 0.2em;
+    &__table {
+      width: 100%;
+      color: $page-color-text;
+      border-collapse: collapse;
 
-    & > thead {
-      font-size: 0.7em;
-      color: $data-ink-text;
-      font-weight: bold;
+      & > thead {
+        font-size: 0.7em;
+        color: $data-ink-text;
+        font-weight: bold;
 
-      & > tr :nth-child(1) {
-        text-align: left;
+        & > tr :nth-child(1) {
+          text-align: left;
+        }
+
+        & > tr :nth-child(2) {
+          text-align: right;
+        }
       }
 
-      & > tr :nth-child(2) {
-        text-align: right;
-      }
-    }
+      & > tbody {
+        font-size: 0.7em;
+        & > tr {
+          & > td {
+            padding: 0.2em 0.3em;
+            &:first-child {
+              border: 1px solid $data-ink;
+            }
 
-    & > tbody {
-      & > tr {
-        & > td {
-          padding: 0.2em 0.3em;
-          &:first-child {
-            border: 1px solid $data-ink;
-          }
-
-          &:nth-child(2) {
-            text-align: right;
-            border: 1px solid $data-ink;
+            &:nth-child(2) {
+              text-align: right;
+              border: 1px solid $data-ink;
+            }
           }
         }
       }
-    }
 
-    &__radio {
-      display: flex;
-      margin-top: 0.5em;
-      & > input {
-        appearance: none;
-        width: 1.6em;
-        height: 1.6em;
-        border: 2px solid $page-color;
-        border-radius: 1em;
-        // background-color: $page-color;
-        display: grid;
-        place-content: center;
-        margin: 0;
-
-        &::before {
-          content: '';
-          width: 1em;
-          height: 1em;
+      &__radio {
+        display: flex;
+        margin-top: 0.5em;
+        & > input {
+          appearance: none;
+          width: 1.6em;
+          height: 1.6em;
+          border: 2px solid $page-color;
           border-radius: 1em;
-          transform: scale(0);
-          transition: 120ms transform ease-in-out;
-          box-shadow: inset 1em 1em $page-color;
-        }
+          // background-color: $page-color;
+          display: grid;
+          place-content: center;
+          margin: 0;
 
-        &:checked::before {
-          transform: scale(1);
-        }
+          &::before {
+            content: '';
+            width: 1em;
+            height: 1em;
+            border-radius: 1em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em $page-color;
+          }
 
-        &:first-of-type {
-          margin-left: auto;
-          margin-right: 0.5em;
-        }
+          &:checked::before {
+            transform: scale(1);
+          }
 
-        &:nth-of-type(3) {
-          margin-right: auto;
-          margin-left: 0.5em;
+          &:first-of-type {
+            margin-left: auto;
+            margin-right: 0.5em;
+          }
+
+          &:nth-of-type(3) {
+            margin-right: auto;
+            margin-left: 0.5em;
+          }
         }
       }
     }

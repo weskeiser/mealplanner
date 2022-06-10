@@ -2,19 +2,14 @@ import { useRef, useState } from 'react';
 import './styles/App.css';
 
 import { IProducts } from './Interfaces/Products';
-import { IMealplans } from './Interfaces/Mealplans';
 import AddCustomProduct from './components/SelectCustomProduct/SelectCustomProduct';
 import SearchSection from './components/SearchSection/SearchSection';
 import SelectedProduct from './components/SelectedProduct/SelectedProduct';
-import Mealplan from './components/Mealplan/Mealplan';
-import AddToMealplan from './components/AddToMealplan/AddToMealplan';
-import daysOfTheWeek from './components/helpers/daysOfTheWeek';
+import MealplanSection from './components/MealplanSection/MealplanSection';
 
 function App() {
-  // Refs
   const servingInputRef = useRef<HTMLInputElement | undefined>();
 
-  // States
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({
     id: 3.47,
     name: 'Leverpostei',
@@ -43,25 +38,6 @@ function App() {
   });
   const [selectedProductOriginalServing, setSelectedProductOriginalServing] =
     useState<IProducts | {}>({});
-  const [mealPlans, setMealPlans] = useState<IMealplans[]>(
-    daysOfTheWeek.map((day) => ({
-      listName: `${day}`,
-      meals: [
-        {
-          listName: 'Måltid 1',
-          products: [],
-        },
-        {
-          listName: 'Måltid 2',
-          products: [],
-        },
-        {
-          listName: 'Måltid 3',
-          products: [],
-        },
-      ],
-    }))
-  );
 
   return (
     <main>
@@ -73,16 +49,13 @@ function App() {
       />
       <AddCustomProduct setSelectedProduct={setSelectedProduct} />
       <SelectedProduct selectedProduct={selectedProduct} />
-      <AddToMealplan
+      <MealplanSection
         selectedProduct={selectedProduct}
         setSelectedProduct={setSelectedProduct}
-        mealPlans={mealPlans}
-        setMealPlans={setMealPlans}
         servingInputRef={servingInputRef}
         selectedProductOriginalServing={selectedProductOriginalServing}
         setSelectedProductOriginalServing={setSelectedProductOriginalServing}
       />
-      <Mealplan mealPlans={mealPlans} setMealPlans={setMealPlans} />
     </main>
   );
 }

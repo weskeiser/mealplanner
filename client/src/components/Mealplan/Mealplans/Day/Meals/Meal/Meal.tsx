@@ -23,7 +23,7 @@ const MealplanMeal: FC<MealProps> = ({ mealPlan, mealPlans, setMealPlans }) => {
           <Header meal={meal} visible={visible} setVisible={setVisible} />
           <ProductsAndNutrition
             key={mealPlan.listName + meal.listName}
-            meal={meal}
+            meal={{ ...meal }}
             mealPlans={mealPlans}
             setMealPlans={setMealPlans}
             visible={visible}

@@ -1,27 +1,11 @@
-import { IMealplans } from '../../Interfaces/Mealplans';
-import { IProducts } from '../../Interfaces/Products';
 import ServingInput from './ServingInput/ServingInput';
-import {
-  FC,
-  useState,
-  MutableRefObject,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import { FC, useState } from 'react';
 import SubmitButton from './SubmitButton/SubmitButton';
 import MealplanSelect from './MealplanSelect/MealplanSelect';
 import StatusMessages from './StatusMessages/StatusMessages';
+import { MealPlanSectionProps } from '../MealplanSection/MealplanSection';
 
-interface AddToMealplanProps {
-  selectedProduct: IProducts;
-  setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
-  mealPlans: IMealplans[];
-  setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
-  servingInputRef: MutableRefObject<HTMLInputElement | undefined>;
-  selectedProductOriginalServing: IProducts | {};
-  setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts>>;
-}
-const AddToMealplan: FC<AddToMealplanProps> = ({
+const AddToMealplan: FC<MealPlanSectionProps> = ({
   selectedProduct,
   mealPlans,
   setMealPlans,
