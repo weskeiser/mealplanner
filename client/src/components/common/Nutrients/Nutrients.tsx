@@ -1,26 +1,36 @@
 import { IProducts } from '../../../Interfaces/Products';
-import { FC, useEffect, useMemo, useReducer, useRef } from 'react';
+import { FC, useEffect, useMemo, useReducer } from 'react';
 import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
-import NutritionRadio from './NutritionRadio/NutritionRadio';
-import NutritionTable from './NutritionTable/NutritionTable';
+import NutrientTable from './NutrientTable/NutrientTable';
 import tableDataReducer from './helpers/tableReducer';
+import NutrientRadio from './NutrientRadio/NutrientRadio';
 import replaceTable from './helpers/replaceTable';
-import fetchVitamins from './helpers/fetchVitamins';
 
-interface NutritionListProps {
+interface NutrientsProps {
   className: string;
   selectedProduct: IProducts | getNutritionProps;
   totalServingTitle: string;
 }
 
-const NutritionList: FC<NutritionListProps> = ({
+export interface nutrientsData {
+  Kalorier: number;
+  Fett: number;
+  Proteiner: number;
+  Karbohydrater: number;
+  '- Hvorav sukkerarter': number;
+  Fiber: number;
+  Salt: number;
+  type: string;
+  title: string;
+  id: number | string;
+}
+
+const Nutrients: FC<NutrientsProps> = ({
   className,
   selectedProduct,
   totalServingTitle,
 }) => {
-  const radioFormRef = useRef<HTMLFormElement | undefined>();
-
-  const nutritionData = useMemo(() => {
+  const nutrientsData = useMemo<nutrientsData>(() => {
     const { properties } = selectedProduct;
     const { calories, macros, salt, fiber } = properties;
     const { fat, protein, carbs } = macros;
@@ -38,7 +48,7 @@ const NutritionList: FC<NutritionListProps> = ({
       '- Hvorav sukkerarter': totalSugar,
       Fiber: fiber,
       Salt: salt,
-      case: 'standard',
+      type: 'standard',
       title: 'Næringsinnhold',
       id: selectedProduct.id,
     };
@@ -46,58 +56,62 @@ const NutritionList: FC<NutritionListProps> = ({
 
   const [tableData, dispatchTableData] = useReducer(
     tableDataReducer,
-    nutritionData
+    nutrientsData
   );
 
   useEffect(() => {
-    if (tableData.case === 'standard') {
-      dispatchTableData({
-        type: 'update',
-        payload: { ...nutritionData, case: tableData.case },
-      });
-    }
-
-    if (tableData.case === 'simple') {
-      dispatchTableData({
-        type: 'update',
-        payload: {
-          Kalorier: nutritionData.Kalorier,
-          Fett: nutritionData.Fett,
-          Proteiner: nutritionData.Proteiner,
-          Karbohydrater: nutritionData.Karbohydrater,
-          '- Hvorav sukkerarter': nutritionData['- Hvorav sukkerarter'],
-          case: tableData.case,
-          id: tableData.id,
-        },
-      });
-    }
-
-    if (tableData.case === 'vitamins') {
-      fetchVitamins(selectedProduct, dispatchTableData);
-    }
+    replaceTable(
+      tableData.type,
+      nutrientsData,
+      selectedProduct,
+      dispatchTableData
+    );
   }, [selectedProduct]);
+
+  const play = () => {
+    const vitamins = Object.entries(tableData);
+    const nonVitamins = vitamins.splice(-3);
+
+    const vitaminsLeftArray = vitamins.slice(0, 12).concat(nonVitamins);
+    const vitaminsRightArray = vitamins.slice(12).concat(nonVitamins);
+
+    return (
+      <>
+        <NutrientTable
+          className={className}
+          selectedProduct={selectedProduct}
+          totalServingTitle={totalServingTitle}
+          tableData={tableData}
+        />
+        <NutrientTable
+          className={className}
+          selectedProduct={selectedProduct}
+          totalServingTitle={totalServingTitle}
+          tableData={tableData}
+        />
+      </>
+    );
+  };
+
+  // play();
 
   return (
     <>
-      <NutritionTable
+      <NutrientTable
         className={className}
         selectedProduct={selectedProduct}
         totalServingTitle={totalServingTitle}
         tableData={tableData}
       />
-      <form
-        ref={radioFormRef}
-        className={className + '__nutrition-list__radio'}
-        onInput={(e) =>
-          replaceTable(e, nutritionData, selectedProduct, dispatchTableData)
-        }
-      >
-        <NutritionRadio value="simple" />
-        <NutritionRadio value="standard" defaultChecked={true} />
-        <NutritionRadio value="vitamins" />
-      </form>
+
+      <NutrientRadio
+        className={className}
+        nutrientsData={nutrientsData}
+        selectedProduct={selectedProduct}
+        dispatchTableData={dispatchTableData}
+      />
     </>
   );
 };
 
-export default NutritionList;
+export default Nutrients;

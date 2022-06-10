@@ -2,12 +2,16 @@ import { Dispatch } from 'react';
 import fetchData from '../../../../helpers/fetchData';
 import { IProducts } from '../../../../Interfaces/Products';
 import { IVitamins } from '../../../../Interfaces/Vitamins';
+import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
 
 const fetchVitamins = (
-  selectedProduct: IProducts,
+  selectedProduct: IProducts | getNutritionProps,
   dispatchTableData: Dispatch<any>
 ) => {
   fetchData('./vitamins.json', (data: IVitamins[]) => {
+    // if (selectedProduct.tableId === 'meal') {
+
+    // }
     const isSelectedProduct = data.find((productVitamins) => {
       return productVitamins.id === selectedProduct.id;
     });
@@ -78,6 +82,7 @@ const fetchVitamins = (
       type: 'vitamins',
       payload: {
         ...sortedAndTranslated,
+        type: 'vitamins',
         id: selectedProduct.id,
       },
     });

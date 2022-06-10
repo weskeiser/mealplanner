@@ -1,11 +1,21 @@
-const tableDataReducer = (tableData, action) => {
+import { nutrientsData } from '../Nutrients';
+
+interface tableDataActions {
+  type: 'vitamins' | 'simple' | 'standard' | 'update';
+  payload: nutrientsData;
+}
+
+const tableDataReducer = (
+  tableData: nutrientsData,
+  action: tableDataActions
+) => {
   switch (action.type) {
     case 'vitamins':
-      return { ...action.payload, case: 'vitamins', title: 'Vitaminer' };
+      return { ...action.payload, type: 'vitamins', title: 'Vitaminer' };
     case 'simple':
-      return { ...action.payload, case: 'simple', title: 'Næringsinnhold' };
+      return { ...action.payload, type: 'simple', title: 'Næringsinnhold' };
     case 'standard':
-      return { ...action.payload, case: 'standard', title: 'Næringsinnhold' };
+      return { ...action.payload, type: 'standard', title: 'Næringsinnhold' };
     case 'update':
       return { ...action.payload };
     default:

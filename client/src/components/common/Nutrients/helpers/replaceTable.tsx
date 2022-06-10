@@ -1,31 +1,56 @@
+import { Dispatch, FormEvent } from 'react';
+import { IProducts } from '../../../../Interfaces/Products';
+import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
+import { nutrientsData } from '../Nutrients';
 import fetchVitamins from './fetchVitamins';
 
-const replaceTable = (e, nutritionData, selectedProduct, dispatchTableData) => {
-  const type = e.target.value;
+const replaceTable = (
+  viewType: string | FormEvent<HTMLFormElement>,
+  nutrientsData: nutrientsData,
+  selectedProduct: IProducts | getNutritionProps,
+  dispatchTableData: Dispatch<any>
+) => {
+  let type = viewType;
+
+  if (viewType.target) {
+    type = viewType.target.value;
+  }
 
   // TODO: Identify selectedProduct by type to be able to render vitamins
 
-  if (type === 'standard') {
-    dispatchTableData({
-      type: type,
-      payload: { ...nutritionData, id: selectedProduct.id },
-    });
-  }
-  if (type === 'simple') {
-    dispatchTableData({
-      type: type,
-      payload: {
-        Kalorier: nutritionData.Kalorier,
-        Fett: nutritionData.Fett,
-        Proteiner: nutritionData.Proteiner,
-        Karbohydrater: nutritionData.Karbohydrater,
-        '- Hvorav sukkerarter': nutritionData['- Hvorav sukkerarter'],
-        id: selectedProduct.id,
-      },
-    });
-  }
-  if (e.target.value === 'vitamins') {
-    fetchVitamins(selectedProduct, dispatchTableData);
+  switch (type) {
+    case 'standard':
+      dispatchTableData({
+        type: type,
+        payload: {
+          ...nutrientsData,
+          type: nutrientsData.type,
+          id: selectedProduct.id,
+        },
+      });
+      break;
+
+    case 'simple':
+      dispatchTableData({
+        type: type,
+        payload: {
+          Kalorier: nutrientsData.Kalorier,
+          Fett: nutrientsData.Fett,
+          Proteiner: nutrientsData.Proteiner,
+          Karbohydrater: nutrientsData.Karbohydrater,
+          '- Hvorav sukkerarter': nutrientsData['- Hvorav sukkerarter'],
+          type: nutrientsData.type,
+          id: selectedProduct.id,
+        },
+      });
+      break;
+
+    case 'vitamins':
+      fetchVitamins(selectedProduct, dispatchTableData);
+      break;
+
+    default:
+      return;
   }
 };
 

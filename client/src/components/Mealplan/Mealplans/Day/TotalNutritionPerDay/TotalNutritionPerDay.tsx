@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IMealplans } from '../../../../../Interfaces/Mealplans';
-import NutritionList from '../../../../common/NutritionList/NutritionList';
+import Nutrients from '../../../../common/Nutrients/Nutrients';
 import getDailyTotalNutrition from '../helpers/getDailyTotalNutrition';
 
 interface TotalNutritionPerDayProps {
@@ -23,7 +23,7 @@ const TotalNutritionPerDay: FC<TotalNutritionPerDayProps> = ({
             <h3 className="mealPlan__total__title">
               {mealPlan.listName} - Alle Måltider
             </h3>
-            <NutritionList
+            <Nutrients
               className="mealPlan__total"
               selectedProduct={getDailyTotalNutrition(mealPlan)}
               totalServingTitle={'Totalt'}

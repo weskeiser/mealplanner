@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { IMeal, IMealplans } from '../../../../../../../Interfaces/Mealplans';
-import NutritionList from '../../../../../../common/NutritionList/NutritionList';
+import Nutrients from '../../../../../../common/Nutrients/Nutrients';
 import getTotalNutrition from '../../../helpers/getTotalNutrition';
 import AddedProducts from './AddedProducts/AddedProducts';
 
@@ -32,9 +32,10 @@ const ProductsAndNutrition: FC<ProductsAndNutritionProps> = ({
             prodAndNutrClass={prodAndNutrClass}
           />
 
-          <NutritionList
+          {console.log(meal.products)}
+          <Nutrients
             className={prodAndNutrClass}
-            selectedProduct={mealTotalNutrition}
+            selectedProduct={{ ...mealTotalNutrition, tableId: 'meal' }}
             totalServingTitle={'Totalt'}
           />
         </>

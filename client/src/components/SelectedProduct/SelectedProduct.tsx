@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IProducts } from '../../Interfaces/Products';
-import NutritionList from '../common/NutritionList/NutritionList';
+import Nutrients from '../common/Nutrients/Nutrients';
 import SelectedProductDisplay from './SelectedProductDisplay/SelectedProductDisplay';
 import SourceAttribution from './SourceAttribution/SourceAttribution';
 
@@ -15,7 +15,7 @@ const SelectedProduct: FC<SelectedProductProps> = ({ selectedProduct }) => {
       <section className={selectedProductClass}>
         <SelectedProductDisplay selectedProduct={selectedProduct} />
         <SourceAttribution selectedProductClass={selectedProductClass} />
-        <NutritionList
+        <Nutrients
           className={selectedProductClass}
           selectedProduct={selectedProduct}
           totalServingTitle={'Pr. ' + selectedProduct.properties.serving + 'g'}
