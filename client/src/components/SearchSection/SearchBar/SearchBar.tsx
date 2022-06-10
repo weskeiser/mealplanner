@@ -8,7 +8,7 @@ import {
   RefAttributes,
   SetStateAction,
 } from 'react';
-import useFetchEffect from '../../../hooks/useFetchEffect';
+import useDebounceFetch from '../../../hooks/useDebounceFetch';
 import { IProducts } from '../../../Interfaces/Products';
 import showSearchResults from '../../helpers/showSearchResults';
 
@@ -37,7 +37,7 @@ const SearchBar: ForwardRefExoticComponent<
     },
     searchBarRef
   ) => {
-    useFetchEffect(
+    useDebounceFetch(
       'nutrients.json',
       showSearchResults(setSearchResultsContents, searchTerm),
       [searchTerm],

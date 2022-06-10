@@ -18,7 +18,7 @@ const SelectedProduct: FC<SelectedProductProps> = ({ selectedProduct }) => {
         <NutritionList
           className={selectedProductClass}
           selectedProduct={selectedProduct}
-          totalServing={'Pr. ' + selectedProduct.properties.serving + 'g'}
+          totalServingTitle={'Pr. ' + selectedProduct.properties.serving + 'g'}
         />
       </section>
     </>

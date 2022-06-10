@@ -6,7 +6,7 @@ const DEFAULT_OPTIONS = {
   },
 };
 
-const useFetchEffect = (
+const useDebounceFetch = (
   url: string,
   callback: any,
   dependencies: Array<string> | [],
@@ -26,4 +26,4 @@ const useFetchEffect = (
   );
 };
 
-export default useFetchEffect;
+export default useDebounceFetch;

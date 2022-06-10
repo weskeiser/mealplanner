@@ -24,6 +24,7 @@ interface IMacros {
 }
 
 export interface IProperties {
+  source: string;
   serving: number;
   calories: number;
   salt: number;

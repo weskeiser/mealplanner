@@ -26,7 +26,7 @@ const TotalNutritionPerDay: FC<TotalNutritionPerDayProps> = ({
             <NutritionList
               className="mealPlan__total"
               selectedProduct={getDailyTotalNutrition(mealPlan)}
-              totalServing={'Totalt'}
+              totalServingTitle={'Totalt'}
             />
           </section>
         </>
