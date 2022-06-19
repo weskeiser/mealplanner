@@ -7,7 +7,7 @@ interface HeaderProps {
   setVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-const MealplanHeader: FC<HeaderProps> = ({ mealPlan, setVisible, visible }) => {
+const Header: FC<HeaderProps> = ({ mealPlan, setVisible, visible }) => {
   const openList = () => {
     setVisible(!visible);
   };
@@ -22,7 +22,7 @@ const MealplanHeader: FC<HeaderProps> = ({ mealPlan, setVisible, visible }) => {
       <button
         className="mealPlan__header__title__toggle"
         onClick={openList}
-        aria-label="open mealplan day"
+        aria-label="open day"
       >
         <div className={openOrClosed}></div>
       </button>
@@ -30,4 +30,4 @@ const MealplanHeader: FC<HeaderProps> = ({ mealPlan, setVisible, visible }) => {
   );
 };
 
-export default MealplanHeader;
+export default Header;

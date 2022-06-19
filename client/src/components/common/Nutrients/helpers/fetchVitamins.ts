@@ -6,7 +6,7 @@ import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDa
 import translateNames from './translateNames';
 
 const fetchVitamins = (
-  selectedProduct: IProducts | getNutritionProps,
+  selectedProduct: IProducts | getNutritionProps | IVitamins['vitamins'],
   dispatchTableData: Dispatch<any>
 ) => {
   fetchData('./vitamins.json', (data: IVitamins[]) => {
@@ -19,7 +19,7 @@ const fetchVitamins = (
         return [product.id, product.properties.serving];
       });
 
-      const selectedVitamins = data.filter((vitamins) =>
+      const selectedFetchedVitamins = data.filter((vitamins) =>
         productIds.includes(vitamins.id)
       );
 
@@ -28,7 +28,7 @@ const fetchVitamins = (
           const productId = curr[0];
           const serving = curr[1];
 
-          const vitamins = selectedVitamins.find(
+          const vitamins = selectedFetchedVitamins.find(
             (fetchedProduct) => productId === fetchedProduct.id
           ).vitamins;
 

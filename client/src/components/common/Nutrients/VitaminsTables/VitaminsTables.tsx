@@ -1,9 +1,16 @@
+import { FC } from 'react';
+import { nutrientsData } from '../hooks/useNutrientsMemo';
 import NutrientTable from '../NutrientTable/NutrientTable';
 
-const VitaminsTables = ({
+interface VitaminsTablesProps {
+  tableData: nutrientsData;
+  className: string;
+  totalServingTitle: string;
+}
+
+const VitaminsTables: FC<VitaminsTablesProps> = ({
   tableData,
   className,
-  selectedProduct,
   totalServingTitle,
 }) => {
   const vitaminsLeft = tableData.data.slice(0, 12);
@@ -23,13 +30,11 @@ const VitaminsTables = ({
     <div className={className}>
       <NutrientTable
         className={className + '__table'}
-        selectedProduct={selectedProduct}
         totalServingTitle={totalServingTitle}
         tableData={vitaminsLeftTable}
       />
       <NutrientTable
         className={className + '__table'}
-        selectedProduct={selectedProduct}
         totalServingTitle={totalServingTitle}
         tableData={vitaminsRightTable}
       />

@@ -1,14 +1,12 @@
-import { FC, useMemo } from 'react';
-import { IProducts } from '../../../../Interfaces/Products';
-import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
+import { FC } from 'react';
 import TableBody from '../../TableBody/TableBody';
 import TableRow from '../../TableRow/TableRow';
+import { nutrientsData } from '../hooks/useNutrientsMemo';
 
 interface NutrientTableProps {
   className: string;
-  selectedProduct: IProducts | getNutritionProps;
   totalServingTitle: string;
-  tableData: object;
+  tableData: nutrientsData;
 }
 
 const NutrientTable: FC<NutrientTableProps> = ({

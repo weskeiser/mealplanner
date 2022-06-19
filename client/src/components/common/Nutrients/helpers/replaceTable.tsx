@@ -1,5 +1,6 @@
 import { Dispatch, FormEvent } from 'react';
 import { IProducts } from '../../../../Interfaces/Products';
+import { IVitamins } from '../../../../Interfaces/Vitamins';
 import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
 import { nutrientsData } from '../Nutrients';
 import fetchVitamins from './fetchVitamins';
@@ -7,7 +8,7 @@ import fetchVitamins from './fetchVitamins';
 const replaceTable = (
   viewType: string | FormEvent<HTMLFormElement>,
   nutrientsData: nutrientsData,
-  selectedProduct: IProducts | getNutritionProps,
+  selectedProduct: IProducts | getNutritionProps | IVitamins['vitamins'],
   dispatchTableData: Dispatch<any>
 ) => {
   let type = viewType;

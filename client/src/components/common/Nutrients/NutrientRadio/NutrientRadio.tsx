@@ -2,8 +2,8 @@ import replaceTable from '../helpers/replaceTable';
 import RadioInput from './RadioInput/RadioInput';
 import { Dispatch, FC, useRef } from 'react';
 import { IProducts } from '../../../../Interfaces/Products';
-import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
 import { nutrientsData } from '../Nutrients';
+import { getNutritionProps } from '../../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
 
 interface NutrientRadioProps {
   className: string;

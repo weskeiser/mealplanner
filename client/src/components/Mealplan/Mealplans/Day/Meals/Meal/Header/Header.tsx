@@ -18,15 +18,16 @@ const Header: FC<HeaderProps> = ({ meal, visible, setVisible }) => {
 
   return (
     <>
-      <div className="mealPlan__meals__meal__title">
+      <section className="mealPlan__meals__meal__title">
         <h3 className="mealPlan__meals__meal__title__name">{meal.listName}</h3>
         <button
           className="mealPlan__meals__meal__title__toggle"
           onClick={openList}
+          aria-label="open meal"
         >
           <div className={openOrClosed}></div>
         </button>
-      </div>
+      </section>
     </>
   );
 };

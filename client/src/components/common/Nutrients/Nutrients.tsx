@@ -1,11 +1,12 @@
 import { IProducts } from '../../../Interfaces/Products';
-import { FC, useEffect, useMemo, useReducer } from 'react';
-import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
+import { FC, useEffect, useReducer } from 'react';
 import NutrientTable from './NutrientTable/NutrientTable';
 import tableDataReducer from './helpers/tableReducer';
 import NutrientRadio from './NutrientRadio/NutrientRadio';
 import replaceTable from './helpers/replaceTable';
 import VitaminsTables from './VitaminsTables/VitaminsTables';
+import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
+import useNutrientsMemo from './hooks/useNutrientsMemo';
 
 interface NutrientsProps {
   className: string;
@@ -27,33 +28,7 @@ const Nutrients: FC<NutrientsProps> = ({
   selectedProduct,
   totalServingTitle,
 }) => {
-  const nutrientsData = useMemo<nutrientsData>(() => {
-    const { properties } = selectedProduct;
-    const { calories, macros, salt, fiber } = properties;
-    const { fat, protein, carbs } = macros;
-    const { total: fatTotal } = fat;
-    const {
-      total,
-      sugar: { total: totalSugar },
-    } = carbs;
-
-    return {
-      data: [
-        ['Kalorier', calories],
-        ['Fett', fatTotal],
-        ['Proteiner', protein],
-        ['Karbohydrater', total],
-        ['- Hvorav sukkerarter', totalSugar],
-        ['Fiber', fiber],
-        ['Salt', salt],
-      ],
-      meta: {
-        type: 'standard',
-        title: 'Næringsinnhold',
-        id: selectedProduct.id,
-      },
-    };
-  }, [selectedProduct]);
+  const nutrientsData = useNutrientsMemo(selectedProduct);
 
   const [tableData, dispatchTableData] = useReducer(
     tableDataReducer,
@@ -75,13 +50,11 @@ const Nutrients: FC<NutrientsProps> = ({
         <VitaminsTables
           tableData={tableData}
           className={className + '__nutrients__vitamins'}
-          selectedProduct={selectedProduct}
           totalServingTitle={totalServingTitle}
         />
       ) : (
         <NutrientTable
           className={className + '__nutrients'}
-          selectedProduct={selectedProduct}
           totalServingTitle={totalServingTitle}
           tableData={tableData}
         />
