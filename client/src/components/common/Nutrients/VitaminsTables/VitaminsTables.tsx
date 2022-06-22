@@ -2,15 +2,15 @@ import { FC } from 'react';
 import { nutrientsData } from '../hooks/useNutrientsMemo';
 import NutrientTable from '../NutrientTable/NutrientTable';
 
+import * as Styled from './VitaminsTables.styled';
+
 interface VitaminsTablesProps {
   tableData: nutrientsData;
-  className: string;
   totalServingTitle: string;
 }
 
 const VitaminsTables: FC<VitaminsTablesProps> = ({
   tableData,
-  className,
   totalServingTitle,
 }) => {
   const vitaminsLeft = tableData.data.slice(0, 12);
@@ -27,18 +27,16 @@ const VitaminsTables: FC<VitaminsTablesProps> = ({
   };
 
   return (
-    <div className={className}>
+    <Styled.VitaminsTables>
       <NutrientTable
-        className={className + '__table'}
         totalServingTitle={totalServingTitle}
         tableData={vitaminsLeftTable}
       />
       <NutrientTable
-        className={className + '__table'}
         totalServingTitle={totalServingTitle}
         tableData={vitaminsRightTable}
       />
-    </div>
+    </Styled.VitaminsTables>
   );
 };
 

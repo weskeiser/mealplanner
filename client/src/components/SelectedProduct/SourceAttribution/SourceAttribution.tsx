@@ -1,20 +1,14 @@
 import { FC } from 'react';
+import * as Styled from './SourceAttribution.styled';
 
-interface SourceAttributionProps {
-  selectedProductClass: string;
-}
-
-const SourceAttribution: FC<SourceAttributionProps> = ({
-  selectedProductClass,
-}) => {
+const SourceAttribution: FC = () => {
   return (
-    <a
-      className={selectedProductClass + '__source-attribution'}
+    <Styled.SourceAttribution
       href="www.matvaretabellen.no"
       title='"Matvaretabellen 2021. Mattilsynet. www.matvaretabellen.no"'
     >
       Kilde: Matvaretabellen.no
-    </a>
+    </Styled.SourceAttribution>
   );
 };
 

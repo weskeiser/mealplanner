@@ -13,6 +13,7 @@ import {
 import navigateSearch from './helpers/navigateResults';
 import SearchResult from './SearchResult/SearchResult';
 import selectProduct from './helpers/selectProduct';
+import * as Styled from './SearchResults.styled';
 
 interface SearchResultsProps {
   searchTerm: string;
@@ -48,14 +49,9 @@ const SearchResults: ForwardRefExoticComponent<
     }, [searchTerm, setFocusedSearchResult]);
 
     return (
-      <ul
-        className="search-section__search-results"
-        ref={searchResultsRef}
-        title="search results"
-      >
+      <Styled.SearchResults ref={searchResultsRef} title="search results">
         {searchResultsContents.map((product, index) => (
           <ListItem
-            className="search-section__search-results__list-item"
             key={product.id}
             tabIndex={index}
             data-id={product.id}
@@ -88,7 +84,7 @@ const SearchResults: ForwardRefExoticComponent<
             <SearchResult product={product} searchTerm={searchTerm} />
           </ListItem>
         ))}
-      </ul>
+      </Styled.SearchResults>
     );
   }
 );

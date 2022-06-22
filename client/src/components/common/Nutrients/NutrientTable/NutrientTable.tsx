@@ -1,21 +1,22 @@
 import { FC } from 'react';
+
 import TableBody from '../../TableBody/TableBody';
 import TableRow from '../../TableRow/TableRow';
 import { nutrientsData } from '../hooks/useNutrientsMemo';
 
+import * as Styled from './NutrientTable.styled';
+
 interface NutrientTableProps {
-  className: string;
   totalServingTitle: string;
   tableData: nutrientsData;
 }
 
 const NutrientTable: FC<NutrientTableProps> = ({
-  className,
   totalServingTitle,
   tableData,
 }) => {
   return (
-    <table className={className}>
+    <Styled.NutrientTable>
       <thead>
         <tr>
           <th>{tableData.meta.title}</th>
@@ -44,7 +45,7 @@ const NutrientTable: FC<NutrientTableProps> = ({
           );
         })}
       </TableBody>
-    </table>
+    </Styled.NutrientTable>
   );
 };
 

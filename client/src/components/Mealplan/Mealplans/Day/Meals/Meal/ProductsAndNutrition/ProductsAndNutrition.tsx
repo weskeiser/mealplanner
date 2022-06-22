@@ -33,7 +33,6 @@ const ProductsAndNutrition: FC<ProductsAndNutritionProps> = ({
           />
 
           <Nutrients
-            className={prodAndNutrClass}
             selectedProduct={{
               ...mealTotalNutrition,
               meal: meal,

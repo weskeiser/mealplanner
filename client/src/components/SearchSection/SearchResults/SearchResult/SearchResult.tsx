@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { IProducts } from '../../../../Interfaces/Products';
 import ProductName from './ProductName/ProductName';
+import * as Styled from './ProductDescription.styled';
 
 interface SearchResultProps {
   product: IProducts;
@@ -11,13 +12,12 @@ const SearchResult: FC<SearchResultProps> = ({ product, searchTerm }) => {
   return (
     <>
       <ProductName searchTerm={searchTerm} product={product} />
-      <p
-        className="search-section__search-results__list-item__brand"
+      <Styled.ProductDescription
         aria-label="product description"
         title={product.description}
       >
         {product.description}
-      </p>
+      </Styled.ProductDescription>
     </>
   );
 };

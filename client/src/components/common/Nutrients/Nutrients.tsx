@@ -9,7 +9,6 @@ import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDaily
 import useNutrientsMemo from './hooks/useNutrientsMemo';
 
 interface NutrientsProps {
-  className: string;
   selectedProduct: IProducts | getNutritionProps;
   totalServingTitle: string;
 }
@@ -24,7 +23,6 @@ export interface nutrientsData {
 }
 
 const Nutrients: FC<NutrientsProps> = ({
-  className,
   selectedProduct,
   totalServingTitle,
 }) => {
@@ -49,19 +47,16 @@ const Nutrients: FC<NutrientsProps> = ({
       {tableData.meta.type === 'vitamins' ? (
         <VitaminsTables
           tableData={tableData}
-          className={className + '__nutrients__vitamins'}
           totalServingTitle={totalServingTitle}
         />
       ) : (
         <NutrientTable
-          className={className + '__nutrients'}
           totalServingTitle={totalServingTitle}
           tableData={tableData}
         />
       )}
 
       <NutrientRadio
-        className={className}
         nutrientsData={nutrientsData}
         selectedProduct={selectedProduct}
         dispatchTableData={dispatchTableData}

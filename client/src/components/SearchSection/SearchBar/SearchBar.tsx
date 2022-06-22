@@ -11,6 +11,7 @@ import {
 import useDebounceFetch from '../../../hooks/useDebounceFetch';
 import { IProducts } from '../../../Interfaces/Products';
 import showSearchResults from '../../helpers/showSearchResults';
+import * as Styled from './SearchBar.styled';
 
 interface SearchBarProps {
   searchTerm: string;
@@ -81,7 +82,7 @@ const SearchBar: ForwardRefExoticComponent<
 
     return (
       <>
-        <div className="search-section__search-bar">
+        <Styled.SearchBar>
           <input
             ref={searchBarRef}
             type="text"
@@ -96,7 +97,7 @@ const SearchBar: ForwardRefExoticComponent<
             alt=""
             title="Magnifying glass"
           />
-        </div>
+        </Styled.SearchBar>
       </>
     );
   }

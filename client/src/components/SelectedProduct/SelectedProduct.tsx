@@ -1,8 +1,11 @@
 import { FC, memo } from 'react';
+
 import { IProducts } from '../../Interfaces/Products';
 import Nutrients from '../common/Nutrients/Nutrients';
 import SelectedProductDisplay from './SelectedProductDisplay/SelectedProductDisplay';
 import SourceAttribution from './SourceAttribution/SourceAttribution';
+
+import * as Styled from './SelectedProduct.styled';
 
 interface SelectedProductProps {
   selectedProduct: IProducts;
@@ -10,21 +13,19 @@ interface SelectedProductProps {
 
 const SelectedProduct: FC<SelectedProductProps> = memo(
   ({ selectedProduct }) => {
-    const selectedProductClass = 'selected-product';
     return (
-      <>
-        <section className={selectedProductClass}>
-          <SelectedProductDisplay selectedProduct={selectedProduct} />
-          <SourceAttribution selectedProductClass={selectedProductClass} />
-          <Nutrients
-            className={selectedProductClass}
-            selectedProduct={selectedProduct}
-            totalServingTitle={
-              'Pr. ' + selectedProduct.properties.serving + 'g'
-            }
-          />
-        </section>
-      </>
+      <Styled.SelectedProduct>
+        <SelectedProductDisplay selectedProduct={selectedProduct} />
+        {/* TODO: 
+        - Merge adjacent JSX Elements
+         */}
+        <SourceAttribution />
+
+        <Nutrients
+          selectedProduct={selectedProduct}
+          totalServingTitle={'Pr. ' + selectedProduct.properties.serving + 'g'}
+        />
+      </Styled.SelectedProduct>
     );
   }
 );

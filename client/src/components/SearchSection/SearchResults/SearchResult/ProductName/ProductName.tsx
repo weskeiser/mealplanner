@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { IProducts } from '../../../../../Interfaces/Products';
+import * as Styled from './ProductName.styled';
 
 interface ProductNameProps {
   searchTerm: string;
@@ -8,31 +9,25 @@ interface ProductNameProps {
 
 const ProductName: FC<ProductNameProps> = ({ product, searchTerm }) => {
   const productName = product.name;
-  const highlightedPart = productName.slice(0, searchTerm.length);
+  const highlightedCharacters = productName.slice(0, searchTerm.length);
 
   const restOfWord = productName.slice(searchTerm.length);
 
-  const highlightedStyle = productName
+  const isHighlighted = productName
     .toLowerCase()
-    .startsWith(searchTerm.toLowerCase())
-    ? 'search-section__search-results__list-item__name__highlighted'
-    : '';
-
-  const checkForHighlight = productName
-    .toLowerCase()
-    .startsWith(searchTerm.toLowerCase())
-    ? 'search-section__search-results__list-item__name'
-    : 'search-section__search-results__list-item__name search-section__search-results__list-item__name__unhighlighted-product';
+    .startsWith(searchTerm.toLowerCase());
 
   return (
-    <p
+    <Styled.FullName
       aria-label={productName}
       title={productName}
-      className={checkForHighlight}
+      isHighlighted={isHighlighted}
     >
-      <span className={highlightedStyle}>{highlightedPart}</span>
+      <Styled.HighlightedCharacters isHighlighted={isHighlighted}>
+        {highlightedCharacters}
+      </Styled.HighlightedCharacters>
       {restOfWord}
-    </p>
+    </Styled.FullName>
   );
 };
 

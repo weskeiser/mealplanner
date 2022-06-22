@@ -31,11 +31,7 @@ const SearchSection: FC<SearchSectionProps> = ({
   const [focusedSearchResult, setFocusedSearchResult] = useState(0);
 
   return (
-    <section
-      className="search-section"
-      role="search"
-      aria-label="product search"
-    >
+    <section role="search" aria-label="product search">
       <SearchBar
         ref={searchBarRef}
         searchResultsRef={searchResultsRef}

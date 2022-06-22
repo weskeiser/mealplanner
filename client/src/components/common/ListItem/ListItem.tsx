@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 export interface IListItem {
   children: any;
-  className: string;
+  className?: string;
   onKeyDown?: any;
   tabIndex?: number;
   props?: any;
