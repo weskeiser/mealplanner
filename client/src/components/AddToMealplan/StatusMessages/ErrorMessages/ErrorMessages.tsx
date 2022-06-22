@@ -1,27 +1,24 @@
 import { FC } from 'react';
 import { IProducts } from '../../../../Interfaces/Products';
 
+import { StyledErrorMessage } from '../StatusMessages.styled';
+
 interface ErrorMessagesProps {
   unsuccessfulAdditions: string[] | never[];
-  className: string;
   selectedProduct: IProducts;
 }
 
 const ErrorMessages: FC<ErrorMessagesProps> = ({
   unsuccessfulAdditions,
-  className,
   selectedProduct,
 }) => {
   return (
     <>
       {unsuccessfulAdditions.map((unsuccessfulAddition) => (
-        <p
-          className={className + '__add-to-list__status__error'}
-          key={'unsuccessful' + unsuccessfulAddition}
-        >
+        <StyledErrorMessage key={'unsuccessful' + unsuccessfulAddition}>
           {selectedProduct.name}, {unsuccessfulAddition[2]}g eksisterer allerede
           i {unsuccessfulAddition[0]}, {unsuccessfulAddition[1]}.
-        </p>
+        </StyledErrorMessage>
       ))}
     </>
   );

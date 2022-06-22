@@ -1,4 +1,3 @@
-import ServingInput from './ServingInput/ServingInput';
 import {
   Dispatch,
   MutableRefObject,
@@ -6,11 +5,14 @@ import {
   FC,
   useState,
 } from 'react';
-import SubmitButton from './SubmitButton/SubmitButton';
 import MealplanSelect from './MealplanSelect/MealplanSelect';
 import StatusMessages from './StatusMessages/StatusMessages';
 import { IMealplans } from '../../Interfaces/Mealplans';
 import { IProducts } from '../../Interfaces/Products';
+
+import * as Styled from './AddToMealplan.styled';
+import addProductToMeal from './helpers/addProductToMeal';
+import StyledServingInput from './ServingInput/ServingInput.styled';
 
 export interface AddToMealPlanProps {
   selectedProduct: IProducts;
@@ -38,20 +40,14 @@ const AddToMealplan: FC<AddToMealPlanProps> = ({
     string[] | never[]
   >([]);
 
-  const className = 'add-to-mealplan';
-
   return (
     <>
-      <form id="addToList" className={className + '__add-to-list'}>
-        <MealplanSelect
-          className={className}
-          mealPlans={mealPlans}
-          setMealPlans={setMealPlans}
-        />
-        <div className={className + '__add-to-list__serving-and-add'}>
-          <ServingInput
+      <Styled.Form id="addToList">
+        <MealplanSelect mealPlans={mealPlans} setMealPlans={setMealPlans} />
+
+        <Styled.Container>
+          <StyledServingInput
             ref={servingInputRef}
-            className={className + '__add-to-list__serving'}
             selectedProduct={selectedProduct}
             setSelectedProduct={setSelectedProduct}
             selectedProductOriginalServing={selectedProductOriginalServing}
@@ -64,18 +60,24 @@ const AddToMealplan: FC<AddToMealPlanProps> = ({
             setSuccessfulAdditions={setSuccessfulAdditions}
           />
 
-          <SubmitButton
-            className={className}
-            selectedProduct={selectedProduct}
-            mealPlans={mealPlans}
-            setMealPlans={setMealPlans}
-            setUnsuccessfulAdditions={setUnsuccessfulAdditions}
-            setSuccessfulAdditions={setSuccessfulAdditions}
-          />
-        </div>
-      </form>
+          <Styled.SubmitButton
+            formTarget="addToList"
+            onClick={(e) =>
+              addProductToMeal(
+                e,
+                selectedProduct,
+                mealPlans,
+                setMealPlans,
+                setUnsuccessfulAdditions,
+                setSuccessfulAdditions
+              )
+            }
+          >
+            Legg til
+          </Styled.SubmitButton>
+        </Styled.Container>
+      </Styled.Form>
       <StatusMessages
-        className={className}
         successfulAdditions={successfulAdditions}
         unsuccessfulAdditions={unsuccessfulAdditions}
         selectedProduct={selectedProduct}

@@ -4,13 +4,11 @@ import daysOfTheWeek from '../../helpers/daysOfTheWeek';
 import SelectMealplan from './SelectMealplan/SelectMealplan';
 
 interface MealplanSelectProps {
-  className: string;
   mealPlans: IMealplans[];
   setMealPlans: Dispatch<SetStateAction<IMealplans[]>>;
 }
 
 const MealplanSelect: FC<MealplanSelectProps> = ({
-  className,
   mealPlans,
   setMealPlans,
 }) => {
@@ -58,7 +56,6 @@ const MealplanSelect: FC<MealplanSelectProps> = ({
     <>
       <SelectMealplan
         name="selectDay"
-        className={className}
         listNames={daysOfTheWeek}
         mealNames={mealNames}
         setMealNames={setMealNames}
@@ -66,7 +63,6 @@ const MealplanSelect: FC<MealplanSelectProps> = ({
       <hr />
       <SelectMealplan
         name="selectMeal"
-        className={className}
         listNames={mealNames}
         mealNames={mealNames}
         setMealNames={setMealNames}

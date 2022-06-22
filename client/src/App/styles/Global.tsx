@@ -7,9 +7,17 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
+#root {
+  height: 100%;
+}
+
 html {
   height: 100%;
   font-family: 'Montserrat', sans-serif;
+}
+
+main {
+  margin-bottom: 10em;
 }
 
 body {

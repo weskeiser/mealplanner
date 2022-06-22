@@ -1,7 +1,8 @@
 import { FC, useRef, useState } from 'react';
 
+import * as Styled from './ListOptions.styled';
+
 interface ListOptionsProps {
-  className: string;
   listName: string;
   optionIndex: number;
   disabled?: boolean;
@@ -9,7 +10,6 @@ interface ListOptionsProps {
 
 const ListOptions: FC<ListOptionsProps> = ({
   listName,
-  className,
   optionIndex,
   disabled,
 }) => {
@@ -23,8 +23,9 @@ const ListOptions: FC<ListOptionsProps> = ({
   };
 
   return (
-    <fieldset
-      className={className + '__add-to-list__options__option'}
+    <Styled.Fieldset
+      highlighted={highlighted}
+      disabled={disabled}
       key={'select' + listName}
       name={listName}
       onKeyPress={(e) => {
@@ -46,13 +47,8 @@ const ListOptions: FC<ListOptionsProps> = ({
         defaultChecked={trueIfFirstOption}
         disabled={disabled}
       />
-      <label
-        className={highlighted ? 'selected' : ''}
-        htmlFor={'select' + listName}
-      >
-        {listName}
-      </label>
-    </fieldset>
+      <label htmlFor={'select' + listName}>{listName}</label>
+    </Styled.Fieldset>
   );
 };
 

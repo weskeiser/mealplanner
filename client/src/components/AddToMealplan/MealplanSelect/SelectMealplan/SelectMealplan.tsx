@@ -3,8 +3,9 @@ import ActiveMeals from './ActiveMeals/ActiveMeals';
 import InactiveMeals from './InactiveMeals/InactiveMeals';
 import IncrementMeals from './IncrementMeals/IncrementMeals';
 
+import * as Styled from './SelectMealplan.styled';
+
 interface SelectMealplanProps {
-  className: string;
   listNames: string[];
   name: string;
   mealNames: string[];
@@ -13,25 +14,18 @@ interface SelectMealplanProps {
 
 const SelectMealplan: FC<SelectMealplanProps> = ({
   name,
-  className,
   listNames,
   mealNames,
   setMealNames,
 }) => {
   return (
-    <div className={className + '__add-to-list__options'} name={name}>
-      <ActiveMeals listNames={listNames} className={className} />
+    <Styled.SelectMealplan name={name}>
+      <ActiveMeals listNames={listNames} />
+      {name === 'selectMeal' && <InactiveMeals listNames={listNames} />}
       {name === 'selectMeal' && (
-        <InactiveMeals listNames={listNames} className={className} />
+        <IncrementMeals mealNames={mealNames} setMealNames={setMealNames} />
       )}
-      {name === 'selectMeal' && (
-        <IncrementMeals
-          mealNames={mealNames}
-          setMealNames={setMealNames}
-          className={className}
-        />
-      )}
-    </div>
+    </Styled.SelectMealplan>
   );
 };
 

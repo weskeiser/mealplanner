@@ -5,6 +5,7 @@ const Theme = {
     pageColorLighter: '#9abde2',
     dataInk: '#dadada',
     dataInkText: '#5c7aae',
+    mealBackground: '#f6f6f6',
   },
 };
 

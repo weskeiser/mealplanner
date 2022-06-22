@@ -5,15 +5,17 @@ import {
   Dispatch,
   SetStateAction,
 } from 'react';
+import { css } from 'styled-components';
 import { IMealplans } from '../../../Interfaces/Mealplans';
 import { IProducts } from '../../../Interfaces/Products';
 import handleKeyDown from './helpers/handleKeyDown';
 import updateSelectedProduct from './helpers/updateSelectedProduct';
 
+import styled from 'styled-components';
+
 interface ServingInputProps {
   selectedProduct: IProducts;
   setSelectedProduct: Dispatch<SetStateAction<IProducts>>;
-  className: string;
   selectedProductOriginalServing: IProducts | {};
   setSelectedProductOriginalServing: Dispatch<SetStateAction<IProducts>>;
   mealPlans: IMealplans[];
@@ -22,12 +24,11 @@ interface ServingInputProps {
   setSuccessfulAdditions: Dispatch<SetStateAction<string[] | never[]>>;
 }
 
-const ServingInput: ForwardRefExoticComponent<
+export const StyledServingInput: ForwardRefExoticComponent<
   ServingInputProps & RefAttributes<HTMLInputElement | undefined>
 > = forwardRef<HTMLInputElement | undefined, ServingInputProps>(
   (
     {
-      className,
       selectedProduct,
       setSelectedProduct,
       selectedProductOriginalServing,
@@ -40,9 +41,8 @@ const ServingInput: ForwardRefExoticComponent<
     servingInputRef
   ) => {
     return (
-      <input
+      <StyledInput
         ref={servingInputRef}
-        className={className}
         type="number"
         name="amountInGrams"
         id="addProduct"
@@ -73,4 +73,34 @@ const ServingInput: ForwardRefExoticComponent<
   }
 );
 
-export default ServingInput;
+const colorFromTheme = (color: string) => {
+  return css`
+    ${({ theme }) => theme.colors[color]}
+  `;
+};
+
+const pageColor = colorFromTheme('pageColor');
+const pageColorText = colorFromTheme('pageColorText');
+
+const StyledInput = styled.input`
+  border-radius: 0.3em;
+  appearance: textfield;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  width: 100%;
+  padding-top: 0.1em;
+  text-align: center;
+  border: 1px solid ${pageColor};
+  outline: none;
+  font-size: 1.1em;
+  color: ${pageColorText};
+  height: 2em;
+  border-right: 2px solid ${pageColor};
+  border-bottom: 2px solid ${pageColor};
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+`;
+
+export default StyledServingInput;

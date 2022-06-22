@@ -2,19 +2,6 @@
   display: none;
 }
 
-#root {
-  height: 100%;
-}
-
-.header {
-  height: 6em;
-  background-color: rgba(134, 178, 232, 0.2);
-}
-
-main {
-  margin-bottom: 10em;
-}
-
 .dividers {
   border: none;
   border-bottom: 1px solid #86b2e8;
@@ -68,6 +55,10 @@ main {
   border-bottom: 1px solid #86b2e8;
 }
 
+.custom-product__form__list__input:first-child {
+  border-top: 1px solid #86b2e8;
+}
+
 .custom-product__form__list__input > label {
   border-right: 1px solid #86b2e8;
 }
@@ -108,220 +99,6 @@ main {
 
 .custom-product__form > * {
   color: #5582b8;
-}
-
-.selected-product {
-  margin: 0 1em;
-  margin-top: 2em;
-}
-
-.selected-product__nutrients {
-  margin-top: 1em;
-}
-
-.selected-product__nutrients__vitamins__table__radio {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 0.5em;
-}
-
-.selected-product__nutrients__vitamins__table__radio > input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: 1.6em;
-  height: 1.6em;
-  border: 2px solid #86b2e8;
-  border-radius: 1em;
-  display: -ms-grid;
-  display: grid;
-  place-content: center;
-  margin: 0;
-}
-
-.selected-product__nutrients__vitamins__table__radio > input::before {
-  content: '';
-  width: 1em;
-  height: 1em;
-  border-radius: 1em;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: 120ms -webkit-transform ease-in-out;
-  transition: 120ms -webkit-transform ease-in-out;
-  transition: 120ms transform ease-in-out;
-  transition: 120ms transform ease-in-out, 120ms -webkit-transform ease-in-out;
-  -webkit-box-shadow: inset 1em 1em #86b2e8;
-          box-shadow: inset 1em 1em #86b2e8;
-}
-
-.selected-product__nutrients__vitamins__table__radio > input:checked::before {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-
-.selected-product__nutrients__vitamins__table__radio > input:first-of-type {
-  margin-left: auto;
-  margin-right: 0.5em;
-}
-
-.selected-product__nutrients__vitamins__table__radio > input:nth-of-type(3) {
-  margin-right: auto;
-  margin-left: 0.5em;
-}
-
-.selected-product__divider--upper {
-  margin-bottom: 1.6em;
-}
-
-.add-to-mealplan__add-to-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  color: #5582b8;
-  margin: 0 1em;
-  margin-top: 1em;
-  height: 100%;
-  gap: 0.5em;
-}
-
-.add-to-mealplan__add-to-list > hr {
-  border: 1px solid #e2f2fc;
-  border: 1px solid #dadada;
-  border: 1px solid #f6f6f6;
-}
-
-.add-to-mealplan__add-to-list__options {
-  width: 10em;
-}
-
-.add-to-mealplan__add-to-list__options__option {
-  border: none;
-  background-color: #fff;
-  color: #5582b8;
-  color: #83a2d5;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  height: 2em;
-}
-
-.add-to-mealplan__add-to-list__options__option > input,
-.add-to-mealplan__add-to-list__options__option > label {
-  margin: auto 0;
-  -ms-grid-row: 1;
-  grid-row: 1;
-  -ms-grid-column: 1;
-  grid-column: 1;
-  width: 100%;
-  border-radius: 0.3em;
-}
-
-.add-to-mealplan__add-to-list__options__option > input {
-  opacity: 0;
-  cursor: pointer;
-}
-
-.add-to-mealplan__add-to-list__options__option > input:focus-visible {
-  opacity: 100;
-  outline: 4px solid #4b4bff;
-}
-
-.add-to-mealplan__add-to-list__options__option > label {
-  padding: 0.25em 0.4em;
-}
-
-.add-to-mealplan__add-to-list__options__increment {
-  cursor: pointer;
-  font-size: 1.3em;
-  border: 0;
-  color: #0eac0e;
-  background-color: #fff;
-  width: 50%;
-  margin-top: 0.2em;
-}
-
-.add-to-mealplan__add-to-list__options__increment:nth-of-type(1) {
-  padding-left: 0.3em;
-  color: #bc5555;
-}
-
-.add-to-mealplan__add-to-list__options__increment:nth-of-type(2) {
-  padding-right: 0.3em;
-}
-
-.add-to-mealplan__add-to-list__serving-and-add {
-  width: 70%;
-}
-
-.add-to-mealplan__add-to-list__serving {
-  border-radius: 0.3em;
-  -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  width: 100%;
-  padding-top: 0.1em;
-  text-align: center;
-  border: 1px solid #86b2e8;
-  outline: none;
-  font-size: 1.1em;
-  color: #5582b8;
-  height: 2em;
-  border-right: 2px solid #86b2e8;
-  border-bottom: 2px solid #86b2e8;
-}
-
-.add-to-mealplan__add-to-list__serving:focus::-webkit-input-placeholder {
-  color: transparent;
-}
-
-.add-to-mealplan__add-to-list__serving:focus:-ms-input-placeholder {
-  color: transparent;
-}
-
-.add-to-mealplan__add-to-list__serving:focus::-ms-input-placeholder {
-  color: transparent;
-}
-
-.add-to-mealplan__add-to-list__serving:focus::placeholder {
-  color: transparent;
-}
-
-.add-to-mealplan__add-to-list__add {
-  border-radius: 0.3em;
-  margin-top: 0.3em;
-  height: 2em;
-  font-size: 1.1em;
-  width: 100%;
-  color: #5582b8;
-  background-color: #fff;
-  border: 1px solid #86b2e8;
-  border-right: 2px solid #86b2e8;
-  border-bottom: 2px solid #86b2e8;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.add-to-mealplan__add-to-list__status {
-  margin-left: 1em;
-  margin-top: 1em;
-  min-height: 5em;
-}
-
-.add-to-mealplan__add-to-list__status__error, .add-to-mealplan__add-to-list__status__success {
-  font-size: 0.7em;
-  width: 100%;
-}
-
-.add-to-mealplan__add-to-list__status__error {
-  color: red;
-}
-
-.add-to-mealplan__add-to-list__status__success {
-  color: #34b634;
 }
 
 .mealPlan__title {
@@ -471,57 +248,6 @@ main {
   cursor: pointer;
 }
 
-.mealPlan__meals__meal__products-and-nutrition__nutrients__vitamins__table__radio {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 0.5em;
-}
-
-.mealPlan__meals__meal__products-and-nutrition__nutrients__vitamins__table__radio > input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: 1.6em;
-  height: 1.6em;
-  border: 2px solid #86b2e8;
-  border-radius: 1em;
-  display: -ms-grid;
-  display: grid;
-  place-content: center;
-  margin: 0;
-}
-
-.mealPlan__meals__meal__products-and-nutrition__nutrients__vitamins__table__radio > input::before {
-  content: '';
-  width: 1em;
-  height: 1em;
-  border-radius: 1em;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: 120ms -webkit-transform ease-in-out;
-  transition: 120ms -webkit-transform ease-in-out;
-  transition: 120ms transform ease-in-out;
-  transition: 120ms transform ease-in-out, 120ms -webkit-transform ease-in-out;
-  -webkit-box-shadow: inset 1em 1em #86b2e8;
-          box-shadow: inset 1em 1em #86b2e8;
-}
-
-.mealPlan__meals__meal__products-and-nutrition__nutrients__vitamins__table__radio > input:checked::before {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-
-.mealPlan__meals__meal__products-and-nutrition__nutrients__vitamins__table__radio > input:first-of-type {
-  margin-left: auto;
-  margin-right: 0.5em;
-}
-
-.mealPlan__meals__meal__products-and-nutrition__nutrients__vitamins__table__radio > input:nth-of-type(3) {
-  margin-right: auto;
-  margin-left: 0.5em;
-}
-
 .mealPlan__total {
   margin: 2em;
 }
@@ -532,82 +258,7 @@ main {
   margin-bottom: 0.7em;
 }
 
-.mealPlan__total__nutrients__vitamins__table__radio {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 0.5em;
-}
-
-.mealPlan__total__nutrients__vitamins__table__radio > input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: 1.6em;
-  height: 1.6em;
-  border: 2px solid #86b2e8;
-  border-radius: 1em;
-  display: -ms-grid;
-  display: grid;
-  place-content: center;
-  margin: 0;
-}
-
-.mealPlan__total__nutrients__vitamins__table__radio > input::before {
-  content: '';
-  width: 1em;
-  height: 1em;
-  border-radius: 1em;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: 120ms -webkit-transform ease-in-out;
-  transition: 120ms -webkit-transform ease-in-out;
-  transition: 120ms transform ease-in-out;
-  transition: 120ms transform ease-in-out, 120ms -webkit-transform ease-in-out;
-  -webkit-box-shadow: inset 1em 1em #86b2e8;
-          box-shadow: inset 1em 1em #86b2e8;
-}
-
-.mealPlan__total__nutrients__vitamins__table__radio > input:checked::before {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-
-.mealPlan__total__nutrients__vitamins__table__radio > input:first-of-type {
-  margin-left: auto;
-  margin-right: 0.5em;
-}
-
-.mealPlan__total__nutrients__vitamins__table__radio > input:nth-of-type(3) {
-  margin-right: auto;
-  margin-left: 0.5em;
-}
-
-.green {
-  color: #34bc2d;
-}
-
-.red {
-  color: red;
-}
-
 .wide {
   width: 100%;
-}
-
-.selected {
-  background-color: #e2f2fc;
-  background-color: #90d5ff;
-  color: #f5f9ff;
-  border: 1px solid #97b5e6;
-}
-
-.disabled > * {
-  background-color: #f7f7f7;
-  color: #d1d1d1;
-}
-
-.disabled > input {
-  pointer-events: none;
 }
 /*# sourceMappingURL=App.css.map */

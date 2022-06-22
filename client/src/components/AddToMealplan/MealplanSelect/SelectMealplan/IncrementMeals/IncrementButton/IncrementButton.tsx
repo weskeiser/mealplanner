@@ -1,12 +1,14 @@
 import { Dispatch, FC, SetStateAction } from 'react';
+
 import incrementMeals from './helpers/incrementMeals';
+
+import * as Styled from './IncrementButton.styled';
 
 interface IncrementButtonProps {
   incrementType: string;
   children: string;
   mealNames: string[];
   setMealNames: Dispatch<SetStateAction<string[]>>;
-  className: string;
 }
 
 const IncrementButton: FC<IncrementButtonProps> = ({
@@ -14,15 +16,13 @@ const IncrementButton: FC<IncrementButtonProps> = ({
   mealNames,
   setMealNames,
   children,
-  className,
 }) => {
   return (
-    <button
-      className={className + '__add-to-list__options__increment'}
+    <Styled.IncrementButton
       onClick={(e) => incrementMeals(e, incrementType, mealNames, setMealNames)}
     >
       {children}
-    </button>
+    </Styled.IncrementButton>
   );
 };
 
