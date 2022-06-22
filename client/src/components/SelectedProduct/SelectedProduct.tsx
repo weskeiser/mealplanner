@@ -3,9 +3,8 @@ import { FC, memo } from 'react';
 import { IProducts } from '../../Interfaces/Products';
 import Nutrients from '../common/Nutrients/Nutrients';
 import SelectedProductDisplay from './SelectedProductDisplay/SelectedProductDisplay';
-import SourceAttribution from './SourceAttribution/SourceAttribution';
 
-import * as Styled from './SelectedProduct.styled';
+import * as Styled from './Section.styled';
 
 interface SelectedProductProps {
   selectedProduct: IProducts;
@@ -14,18 +13,14 @@ interface SelectedProductProps {
 const SelectedProduct: FC<SelectedProductProps> = memo(
   ({ selectedProduct }) => {
     return (
-      <Styled.SelectedProduct>
+      <Styled.Section>
         <SelectedProductDisplay selectedProduct={selectedProduct} />
-        {/* TODO: 
-        - Merge adjacent JSX Elements
-         */}
-        <SourceAttribution />
 
         <Nutrients
           selectedProduct={selectedProduct}
           totalServingTitle={'Pr. ' + selectedProduct.properties.serving + 'g'}
         />
-      </Styled.SelectedProduct>
+      </Styled.Section>
     );
   }
 );
