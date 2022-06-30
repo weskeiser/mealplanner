@@ -1,12 +1,13 @@
-import { IProducts } from '../../../Interfaces/Products';
-import { FC, useEffect, useReducer } from 'react';
-import NutrientTable from './NutrientTable/NutrientTable';
-import tableDataReducer from './helpers/tableReducer';
-import NutrientRadio from './NutrientRadio/NutrientRadio';
-import replaceTable from './helpers/replaceTable';
-import VitaminsTables from './VitaminsTables/VitaminsTables';
-import { getNutritionProps } from '../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition';
-import useNutrientsMemo from './hooks/useNutrientsMemo';
+import { IProducts } from "../../../Interfaces/Products";
+import { FC, useEffect, useReducer } from "react";
+import NutrientTable from "./NutrientTable/NutrientTable";
+import tableDataReducer from "./helpers/tableReducer";
+import NutrientRadio from "./NutrientRadio/NutrientRadio";
+import replaceTable from "./helpers/replaceTable";
+import VitaminsTables from "./VitaminsTables/VitaminsTables";
+import { getNutritionProps } from "../../Mealplan/Mealplans/Day/helpers/getDailyTotalNutrition";
+import useNutrientsMemo from "./hooks/useNutrientsMemo";
+import styled from "styled-components";
 
 interface NutrientsProps {
   selectedProduct: IProducts | getNutritionProps;
@@ -44,17 +45,19 @@ const Nutrients: FC<NutrientsProps> = ({
 
   return (
     <>
-      {tableData.meta.type === 'vitamins' ? (
-        <VitaminsTables
-          tableData={tableData}
-          totalServingTitle={totalServingTitle}
-        />
-      ) : (
-        <NutrientTable
-          totalServingTitle={totalServingTitle}
-          tableData={tableData}
-        />
-      )}
+      <TableWrapper>
+        {tableData.meta.type === "vitamins" ? (
+          <VitaminsTables
+            tableData={tableData}
+            totalServingTitle={totalServingTitle}
+          />
+        ) : (
+          <NutrientTable
+            totalServingTitle={totalServingTitle}
+            tableData={tableData}
+          />
+        )}
+      </TableWrapper>
 
       <NutrientRadio
         nutrientsData={nutrientsData}
@@ -64,5 +67,9 @@ const Nutrients: FC<NutrientsProps> = ({
     </>
   );
 };
+
+const TableWrapper = styled.div`
+  height: 16em;
+`;
 
 export default Nutrients;

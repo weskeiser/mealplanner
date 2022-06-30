@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const pageColor = css`
   ${({ theme }) => theme.colors.pageColor}
@@ -19,7 +19,7 @@ export const NutrientRadio = styled.form`
     margin: 0;
 
     &::before {
-      content: '';
+      content: "";
       width: 1em;
       height: 1em;
       border-radius: 1em;
